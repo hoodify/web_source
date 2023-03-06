@@ -2080,7 +2080,7 @@ $('#selection_style').click(function(){
 });
 
 
-// 안 꾸미는 편
+// 안 꾸미는 편 // 테스트
 $('#selection_style3').click(function(){
 
   $('#selection_style2').fadeOut("fast");
