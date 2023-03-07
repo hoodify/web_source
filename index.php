@@ -720,10 +720,10 @@
              <p class="selection_box" id="selection_state" style="background-color: rgba( 15, 61, 72); margin-left: 150px; margin-bottom:80px;">상태 </p>
              <p class="selection_box" id="selection_work" style="background-color: rgba( 86, 80, 66); margin-left: 250px; margin-top:400px;">일&직업 </p>
 
-             <p class="selection_box" id="selection_work2" style="font-size: 22px; cursor: default; background-color: rgba( 30, 40, 88); margin-left:450px; margin-bottom:180px;">예술 & 문화 </p>
-             <p class="selection_box" id="selection_work3" style="cursor: default;background-color: rgba( 25, 51, 52); margin-right: 400px; margin-bottom:220px;"> IT </p>
-             <p class="selection_box" id="selection_work4" style="cursor: default;background-color: rgba( 15, 61, 72); margin-left: 550px; margin-top:280px;"> ??? </p>
-             <p class="selection_box" id="selection_work5" style="cursor: default;background-color: rgba( 40, 50, 88); margin-right: 350px; margin-top:320px;"> ???  </p>
+             <p class="selection_box" id="selection_work2" style="font-size: 22px; background-color: rgba( 30, 40, 88); margin-left:800px; margin-bottom:100px;">예술 & 문화 </p>
+             <p class="selection_box" id="selection_work3" style="background-color: rgba( 25, 51, 52); margin-left: 400px; margin-bottom:150px;"> IT </p>
+             <p class="selection_box" id="selection_work4" style="background-color: rgba( 15, 61, 72); margin-left: 850px; margin-top:280px;"> ??? </p>
+             <p class="selection_box" id="selection_work5" style="background-color: rgba( 40, 50, 88); margin-left: 450px; margin-top:420px;"> ???  </p>
 
              <p class="selection_box2" id="selection_work6" style="margin-left: 300px; margin-top: 150px; background-color: rgba( 49, 87, 138);" > 분야는? </p>
 
@@ -892,7 +892,7 @@
                   <p class='identity_name'>   미적 감각  </p>
               </div>
 
-              <div class='identity_mindmap selection' id='identity_selection_39' style="display: none; margin-right:640px; margin-top :540px;">
+              <div class='identity_mindmap selection' id='identity_selection_39' style="display: none; margin-right:680px; margin-top :540px;">
                 <img class="identity_img" src="/hoodify/img/identity/hooodify_mini.png">
                 <p class='identity_name'> 허약체질</p>
               </div>
@@ -931,6 +931,70 @@
                  <img class="identity_img" src="/hoodify/img/identity/hooodify_mini.png">
                  <p class='identity_name'> 흙수저  </p>
                </div>
+
+               <div class='identity_mindmap selection' id='identity_selection_84' style="display: none; margin-left:720px; margin-bottom :420px;">
+                 <img class="identity_img" src="/hoodify/img/identity/hooodify_mini.png">
+                 <p class='identity_name'>  금수저    </p>
+               </div>
+
+               <div class='identity_mindmap selection' id='identity_selection_85' style="display: none; margin-right:450px; margin-top: 650px;">
+                 <img class="identity_img" src="/hoodify/img/identity/hooodify_mini.png">
+                 <p class='identity_name'> 인자강 </p>
+               </div>
+
+               <div class='identity_mindmap selection' id='identity_selection_34' style="display: none; margin-left:900px; margin-top:680px;">
+                 <img class="identity_img" src="/hoodify/img/identity/hooodify_mini.png">
+                 <p class='identity_name'>    올빼미족      </p>
+               </div>
+
+
+               <div class='identity_mindmap selection' id='identity_selection_15' style="display: none; margin-right:200px; margin-top:480px;">
+                 <img class="identity_img" src="/hoodify/img/identity/hooodify_mini.png">
+                 <p class='identity_name'>    아르바이트 마스터       </p>
+               </div>
+
+               <div class='identity_mindmap selection' id='identity_selection_86' style="display: none; margin-right:820px; margin-bottom :300px;">
+                 <img class="identity_img" src="/hoodify/img/identity/hooodify_mini.png">
+                 <p class='identity_name'>    주부      </p>
+               </div>
+
+
+               <div class='identity_mindmap selection' id='identity_selection_87' style="display: none; margin-right:420px; margin-top :720px;">
+                 <img class="identity_img" src="/hoodify/img/identity/hooodify_mini.png">
+                 <p class='identity_name'>    배달기사     </p>
+               </div>
+
+               <div class='identity_mindmap selection' id='identity_selection_21' style="display: none; margin-right:520px; margin-bottom :20px;">
+                 <img class="identity_img" src="/hoodify/img/identity/hooodify_mini.png">
+                 <p class='identity_name'>  사무직    </p>
+               </div>
+
+               <div class='identity_mindmap selection' id='identity_selection_18' style="display: none; margin-right:720px; margin-top :400px;">
+                 <img class="identity_img" src="/hoodify/img/identity/hooodify_mini.png">
+                 <p class='identity_name'>  프리랜서     </p>
+               </div>
+
+               <div class='identity_mindmap selection' id='identity_selection_17' style="display: none; margin-right:720px; margin-top :400px;">
+                 <img class="identity_img" src="/hoodify/img/identity/hooodify_mini.png">
+                 <p class='identity_name'>  작가      </p>
+               </div>
+
+               <div class='identity_mindmap selection' id='identity_selection_88' style="display: none; margin-right:520px; margin-bottom :20px;">
+                 <img class="identity_img" src="/hoodify/img/identity/hooodify_mini.png">
+                 <p class='identity_name'>  일러스트레이터      </p>
+               </div>
+
+
+               <div class='identity_mindmap selection' id='identity_selection_89' style="display: none; margin-right:820px; margin-bottom :300px;">
+                 <img class="identity_img" src="/hoodify/img/identity/hooodify_mini.png">
+                 <p class='identity_name'>    모델       </p>
+               </div>
+
+               <div class='identity_mindmap selection' id='identity_selection_90' style="display: none; margin-left:250px;">
+                 <img class="identity_img" src="/hoodify/img/identity/hooodify_mini.png">
+                 <p class='identity_name'> 콘텐츠 크리에이터  </p>
+               </div>
+
 
              <p class="selection_box2" id="selection_style6" style="margin-bottom: 200px; background-color: rgba( 49, 87, 138);" >선호하는 스타일이 있나요?</p>
 
@@ -1530,7 +1594,7 @@ function layer_popup(el){
       }
 
       $el.find('.btn_layerClose').click(function(){
-        $el.fadeOut("fast");
+        $el.fadeOut("slow");
 
 
 
@@ -2080,7 +2144,7 @@ $('#selection_style').click(function(){
 });
 
 
-// 안 꾸미는 편 // 테스트ㅇㅇㅇ
+// 안 꾸미는 편 //
 $('#selection_style3').click(function(){
 
   $('#selection_style2').fadeOut("fast");
@@ -2402,8 +2466,11 @@ $('#selection_state').click(function(){
   $('#identity_selection_42').css("display","flex").hide().delay(400).fadeIn("slow");
   $('#identity_selection_37').css("display","flex").hide().delay(400).fadeIn("slow");
   $('#identity_selection_32').css("display","flex").hide().delay(500).fadeIn("slow");
-  $('#identity_selection_83').css("display","flex").hide().delay(600).fadeIn("slow");
+  $('#identity_selection_83').css("display","flex").hide().delay(800).fadeIn("slow");
   $('#identity_selection_43').css("display","flex").hide().delay(600).fadeIn("slow");
+  $('#identity_selection_84').css("display","flex").hide().delay(200).fadeIn("slow");
+  $('#identity_selection_85').css("display","flex").hide().delay(700).fadeIn("slow");
+  $('#identity_selection_34').css("display","flex").hide().delay(700).fadeIn("slow");
 
 
 
@@ -2415,10 +2482,7 @@ $('#selection_state').click(function(){
   $('.add_content').css("display","flex").hide().delay(200).fadeIn("slow");
 
 
-  // 금수저
-  // 올빼미족
 
-  // 경제 / 사회 / 생활 / 건강
 
 
 })
@@ -2438,6 +2502,22 @@ $('#selection_work').click(function(){
   $('#selection_work3').css("display","flex").hide().delay(600).fadeIn("slow");
   $('#selection_work4').css("display","flex").hide().delay(400).fadeIn("slow");
   $('#selection_work5').css("display","flex").hide().delay(400).fadeIn("slow");
+  $('#selection_work6').css("display","flex").hide().delay(500).fadeIn("slow");
+
+
+
+  $('#identity_selection_15').css("display","flex").hide().delay(700).fadeIn("slow");
+  $('#identity_selection_86').css("display","flex").hide().delay(700).fadeIn("slow");
+
+  $('#identity_selection_21').css("display","flex").hide().delay(700).fadeIn("slow");
+  $('#identity_selection_18').css("display","flex").hide().delay(700).fadeIn("slow");
+  $('#identity_selection_87').css("display","flex").hide().delay(700).fadeIn("slow");
+
+
+
+
+
+  $('.add_content').css("display","flex").hide().delay(200).fadeIn("slow");
 
   $('#toback').css("display","flex").hide().delay(200).fadeIn("slow");
 
@@ -2445,13 +2525,66 @@ $('#selection_work').click(function(){
 // 분야는?
 // 예술&문화
 // IT
-// 사무직
-// 배달
 
-
+// 게임 개발자
+// 투자가?
 
 
 });
+
+//////////////////////////
+// 예술 & 문화
+
+$('#selection_work2').click(function(){
+
+
+  $('.selection').fadeOut("fast");
+  $('.selection_box').fadeOut("fast");
+  $('.selection_box2').fadeOut("fast");
+  $('.selection_box3').fadeOut("fast");
+
+  $('.add_content').fadeOut("fast");
+
+
+  $('#identity_selection_17').css("display","flex").hide().delay(700).fadeIn("slow");
+  $('#identity_selection_88').css("display","flex").hide().delay(200).fadeIn("slow");
+  $('#identity_selection_89').css("display","flex").hide().delay(500).fadeIn("slow");
+  $('#identity_selection_90').css("display","flex").hide().delay(500).fadeIn("slow");
+
+})
+
+//////////////////////////
+// IT
+
+
+$('#selection_work3').click(function(){
+
+
+  $('.selection').fadeOut("fast");
+  $('.selection_box').fadeOut("fast");
+  $('.selection_box2').fadeOut("fast");
+  $('.selection_box3').fadeOut("fast");
+
+  $('.add_content').fadeOut("fast");
+
+
+// 코드라는 벽돌
+// 게임 개발자
+// 디지털 노마드
+// 설계자
+// 기획자
+
+
+
+
+})
+
+
+
+
+
+
+
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // 처음으로 버튼
