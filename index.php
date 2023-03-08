@@ -137,8 +137,8 @@
              position: fixed;
              top: 50%;
              left: 50%;
-             width: 1100px;
-             height: 750px;
+             width: 75%;
+             height: 85%;
              background-color: #fff;
              border: 3px solid black;
              z-index: 1000;
@@ -151,13 +151,14 @@
              line-height: 25px;
            }
            .btn_r {
-             width: 96%;
+             width: 90%;
              height: 4%;
              border-top: 1px solid #304a8a;
              text-align: right;
              position: absolute;
              margin-left: 2%;
              margin-right: 2%;
+             margin-bottom: 10px;
              bottom: 0;
            }
 
@@ -1087,7 +1088,7 @@
 
        </div>
 
-       <div id="add_content_layer" class="pop-layer" style="width:700px; justify-content: center;">
+       <div id="add_content_layer" class="pop-layer" style="width:70%; justify-content: center;">
          <div class="pop-container">
            <div style="height:20%; display:flex; align-items: center;">
              <img style="float: left; width:150px; height:150px;" src="/hoodify/img/identity/hooodify_mini.png"; >
