@@ -27,6 +27,10 @@
     font-style: normal;
 }
 
+body{
+    font-family: TmoneyRoundWindRegular;
+}
+
 
 header{ width: 100%; height: 33px; background-color: rgba( 0, 0, 0, 0.6 ); }
 footer{ width: 100%; height: 100px; background-color: rgba( 0, 0, 0, 0.6 ); }
@@ -37,20 +41,19 @@ footer{ width: 100%; height: 100px; background-color: rgba( 0, 0, 0, 0.6 ); }
 <body>
     <header></header>
         
-        <div id='profile' style='background-color:gray; height:5%; padding:20px;'>
+        <div id='profile' style='display:flex; justify-content: space-between;align-items: center; background-color:gray; height:5%; padding:20px;'>
             공간  '정체성 창고 버튼'    '정체성 탐험 버튼'
 
+        
+        <div id='top_menu' style='display:flex;'>
+            <p style='margin-right:20px;'>창고 </p>
+            <p style='margin-right:20px;'>검색 </p>
         </div>
+    </div>
 
         <div style="width:100%;"> 
             <div id='main_list' style='height:70%; margin:20px;'>
-                메인 리스트를 어떻게 꾸밀까?? <br>
-             
-                계정 정보를 바탕으로 모든 정체성 리스트 불러오기 <br>
-
-                우선 임의의 유저 정보를 만들 필요가 있음
-                : 유저 <-> 정체성
-                : 유저 <-> activity
+                
 
             </div>
         </div>
@@ -71,7 +74,7 @@ footer{ width: 100%; height: 100px; background-color: rgba( 0, 0, 0, 0.6 ); }
     // 활성화된 정체성인지 확인 > db에 attribute 추가해야함
 
     
-    /*
+    
    
     $.ajax({
         type : "POST",
@@ -79,10 +82,82 @@ footer{ width: 100%; height: 100px; background-color: rgba( 0, 0, 0, 0.6 ); }
         dataType : 'json',
         success : function(res){
 
-            // 유저가 가지고 있는 정체성 리스트가 있는 json 파일
-            > for 루프로 리스트 만들기
-            // 리스트 순서는 어떻게 기억돼야 하나?
-            // 관계 테이블에 우선순위라는 attribut가 있다면?
+            console.log(res);
+
+            for (var i = 0; i < res.length; i++) {
+
+                    var identity = res[i];
+                    var identity_name = res[i].identity_name;
+                    var identity_desc = res[i].identity_desc;
+                    var identity_img = res[i].identity_img;
+
+
+                    var list = document.createElement("div");
+
+
+                    $(list).css({
+
+                                          width: "500px",
+                                          height: "60px",
+                                          padding: "5px",
+                                          borderBottom: "1px solid #D8D8D8",
+                                          display: 'flex',
+                                        //  alignItems: 'center',
+                                          paddingBottom: '5px',
+                                          alignItems: 'center',
+                                          overflow:'hidden',
+
+                                        }).hover(function() {
+                                          $(this).css("background-color", "#bad8f2");
+                                           }, function(){
+                                         $(this).css("background-color", "white");
+                                         }).appendTo('#main_list');
+
+
+                                        var VerticalList = $("<div>", {
+
+                                        }).css({
+
+
+                                        });
+
+                                        $('<img>', {
+                                           src: identity_img
+
+
+
+                                        }).css({
+                                          width: "50px",
+                                          height: "50px",
+                                          margin: "4.5px",
+                                          float: "left",
+                                          margin: "7px",
+                                        }).appendTo(list);
+
+
+
+
+                                        $('<p>', {
+                                          text: identity_name,
+
+                                        }).css({
+                                          margin: "4.5px",
+                                          fontFamily:"TmoneyRoundWindExtraBold",
+
+
+                                        }).appendTo(VerticalList);
+
+
+
+
+                                        VerticalList.appendTo(list);
+
+
+
+
+            }
+
+
 
 
 
@@ -92,7 +167,7 @@ footer{ width: 100%; height: 100px; background-color: rgba( 0, 0, 0, 0.6 ); }
         }
     });
 
-    */
+    
 
 
 
