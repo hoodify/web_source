@@ -722,7 +722,7 @@
 
              <p class="selection_box" id="selection_work2" style="font-size: 22px; background-color: rgba( 30, 40, 88); margin-left:800px; margin-bottom:100px;">예술 & 문화 </p>
              <p class="selection_box" id="selection_work3" style="background-color: rgba( 25, 51, 52); margin-left: 400px; margin-bottom:150px;"> IT </p>
-             <p class="selection_box" id="selection_work4" style="background-color: rgba( 15, 61, 72); margin-left: 850px; margin-top:280px;"> ??? </p>
+             <p class="selection_box" id="selection_work4" style="background-color: rgba( 15, 61, 72); margin-left: 850px; margin-top:280px;"> 서비스  </p>
              <p class="selection_box" id="selection_work5" style="background-color: rgba( 40, 50, 88); margin-left: 450px; margin-top:420px;"> ???  </p>
 
              <p class="selection_box2" id="selection_work6" style="margin-left: 300px; margin-top: 150px; background-color: rgba( 49, 87, 138);" > 분야는? </p>
@@ -995,6 +995,40 @@
                  <p class='identity_name'> 콘텐츠 크리에이터  </p>
                </div>
 
+               <div class='identity_mindmap selection' id='identity_selection_56' style="display: none; margin-left:550px; margin-top:100px;">
+                 <img class="identity_img" src="/hoodify/img/identity/hooodify_mini.png">
+                 <p class='identity_name'> 코드라는 벽돌 </p>
+               </div>
+
+               <div class='identity_mindmap selection' id='identity_selection_14' style="display: none; margin-right:520px; margin-bottom :20px;">
+                 <img class="identity_img" src="/hoodify/img/identity/hooodify_mini.png">
+                 <p class='identity_name'>  디지털 노마드       </p>
+               </div>
+
+               <div class='identity_mindmap selection' id='identity_selection_19' style="display: none; margin-right:820px; margin-bottom :300px;">
+                 <img class="identity_img" src="/hoodify/img/identity/hooodify_mini.png">
+                 <p class='identity_name'>    설계자        </p>
+               </div>
+
+               <div class='identity_mindmap selection' id='identity_selection_91' style="display: none; margin-right:720px; margin-top :400px;">
+                 <img class="identity_img" src="/hoodify/img/identity/hooodify_mini.png">
+                 <p class='identity_name'>  기획자       </p>
+               </div>
+
+               <div class='identity_mindmap selection' id='identity_selection_92' style="display: none; margin-left:900px; margin-top:680px;">
+                 <img class="identity_img" src="/hoodify/img/identity/hooodify_mini.png">
+                 <p class='identity_name'>    게임 개발자       </p>
+               </div>
+
+               <div class='identity_mindmap selection' id='identity_selection_93' style="display: none; margin-right:720px; margin-top :400px;">
+                 <img class="identity_img" src="/hoodify/img/identity/hooodify_mini.png">
+                 <p class='identity_name'>  자영업자        </p>
+               </div>
+
+               <div class='identity_mindmap selection' id='identity_selection_94' style="display: none; margin-left:900px; margin-top:680px;">
+                 <img class="identity_img" src="/hoodify/img/identity/hooodify_mini.png">
+                 <p class='identity_name'>    요리사       </p>
+               </div>
 
              <p class="selection_box2" id="selection_style6" style="margin-bottom: 200px; background-color: rgba( 49, 87, 138);" >선호하는 스타일이 있나요?</p>
 
@@ -2506,12 +2540,12 @@ $('#selection_work').click(function(){
 
 
 
-  $('#identity_selection_15').css("display","flex").hide().delay(700).fadeIn("slow");
+  $('#identity_selection_15').css("display","flex").hide().delay(100).fadeIn("slow");
   $('#identity_selection_86').css("display","flex").hide().delay(700).fadeIn("slow");
 
-  $('#identity_selection_21').css("display","flex").hide().delay(700).fadeIn("slow");
-  $('#identity_selection_18').css("display","flex").hide().delay(700).fadeIn("slow");
-  $('#identity_selection_87').css("display","flex").hide().delay(700).fadeIn("slow");
+  $('#identity_selection_21').css("display","flex").hide().delay(300).fadeIn("slow");
+  $('#identity_selection_18').css("display","flex").hide().delay(500).fadeIn("slow");
+  $('#identity_selection_87').css("display","flex").hide().delay(800).fadeIn("slow");
 
 
 
@@ -2522,12 +2556,6 @@ $('#selection_work').click(function(){
   $('#toback').css("display","flex").hide().delay(200).fadeIn("slow");
 
 
-// 분야는?
-// 예술&문화
-// IT
-
-// 게임 개발자
-// 투자가?
 
 
 });
@@ -2568,18 +2596,42 @@ $('#selection_work3').click(function(){
   $('.add_content').fadeOut("fast");
 
 
-// 코드라는 벽돌
-// 게임 개발자
-// 디지털 노마드
-// 설계자
-// 기획자
+  $('#identity_selection_56').css("display","flex").hide().delay(700).fadeIn("slow");
+  $('#identity_selection_14').css("display","flex").hide().delay(200).fadeIn("slow");
+  $('#identity_selection_19').css("display","flex").hide().delay(500).fadeIn("slow");
+  $('#identity_selection_91').css("display","flex").hide().delay(100).fadeIn("slow");
+  $('#identity_selection_92').css("display","flex").hide().delay(400).fadeIn("slow");
+
+
+})
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// 서비스
+
+$('#selection_work4').click(function(){
+
+
+  $('.selection').fadeOut("fast");
+  $('.selection_box').fadeOut("fast");
+  $('.selection_box2').fadeOut("fast");
+  $('.selection_box3').fadeOut("fast");
+
+  $('.add_content').fadeOut("fast");
+
+
+
+  $('#identity_selection_93').css("display","flex").hide().delay(400).fadeIn("slow");
+  $('#identity_selection_94').css("display","flex").hide().delay(400).fadeIn("slow");
+
+
+// 요리사
+// 공무원
+
 
 
 
 
 })
-
-
 
 
 
