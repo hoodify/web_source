@@ -151,7 +151,7 @@
              line-height: 25px;
            }
            .btn_r {
-             width: 90%;
+             width: 95%;
              height: 4%;
              border-top: 1px solid #304a8a;
              text-align: right;
@@ -1088,7 +1088,7 @@
 
        </div>
 
-       <div id="add_content_layer" class="pop-layer" style="width:70%; justify-content: center;">
+       <div id="add_content_layer" class="pop-layer" style="width:700px; justify-content: center;">
          <div class="pop-container">
            <div style="height:20%; display:flex; align-items: center;">
              <img style="float: left; width:150px; height:150px;" src="/hoodify/img/identity/hooodify_mini.png"; >
@@ -1163,7 +1163,7 @@
 
            </div>
 
-           <div id = "bottomDiv" style="height:15%;">
+           <div id = "bottomDiv" style="height:15%; display: flex; justify-content: center;">
              <div class="btn_r">
 
                <div class="locked">보유중 </div>
