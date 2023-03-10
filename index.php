@@ -1300,10 +1300,21 @@ function kakaoLogin() {
         Kakao.API.request({
           url: '/v2/user/me',
           success: function (response) {
-        	  console.log(response);
+
+            const kakao_account = response.kakao_account;
+            console.log(kakao_account);
+
+            redirectUri: '${http://127.0.0.1/hoodify/main.php}',
+        	  //console.log(response);
+
+
+
+            
             $('#login_account').fadeOut('fast');
 
-
+            // 유저 없다면 만들기
+            // 유저 있다면 해당 유저로 세션 등록
+            // main.php에서는 세션(유저 아이디) 확인 후 해당 세션 정보 불러오기
             // 여기에 개인 리스트 UI 띄우기
             // 가져온 값들로 표시하기
             // 쿠키값 가져와서 표시해야 함
