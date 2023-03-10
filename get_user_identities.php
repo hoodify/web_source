@@ -7,7 +7,6 @@
 // 프론트에서 'nothing' 값을 받으면 일반 페이지 보임
 
   session_start();
-  $_SESSION['user_code'] = '1';
 
   if(!isset($_SESSION['user_code'])){
     echo json_encode("nothing");

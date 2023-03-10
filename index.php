@@ -1301,11 +1301,32 @@ function kakaoLogin() {
           url: '/v2/user/me',
           success: function (response) {
 
-            const kakao_account = response.kakao_account;
-            console.log(kakao_account);
+            
+            console.log(response);
+            var identity_cookie=getCookie('id_code');
+            console.log(identity_cookie);
 
-            redirectUri: '${http://127.0.0.1/hoodify/main.php}',
-        	  //console.log(response);
+              $.ajax({
+              type : "POST",
+              url : "/hoodify/start_with_kakao.php",
+              data : {
+                      'user_code': response.id,
+                      'identity_cookie': identity_cookie,
+                  },
+              success : function(res){
+              
+                console.log("체크"+res);
+                window.location.href='http://127.0.0.1/hoodify/main.php';
+
+              },
+              error : function(XMLHttpRequest, textStatus, errorThrown){ // 비동기 통신이 실패할경우 error 콜백으로 들어옵니다.
+                  alert("통신 실패.")
+              }
+              });
+
+
+        	  
+
 
 
 
