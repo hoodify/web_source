@@ -12,7 +12,6 @@
 
                 
                 $dbName = "hoodify";
-                $userId = $_SESSION['userId'];
 
 
 
@@ -26,7 +25,7 @@
                 $conn = new PDO("mysql:host=127.0.0.1;dbname=$dbName", "root", "050638");
                 $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-                $query = "UPDATE user_activity SET title = $record_title, record = $record_cont WHERE user_activity_code = $record_code AND user_code = $user_code";
+                $query = "UPDATE user_activity SET title = '$record_title', record = '$record_cont' WHERE user_activity_code = $record_code AND user_code = $user_code";
                
                 $stmt = $conn->prepare($query);
                 

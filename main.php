@@ -300,7 +300,18 @@ border: 1px solid #93b0bc;
              border: 3px solid black;
  }
 
-
+ .delete_check{
+             position: fixed;
+             display: none;
+             width: 500px;
+             height: 120px;
+             z-index: 1003;
+             top: 50%;
+             left: 50%;
+             background-color: white;
+             border-radius:10px;
+             border: 3px solid black;
+ }
 
 
 </style>
@@ -458,7 +469,7 @@ border: 1px solid #93b0bc;
 
 
 
-    <div class = "activity_post" style= "flex-direction: column;  border: 2px solid black; border-radius: 12px;">
+    <div class = "activity_post state_activity" style= "flex-direction: column;  border: 2px solid black; border-radius: 12px;">
         
 
             <div style="display:flex;">
@@ -483,7 +494,7 @@ border: 1px solid #93b0bc;
     <div class="btn-r">
       <div class="btn_layerClose generalBtn">닫기</div>
       <div class="btn_modify generalBtn">수정</div>
-      <div class="btn-delete generalBtn">삭제</div>
+      <div class="btn_delete generalBtn">삭제</div>
     </div>
 
   </div>
@@ -531,6 +542,16 @@ border: 1px solid #93b0bc;
         </div>
     </div>
 
+    <div class="delete_check">
+         <div style="margin-top:5%; margin-left:5%;">  삭제하시겠습니까? </div>
+         <div class="btn-r" style="margin-bottom: 25px;">
+
+         <div class="btn_layerClose generalBtn">닫기</div>
+         <div class="generalBtn" id="btn_deleteCom">확인</div>
+        </div>
+    </div>
+
+
 </body>
 
 
@@ -576,6 +597,7 @@ border: 1px solid #93b0bc;
 
             $('.add_record_layer').removeClass("state_item state_skill").addClass("state_activity");
             $('.modify_record_layer').removeClass("state_item state_skill").addClass("state_activity");
+            $('.activity_post').removeClass("state_item state_skill").addClass("state_activity");
 
           }
 
@@ -589,7 +611,8 @@ border: 1px solid #93b0bc;
             });
 
             $('.add_record_layer').removeClass("state_activity state_skill").addClass("state_item");
-            $('.modify_record_layer').removeClass("state_item state_skill").addClass("state_activity");
+            $('.modify_record_layer').removeClass("state_activity state_skill").addClass("state_item");
+            $('.activity_post').removeClass("state_activity state_skill").addClass("state_item");
 
           }
 
@@ -602,7 +625,8 @@ border: 1px solid #93b0bc;
             });
 
             $('.add_record_layer').removeClass("state_activity state_item").addClass("state_skill");
-            $('.modify_record_layer').removeClass("state_item state_skill").addClass("state_activity");
+            $('.modify_record_layer').removeClass("state_activity state_item").addClass("state_skill");
+            $('.activity_post').removeClass("state_activity state_item").addClass("state_skill");
 
 
           }
@@ -813,7 +837,8 @@ border: 1px solid #93b0bc;
                                                                                             }).click(((record) => function (e){
                                                                                                 console.log(record);
 
-                                                                                                Global_Var.userInfo.curr_record_code = record.user_activiy_code;
+                                                                                                Global_Var.userInfo.curr_record_code = record.user_activity_code;
+                                                                                               
 
                                                                                                 $('.popup_activity_record_title').text(record.title);
                                                                                                 $('.popup_activity_record_cont').text(record.record);
@@ -1005,7 +1030,8 @@ border: 1px solid #93b0bc;
                                                                                                 $('.popup_activity_record_title').text(record.title);
                                                                                                 $('.popup_activity_record_cont').text(record.record);
                                                                                                 
-
+                                                                                                Global_Var.userInfo.curr_record_code = record.user_item_code;
+                                                                                               
 
 
                                                                                                 layer_popup($('.activity_post'));
@@ -1028,7 +1054,6 @@ border: 1px solid #93b0bc;
 
                                                                                 
                                                                                 // 추가하기 버튼 동적 생성
-                                                                                // dddddddddddddddd
 
                                                                                  $('<p>',{
                                                                                     text: "추가하기",
@@ -1342,8 +1367,7 @@ border: 1px solid #93b0bc;
 
     //////////////////////////////////////////////////////////////////////////////
     // 레코드 추가하기 버튼
-    // 전역
-    //ttttttttttttttt
+
 
     $('.btn_add_record').click(function(){
 
@@ -1386,7 +1410,7 @@ border: 1px solid #93b0bc;
             success : function(res){
 
              console.log(res);
-             //리스트 갱신하기
+              //입력시 activity record 리스트 갱신
              
              $('.mylist').empty();
                 $.ajax({
@@ -1465,7 +1489,7 @@ border: 1px solid #93b0bc;
             success : function(res){
 
              console.log(res);
-             //갱신
+             //입력시 item record 리스트 갱신
              
              $('.mylist_item').empty();
                 $.ajax({
@@ -1539,6 +1563,44 @@ border: 1px solid #93b0bc;
         // 오른쪽 레코드 리스트 갱신하기
 
     })
+
+
+/////////////////////////////////////////////////////////////////////////////////////
+// record 삭제 버튼
+
+$('.btn_delete').click(function(){
+
+       
+        
+layer_popup('.delete_check');
+});
+
+$('#btn_deleteCom').click(function(){
+
+    var record_code = Global_Var.userInfo.curr_record_code;
+
+    if($('.activity_post').hasClass('state_activity')){
+        // activity record 삭제 php
+        console.log('activity');
+    }
+    else if($('.activity_post').hasClass('state_item')){
+        console.log('item');
+    }
+    else if($('.activity_post').hasClass('state_skill')){
+
+            // 남겨두기
+    }
+
+    $('.activity_post').fadeOut('fast');
+    $('.delete_check').fadeOut('fast');
+    
+
+});
+
+
+
+
+
 /////////////////////////////////////////////////////////////////////////////////////
 // record 수정하기 버튼
 
@@ -1552,20 +1614,176 @@ border: 1px solid #93b0bc;
         layer_popup('.modify_record_layer');
     });
 
+
 /////////////////////////////////////////////////////////////////////////////////////
 // record 수정 완료 버튼
 
     $('.btn_modify_com').click(function(){
-        console.log(Global_Var.userInfo.curr_record_code);
+       
+        var record_code = Global_Var.userInfo.curr_record_code;
+        var record_title = $('.record_title_modify').val();
+        var record_cont = $('.record_cont_modify').val();
+
+        console.log("rc= "+record_code+"  rt= "+record_title+"  rcnt= "+record_cont);
 
         //수정하기 
         if($('.modify_record_layer').hasClass('state_activity')){
 
-            // modify_record_activity.php 
+            $.ajax({
+            type : "POST",
+            url : "/hoodify/modify_record_activity.php",
+            data : {
+                    'record_code': record_code,
+                    'record_title' : record_title,
+                    'record_cont' : record_cont,
+                },
+            success : function(res){
+              console.log(res);
+              if(res=="success"){
+
+
+
+                $('.popup_activity_record_title').text(record_title);
+                $('.popup_activity_record_cont').text(record_title);
+
+                // 수정시 activity record 리스트 갱신하기
+                
+                $('.mylist').empty();
+                $.ajax({
+                            type : "POST",
+                            url : "/hoodify/get_user_activity_record.php",
+                            data : {
+                                    'activity_code': Global_Var.userInfo.curr_activity_code,
+                                },
+                            dataType : 'json',
+                            success : function(res){
+                                
+                                for (var i = 0; i < res.length; i++) {
+
+                                    var record = res[i];
+                                    $('<p>', {
+                                        text: record.title,
+
+                                        }).css({
+                                        "padding": "12px",
+                                        "width": "90%",
+                                        "fontWeight": "bold",
+                                        "borderBottom": "1px solid #D8D8D8",
+                                    
+                                    }).hover(function() {
+                                    $(this).css("background-color", "#bad8f2");
+                                    }, function(){
+                                    $(this).css("background-color", "white");
+                                    }).click(((record) => function (e){
+
+                                        $('.popup_activity_record_title').text(record.title);
+                                        $('.popup_activity_record_cont').text(record.record);
+
+                                        layer_popup($('.activity_post'));
+
+
+
+                                    })(record)).appendTo($('.mylist'));
+                                }
+                            },
+                            error : function(XMLHttpRequest, textStatus, errorThrown){ // 비동기 통신이 실패할경우 error 콜백으로 들어옵니다.
+                                alert("통신 실패.")
+                            }
+                        });
+                
+
+
+
+
+
+              }
+
+            },
+            error : function(XMLHttpRequest, textStatus, errorThrown){ // 비동기 통신이 실패할경우 error 콜백으로 들어옵니다.
+                alert("통신 실패.")
+            }
+        });
             
         }
         else if($('.modify_record_layer').hasClass('state_item')){
-            // modify_record_item.php
+            
+                $.ajax({
+                type : "POST",
+                url : "/hoodify/modify_record_item.php",
+                data : {
+                        'record_code': record_code,
+                        'record_title' : record_title,
+                        'record_cont' : record_cont,
+                    },
+                success : function(res){
+                console.log(res);
+                if(res=="success"){
+
+                    $('.popup_activity_record_title').text(record_title);
+                    $('.popup_activity_record_cont').text(record_title);
+
+                    // 수정시 item record 리스트 갱신하기
+                    
+                    $('.mylist_item').empty();
+                    $.ajax({
+                                type : "POST",
+                                url : "/hoodify/get_user_item_record.php",
+                                data : {
+                                        'item_code': Global_Var.userInfo.curr_item_code,
+                                    },
+                                dataType : 'json',
+                                success : function(res){
+                                    
+                                    for (var i = 0; i < res.length; i++) {
+
+                                        var record = res[i];
+                                        $('<p>', {
+                                            text: record.title,
+
+                                            }).css({
+                                            "padding": "12px",
+                                            "width": "90%",
+                                            "fontWeight": "bold",
+                                            "borderBottom": "1px solid #D8D8D8",
+                                        
+                                        }).hover(function() {
+                                        $(this).css("background-color", "#bad8f2");
+                                        }, function(){
+                                        $(this).css("background-color", "white");
+                                        }).click(((record) => function (e){
+
+                                            $('.popup_activity_record_title').text(record.title);
+                                            $('.popup_activity_record_cont').text(record.record);
+
+                                            layer_popup($('.activity_post'));
+
+
+
+                                        })(record)).appendTo($('.mylist_item'));
+                                    }
+                                },
+                                error : function(XMLHttpRequest, textStatus, errorThrown){ // 비동기 통신이 실패할경우 error 콜백으로 들어옵니다.
+                                    alert("통신 실패.")
+                                }
+                            });
+                    
+
+
+
+
+
+                }
+                else{
+                    console.log('실패');
+                }
+
+                },
+                error : function(XMLHttpRequest, textStatus, errorThrown){ // 비동기 통신이 실패할경우 error 콜백으로 들어옵니다.
+                    alert("통신 실패.")
+                }
+            });
+
+
         }
         else if($('.modify_record_layer').hasClass('state_skill')){
 
