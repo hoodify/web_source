@@ -58,8 +58,8 @@
 
 
 
-           header{ width: 100%; height: 100px; background-color: rgba( 0, 0, 0, 0.6 ); }
-           footer{ width: 100%; height: 100px; background-color: rgba( 0, 0, 0, 0.6 ); }
+           header{ width: 100%; height: 80px; background-color: rgba( 0, 0, 0, 0.6 ); }
+           footer{ width: 100%; height: 80px; background-color: rgba( 0, 0, 0, 0.6 ); }
 
            .hook_text_space{width: 100%; height: 800px; background-color: rgba( 0, 0, 0, 0.1 ); display: flex; justify-content: center;}
            .hook_text{position: absolute; font-size: 40px; color: white; font-family:TmoneyRoundWindExtraBold;  }
@@ -370,7 +370,16 @@
 </style>
 
 <body>
-      <header></header>
+      <header style="display: flex; align-items: center;">
+      <div style="display: flex; align-items: center;">
+          <!-- <img src ="/hoodify/img/hoodify_CRM.png" style="margin-left:25px; width:50px; height:50px; border-radius:40px; "> -->
+          <p style="color: white; margin-left:45px; letter-spacing:3px;">   H O O D I F Y </p>
+
+
+      </div>
+
+
+      </header>
        <div class="hook_text_space">
 
          <p class="hook_text" id="hook01">당신을 표현하는 <span style="color:rgba( 251, 104, 53);">키워드</span></p>
@@ -720,6 +729,7 @@
              <p class="selection_box" id="selection_personality" style="background-color: rgba( 186, 159, 72); margin-left: 750px; margin-bottom:50px;">성격</p>
              <p class="selection_box" id="selection_state" style="background-color: rgba( 15, 61, 72); margin-left: 150px; margin-bottom:80px;">상태 </p>
              <p class="selection_box" id="selection_work" style="background-color: rgba( 86, 80, 66); margin-left: 250px; margin-top:400px;">일&직업 </p>
+             <p class="selection_box" id="selection_values" style="background-color: rgba( 130, 80, 66); margin-right: 650px; margin-top:350px;">이상향 </p>
 
              <p class="selection_box" id="selection_work2" style="font-size: 22px; background-color: rgba( 30, 40, 88); margin-left:800px; margin-bottom:100px;">예술 & 문화 </p>
              <p class="selection_box" id="selection_work3" style="background-color: rgba( 25, 51, 52); margin-left: 400px; margin-bottom:150px;"> IT </p>
@@ -1031,6 +1041,33 @@
                  <p class='identity_name'>    요리사       </p>
                </div>
 
+               <div class='identity_mindmap selection' id='identity_selection_9' style="display: none; margin-right:720px; margin-top :400px;">
+                 <img class="identity_img" src="/hoodify/img/identity/hooodify_mini.png">
+                 <p class='identity_name'>    모험가의 심장      </p>
+               </div>
+
+               <div class='identity_mindmap selection' id='identity_selection_3' style="display: none; margin-right:820px; margin-bottom :300px;">
+                 <img class="identity_img" src="/hoodify/img/identity/hooodify_mini.png">
+                 <p class='identity_name'>    유머감각      </p>
+               </div>
+
+               <div class='identity_mindmap selection' id='identity_selection_95' style="display: none; margin-left:550px; margin-top:100px;">
+                 <img class="identity_img" src="/hoodify/img/identity/hooodify_mini.png">
+                 <p class='identity_name'> 인플루언서  </p>
+               </div>
+
+               <div class='identity_mindmap selection' id='identity_selection_96' style="display: none; margin-right:120px; margin-top :200px;">
+                 <img class="identity_img" src="/hoodify/img/identity/hooodify_mini.png">
+                 <p class='identity_name'>  자수성가       </p>
+               </div>
+
+               <div class='identity_mindmap selection' id='identity_selection_97' style="display: none; margin-right:520px; margin-bottom :20px;">
+                 <img class="identity_img" src="/hoodify/img/identity/hooodify_mini.png">
+                 <p class='identity_name'>  욜로족       </p>
+               </div>
+
+
+
              <p class="selection_box2" id="selection_style6" style="margin-bottom: 200px; background-color: rgba( 49, 87, 138);" >선호하는 스타일이 있나요?</p>
 
 
@@ -1040,13 +1077,13 @@
 
 
              <p class="selection_box2" id="selection_personality2" style="margin-bottom: 200px; margin-top:180px; background-color: rgba(159, 109 ,39); " > 기본 성향은?  </p>
-             <p class="selection_box" id="selection_personality3" style="margin-right: 300px; margin-top:250px; background-color: rgba(	190 ,150, 94);" > 외향 </p>
+             <p class="selection_box" id="selection_personality3" style="margin-right: 400px; margin-top:200px; background-color: rgba(	190 ,150, 94);" > 외향 </p>
              <p class="selection_box" id="selection_personality4" style="margin-left: 300px; margin-top:250px; background-color: rgba(	190 ,150, 94);" > 내향  </p>
 
 
               <p class="selection_box2" id="selection_personality5" style="margin-left: 300px; margin-top: 150px; background-color: rgba( 49, 87, 138);" > 의존적? 독립적?</p>
-              <p class="selection_box" id="selection_personality6" style="margin-left: 250px;margin-top: 400px; background-color: rgba( 107, 139, 182);" > 의존 </p>
-              <p class="selection_box" id="selection_personality7" style="margin-left: 750px; margin-top: 350px; background-color: rgba( 107, 139, 182);" > 독립  </p>
+              <p class="selection_box" id="selection_personality6" style="margin-left: 180px;margin-top: 400px; background-color: rgba( 107, 139, 182);" > 의존 </p>
+              <p class="selection_box" id="selection_personality7" style="margin-left: 750px; margin-top: 550px; background-color: rgba( 107, 139, 182);" > 독립  </p>
 
 
               <p class="selection_box2" id="selection_personality8" style="margin-left: 150px; margin-top: 50px; background-color: rgba(	85, 107, 47);" > 즉흥적? 계획적?</p>
@@ -1066,10 +1103,6 @@
         </div>
        </div>
 
-
-
-
-       <footer></footer>
 
 
        <div class="popup_identity">
@@ -1214,6 +1247,20 @@
 
 </body>
 
+<footer style="display: flex; align-items: center;" >
+
+  <div style="display: flex; align-items: center;">
+    <!-- <img src ="/hoodify/img/hoodify_CRM.png" style="margin-left:25px; width:50px; height:50px; border-radius:40px; "> -->
+    <p style="color: white; margin-left:25px; margin-right:25px; letter-spacing:3px;"> 문의: hooodifY@gmail.com </p>
+
+
+ </div>
+
+</footer>
+
+
+
+
 <script>
 
   Kakao.init('07f6eafd69281ab56438dbcc4a88c39e');
@@ -1316,6 +1363,7 @@ function kakaoLogin() {
               success : function(res){
               
                 console.log("체크"+res);
+                $('.login_account').fadeOut('fast');
                 window.location.href='http://127.0.0.1/hoodify/main.php';
 
               },
@@ -2188,6 +2236,7 @@ $('#start').click(function(){
   $('#selection_state').css("display","flex").hide().delay(300).fadeIn("slow");
 
   $('#selection_work').css("display","flex").hide().delay(600).fadeIn("slow");
+  $('#selection_values').css("display","flex").hide().delay(800).fadeIn("slow");
 
 
 
@@ -2201,6 +2250,7 @@ $('#selection_style').click(function(){
   $('#selection_personality').fadeOut("fast");
   $('#selection_state').fadeOut("fast");
   $('#selection_work').fadeOut("fast");
+  $('#selection_values').fadeOut("fast");
 
   $('#selection_style2').css("display","flex").hide().delay(200).fadeIn("slow");
   $('#selection_style3').css("display","flex").hide().delay(300).fadeIn("slow");
@@ -2324,13 +2374,19 @@ $('#selection_personality').click(function(){
   $('#selection_personality').fadeOut("fast");
   $('#selection_state').fadeOut("fast");
   $('#selection_work').fadeOut("fast");
+  $('#selection_values').fadeOut("fast");
+
 
   $('#selection_personality2').css("display","flex").hide().delay(200).fadeIn("slow");
-  $('#selection_personality3').css("display","flex").hide().delay(200).fadeIn("slow");
-  $('#selection_personality4').css("display","flex").hide().delay(200).fadeIn("slow");
+  $('#selection_personality3').css("display","flex").hide().delay(400).fadeIn("slow");
+  $('#selection_personality4').css("display","flex").hide().delay(700).fadeIn("slow");
 
 
 })
+
+
+
+
 
 
 
@@ -2665,7 +2721,33 @@ $('#selection_work4').click(function(){
 
 
 })
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// 이상향
 
+
+$('#selection_values').click(function(){
+
+
+$('#toback').css("display","flex").hide().delay(200).fadeIn("slow");
+$('#selection_style').fadeOut("fast");
+$('#selection_personality').fadeOut("fast");
+$('#selection_state').fadeOut("fast");
+$('#selection_work').fadeOut("fast");
+$('#selection_values').fadeOut("fast");
+
+$('#identity_selection_9').css("display","flex").hide().delay(400).fadeIn("slow");
+$('#identity_selection_3').css("display","flex").hide().delay(500).fadeIn("slow");
+$('#identity_selection_95').css("display","flex").hide().delay(500).fadeIn("slow");
+$('#identity_selection_96').css("display","flex").hide().delay(500).fadeIn("slow");
+$('#identity_selection_97').css("display","flex").hide().delay(500).fadeIn("slow");
+
+  /*
+$('#selection_personality2').css("display","flex").hide().delay(200).fadeIn("slow");
+$('#selection_personality3').css("display","flex").hide().delay(200).fadeIn("slow");
+$('#selection_personality4').css("display","flex").hide().delay(200).fadeIn("slow");
+*/
+
+})
 
 
 
@@ -2688,6 +2770,7 @@ $('#toback').click(function(){
   $('#selection_personality').css("display","flex").hide().delay(500).fadeIn("slow");
   $('#selection_state').css("display","flex").hide().delay(300).fadeIn("slow");
   $('#selection_work').css("display","flex").hide().delay(600).fadeIn("slow");
+  $('#selection_values').css("display","flex").hide().delay(500).fadeIn("slow");
   $('.add_content').fadeOut("fast");
 
 

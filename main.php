@@ -33,8 +33,6 @@ body{
 }
 
 
-header{ width: 100%; height: 33px; background-color: rgba( 0, 0, 0, 0.6 ); }
-footer{ width: 100%; height: 100px; background-color: rgba( 0, 0, 0, 0.6 ); }
 
 .pop-layer .pop-container {
   width: 100%;
@@ -313,20 +311,41 @@ border: 1px solid #93b0bc;
              border: 3px solid black;
  }
 
+ .identity_storage{
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        width: 550px;
+        height: 800px;
+        z-index: 1002;
+        background-color: white;
+        border-radius:10px;
+        border: 3px solid black;
+}
 
 </style>
 
 
 <body>
-    <header></header>
-        
-        <div id='profile' style='display:flex; justify-content: space-between;align-items: center; background-color:gray; height:5%; padding:20px;'>
+    <header style="display: flex; align-items: center;  width: 100%; height: 30px; background-color: rgba( 0, 0, 0, 0.85 );">
+      <div style="display: flex; align-items: center;">
+          <!-- <img src ="/hoodify/img/hoodify_CRM.png" style="margin-left:25px; width:50px; height:50px; border-radius:40px; "> -->
+          <p style="color: white; margin-left:35px; letter-spacing:3px;">   H O O D I F Y </p>
 
-        <p></p>
+
+      </div>
+    </header>
         
+        <div style='display:flex; justify-content: space-between;align-items: center; background-color: rgba( 47, 58, 78, 0.85); height:5%; padding:20px;'>
+         <div class='profile' style='display: flex; align-items: center;' >
+            <img src="/hoodify/img/identity/hooodify_mini.png" style="width:50px; height:50px; border-radius:15px;"> 
+            <p class = 'nickname' style='margin-left:20px; color:whitesmoke'> 프로필 </p>
+        </div>
         <div id='top_menu' style='display:flex;'>
-            <p style='margin-right:20px;'>창고 </p>
-            <p style='margin-right:20px;'>검색 </p>
+            <p class = 'identity_storage_btn' style='cursor:pointer; margin-right:20px; color:whitesmoke'>창고 </p>
+            
+            <p style='margin-right:20px; color:whitesmoke'>검색 </p>
         </div>
     </div>
 
@@ -337,7 +356,7 @@ border: 1px solid #93b0bc;
             </div>
         </div>
     
-    <footer></footer>
+  
     <div id="layer1" class="pop-layer">
       <div class="pop-container">
 
@@ -552,8 +571,25 @@ border: 1px solid #93b0bc;
     </div>
 
 
+    <div class = "identity_storage">
+      <div class = "inactive_identity_list">
+
+
+      </div>
+
+      <div class="btn-r">
+        <div class="btn_layerClose generalBtn">닫기</div>
+        <div class="btn_activate generalBtn">활성화</div>
+      </div>
+    </div>
+
+
+
+
 </body>
 
+
+<footer style="bottom:0px; width: 100%; height: 30px; position : absolute; bottom : 0; background-color: rgba( 0, 0, 0, 0.85 );"></footer>
 
 <script>
 
@@ -685,8 +721,38 @@ border: 1px solid #93b0bc;
 
 
     }
+    /*
+    $.ajax({
+        type : "POST",
+        url : "/hoodify/get_user_profile.php",
+        dataType : 'json',
+        success : function(res){
+            // res.nickname > 프로필 이름에 적용
+            // $('.nickname').text(res.nickname);
+
+        },
+        error : function(XMLHttpRequest, textStatus, errorThrown){ // 비동기 통신이 실패할경우 error 콜백으로 들어옵니다.
+            alert("통신 실패.")
+        }
+    });
+*/
     
-    
+
+/////////////////////////////////////////////////////////////////////////////////////
+
+$('.identity_storage_btn').click(function(){
+
+    layer_popup('.identity_storage');
+
+
+
+
+});
+
+
+
+
+//////////////////////////////////////////////////////////////////////////////////////
    
     $.ajax({
         type : "POST",
@@ -1580,19 +1646,155 @@ $('#btn_deleteCom').click(function(){
     var record_code = Global_Var.userInfo.curr_record_code;
 
     if($('.activity_post').hasClass('state_activity')){
-        // activity record 삭제 php
-        console.log('activity');
+        $.ajax({
+              type : "POST",
+              url : "/hoodify/delete_activity_record.php",
+              data : {
+                      'record_code': record_code,
+                  },
+              success : function(res){
+              
+                if(res=="success"){
+
+                    $('.mylist').empty();
+
+                        $.ajax({
+                                    type : "POST",
+                                    url : "/hoodify/get_user_activity_record.php",
+                                    data : {
+                                            'activity_code': Global_Var.userInfo.curr_activity_code,
+                                        },
+                                    dataType : 'json',
+                                    success : function(res){
+                                        
+                                        for (var i = 0; i < res.length; i++) {
+
+                                            var record = res[i];
+                                            $('<p>', {
+                                                text: record.title,
+
+                                                }).css({
+                                                "padding": "12px",
+                                                "width": "90%",
+                                                "fontWeight": "bold",
+                                                "borderBottom": "1px solid #D8D8D8",
+                                            
+                                            }).hover(function() {
+                                            $(this).css("background-color", "#bad8f2");
+                                            }, function(){
+                                            $(this).css("background-color", "white");
+                                            }).click(((record) => function (e){
+
+                                                $('.popup_activity_record_title').text(record.title);
+                                                $('.popup_activity_record_cont').text(record.record);
+
+                                                layer_popup($('.activity_post'));
+
+
+
+                                            })(record)).appendTo($('.mylist'));
+                                        }
+                                    },
+                                    error : function(XMLHttpRequest, textStatus, errorThrown){ // 비동기 통신이 실패할경우 error 콜백으로 들어옵니다.
+                                        alert("통신 실패.")
+                                    }
+                                });
+
+
+
+                    $('.activity_post').fadeOut('fast');
+                    $('.delete_check').fadeOut('fast');
+
+                }
+                else{
+
+                    console.log('fail');
+                }
+
+              },
+              error : function(XMLHttpRequest, textStatus, errorThrown){ // 비동기 통신이 실패할경우 error 콜백으로 들어옵니다.
+                  alert("통신 실패.")
+              }
+              });
     }
     else if($('.activity_post').hasClass('state_item')){
-        console.log('item');
+        $.ajax({
+              type : "POST",
+              url : "/hoodify/delete_item_record.php",
+              data : {
+                      'record_code': record_code,
+                  },
+              success : function(res){
+              
+                if(res=="success"){
+
+
+                    $('.mylist_item').empty();
+                    
+                    $.ajax({
+                                type : "POST",
+                                url : "/hoodify/get_user_item_record.php",
+                                data : {
+                                        'item_code': Global_Var.userInfo.curr_item_code,
+                                    },
+                                dataType : 'json',
+                                success : function(res){
+                                    
+                                    for (var i = 0; i < res.length; i++) {
+
+                                        var record = res[i];
+                                        $('<p>', {
+                                            text: record.title,
+
+                                            }).css({
+                                            "padding": "12px",
+                                            "width": "90%",
+                                            "fontWeight": "bold",
+                                            "borderBottom": "1px solid #D8D8D8",
+                                        
+                                        }).hover(function() {
+                                        $(this).css("background-color", "#bad8f2");
+                                        }, function(){
+                                        $(this).css("background-color", "white");
+                                        }).click(((record) => function (e){
+
+                                            $('.popup_activity_record_title').text(record.title);
+                                            $('.popup_activity_record_cont').text(record.record);
+
+                                            layer_popup($('.activity_post'));
+
+
+
+                                        })(record)).appendTo($('.mylist_item'));
+                                    }
+                                },
+                                error : function(XMLHttpRequest, textStatus, errorThrown){ // 비동기 통신이 실패할경우 error 콜백으로 들어옵니다.
+                                    alert("통신 실패.")
+                                }
+                            });
+
+
+                    $('.activity_post').fadeOut('fast');
+                    $('.delete_check').fadeOut('fast');
+
+                }
+                else{
+
+                    console.log('fail');
+                }
+
+              },
+              error : function(XMLHttpRequest, textStatus, errorThrown){ // 비동기 통신이 실패할경우 error 콜백으로 들어옵니다.
+                  alert("통신 실패.")
+              }
+              });
     }
     else if($('.activity_post').hasClass('state_skill')){
 
             // 남겨두기
     }
 
-    $('.activity_post').fadeOut('fast');
-    $('.delete_check').fadeOut('fast');
+    
     
 
 });

@@ -17,7 +17,7 @@
                 $conn = new PDO("mysql:host=127.0.0.1;dbname=$dbName", "root", "050638");
                 $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-                $query = "DELETE FROM user_activity WHERE user_activity_code = $record_code AND user_code = $user_code";
+                $query = "DELETE FROM user_item WHERE user_item_code = $record_code AND user_code = $user_code";
 
                 $stmt = $conn->prepare($query);
                 if($stmt->execute()){
