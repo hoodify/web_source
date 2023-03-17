@@ -365,7 +365,20 @@
 
            }
 
+           .search_layer {
+             display: none;
+             position: fixed;
+             top: 50%;
+             left: 50%;
+             width: 75%;
+             height: 85%;
+             background-color: #fff;
+             border: 3px solid black;
+             z-index: 1009;
+             padding: 15px;
+             border-radius: 8px;
 
+           }
 
 </style>
 
@@ -1251,7 +1264,7 @@
 
   <div style="display: flex; align-items: center;">
     <!-- <img src ="/hoodify/img/hoodify_CRM.png" style="margin-left:25px; width:50px; height:50px; border-radius:40px; "> -->
-    <p style="color: white; margin-left:25px; margin-right:25px; letter-spacing:3px;"> 문의: hooodifY@gmail.com </p>
+    <p style="color: white; margin-left:25px; margin-right:25px; letter-spacing:3px;"> 문의: hoodify.CRM@gmail.com </p>
 
 
  </div>
@@ -2171,9 +2184,12 @@ $(document).on('click', ".identity, .identity_mindmap", function(){
 
 $('.btn_feedback').click(function(){
 
+ if($('#user_cont').val().length < 11){
+
+   alert('10자 이상 입력해주세요!');
+ }  
+ else{
  var get_feedback =  $('#user_cont').val();
-
-
 
 $.ajax({
         type : "POST",
@@ -2208,7 +2224,7 @@ $.ajax({
 
 
 
-
+  }
 
 
 });
