@@ -749,7 +749,7 @@
              <p class="selection_box" id="selection_work4" style="background-color: rgba( 15, 61, 72); margin-left: 850px; margin-top:280px;"> 서비스  </p>
              <p class="selection_box" id="selection_work5" style="background-color: rgba( 40, 50, 88); margin-left: 450px; margin-top:420px;"> ???  </p>
 
-             <p class="selection_box2" id="selection_work6" style="margin-left: 300px; margin-top: 150px; background-color: rgba( 49, 87, 138);" > 분야는? </p>
+             <p class="selection_box2" id="selection_work6" style="margin-left: 300px; margin-top: 150px; background-color: rgba( 49, 87, 138);" > 분야 </p>
 
 
 
@@ -1136,7 +1136,7 @@
 
        <div id="add_content_layer" class="pop-layer" style="width:700px; justify-content: center;">
          <div class="pop-container">
-           <div style="height:20%; display:flex; align-items: center;">
+           <div style="height:20%; display:flex; align-items: center; margin-bottom: 15px;">
              <img style="float: left; width:150px; height:150px;" src="/hoodify/img/identity/hooodify_mini.png"; >
              <div id="space_01" style="position: relative; border: 2px solid black; border-radius: 10px; padding:20px;">
              <p> 저희는 세상의 모든 정체성을 수집중입니다. <br> <br> 이곳에서 찾지 못한 당신의 정체성이 있다면 저희에게 알려주세요.</p>

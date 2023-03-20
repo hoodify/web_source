@@ -341,13 +341,31 @@ border: 1px solid #93b0bc;
         position: fixed;
         top: 50%;
         left: 50%;
-        width: 550px;
-        height: 800px;
+        width: 40%;
+        height: 80%;
         z-index: 1002;
         background-color: white;
         border-radius:10px;
         border: 3px solid black;
 }
+
+.profile_layer{
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        width: 40%;
+        height: 80%;
+        z-index: 1002;
+        background-color: white;
+        border-radius:10px;
+        border: 3px solid black;
+}
+
+
+.inactive_identity_list::-webkit-scrollbar {
+               	display:none
+           }
 
 .search_layer {
              display: none;
@@ -359,7 +377,6 @@ border: 1px solid #93b0bc;
              background-color: #fff;
              border: 3px solid black;
              z-index: 1009;
-             padding: 15px;
              border-radius: 8px;
 
            }
@@ -380,12 +397,14 @@ border: 1px solid #93b0bc;
         <div style='display:flex; justify-content: space-between;align-items: center; background-color: rgba( 47, 58, 78, 0.85); height:5%; padding:20px;'>
          <div class='profile' style='display: flex; align-items: center;' >
             <img src="/hoodify/img/identity/hooodify_mini.png" style="width:50px; height:50px; border-radius:15px;"> 
-            <p class = 'nickname' style='margin-left:20px; color:whitesmoke'> 프로필 </p>
+            <p class = 'nickname' style='cursor:pointer; margin-left:20px; color:whitesmoke'> 프로필 </p>
         </div>
         <div id='top_menu' style='display:flex;'>
             <p class = 'identity_storage_btn' style='cursor:pointer; margin-right:20px; color:whitesmoke'>창고 </p>
             
             <p class = 'open_search_layer' style='cursor:pointer; margin-right:20px; color:whitesmoke'>검색 </p>
+            
+            <p class = 'logout_btn' style='cursor:pointer; margin-right:20px; color:whitesmoke'> 로그아웃 </p>
         </div>
     </div>
 
@@ -644,12 +663,14 @@ border: 1px solid #93b0bc;
 
 
     <div class = "identity_storage">
+        <div style="position:absolute; top:0; width:100%; height:20px; background-color:rgba( 0, 0, 0, 0.85 );"> </div>
       <div class = "inactive_identity_list_container" style="width: 100%; padding:25px;">
-        <div style="width: 100%; height: 10%;">
-            <p> 창 고 </p>
+        <div style="width: 100%; height: 10%; display:flex; align-items: center; margin-bottom:25px; ">
+            <img src="/hoodify/img/identity/hooodify_mini.png" style="cursor:pointer; width:40px; height:40px; margin-left:10px; border: 2px solid black; border-radius: 12px;">
+            <p style="font-family:TmoneyRoundWindExtraBold; font-size:20px; margin-left:25px;"> 창 고 </p>
         </div>
 
-        <div class = "inactive_identity_list"> </div>
+        <div class = "inactive_identity_list" style ="height: 80%; overflow-y: scroll;"> </div>
       </div>
 
       <div class="btn-r">
@@ -659,9 +680,34 @@ border: 1px solid #93b0bc;
     </div>
 
 
-    <div class = "search_layer">
+    <div class = "profile_layer">
+        <div style="position:absolute; top:0; width:100%; height:20px; background-color:rgba( 0, 0, 0, 0.85 );"> </div>
+      <div class = "profile_layer_container" style="width: 100%; padding:25px;">
+        <div style="width: 100%; height: 20%; display:flex; margin-top:15px; margin-bottom:15px; ">
+            <img src="/hoodify/img/identity/hooodify_mini.png" style="width:100px; height:100px; border: 2px solid black; border-radius: 12px;">
+            <p style="font-family:TmoneyRoundWindExtraBold; font-size:20px; margin-left:25px; "> 프로필 이름 </p>
+        </div>
+
+        <div class = "profile_details" style ="display:flex; height: 70%; border: 2px solid black; border-radius: 12px; ">
+    
+           <div style="margin:15px;">  이곳에 유저의 정보가 게시됩니다. <br> 최근 기록? <br> 자기소개? </div>
+        </div>
+      </div>
+
+      <div class="btn-r">
+        <div class="btn_layerClose generalBtn">닫기</div>
+      </div>
+    </div>
+
+
+
+    <div class = "search_layer">   
+        <div style="position:absolute; top:0; width:100%; height:20px; background-color:rgba( 0, 0, 0, 0.85 );"> </div>
+    
+        
       <div class = "search_layer_container" style="flex-direction: column; display: flex; align-items: flex-start; width: 100%; padding:25px;">
-        <div style="width: 100%; display: flex; flex-direction: row; align-items: center;">
+        
+      <div style="width: 100%; display: flex; flex-direction: row; align-items: center; margin-top: 25px;">
             <div class="search_text" contenteditable="true" style="width:100%; padding:5px; font-family: TmoneyRoundWindRegular; font-size:16px; border: 1px solid gray; border-radius: 5px;"> </div>
             <img class="search_btn" src="/hoodify/img/identity/hooodify_mini.png" style="cursor:pointer; width:40px; height:40px; margin-left:10px; border: 2px solid black; border-radius: 12px; ">
         </div>
@@ -783,6 +829,17 @@ border: 1px solid #93b0bc;
 
           }
         })
+////////////////////////////////////////////////////////////////////////////////////
+
+$('.logout_btn').click(function(){
+
+    // session 삭제 php;
+    // redirection page;
+
+
+
+
+})
 
 ////////////////////////////////////////////////////////////////////////////////////
 // record 기록 시 최대 글자수 제한
@@ -978,10 +1035,23 @@ $('.search_btn').click(function(){
 */
    
 /////////////////////////////////////////////////////////////////////////////////////
+// 검색 버튼
 
 $('.open_search_layer').click(function(){
     layer_popup($('.search_layer'));
 });
+
+
+/////////////////////////////////////////////////////////////////////////////////////
+// 프로필 버튼
+
+$('.profile').click(function(){
+
+    layer_popup($('.profile_layer'));
+
+})
+
+
 
 
 /////////////////////////////////////////////////////////////////////////////////////
