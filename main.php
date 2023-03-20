@@ -701,18 +701,18 @@ border: 1px solid #93b0bc;
 
 
 
-    <div class = "search_layer">   
+    <div class = "search_layer">
         <div style="position:absolute; top:0; width:100%; height:20px; background-color:rgba( 0, 0, 0, 0.85 );"> </div>
     
         
       <div class = "search_layer_container" style="flex-direction: column; display: flex; align-items: flex-start; width: 100%; padding:25px;">
         
       <div style="width: 100%; display: flex; flex-direction: row; align-items: center; margin-top: 25px;">
-            <div class="search_text" contenteditable="true" style="width:100%; padding:5px; font-family: TmoneyRoundWindRegular; font-size:16px; border: 1px solid gray; border-radius: 5px;"> </div>
+            <div class="search_text" contenteditable="true" style="width:100%; padding:5px; font-family: TmoneyRoundWindRegular; font-size:16px; border: 1px solid gray; border-radius: 5px;"></div>
             <img class="search_btn" src="/hoodify/img/identity/hooodify_mini.png" style="cursor:pointer; width:40px; height:40px; margin-left:10px; border: 2px solid black; border-radius: 12px; ">
         </div>
 
-        <div class = "search_result" style = "margin-top : 20px; "> </div>
+        <div class = "search_result" style = "margin-top : 20px;"> </div>
       </div>
 
       <div class="btn-r">
