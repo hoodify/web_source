@@ -115,7 +115,7 @@ flex:3;
 }
 .pop-conts{
 
-height: 25%;
+height: 20%;
 margin-right: 15px;
 
 
@@ -195,7 +195,7 @@ display: none;
 border: 1px solid gray;
 }
 
-.etc_cont{
+.Dlist{
 height: 66%;
 margin: 3%;
 display: none;
@@ -310,6 +310,18 @@ border: 1px solid #93b0bc;
              border-radius:10px;
              border: 3px solid black;
  }
+ .delete_check_identity{
+             position: fixed;
+             display: none;
+             width: 500px;
+             height: 120px;
+             z-index: 1005;
+             top: 50%;
+             left: 50%;
+             background-color: white;
+             border-radius:10px;
+             border: 3px solid black;
+ }
 
  .activate_check{
              position: fixed;
@@ -399,17 +411,19 @@ border: 1px solid #93b0bc;
               <h4 class = "identity_title_container"></h4>
               <p class = "identity_desc_container"></p>
 
-              <div class="bar-menu" id="barMenu1">
+            </div>
+            <div class = keyword_container style="text-align:right; margin-right:15px; color:gray; font-size:12px; display: flex; justify-content: flex-end;">  </div>
+
+            <div class="bar-menu" id="barMenu1">
                 <ul class="menu-body">
                   <li class ="mli activity active">Activity</li>
                   <li class ="mli item">Item</li>
                   <li class ="mli skill">Skill</li>
+                  <li class ="mli defect">Defect</li>
                   <li class = "mli setting">setting</li>
                 </ul>
               </div>
 
-
-            </div>
 
             <div class = "LBC Clist activity">
             </div>
@@ -433,8 +447,9 @@ border: 1px solid #93b0bc;
               <div class = "putSkill" style="display:flex; flex-direction: column;"></div>
 
             </div>
+            <div class = "LBC Dlist defect">
+              <div class = "putDefect" style="display:flex; flex-direction: column;"></div>
 
-            <div class = "LBC etc_cont etc">
             </div>
 
 
@@ -469,6 +484,17 @@ border: 1px solid #93b0bc;
               <hr/>
               <ul class="mylist_skill"> </ul>
               <div id = 'addbtn_container_skill'></div>
+
+
+
+            </div>
+
+            <div class = "RC RCdefect">
+                <h3 class = "mylistT_defect"> </h3>
+              <p class = "mylistC_defect" style='margin-bottom:15px;'> </p>
+              <hr/>
+              <ul class="mylist_defect"> </ul>
+              <div id = 'addbtn_container_defect'></div>
 
 
 
@@ -598,6 +624,15 @@ border: 1px solid #93b0bc;
         </div>
     </div>
 
+    <div class="delete_check_identity">
+         <div style="margin-top:5%; margin-left:5%;"> 모든 관련 기록들이 삭제됩니다. 삭제하시겠습니까? </div>
+         <div class="btn-r" style="margin-bottom: 25px;">
+
+         <div class="btn_layerClose generalBtn">닫기</div>
+         <div class="generalBtn" id="btn_deleteCom_identity">확인</div>
+        </div>
+    </div>
+
     <div class="activate_check">
          <div style="margin-top:5%; margin-left:5%;">  활성화 하시겠습니까? </div>
          <div class="btn-r" style="margin-bottom: 25px;">
@@ -664,6 +699,9 @@ border: 1px solid #93b0bc;
     $(".RCskill").css({
         display: "none",
     });
+    $(".RCdefect").css({
+        display: "none",
+    });
 
         $(".mli").click(function(){
 
@@ -721,6 +759,21 @@ border: 1px solid #93b0bc;
 
 
           }
+          
+          else if($(this).hasClass("defect")){
+          $(".Dlist").css({
+              display: "block",
+            });
+          $(".RCdefect").css({
+              display: "block",
+            });
+
+            $('.add_record_layer').removeClass("state_activity state_item").addClass("state_skill");
+            $('.modify_record_layer').removeClass("state_activity state_item").addClass("state_skill");
+            $('.activity_post').removeClass("state_activity state_item").addClass("state_skill");
+
+
+          }
 
 
           else if($(this).hasClass("setting")){
@@ -749,8 +802,51 @@ border: 1px solid #93b0bc;
             });
         
     });
+//////////////////////////////////////////////////////////////////////////////////////
+///////// 세팅 > 정체성 삭제 버튼
+
+
+$('.delete_identity').click(function(){
+    layer_popup($('.delete_check_identity'));
+    console.log(Global_Var.userInfo.curr_identity_code);
+})
+
+$('#btn_deleteCom_identity').click(function(){
+
+    
+    $.ajax({
+        type : "POST",
+        url : "/hoodify/delete_identity.php",
+        data : {
+
+            'identity_code': Global_Var.userInfo.curr_identity_code,  
+        },
+        success : function(res){
+            if(res == 'success'){
+                
+                get_main_list();
+
+                $('.delete_check_identity').fadeOut('fast');
+                $('.pop-layer').fadeOut('fast');
+                console.log(res);
+            }
+            else{
+                console.log(res);
+            }
+
+        },
+        error : function(XMLHttpRequest, textStatus, errorThrown){ // 비동기 통신이 실패할경우 error 콜백으로 들어옵니다.
+            alert("통신 실패.")
+        }
+    });
+
+
+
+});
+
 
 //////////////////////////////////////////////////////////////////////////////////////
+///////// 검색
 
 $('.search_btn').click(function(){
 
@@ -859,6 +955,7 @@ $('.search_btn').click(function(){
         'curr_activity_code' : null,
         'curr_item_code' : null,
         'curr_skill_code' : null,
+        'curr_defect_code' : null,
 
         'curr_record_code' : null,
 
@@ -1118,9 +1215,11 @@ function get_main_list(){
                                             $('.Clist').empty();
                                             $('.Ilist').empty();
                                             $('.Slist').empty();
+                                            $('.Dlist').empty();
                                             
                                             $(".mylistT").empty();
                                             $(".mylistC").empty();
+                                            $(".mylistD").empty();
                                             $('.mylist').empty();
 
                                             $(".mylistT_item").empty();
@@ -1130,6 +1229,10 @@ function get_main_list(){
                                             $(".mylistT_skill").empty();
                                             $(".mylistC_skill").empty();
                                             $('.mylist_skill').empty();
+
+                                            $(".mylistT_defect").empty();
+                                            $(".mylistC_defect").empty();
+                                            $('.mylist_defect').empty();
 
 
                                             $('#addbtn_container').empty();
@@ -1144,6 +1247,42 @@ function get_main_list(){
                                             Global_Var.userInfo.curr_identity_code = identity.identity_code;
 
 
+                                            // 클릭한 정체성의 태그를 불러오는 코드;
+
+                                            
+                                            $.ajax({
+                                                    type : "POST",
+                                                    url : "/hoodify/get_identity_keyword.php",
+                                                    data : {
+                                                            'identity_code': Global_Var.userInfo.curr_identity_code,
+                                                        },
+                                                    dataType :'json',
+                                                    success : function(res){
+
+                                                        $('.keyword_container').empty();
+                                                        
+                                                        for (var i = 0; i < res.length; i++) {
+
+                                                            
+                                                            $('<p>',{
+                                                                    text: "#"+res[i].keyword_name + " ",
+
+                                                            }).css({
+
+
+                                                            }).appendTo($('.keyword_container'));
+
+                                                        }
+
+                                                    },
+                                                    error : function(XMLHttpRequest, textStatus, errorThrown){ // 비동기 통신이 실패할경우 error 콜백으로 들어옵니다.
+                                                        alert("통신 실패.")
+                                                    }
+                                                });
+
+
+
+
                                             // 클릭한 정체성의 activity 목록을 불러옴
                                             $.ajax({
                                                     type : "POST",
@@ -1156,7 +1295,7 @@ function get_main_list(){
                                                         for (var i = 0; i < res.length; i++) {
                                                             
                                                             var activity = res[i];
-                                                             console.log(activity);
+                                                             //console.log(activity);
                                                             var list_container = $("<div>", {
                                                                 }).css({
                                                                     width: "100%",
@@ -1167,7 +1306,7 @@ function get_main_list(){
                                                                     }).click(((activity) => function (e) {
 
                                                                         //현재 창의 identity의 acitivity 
-                                                                        console.log(activity);
+                                                                        //console.log(activity);
                                                                         $('.mylist').empty();
                                                                         $('#addbtn_container').empty();
 
@@ -1207,7 +1346,7 @@ function get_main_list(){
                                                                                         for (var i = 0; i < res.length; i++) {
 
                                                                                             var record = res[i];
-                                                                                            console.log(res);
+                                                                                            //console.log(res);
 
                                                                                             $('<p>', {
                                                                                                 text: record.title,
@@ -1223,7 +1362,7 @@ function get_main_list(){
                                                                                             }, function(){
                                                                                             $(this).css("background-color", "white");
                                                                                             }).click(((record) => function (e){
-                                                                                                console.log(record);
+                                                                                               // console.log(record);
 
                                                                                                 Global_Var.userInfo.curr_record_code = record.user_activity_code;
                                                                                                
@@ -1344,7 +1483,7 @@ function get_main_list(){
                                                     for (var i = 0; i < res.length; i++) {
                                                             
                                                             var item = res[i];
-                                                            console.log(item);
+                                                          //  console.log(item);
                                                             var list_container = $("<div>", {
                                                                 }).css({
                                                                     width: "100%",
@@ -1355,7 +1494,7 @@ function get_main_list(){
                                                                     }).click(((item) => function (e) {
 
                                                                         //현재 창의 identity의 item
-                                                                        console.log(item);
+                                                                       // console.log(item);
                                                                         $('.mylist_item').empty();
                                                                         $('#addbtn_container_item').empty();
 
@@ -1395,7 +1534,7 @@ function get_main_list(){
                                                                                         for (var i = 0; i < res.length; i++) {
 
                                                                                             var record = res[i];
-                                                                                            console.log(res);
+                                                                                          //  console.log(res);
 
                                                                                             $('<p>', {
                                                                                                 text: record.title,
@@ -1529,7 +1668,7 @@ function get_main_list(){
                                                 success : function(res){
                                                     for (var i = 0; i < res.length; i++) {
                                                     var skill = res[i];
-                                                    console.log(skill);
+                                                  //  console.log(skill);
                                                     
                                                     var list_container = $("<div>", {
                                                         }).css({
@@ -1541,7 +1680,7 @@ function get_main_list(){
                                                             }).click(((skill) => function (e) {
 
                                                                 //현재 창의 identity의 skill
-                                                                console.log(skill);
+                                                                //console.log(skill);
                                                                // $('.mylist_item').empty();
                                                                // $('#addbtn_container_item').empty();
 
@@ -1691,6 +1830,181 @@ function get_main_list(){
                                                 }
                                             });
                                             
+
+                                            // 클릭한 정체성의 defect 목록을 불러옴
+                                            ///////////////////////////////////////////////////////////////////////////
+                                            
+                                            $.ajax({
+                                                type : "POST",
+                                                    url : "/hoodify/get_identity_defect.php",
+                                                    data : {
+                                                            'identity_code': identity.identity_code
+                                                        },
+                                                dataType : 'json',
+                                                success : function(res){
+                                                    for (var i = 0; i < res.length; i++) {
+                                                    var defect = res[i];
+                                                  //  console.log(defect);
+                                                    
+                                                    var list_container = $("<div>", {
+                                                        }).css({
+                                                            width: "100%",
+                                                            display: "inline-flex",
+                                                            alignItems: "center",
+                                                            borderBottom: "1px solid #D8D8D8",
+
+                                                            }).click(((defect) => function (e) {
+
+                                                                //현재 창의 identity의 defect
+                                                                //console.log(defect);
+                                                               // $('.mylist_item').empty();
+                                                               // $('#addbtn_container_item').empty();
+
+                                                                $('.mylistT_defect').text(defect.caution_name);
+                                                                $('.mylistC_defect').text("\u00a0"+"\u00a0"+defect.caution_desc);
+                                                                $('.add_record_layer').fadeOut('fast');
+                                                                
+                                                                // 해당 defect 전역 변수 설정
+                                                                Global_Var.userInfo.curr_defect_code = defect.caution_code;
+
+                                                                $('.contents_item.defect').removeClass("itemActive").css("background-color", "white");
+                                                                $(this).css("background-color", "#bad8f2");
+                                                                $(this).addClass("itemActive");
+
+
+                                                                // 입력 레이어
+                                                               // $('.popup_activity_img').attr("src",item.item_img);
+                                                               // $('.popup_activity_title').text(item.item_name);
+                                                               // $('.popup_activity_desc').text(item.item_desc);
+
+                                                                // 개인 레코드 확인 레이어
+                                                               // $('.popup_activity_img2').attr("src",item.item_img);
+                                                               // $('.popup_activity_title2').text(item.item_name);
+                                                               // $('.popup_activity_desc2').text(item.item_desc);
+
+                                                                /*
+                                                                    $.ajax({
+                                                                            type : "POST",
+                                                                            url : "/hoodify/get_user_item_record.php",
+                                                                            data : {
+                                                                                    'activity_code': item.item_code,
+                                                                                },
+                                                                            dataType : 'json',
+                                                                            success : function(res){
+                                                                                
+
+                                                                                for (var i = 0; i < res.length; i++) {
+
+                                                                                    var record = res[i];
+                                                                                    console.log(res);
+
+                                                                                    $('<p>', {
+                                                                                        text: record.title,
+
+                                                                                        }).css({
+                                                                                        "padding": "12px",
+                                                                                        "width": "90%",
+                                                                                        "fontWeight": "bold",
+                                                                                        "borderBottom": "1px solid #D8D8D8",
+                                                                                    
+                                                                                    }).hover(function() {
+                                                                                    $(this).css("background-color", "#bad8f2");
+                                                                                    }, function(){
+                                                                                    $(this).css("background-color", "white");
+                                                                                    }).click(((record) => function (e){
+
+                                                                                        $('.popup_activity_record_title').text(record.title);
+                                                                                        $('.popup_activity_record_cont').text(record.record);
+                                                                                        
+
+
+                                                                                        layer_popup($('.activity_post'));
+
+
+                                                                                    })(record)).appendTo($('.mylist_item'));
+
+
+                                                                                }
+
+
+
+                                                                            },
+                                                                            error : function(XMLHttpRequest, textStatus, errorThrown){ // 비동기 통신이 실패할경우 error 콜백으로 들어옵니다.
+                                                                                alert("통신 실패.")
+                                                                            }
+                                                                        });
+                                                                        */
+                                                                        
+                                                                        // 추가하기 버튼 동적 생성
+                                                                        // dddddddddddddddd
+                                                                        /*
+                                                                            $('<p>',{
+                                                                            text: "추가하기",
+
+                                                                        }).attr('id', 'add_record_item'
+                                                                        ).css({
+                                                                            width: "80px",
+                                                                            color: "#3f5a9d",
+                                                                            fontWeight: "bold",
+                                                                            cursor:"pointer",
+                                                                            marginTop:"20px",
+
+
+                                                                        }).click(function(){
+
+                                                                            $('.record_title_item').val("");
+                                                                            $('.record_cont_item').val("");
+
+                                                                            layer_popup($('.add_record_layer'));
+                                                                            // 여기는 아이템 추가해야함
+
+
+
+
+                                                                        }).appendTo($('#addbtn_container_item'));
+                                                                        */    
+
+
+
+                                                            })(defect)).hover(function() {
+                                                                    $(this).css("background-color", "#bad8f2");
+                                                                }, function(){
+                                                                    if($(this).hasClass("itemActive")){
+                                                                    $(this).css("background-color", "#bad8f2");
+                                                                    }
+                                                                    else{
+                                                                    $(this).css("background-color", "white");
+                                                                    }
+                                                                }).addClass("contents_item defect").appendTo($('.Dlist'));
+
+
+                                                    $('<img>',{
+                                                        src: defect.caution_img,
+                                                        }).css({
+                                                        width: "50px",
+                                                        height: "50px",
+                                                        margin: "5px",
+                                                        float: "left",
+
+                                                        }).appendTo(list_container);        
+
+                                                    
+                                                        $('<p>', {
+                                                        text: defect.caution_name,
+
+                                                        }).css({
+                                                        "margin-left": "12px",
+                                                        "width": "100%",
+                                                        "fontWeight": "bold",
+                                                        
+                                                        }).appendTo(list_container);
+
+                                                }
+                                            },
+                                                error : function(XMLHttpRequest, textStatus, errorThrown){ 
+                                                    alert("통신 실패.")
+                                                }
+                                            });
 
                                             layer_popup($('.pop-layer'));
 
@@ -1907,6 +2221,8 @@ get_main_list();
                                 for (var i = 0; i < res.length; i++) {
 
                                     var record = res[i];
+                                    console.log(record);
+
                                     $('<p>', {
                                         text: record.title,
 
@@ -1922,12 +2238,13 @@ get_main_list();
                                     $(this).css("background-color", "white");
                                     }).click(((record) => function (e){
 
+                                        Global_Var.userInfo.curr_record_code = record.user_item_code;
+
                                         $('.popup_activity_record_title').text(record.title);
                                         $('.popup_activity_record_cont').text(record.record);
 
 
-                                        Global_Var.userInfo.curr_record_code = record.user_item_code;
-
+                                        
                                         layer_popup($('.activity_post'));
 
 
@@ -2008,7 +2325,9 @@ $('#btn_deleteCom').click(function(){
                                         
                                         for (var i = 0; i < res.length; i++) {
 
+                                            
                                             var record = res[i];
+                                            console.log(record);
                                             $('<p>', {
                                                 text: record.title,
 
@@ -2024,7 +2343,9 @@ $('#btn_deleteCom').click(function(){
                                             $(this).css("background-color", "white");
                                             }).click(((record) => function (e){
 
-                                                
+                                                console.log(record[0]);
+                                                Global_Var.userInfo.curr_record_code = record.user_activity_code;
+
                                                 $('.popup_activity_record_title').text(record.title);
                                                 $('.popup_activity_record_cont').text(record.record);
 
@@ -2098,6 +2419,9 @@ $('#btn_deleteCom').click(function(){
                                         }, function(){
                                         $(this).css("background-color", "white");
                                         }).click(((record) => function (e){
+
+                                            console.log(record.record_code);
+                                            Global_Var.userInfo.curr_record_code = record.user_item_code;
 
                                             $('.popup_activity_record_title').text(record.title);
                                             $('.popup_activity_record_cont').text(record.record);
