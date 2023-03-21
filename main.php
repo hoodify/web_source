@@ -48,7 +48,7 @@ body{
   width: 1100px;
   height: 750px;
   background-color: #fff;
-  border: 2px solid black;
+  border: 3px solid black;
   z-index: 1000;
   border-radius: 12px;
 }
@@ -79,7 +79,7 @@ body{
   width: 550px;
   height: 800px;
   background-color: #fff;
-  border: 2px solid black;
+  border: 3px solid black;
   z-index: 1008;
   border-radius: 12px;
 }
@@ -105,11 +105,11 @@ flex:3;
  width: 96%;
  height: 92%;
  margin: 2% 2% 0 2%;
+ justify-content: center;
 
 }
 
 .identity_img_container{
-  float: left;
   width: 100px;
   height: 100px;
 }
@@ -167,7 +167,7 @@ margin-right: 15px;
 .Clist{
 
 display: block;
-height: 66%;
+height: 75%;
 margin: 3%;
 border: 1px solid gray;
 
@@ -176,7 +176,7 @@ border: 1px solid gray;
 
 
 .Ilist{
-height: 66%;
+height: 75%;
 margin: 3%;
 display: none;
 border: 1px solid gray;
@@ -189,14 +189,14 @@ flex-direction: column;
 
 
 .Slist{
-height: 66%;
+height: 75%;
 margin: 3%;
 display: none;
 border: 1px solid gray;
 }
 
 .Dlist{
-height: 66%;
+height: 75%;
 margin: 3%;
 display: none;
 border: 1px solid #93b0bc;
@@ -204,7 +204,7 @@ border: 1px solid #93b0bc;
 
 
 .setting_cont{
-height: 66%;
+height: 75%;
 margin: 3%;
 display: none;
 border: 1px solid #93b0bc;
@@ -372,7 +372,7 @@ border: 1px solid #93b0bc;
              position: fixed;
              top: 50%;
              left: 50%;
-             width: 75%;
+             width: 55%;
              height: 85%;
              background-color: #fff;
              border: 3px solid black;
@@ -417,22 +417,28 @@ border: 1px solid #93b0bc;
     
   
     <div id="layer1" class="pop-layer">
-      <div class="pop-container">
-
+      <div class="pop-container" style="display: flex;    flex-direction: column;">
+      <div style="position:absolute; top:0; width:100%; height:20px; background-color:rgba( 0, 0, 0, 0.85 ); "> </div>
 
         <div class = "Dhorizontal">
-          <div class = "leftCont">
-            <img class = "identity_img_container"></img>
+          <div class = "leftCont" style="margin-top: 10px; margin-bottom: 2%; display:flex;     flex-direction: column;">
+          <div style="height:20%">
+                <div style="display:flex;">
+                    <img class = "identity_img_container"></img>
 
 
-            <div class="pop-conts" id = "cont">
+                    <div class="pop-conts" id = "cont" style="display:flex; flex-direction: column; width: 60%; margin-left:10px;">
 
-              <h4 class = "identity_title_container"></h4>
-              <p class = "identity_desc_container"></p>
+                    <h4 class = "identity_title_container"></h4>
+                    <p class = "identity_desc_container"></p>
 
+                    </div>
+                </div>
+
+                    <div class = keyword_container style="text-align:right; margin-right:15px; color:gray; font-size:12px; display: flex; justify-content: flex-end;">  </div>
             </div>
-            <div class = keyword_container style="text-align:right; margin-right:15px; color:gray; font-size:12px; display: flex; justify-content: flex-end;">  </div>
-
+                    
+           <div style="display:flex;  flex-direction: column; height: 80%; justify-content: flex-end;">
             <div class="bar-menu" id="barMenu1">
                 <ul class="menu-body">
                   <li class ="mli activity active">Activity</li>
@@ -479,10 +485,17 @@ border: 1px solid #93b0bc;
 
             </div>
 
+
+            </div>
           </div>
+
+         
           <div class = "rightCont">
             <div class = "RC RCactivity">
-              <h3 class = "mylistT"> </h3>
+                <div style="display: flex; align-items: center;">
+                    <img class = "mylistIMG" style="width:70px; height:70px;  margin-right:10px;">
+                    <h3 class = "mylistT"> </h3>
+                </div>
               <p class = "mylistC" style='margin-bottom:15px;'> </p>
               <hr/>
               <ul class="mylist"> </ul>
@@ -490,7 +503,11 @@ border: 1px solid #93b0bc;
             </div>
 
             <div class = "RC RCitem">
-              <h3 class = "mylistT_item"> </h3>
+             <div style="display: flex; align-items: center;">
+                <img class = "mylistIMG_item" style="width:70px; height:70px;  margin-right:10px;">
+                <h3 class = "mylistT_item"> </h3>
+            </div>
+
               <p class = "mylistC_item" style='margin-bottom:15px;'> </p>
               <hr/>
               <ul class="mylist_item"> </ul>
@@ -498,7 +515,10 @@ border: 1px solid #93b0bc;
 
             </div>
             <div class = "RC RCskill">
-                <h3 class = "mylistT_skill"> </h3>
+            <div style="display: flex; align-items: center;">
+                    <img class = "mylistIMG_skill" style="width:70px; height:70px;  margin-right:10px;">
+                    <h3 class = "mylistT_skill"> </h3>
+            </div>
               <p class = "mylistC_skill" style='margin-bottom:15px;'> </p>
               <hr/>
               <ul class="mylist_skill"> </ul>
@@ -509,7 +529,10 @@ border: 1px solid #93b0bc;
             </div>
 
             <div class = "RC RCdefect">
+            <div style="display: flex; align-items: center;">
+                <img class = "mylistIMG_defect" style="width:70px; height:70px;  margin-right:10px;">
                 <h3 class = "mylistT_defect"> </h3>
+                </div>
               <p class = "mylistC_defect" style='margin-bottom:15px;'> </p>
               <hr/>
               <ul class="mylist_defect"> </ul>
@@ -521,11 +544,13 @@ border: 1px solid #93b0bc;
 
           </div>
 
-        </div>
-
-        <div class="btn-r">
+          <div class="btn-r">
           <div class="btn_layerClose generalBtn">닫기</div>
         </div>
+
+        </div>
+
+        
 
       </div>
     </div>
@@ -561,10 +586,11 @@ border: 1px solid #93b0bc;
 
 
 
-    <div class = "activity_post state_activity" style= "flex-direction: column;  border: 2px solid black; border-radius: 12px;">
-        
+    <div class = "activity_post state_activity" style= "flex-direction: column;  border: 3px solid black; border-radius: 12px;">
+    <div style="position:absolute; top:0; width:100%; height:20px; background-color:rgba( 0, 0, 0, 0.85 );"> </div>
+    
 
-            <div style="display:flex;">
+            <div style="display:flex; margin-top: 20px;">
                 <img class = "popup_activity_img2" src = "/hoodify/img/identity/hooodify_mini.png" style="margin:12px; height:150px; width:150px;">
                 <div style="display: flex; flex-direction: column; ">
                     <h4 class="popup_activity_title2" style="margin:12px;"> activity title</h4>
@@ -593,7 +619,9 @@ border: 1px solid #93b0bc;
 
 
   <div id="layer1" class="modify_record_layer state_activity">
-      <div class="pop-container" style="width:100%">
+  <div style="position:absolute; top:0; width:100%; height:20px; background-color:rgba( 0, 0, 0, 0.85 );"> </div>
+    
+      <div class="pop-container" style="width:100%; margin-top:20px;" >
 
             <div style="display:flex;">
                 <img class = "popup_activity_img" src = "/hoodify/img/identity/hooodify_mini.png" style="margin:12px; height:150px; width:150px;">
@@ -713,6 +741,25 @@ border: 1px solid #93b0bc;
         </div>
 
         <div class = "search_result" style = "margin-top : 20px;"> </div>
+
+        <div class = "search_result_identity" style = "margin-top : 20px; display:none; flex-direction: column;"> 
+            <div style = "display:flex;  flex-direction: row; margin-top:15px;">
+            <div style = "display:flex; flex-direction: row;">
+                <img class = search_identity_img style = 'width:120px; height:120px;'>
+                <div style="display: flex; flex-direction: column; margin-left:10px;">
+                        <h3 class = search_identity_name style="width:60%"></h3>
+                        <p class = search_identity_desc style="width:80%; margin-top:15px;"></p>
+                        
+                </div>
+                     <div class = "to_search_list" style="width:70px; height:50px; cursor:pointer; position:absolute; right:0;"> 뒤로</div>
+                 </div>
+             </div>
+             <div style="margin: 15px;">
+                여기어때
+             </div>
+
+        </div>
+
       </div>
 
       <div class="btn-r">
@@ -953,6 +1000,15 @@ $('.search_btn').click(function(){
                     }).click(((object) => function (e) {
 
                         // 검색 결과 정체성 처리
+                        console.log(object);
+
+                        $('.search_identity_img').attr("src",object.identity_img);
+                        $('.search_identity_name').text(object.identity_name);
+                        $('.search_identity_desc').text("\u00a0"+"\u00a0"+object.identity_desc);
+
+                        $('.search_result_identity').css("display","flex").hide().fadeIn('fast');
+
+                        $('.search_result').css({ display : 'none',});
 
                     })(object)).appendTo(".search_result");
 
@@ -989,6 +1045,17 @@ $('.search_btn').click(function(){
             alert("통신 실패.")
         }
     });
+
+})
+
+
+/////////////////////
+// 검색 결과에서 뒤로가기 > 정체성 리스트 다시 보이기
+
+$('.to_search_list').click(function(){
+
+    $('.search_result_identity').css({ display : 'none',});
+    $('.search_result').fadeIn('fast');
 
 })
 
@@ -1287,20 +1354,25 @@ function get_main_list(){
                                             $('.Slist').empty();
                                             $('.Dlist').empty();
                                             
+
                                             $(".mylistT").empty();
+                                            $(".mylistIMG").css("display", "none")
                                             $(".mylistC").empty();
                                             $(".mylistD").empty();
                                             $('.mylist').empty();
 
                                             $(".mylistT_item").empty();
+                                            $(".mylistIMG_item").css("display", "none")
                                             $(".mylistC_item").empty();
                                             $('.mylist_item').empty();
 
                                             $(".mylistT_skill").empty();
+                                            $(".mylistIMG_skill").css("display", "none")
                                             $(".mylistC_skill").empty();
                                             $('.mylist_skill').empty();
 
                                             $(".mylistT_defect").empty();
+                                            $(".mylistIMG_defect").css("display", "none")
                                             $(".mylistC_defect").empty();
                                             $('.mylist_defect').empty();
 
@@ -1380,6 +1452,7 @@ function get_main_list(){
                                                                         $('.mylist').empty();
                                                                         $('#addbtn_container').empty();
 
+                                                                        $('.mylistIMG').css("display", "flex").attr("src",activity.activity_img);
                                                                         $('.mylistT').text(activity.activity_name);
                                                                         $('.mylistC').text("\u00a0"+"\u00a0"+activity.activity_desc);
                                                                         $('.add_record_layer').fadeOut('fast');
@@ -1568,6 +1641,7 @@ function get_main_list(){
                                                                         $('.mylist_item').empty();
                                                                         $('#addbtn_container_item').empty();
 
+                                                                        $('.mylistIMG_item').css("display", "flex").attr("src",item.item_img);
                                                                         $('.mylistT_item').text(item.item_name);
                                                                         $('.mylistC_item').text("\u00a0"+"\u00a0"+item.item_desc);
                                                                         $('.add_record_layer').fadeOut('fast');
@@ -1754,6 +1828,8 @@ function get_main_list(){
                                                                // $('.mylist_item').empty();
                                                                // $('#addbtn_container_item').empty();
 
+                                                               $('.mylistIMG_skill').css("display", "flex").attr("src",skill.skill_img);
+
                                                                 $('.mylistT_skill').text(skill.skill_name);
                                                                 $('.mylistC_skill').text("\u00a0"+"\u00a0"+skill.skill_desc);
                                                                 $('.add_record_layer').fadeOut('fast');
@@ -1929,6 +2005,8 @@ function get_main_list(){
                                                                 //console.log(defect);
                                                                // $('.mylist_item').empty();
                                                                // $('#addbtn_container_item').empty();
+
+                                                               $('.mylistIMG_defect').css("display", "flex").attr("src",defect.caution_img);
 
                                                                 $('.mylistT_defect').text(defect.caution_name);
                                                                 $('.mylistC_defect').text("\u00a0"+"\u00a0"+defect.caution_desc);
