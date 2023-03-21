@@ -1002,6 +1002,31 @@ $('.search_btn').click(function(){
                         // 검색 결과 정체성 처리
                         console.log(object);
 
+
+                                                    
+                            $.ajax({
+                                    type : "POST",
+                                    url : "/hoodify/get_search_identity_data.php",
+                                    data : {'identity_code' : object.identity_code},
+                                    dataType : 'json',
+                                    success : function(res){
+
+                                        // identity의 activity, item, skill, caution 모든 data 가 합쳐진 json 파일 반환 확인
+                                        var tt = JSON.stringify(res);
+                                        console.log(tt);
+
+
+
+
+
+                                    },
+                                    error : function(XMLHttpRequest, textStatus, errorThrown){ // 비동기 통신이 실패할경우 error 콜백으로 들어옵니다.
+                                        alert("통신 실패.")
+                                    }
+                                });
+
+
+
                         $('.search_identity_img').attr("src",object.identity_img);
                         $('.search_identity_name').text(object.identity_name);
                         $('.search_identity_desc').text("\u00a0"+"\u00a0"+object.identity_desc);
