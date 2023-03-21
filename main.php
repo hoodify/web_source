@@ -381,6 +381,12 @@ border: 1px solid #93b0bc;
 
            }
 
+           
+.search_data_container::-webkit-scrollbar {
+    display:none
+}
+
+
 </style>
 
 
@@ -733,7 +739,7 @@ border: 1px solid #93b0bc;
         <div style="position:absolute; top:0; width:100%; height:20px; background-color:rgba( 0, 0, 0, 0.85 );"> </div>
     
         
-      <div class = "search_layer_container" style="flex-direction: column; display: flex; align-items: flex-start; width: 100%; padding:25px;">
+      <div class = "search_layer_container" style="flex-direction: column; display: flex; align-items: flex-start; width: 100%; height:88%; padding:25px;">
         
       <div style="width: 100%; display: flex; flex-direction: row; align-items: center; margin-top: 25px;">
             <div class="search_text" contenteditable="true" style="width:100%; padding:5px; font-family: TmoneyRoundWindRegular; font-size:16px; border: 1px solid gray; border-radius: 5px;"></div>
@@ -742,7 +748,7 @@ border: 1px solid #93b0bc;
 
         <div class = "search_result" style = "margin-top : 20px;"> </div>
 
-        <div class = "search_result_identity" style = "margin-top : 20px; display:none; flex-direction: column;"> 
+        <div class = "search_result_identity" style = "margin-top : 20px; display:none; flex-direction: column; height: inherit;"> 
             <div style = "display:flex;  flex-direction: row; margin-top:15px;">
             <div style = "display:flex; flex-direction: row;">
                 <img class = search_identity_img style = 'width:120px; height:120px;'>
@@ -754,8 +760,25 @@ border: 1px solid #93b0bc;
                      <div class = "to_search_list" style="width:70px; height:50px; cursor:pointer; position:absolute; right:0;"> 뒤로</div>
                  </div>
              </div>
-             <div style="margin: 15px;">
-                여기어때
+             <div class = "search_data_container" style="margin: 15px; overflow-y: scroll;">
+                
+             <div>
+                <p style="font-family: TmoneyRoundWindExtraBold; margin-bottom:15px;"> Activity </p>
+                <div class = "search_activity_list"></div>
+             </div>
+             <div>
+                <p style="font-family: TmoneyRoundWindExtraBold; margin-bottom:15px; margin-top:15px;"> Item </p>
+                <div class = "search_item_list"></div>
+             </div>
+             <div>
+                <p style="font-family: TmoneyRoundWindExtraBold; margin-bottom:15px; margin-top:15px;"> Skill </p>
+                <div class = "search_skill_list"></div>
+             </div>
+             <div>
+                <p style="font-family: TmoneyRoundWindExtraBold; margin-bottom:15px; margin-top:15px;"> Defect </p>
+                <div class = "search_defect_list"></div>
+             </div>
+
              </div>
 
         </div>
@@ -954,6 +977,10 @@ $('#btn_deleteCom_identity').click(function(){
 
 $('.search_btn').click(function(){
 
+    $('.search_result_identity').css({ display : 'none',});
+    $('.search_result').css("display","block").hide().fadeIn('fast');
+
+
     var search_text = $('.search_text').text();
     console.log(search_text);
 
@@ -1002,28 +1029,294 @@ $('.search_btn').click(function(){
                         // 검색 결과 정체성 처리
                         console.log(object);
 
+                        $('.search_identity_img').attr("src",object.identity_img);
+                        $('.search_identity_name').text(object.identity_name);
+                        $('.search_identity_desc').text("\u00a0"+"\u00a0"+object.identity_desc);
 
-                                                    
-                            $.ajax({
-                                    type : "POST",
-                                    url : "/hoodify/get_search_identity_data.php",
-                                    data : {'identity_code' : object.identity_code},
-                                    dataType : 'json',
-                                    success : function(res){
-
-                                        // identity의 activity, item, skill, caution 모든 data 가 합쳐진 json 파일 반환 확인
-                                        var tt = JSON.stringify(res);
-                                        console.log(tt);
+                        $('.search_activity_list').empty();
+                        $('.search_item_list').empty();
+                        $('.search_skill_list').empty();
+                        $('.search_defect_list').empty();
 
 
 
+                        $.ajax({
+                            type : "POST",
+                            url : "/hoodify/get_search_identity_data.php",
+                            data : {'identity_code' : object.identity_code},
+                            dataType : 'json',
+                            success : function(res){
+
+                                // identity의 activity, item, skill, caution 모든 data 가 합쳐진 json 파일 반환 확인
+                                console.log(res);
+                                
+                                var activity_data = res[0];
+
+                                for (var i = 0; i < activity_data.length; i++) {
+                                    
+                                    var activity_object = activity_data[i];
 
 
-                                    },
-                                    error : function(XMLHttpRequest, textStatus, errorThrown){ // 비동기 통신이 실패할경우 error 콜백으로 들어옵니다.
-                                        alert("통신 실패.")
-                                    }
-                                });
+                                    var list = document.createElement("div");
+
+                                    $(list).css({
+
+                                    
+                                        height: "70px",
+                                        borderBottom: "1px solid #D8D8D8",
+                                        display: 'flex',
+                                        paddingBottom: '5px',
+                                        alignItems: 'center',
+                                        overflow:'hidden',
+
+                                    }).appendTo('.search_activity_list');
+
+                                    var VerticalList = $("<div>", {
+                                    }).css({
+
+                                    });
+
+                                    $('<img>', {
+                                        src: activity_object.activity_img
+
+                                    }).css({
+                                        width: "30px",
+                                        height: "30px",
+                                        margin: "4.5px",
+                                        float: "left",
+                                        margin: "7px",
+                                    }).appendTo(list);
+
+
+                                    $('<p>', {
+                                        text: activity_object.activity_name,
+
+                                    }).css({
+                                        margin: "4.5px",
+
+
+                                    }).appendTo(VerticalList);
+
+                                    $('<p>', {
+                                        text: activity_object.activity_desc,
+
+                                    }).css({
+                                        fontSize: "12px",
+                                        margin: "4.5px",
+                                        lineHeight:"15px",
+
+
+                                    }).appendTo(VerticalList);
+
+                                    VerticalList.appendTo(list);
+
+                                }
+
+
+                                var item_data = res[1];
+
+                                for (var i = 0; i < item_data.length; i++) {
+                                    
+                                    var item_object = item_data[i];
+
+
+                                    var list = document.createElement("div");
+
+                                    $(list).css({
+
+                                    
+                                        height: "70px",
+                                        borderBottom: "1px solid #D8D8D8",
+                                        display: 'flex',
+                                        paddingBottom: '5px',
+                                        alignItems: 'center',
+                                        overflow:'hidden',
+
+                                    }).appendTo('.search_item_list');
+
+                                    var VerticalList = $("<div>", {
+                                    }).css({
+
+                                    });
+
+                                    $('<img>', {
+                                        src: item_object.item_img
+
+                                    }).css({
+                                        width: "30px",
+                                        height: "30px",
+                                        margin: "4.5px",
+                                        float: "left",
+                                        margin: "7px",
+                                    }).appendTo(list);
+
+
+                                    $('<p>', {
+                                        text: item_object.item_name,
+
+                                    }).css({
+                                        margin: "4.5px",
+
+
+                                    }).appendTo(VerticalList);
+
+                                    $('<p>', {
+                                        text: item_object.item_desc,
+
+                                    }).css({
+                                        fontSize: "12px",
+                                        margin: "4.5px",
+                                        lineHeight:"15px",
+
+
+                                    }).appendTo(VerticalList);
+
+                                    VerticalList.appendTo(list);
+
+                                }
+
+
+                                var skill_data = res[2];
+
+                                for (var i = 0; i < skill_data.length; i++) {
+                                    
+                                    var skill_object = skill_data[i];
+
+
+                                    var list = document.createElement("div");
+
+                                    $(list).css({
+
+                                    
+                                        height: "70px",
+                                        borderBottom: "1px solid #D8D8D8",
+                                        display: 'flex',
+                                        paddingBottom: '5px',
+                                        alignItems: 'center',
+                                        overflow:'hidden',
+
+                                    }).appendTo('.search_skill_list');
+
+                                    var VerticalList = $("<div>", {
+                                    }).css({
+
+                                    });
+
+                                    $('<img>', {
+                                        src: skill_object.skill_img
+
+                                    }).css({
+                                        width: "30px",
+                                        height: "30px",
+                                        margin: "4.5px",
+                                        float: "left",
+                                        margin: "7px",
+                                    }).appendTo(list);
+
+
+                                    $('<p>', {
+                                        text: skill_object.skill_name,
+
+                                    }).css({
+                                        margin: "4.5px",
+
+
+                                    }).appendTo(VerticalList);
+
+                                    $('<p>', {
+                                        text: skill_object.skill_desc,  
+
+                                    }).css({
+                                        fontSize: "12px",
+                                        margin: "4.5px",
+                                        lineHeight:"15px",
+
+
+                                    }).appendTo(VerticalList);
+
+                                    VerticalList.appendTo(list);
+
+                                }
+
+                                var caution_data = res[3];
+
+                                for (var i = 0; i < caution_data.length; i++) {
+                                    
+                                    var caution_object = caution_data[i];
+
+
+                                    var list = document.createElement("div");
+
+                                    $(list).css({
+
+                                    
+                                        height: "70px",
+                                        borderBottom: "1px solid #D8D8D8",
+                                        display: 'flex',
+                                        paddingBottom: '5px',
+                                        alignItems: 'center',
+                                        overflow:'hidden',
+
+                                    }).appendTo('.search_defect_list');
+
+                                    var VerticalList = $("<div>", {
+                                    }).css({
+
+                                    });
+
+                                    $('<img>', {
+                                        src: caution_object.caution_img
+
+                                    }).css({
+                                        width: "30px",
+                                        height: "30px",
+                                        margin: "4.5px",
+                                        float: "left",
+                                        margin: "7px",
+                                    }).appendTo(list);
+
+
+                                    $('<p>', {
+                                        text: caution_object.caution_name,
+
+                                    }).css({
+                                        margin: "4.5px",
+
+
+                                    }).appendTo(VerticalList);
+
+                                    $('<p>', {
+                                        text: caution_object.caution_desc,
+
+                                    }).css({
+                                        fontSize: "12px",
+                                        margin: "4.5px",
+                                        lineHeight:"15px",
+
+
+                                    }).appendTo(VerticalList);
+
+                                    VerticalList.appendTo(list);
+
+                                }
+
+
+
+
+                            },
+                            error : function(XMLHttpRequest, textStatus, errorThrown){ // 비동기 통신이 실패할경우 error 콜백으로 들어옵니다.
+                                alert("통신 실패.")
+                            }
+                        });
+
+
+
+
+
+
+
+
+
 
 
 

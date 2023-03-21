@@ -12,11 +12,10 @@
                   $dbName = "hoodify";
                   $tblName = "testTBL";
                   $identity_code = $_POST['identity_code'];
-                //  $IdInt = (int)$identity_code;
 
 
 
-                  $conn = new PDO("mysql:host=127.0.0.1;dbname=${dbName}", "root", "050638");
+                  $conn = new PDO("mysql:host=127.0.0.1;dbname=$dbName", "root", "050638");
                   $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
                   $query_activity = "SELECT * FROM activity  WHERE identity_code = '$identity_code' ";
@@ -41,16 +40,11 @@
 
 
 
+                 $mergeArray = array(0=>$row_activity, 1=>$row_item, 2=>$row_skill, 3=>$row_caution);
 
-                  $jsonResult_activity = json_encode($row_activity);
-                  $jsonResult_item = json_encode($row_item);
-                  $jsonResult_skill = json_encode($row_skill);
-                  $jsonResult_caution = json_encode($row_caution);
-                 
-                  
-                  $json_sum = $jsonResult_activity + $jsonResult_item + $jsonResult_skill + $jsonResult_caution;
+                 $resultJSON = json_encode($mergeArray);
 
-                  echo $jjson_sum;
+                  echo $resultJSON;
 
 
 
