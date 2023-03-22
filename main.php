@@ -244,6 +244,19 @@ border: 1px solid #93b0bc;
   color: #fff;
 }
 
+.locked {
+  display: none;
+  height: 25px;
+  padding: 0 14px 0;
+  border: 1px solid gray;
+  background-color: gray;
+  font-size: 13px;
+  color: #fff;
+  line-height: 25px;
+  text-decoration: none;
+  margin-left:25px;
+}
+
 .itemActive{
   background-color: #bad8f2;
 }
@@ -323,12 +336,12 @@ border: 1px solid #93b0bc;
              border: 3px solid black;
  }
 
- .activate_check{
+ .add_identity_check{
              position: fixed;
              display: none;
              width: 500px;
              height: 120px;
-             z-index: 1003;
+             z-index: 1010;
              top: 50%;
              left: 50%;
              background-color: white;
@@ -366,7 +379,9 @@ border: 1px solid #93b0bc;
 .inactive_identity_list::-webkit-scrollbar {
                	display:none
            }
-
+.search_result::-webkit-scrollbar {
+    display:none
+}
 .search_layer {
              display: none;
              position: fixed;
@@ -686,12 +701,12 @@ border: 1px solid #93b0bc;
         </div>
     </div>
 
-    <div class="activate_check">
-         <div style="margin-top:5%; margin-left:5%;">  활성화 하시겠습니까? </div>
+    <div class="add_identity_check">
+         <div style="margin-top:5%; margin-left:5%;">  추가 하시겠습니까? </div>
          <div class="btn-r" style="margin-bottom: 25px;">
 
          <div class="btn_layerClose generalBtn">닫기</div>
-         <div class="generalBtn" id="activate_checkCom">확인</div>
+         <div class="generalBtn" id="add_identity_checkCom">확인</div>
         </div>
     </div>
 
@@ -746,15 +761,19 @@ border: 1px solid #93b0bc;
             <img class="search_btn" src="/hoodify/img/identity/hooodify_mini.png" style="cursor:pointer; width:40px; height:40px; margin-left:10px; border: 2px solid black; border-radius: 12px; ">
         </div>
 
-        <div class = "search_result" style = "margin-top : 20px;"> </div>
+        <div class = "search_result" style = "margin-top : 20px; overflow-y: scroll;"> </div>
 
         <div class = "search_result_identity" style = "margin-top : 20px; display:none; flex-direction: column; height: inherit;"> 
             <div style = "display:flex;  flex-direction: row; margin-top:15px;">
             <div style = "display:flex; flex-direction: row;">
                 <img class = search_identity_img style = 'width:120px; height:120px;'>
                 <div style="display: flex; flex-direction: column; margin-left:10px;">
-                        <h3 class = search_identity_name style="width:60%"></h3>
-                        <p class = search_identity_desc style="width:80%; margin-top:15px;"></p>
+                    <div style="display: flex; flex-direction: row;  align-items: flex-end;">
+                        <h3 class = "search_identity_name"></h3>
+                        <div class = 'add_identity generalBtn' style ="margin-left:25px;" > 추가 </div>
+                        <div class = 'locked'> 보유중 </div>
+                    </div>
+                        <p class = "search_identity_desc" style="width:80%; margin-top:15px;"></p>
                         
                 </div>
                      <div class = "to_search_list" style="width:70px; height:50px; cursor:pointer; position:absolute; right:0;"> 뒤로</div>
@@ -903,10 +922,7 @@ border: 1px solid #93b0bc;
 
 $('.logout_btn').click(function(){
 
-    // session 삭제 php;
-    // redirection page;
-
-
+    document.location.href='Logout.php';
 
 
 })
@@ -1038,6 +1054,37 @@ $('.search_btn').click(function(){
                         $('.search_skill_list').empty();
                         $('.search_defect_list').empty();
 
+                        Global_Var.userInfo.curr_identity_code = object.identity_code;
+
+
+
+                        $.ajax({
+                            type : "POST",
+                            url : "/hoodify/check_possession.php",
+                            data : { 'identity_code' : object.identity_code},
+                            success : function(res){
+
+                                if(res=='possession'){
+
+                                    $('.add_identity').css({ display : 'none',});
+                                    $('.locked').css({ display : 'block',});
+
+                                }else if(res=='no possession'){
+
+                                    $('.add_identity').css({ display : 'block',});
+                                    $('.locked').css({ display : 'none',});
+
+                                }
+
+
+
+
+                            },
+                            error : function(XMLHttpRequest, textStatus, errorThrown){ // 비동기 통신이 실패할경우 error 콜백으로 들어옵니다.
+                                alert("통신 실패.")
+                            }
+                        });
+                        
 
 
                         $.ajax({
@@ -1365,6 +1412,56 @@ $('.search_btn').click(function(){
     });
 
 })
+
+///////////////////////////////////////////////////////////////////////////////////////
+///////// 검색해서 추가
+
+$('.add_identity').click(function(){
+
+    layer_popup($('.add_identity_check'));
+   
+});
+
+$('#add_identity_checkCom').click(function(){
+
+    $.ajax({
+        type : "POST",
+        url : "/hoodify/add_identity.php",
+
+        data:{ 
+
+            'identity_code' : Global_Var.userInfo.curr_identity_code,
+
+        },
+        success : function(res){
+
+            if(res=='success'){
+
+                $('.add_identity').css({ display : 'none',});
+                $('.locked').css({ display : 'block',});
+                get_main_list();
+
+
+            }
+            else{
+                console.log(res);
+            }
+
+        },
+        error : function(XMLHttpRequest, textStatus, errorThrown){ // 비동기 통신이 실패할경우 error 콜백으로 들어옵니다.
+            alert("통신 실패.")
+        }
+    });
+
+
+    $('.add_identity_check').fadeOut('fast');
+    // add_identity.php
+    // identity_code
+
+
+})
+
+
 
 
 /////////////////////
