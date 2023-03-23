@@ -224,7 +224,11 @@ border: 1px solid #93b0bc;
 }
 
 
-
+.category_btn{
+    
+    border-radius: 12px;
+    margin-top:12px;
+}
 
 .generalBtn {
   height: 25px;
@@ -760,6 +764,26 @@ border: 1px solid #93b0bc;
             <div class="search_text" tabindex="0" contenteditable="true" style="overflow-y: auto; width:100%; padding:5px; font-family: TmoneyRoundWindRegular; font-size:16px; border: 1px solid gray; border-radius: 5px;"></div>
             <img class="search_btn" src="/hoodify/img/identity/hooodify_mini.png" style="cursor:pointer; width:40px; height:40px; margin-left:10px; border: 2px solid black; border-radius: 12px; ">
         </div>
+        <div style="width: 100%; display: flex; flex-wrap: wrap; margin-top:10px;">
+            <div class = "generalBtn category_btn">가치관</div>
+            <div class = "generalBtn category_btn">능력</div>
+            <div class = "generalBtn category_btn">상태</div>
+            <div class = "generalBtn category_btn">생활</div>
+            <div class = "generalBtn category_btn">성격</div>
+            <div class = "generalBtn category_btn">성향</div>
+            <div class = "generalBtn category_btn">습관</div>
+            <div class = "generalBtn category_btn">신체</div>
+            <div class = "generalBtn category_btn">예술</div>
+            <div class = "generalBtn category_btn">음식</div>
+            <div class = "generalBtn category_btn">인간관계</div>
+            <div class = "generalBtn category_btn">자기관리</div>
+            <div class = "generalBtn category_btn">지성</div>
+            <div class = "generalBtn category_btn">직업</div>
+            <div class = "generalBtn category_btn">취미</div>
+            <div class = "generalBtn category_btn">취향</div>
+            <div class = "generalBtn category_btn">태도</div>
+        
+        </div>
 
         <div class = "search_result" style = "margin-top : 20px; overflow-y: scroll;"> </div>
 
@@ -919,7 +943,7 @@ border: 1px solid #93b0bc;
           }
         })
 ////////////////////////////////////////////////////////////////////////////////////
-
+///////////// 로그아웃
 $('.logout_btn').click(function(){
 
     
@@ -944,6 +968,418 @@ function kakaoLogout() {
     }
   }
 
+///////////////////////////////////////////////////////////////////////////////////////
+// 카테고리 버튼 클릭 리스너  (검색 레이어)
+
+$('.category_btn').click(function(){
+ var category_text = $(this).text();
+ console.log(category_text);
+
+ $.ajax({
+        type : "POST",
+        url : "/hoodify/get_identity_category.php",
+        data: { 'category_text' : category_text,},
+        dataType : 'json',
+        success : function(res){
+
+          console.log(res);
+
+         /// 카테고리에 따른 정체성 목록 불러오기 (각 항목에 대한 클릭 이벤트)
+         $('.search_result').empty();
+
+          for (var i = 0; i < res.length; i++) {
+
+
+            
+
+            var object = res[i];
+            var object_name = object.identity_name;
+
+            var list_container = document.createElement("div");
+
+            $(list_container).css({
+
+                    width: "500px",
+                    height: "60px",
+                    padding: "5px",
+                    borderBottom: "1px solid #D8D8D8",
+                    display: 'flex',
+                    //  alignItems: 'center',
+                    paddingBottom: '5px',
+                    alignItems: 'center',
+                    overflow:'hidden',
+
+                    }).hover(function() {
+                    $(this).css("background-color", "#bad8f2");
+                    }, function(){
+                    $(this).css("background-color", "white");
+                    }).click(((object) => function (e) {
+
+                        // 검색 결과 정체성 처리
+                        console.log(object);
+
+                        $('.search_identity_img').attr("src",object.identity_img);
+                        $('.search_identity_name').text(object.identity_name);
+                        $('.search_identity_desc').text("\u00a0"+"\u00a0"+object.identity_desc);
+
+                        $('.search_activity_list').empty();
+                        $('.search_item_list').empty();
+                        $('.search_skill_list').empty();
+                        $('.search_defect_list').empty();
+
+                        Global_Var.userInfo.curr_identity_code = object.identity_code;
+
+
+
+                        $.ajax({
+                            type : "POST",
+                            url : "/hoodify/check_possession.php",
+                            data : { 'identity_code' : object.identity_code},
+                            success : function(res){
+
+                                if(res=='possession'){
+
+                                    $('.add_identity').css({ display : 'none',});
+                                    $('.locked').css({ display : 'block',});
+
+                                }else if(res=='no possession'){
+
+                                    $('.add_identity').css({ display : 'block',});
+                                    $('.locked').css({ display : 'none',});
+
+                                }
+
+
+
+
+                            },
+                            error : function(XMLHttpRequest, textStatus, errorThrown){ // 비동기 통신이 실패할경우 error 콜백으로 들어옵니다.
+                                alert("통신 실패.")
+                            }
+                        });
+                        
+
+
+                        $.ajax({
+                            type : "POST",
+                            url : "/hoodify/get_search_identity_data.php",
+                            data : {'identity_code' : object.identity_code},
+                            dataType : 'json',
+                            success : function(res){
+
+                                // identity의 activity, item, skill, caution 모든 data 가 합쳐진 json 파일 반환 확인
+                                console.log(res);
+                                
+                                var activity_data = res[0];
+
+                                for (var i = 0; i < activity_data.length; i++) {
+                                    
+                                    var activity_object = activity_data[i];
+
+
+                                    var list = document.createElement("div");
+
+                                    $(list).css({
+
+                                    
+                                        height: "70px",
+                                        borderBottom: "1px solid #D8D8D8",
+                                        display: 'flex',
+                                        paddingBottom: '5px',
+                                        alignItems: 'center',
+                                        overflow:'hidden',
+
+                                    }).appendTo('.search_activity_list');
+
+                                    var VerticalList = $("<div>", {
+                                    }).css({
+
+                                    });
+
+                                    $('<img>', {
+                                        src: activity_object.activity_img
+
+                                    }).css({
+                                        width: "30px",
+                                        height: "30px",
+                                        margin: "4.5px",
+                                        float: "left",
+                                        margin: "7px",
+                                    }).appendTo(list);
+
+
+                                    $('<p>', {
+                                        text: activity_object.activity_name,
+
+                                    }).css({
+                                        margin: "4.5px",
+
+
+                                    }).appendTo(VerticalList);
+
+                                    $('<p>', {
+                                        text: activity_object.activity_desc,
+
+                                    }).css({
+                                        fontSize: "12px",
+                                        margin: "4.5px",
+                                        lineHeight:"15px",
+
+
+                                    }).appendTo(VerticalList);
+
+                                    VerticalList.appendTo(list);
+
+                                }
+
+
+                                var item_data = res[1];
+
+                                for (var i = 0; i < item_data.length; i++) {
+                                    
+                                    var item_object = item_data[i];
+
+
+                                    var list = document.createElement("div");
+
+                                    $(list).css({
+
+                                    
+                                        height: "70px",
+                                        borderBottom: "1px solid #D8D8D8",
+                                        display: 'flex',
+                                        paddingBottom: '5px',
+                                        alignItems: 'center',
+                                        overflow:'hidden',
+
+                                    }).appendTo('.search_item_list');
+
+                                    var VerticalList = $("<div>", {
+                                    }).css({
+
+                                    });
+
+                                    $('<img>', {
+                                        src: item_object.item_img
+
+                                    }).css({
+                                        width: "30px",
+                                        height: "30px",
+                                        margin: "4.5px",
+                                        float: "left",
+                                        margin: "7px",
+                                    }).appendTo(list);
+
+
+                                    $('<p>', {
+                                        text: item_object.item_name,
+
+                                    }).css({
+                                        margin: "4.5px",
+
+
+                                    }).appendTo(VerticalList);
+
+                                    $('<p>', {
+                                        text: item_object.item_desc,
+
+                                    }).css({
+                                        fontSize: "12px",
+                                        margin: "4.5px",
+                                        lineHeight:"15px",
+
+
+                                    }).appendTo(VerticalList);
+
+                                    VerticalList.appendTo(list);
+
+                                }
+
+
+                                var skill_data = res[2];
+
+                                for (var i = 0; i < skill_data.length; i++) {
+                                    
+                                    var skill_object = skill_data[i];
+
+
+                                    var list = document.createElement("div");
+
+                                    $(list).css({
+
+                                    
+                                        height: "70px",
+                                        borderBottom: "1px solid #D8D8D8",
+                                        display: 'flex',
+                                        paddingBottom: '5px',
+                                        alignItems: 'center',
+                                        overflow:'hidden',
+
+                                    }).appendTo('.search_skill_list');
+
+                                    var VerticalList = $("<div>", {
+                                    }).css({
+
+                                    });
+
+                                    $('<img>', {
+                                        src: skill_object.skill_img
+
+                                    }).css({
+                                        width: "30px",
+                                        height: "30px",
+                                        margin: "4.5px",
+                                        float: "left",
+                                        margin: "7px",
+                                    }).appendTo(list);
+
+
+                                    $('<p>', {
+                                        text: skill_object.skill_name,
+
+                                    }).css({
+                                        margin: "4.5px",
+
+
+                                    }).appendTo(VerticalList);
+
+                                    $('<p>', {
+                                        text: skill_object.skill_desc,  
+
+                                    }).css({
+                                        fontSize: "12px",
+                                        margin: "4.5px",
+                                        lineHeight:"15px",
+
+
+                                    }).appendTo(VerticalList);
+
+                                    VerticalList.appendTo(list);
+
+                                }
+
+                                var caution_data = res[3];
+
+                                for (var i = 0; i < caution_data.length; i++) {
+                                    
+                                    var caution_object = caution_data[i];
+
+
+                                    var list = document.createElement("div");
+
+                                    $(list).css({
+
+                                    
+                                        height: "70px",
+                                        borderBottom: "1px solid #D8D8D8",
+                                        display: 'flex',
+                                        paddingBottom: '5px',
+                                        alignItems: 'center',
+                                        overflow:'hidden',
+
+                                    }).appendTo('.search_defect_list');
+
+                                    var VerticalList = $("<div>", {
+                                    }).css({
+
+                                    });
+
+                                    $('<img>', {
+                                        src: caution_object.caution_img
+
+                                    }).css({
+                                        width: "30px",
+                                        height: "30px",
+                                        margin: "4.5px",
+                                        float: "left",
+                                        margin: "7px",
+                                    }).appendTo(list);
+
+
+                                    $('<p>', {
+                                        text: caution_object.caution_name,
+
+                                    }).css({
+                                        margin: "4.5px",
+
+
+                                    }).appendTo(VerticalList);
+
+                                    $('<p>', {
+                                        text: caution_object.caution_desc,
+
+                                    }).css({
+                                        fontSize: "12px",
+                                        margin: "4.5px",
+                                        lineHeight:"15px",
+
+
+                                    }).appendTo(VerticalList);
+
+                                    VerticalList.appendTo(list);
+
+                                }
+
+
+
+
+                            },
+                            error : function(XMLHttpRequest, textStatus, errorThrown){ // 비동기 통신이 실패할경우 error 콜백으로 들어옵니다.
+                                alert("통신 실패.")
+                            }
+                        });
+
+
+
+                        $('.search_identity_img').attr("src",object.identity_img);
+                        $('.search_identity_name').text(object.identity_name);
+                        $('.search_identity_desc').text("\u00a0"+"\u00a0"+object.identity_desc);
+
+                        $('.search_result_identity').css("display","flex").hide().fadeIn('fast');
+
+                        $('.search_result').css({ display : 'none',});
+
+                    })(object)).appendTo(".search_result");
+
+            
+                    $('<img>',{
+
+                        src: object.identity_img,
+                    }).css({
+                    width: "50px",
+                    height: "50px",
+                    margin: "5px",
+                    float: "left",
+
+                    }).appendTo(list_container);        
+
+                
+                    $('<p>', {
+                        text: object.identity_name,
+
+                    }).css({
+                    "margin-left": "12px",
+                    "width": "100%",
+                    "fontWeight": "bold",
+                    
+                    }).appendTo(list_container);
+
+
+
+          }
+
+
+        },
+        error : function(XMLHttpRequest, textStatus, errorThrown){ // 비동기 통신이 실패할경우 error 콜백으로 들어옵니다.
+            alert("통신 실패.")
+        }
+    });
+
+
+
+})
+
+  
 ////////////////////////////////////////////////////////////////////////////////////
 // record 기록 시 최대 글자수 제한
 
