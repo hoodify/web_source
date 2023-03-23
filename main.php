@@ -500,9 +500,9 @@ border: 1px solid #93b0bc;
 
 
             <div class = "LBC setting_cont setting">
-                <div class="move_to_storage " style="display: block; text-align: left; width: 80px; margin:15px; text-decoration: none; color: black; font-weight: bold; cursor:pointer;"> 창고로 ▶  </div>
+                <div class="move_to_storage " style="display: block; text-align: left; width: 80px; margin:15px; text-decoration: none; color: black; font-weight: bold; cursor:pointer;"> 창고로  </div>
 
-                <div class="delete_identity " style="display: block; text-align: left; width: 80px; margin:15px; text-decoration: none; color: black; font-weight: bold; cursor:pointer;"> 삭제 ▶   </div>
+                <div class="delete_identity " style="display: block; text-align: left; width: 80px; margin:15px; text-decoration: none; color: black; font-weight: bold; cursor:pointer;"> 삭제하기   </div>
 
             </div>
 
@@ -757,7 +757,7 @@ border: 1px solid #93b0bc;
       <div class = "search_layer_container" style="flex-direction: column; display: flex; align-items: flex-start; width: 100%; height:88%; padding:25px;">
         
       <div style="width: 100%; display: flex; flex-direction: row; align-items: center; margin-top: 25px;">
-            <div class="search_text" contenteditable="true" style="width:100%; padding:5px; font-family: TmoneyRoundWindRegular; font-size:16px; border: 1px solid gray; border-radius: 5px;"></div>
+            <div class="search_text" tabindex="0" contenteditable="true" style="overflow-y: auto; width:100%; padding:5px; font-family: TmoneyRoundWindRegular; font-size:16px; border: 1px solid gray; border-radius: 5px;"></div>
             <img class="search_btn" src="/hoodify/img/identity/hooodify_mini.png" style="cursor:pointer; width:40px; height:40px; margin-left:10px; border: 2px solid black; border-radius: 12px; ">
         </div>
 
@@ -770,7 +770,7 @@ border: 1px solid #93b0bc;
                 <div style="display: flex; flex-direction: column; margin-left:10px;">
                     <div style="display: flex; flex-direction: row;  align-items: flex-end;">
                         <h3 class = "search_identity_name"></h3>
-                        <div class = 'add_identity generalBtn' style ="margin-left:25px;" > 추가 </div>
+                        <div class = 'add_identity generalBtn' style ="margin-left:25px; border-radius: 12px;"  > 추가 </div>
                         <div class = 'locked'> 보유중 </div>
                     </div>
                         <p class = "search_identity_desc" style="width:80%; margin-top:15px;"></p>
@@ -922,15 +922,35 @@ border: 1px solid #93b0bc;
 
 $('.logout_btn').click(function(){
 
+    
     document.location.href='Logout.php';
+    kakaoLogout();
 
 
 })
+
+function kakaoLogout() {
+    if (Kakao.Auth.getAccessToken()) {
+      Kakao.API.request({
+      //  url: '/v1/user/unlink',
+        success: function (response) {
+        	console.log(response)
+        },
+        fail: function (error) {
+          console.log(error)
+        },
+      })
+      Kakao.Auth.setAccessToken(undefined)
+    }
+  }
 
 ////////////////////////////////////////////////////////////////////////////////////
 // record 기록 시 최대 글자수 제한
 
     $(document).ready(function() {
+
+
+        
         $('.record_title').on('keyup', function() {
 
             if($(this).val().length > 40) {
@@ -943,6 +963,11 @@ $('.logout_btn').click(function(){
                 $(this).val($(this).val().substring(0, 500));
             }
             });
+
+
+
+
+
         
     });
 //////////////////////////////////////////////////////////////////////////////////////
@@ -987,12 +1012,24 @@ $('#btn_deleteCom_identity').click(function(){
 
 });
 
+$('.search_text').on('keydown', function(event) {
+    //console.log(event.keyCode);
+    if (event.keyCode == 13) {
+        event.preventDefault();
+        search_identity();
+    }
 
+    if (event.keyCode == 27) {
+        // z-index
+
+
+    }
+
+});
 //////////////////////////////////////////////////////////////////////////////////////
 ///////// 검색
 
-$('.search_btn').click(function(){
-
+function search_identity(){
     $('.search_result_identity').css({ display : 'none',});
     $('.search_result').css("display","block").hide().fadeIn('fast');
 
@@ -1411,7 +1448,19 @@ $('.search_btn').click(function(){
         }
     });
 
+
+}
+
+$('.search_btn').click(function(){
+
+  search_identity();
+
+
 })
+
+
+
+
 
 ///////////////////////////////////////////////////////////////////////////////////////
 ///////// 검색해서 추가
