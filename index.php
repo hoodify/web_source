@@ -137,7 +137,7 @@
              position: fixed;
              top: 50%;
              left: 50%;
-             width: 75%;
+             width: 38%;
              height: 85%;
              background-color: #fff;
              border: 3px solid black;
@@ -183,7 +183,7 @@
              color: #fff;
            }
 
-
+           /*
            .identity_box{
              -ms-overflow-style:none;
              scrollbar-width:none;
@@ -198,7 +198,7 @@
            .identity_box::-webkit-scrollbar {
                	display:none
            }
-
+           */
 
            .selection_box{
              cursor: pointer;
@@ -286,6 +286,9 @@
 
            }
 
+           #middleDiv::-webkit-scrollbar {
+               	display:none
+           }
 
            #space_01{
 
@@ -1167,49 +1170,49 @@
        <div id="show_content" class="pop-layer">
          <div class="pop-container">
 
-           <div id="topDiv" style="display: flex;  align-items: center; justify-content: space-between; margin-bottom:30px;">
+           <div id="topDiv" style="display: flex; flex-direction: column; height:25%; margin-bottom:30px; border-Bottom: 1px solid black;">
              <div>
              <img id="identity_imgtt" style="width:120px; height:120px; margin: 10px; border: 2px solid black; border-radius: 10px; float: left;"></img>
              <div style='display:flex;flex-direction: column;'>
 
                <h3 id="public_identity_title_box" style="padding:15px;"> 제목 </h3>
-               <p id="public_identity_desc_box" style="line-height: 30px; padding:5px; width: 60%;">  내용 </p>
+               <p id="public_identity_desc_box" style="line-height: 25px; padding:5px; width: 90%; font-size:16px;">  내용 </p>
 
              </div>
            </div>
-             <p class="public_identity_keyword" style=" width: 50px; float: right; font-size: 12.5px; color: gray;"> 태그 </p>
+             <p class="public_identity_keyword" style="font-size: 12.5px; color: gray; text-align:right; margin-right:15px; color:gray; font-size:12px; display: flex; justify-content: flex-end;">  </p>
 
            </div>
 
-           <div id="middleDiv" style="height:70%; display: flex; flex-direction: row; justify-content: space-between; flex-wrap: wrap;">
+           <div id="middleDiv" style="height:60%; display: flex; flex-direction: column;  overflow-y: scroll; align-items: center;" >
 
-             <div style="display: flex; flex-direction: column; height:45%; width: 40%; margin-left:35px;">
-               <h3> 활  동 </h3>
-               <div class = "identity_box" id="public_activity_box"style="height:100%; border: 1px solid gray; margin:5px; border-radius: 5px;">
+             <div style="display: flex; flex-direction: column;  width: 95%; margin-bottom:25px; ">
+               <h3> Activity </h3>
+               <div class = "identity_box" id="public_activity_box"style="height:100%; ">
                </div>
              </div>
 
-             <div style="display: flex; flex-direction: column; height:45%; width: 40%; margin-right:35px;">
-               <h3> 아 이 템 </h3>
-               <div class = "identity_box" id="public_item_box"style="height:100%; border: 1px solid gray; margin:5px; border-radius: 10px;">
+             <div style="display: flex; flex-direction: column; width: 95%; margin-bottom:25px;">
+               <h3> Item </h3>
+               <div class = "identity_box" id="public_item_box"style="height:100%;">
                </div>
              </div>
 
-             <div style="display: flex; flex-direction: column; height:45%; width: 40%; margin-left:35px;">
-               <h3> 기  술 </h3>
-               <div class = "identity_box" id="public_skill_box" style="height:100%; border: 1px solid gray; margin:5px; border-radius: 10px;">
+             <div style="display: flex; flex-direction: column; width: 95%; margin-bottom:25px;">
+               <h3> Skill </h3>
+               <div class = "identity_box" id="public_skill_box" style="height:100%; ">
                </div>
              </div>
 
-             <div style="display: flex; flex-direction: column; height:45%; width: 40%; margin-right:35px;">
-               <h3> 주의사항 </h3>
-               <div class = "identity_box" id="public_caution_box" style="height:100%; border: 1px solid gray; margin:5px; border-radius: 10px;">
+             <div style="display: flex; flex-direction: column; width: 95%;  margin-bottom:25px;">
+               <h3> Defect </h3>
+               <div class = "identity_box" id="public_caution_box" style="height:100%; ">
                </div>
              </div>
 
            </div>
 
-           <div id = "bottomDiv" style="height:15%; display: flex; justify-content: center;">
+           <div id = "bottomDiv" style="height:10%; display: flex; justify-content: center;">
              <div class="btn_r">
 
                <div class="locked">보유중 </div>
@@ -2175,7 +2178,35 @@ $(document).on('click', ".identity, .identity_mindmap", function(){
                           }
                       });
 
+                      $.ajax({
+                                                    type : "POST",
+                                                    url : "/hoodify/get_identity_keyword.php",
+                                                    data : {
+                                                            'identity_code': get_code_num,
+                                                        },
+                                                    dataType :'json',
+                                                    success : function(res){
 
+                                                        $('.public_identity_keyword').empty();
+                                                        
+                                                        for (var i = 0; i < res.length; i++) {
+
+                                                            
+                                                            $('<p>',{
+                                                                    text: "#"+res[i].keyword_name + " ",
+
+                                                            }).css({
+
+
+                                                            }).appendTo($('.public_identity_keyword'));
+
+                                                        }
+
+                                                    },
+                                                    error : function(XMLHttpRequest, textStatus, errorThrown){ // 비동기 통신이 실패할경우 error 콜백으로 들어옵니다.
+                                                        alert("통신 실패.")
+                                                    }
+                                                });
 //////////////////////////////////////
 
 })

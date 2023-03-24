@@ -787,8 +787,8 @@ border: 1px solid #93b0bc;
 
         <div class = "search_result" style = "margin-top : 20px; overflow-y: scroll;"> </div>
 
-        <div class = "search_result_identity" style = "margin-top : 20px; display:none; flex-direction: column; height: inherit;"> 
-            <div style = "display:flex;  flex-direction: row; margin-top:15px;">
+        <div class = "search_result_identity" style = "margin-top : 20px; display:none; flex-direction: column; height: 75%;"> 
+            <div style = "display:flex;  flex-direction: row; margin-top:15px; border-Bottom:1px solid black; padding-bottom:10px; border-top:1px solid black; padding-top:10px;">
             <div style = "display:flex; flex-direction: row;">
                 <img class = search_identity_img style = 'width:120px; height:120px;'>
                 <div style="display: flex; flex-direction: column; margin-left:10px;">
@@ -1375,6 +1375,11 @@ $('.category_btn').click(function(){
         }
     });
 
+
+
+
+    $('.search_result_identity').css({ display : 'none',});
+    $('.search_result').css("display","block").hide().fadeIn('fast');
 
 
 })
