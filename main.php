@@ -392,7 +392,7 @@ border: 1px solid #93b0bc;
              top: 50%;
              left: 50%;
              width: 55%;
-             height: 85%;
+             height: 92%;
              background-color: #fff;
              border: 3px solid black;
              z-index: 1009;
@@ -764,7 +764,8 @@ border: 1px solid #93b0bc;
             <div class="search_text" tabindex="0" contenteditable="true" style="overflow-y: auto; width:100%; padding:5px; font-family: TmoneyRoundWindRegular; font-size:16px; border: 1px solid gray; border-radius: 5px;"></div>
             <img class="search_btn" src="/hoodify/img/identity/hooodify_mini.png" style="cursor:pointer; width:40px; height:40px; margin-left:10px; border: 2px solid black; border-radius: 12px; ">
         </div>
-        <div style="width: 100%; display: flex; flex-wrap: wrap; margin-top:10px;">
+       
+ <div class = "category_container" style="width: 100%; display: flex; flex-wrap: wrap; margin-top:10px;">
             <div class = "generalBtn category_btn">가치관</div>
             <div class = "generalBtn category_btn">능력</div>
             <div class = "generalBtn category_btn">상태</div>
@@ -784,8 +785,12 @@ border: 1px solid #93b0bc;
             <div class = "generalBtn category_btn">태도</div>
         
         </div>
-
-        <div class = "search_result" style = "margin-top : 20px; overflow-y: scroll;"> </div>
+        <div class = "search_result" style = "margin-top : 20px; overflow-y: scroll;"> 
+    
+       
+    
+    
+    </div>
 
         <div class = "search_result_identity" style = "margin-top : 20px; display:none; flex-direction: column; height: 75%;"> 
             <div style = "display:flex;  flex-direction: row; margin-top:15px; border-Bottom:1px solid black; padding-bottom:10px; border-top:1px solid black; padding-top:10px;">
@@ -1336,8 +1341,9 @@ $('.category_btn').click(function(){
                         $('.search_identity_desc').text("\u00a0"+"\u00a0"+object.identity_desc);
 
                         $('.search_result_identity').css("display","flex").hide().fadeIn('fast');
-
+                        
                         $('.search_result').css({ display : 'none',});
+                        $('.category_container').css({ display : 'none',});
 
                     })(object)).appendTo(".search_result");
 
@@ -1473,6 +1479,10 @@ $('.search_text').on('keydown', function(event) {
 function search_identity(){
     $('.search_result_identity').css({ display : 'none',});
     $('.search_result').css("display","block").hide().fadeIn('fast');
+
+    
+    $('.category_container').css("display","flex").hide().fadeIn('fast');
+
 
 
     var search_text = $('.search_text').text();
@@ -1852,6 +1862,10 @@ function search_identity(){
                         $('.search_result_identity').css("display","flex").hide().fadeIn('fast');
 
                         $('.search_result').css({ display : 'none',});
+                        $('.category_container').css({ display : 'none',});
+
+
+
 
                     })(object)).appendTo(".search_result");
 
@@ -1961,7 +1975,8 @@ $('.to_search_list').click(function(){
 
     $('.search_result_identity').css({ display : 'none',});
     $('.search_result').fadeIn('fast');
-
+    
+    $('.category_container').css("display","flex").hide().fadeIn("fast");
 })
 
 

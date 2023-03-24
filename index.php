@@ -130,6 +130,13 @@
              display: flex;
            }
 
+           #public_identity_desc_box::-webkit-scrollbar {
+
+
+               	display:none
+           }
+
+
 
 
            .pop-layer {
@@ -142,7 +149,6 @@
              background-color: #fff;
              border: 3px solid black;
              z-index: 1000;
-             padding: 15px;
              border-radius: 8px;
 
            }
@@ -1137,10 +1143,13 @@
 
        </div>
 
-       <div id="add_content_layer" class="pop-layer" style="width:700px; justify-content: center;">
-         <div class="pop-container">
-           <div style="height:20%; display:flex; align-items: center; margin-bottom: 15px;">
-             <img style="float: left; width:150px; height:150px;" src="/hoodify/img/identity/hooodify_mini.png"; >
+       <div id="add_content_layer" class="pop-layer" style="width:40%; justify-content: center;">
+       <div style="position:absolute; top:0; width:100%; height:20px; background-color:rgba( 0, 0, 0, 0.85 ); "> </div>
+
+         <div class="pop-container" style="margin:15px;">
+         
+           <div style="height:20%; display:flex; align-items: center; margin-bottom: 15px; margin-top:20px;">
+             <img style="float: left; width:130px; height:130px;" src="/hoodify/img/identity/hooodify_mini.png"; >
              <div id="space_01" style="position: relative; border: 2px solid black; border-radius: 10px; padding:20px;">
              <p> 저희는 세상의 모든 정체성을 수집중입니다. <br> <br> 이곳에서 찾지 못한 당신의 정체성이 있다면 저희에게 알려주세요.</p>
            </div>
@@ -1149,12 +1158,12 @@
 
           <div style="height:70%; display: flex;  justify-content: center;">
 
-            <textarea id="user_cont"  placeholder="내용을 입력하세요" style=" border: 2px solid black; border-radius: 10px; font-family: TmoneyRoundWindRegular; font-size: 16px; padding: 20px; width:100%; height:100%;"></textarea>
+            <textarea id="user_cont"  placeholder="내용을 입력하세요" style=" border: 2px solid black; border-radius: 10px; font-family: TmoneyRoundWindRegular; font-size: 16px; padding: 20px; width:100%; height:90%;"></textarea>
 
          </div>
 
 
-           <div id = "bottomDiv" style="display: flex; justify-content: center;">
+           <div id = "bottomDiv" style="display: flex; justify-content: center; height:10%;">
              <div class="btn_r">
                <div class="btn_feedback generalBtn">추가</div>
 
@@ -1168,19 +1177,21 @@
 
 
        <div id="show_content" class="pop-layer">
-         <div class="pop-container">
+       <div style="position:absolute; top:0; width:100%; height:20px; background-color:rgba( 0, 0, 0, 0.85 ); "> </div>
 
-           <div id="topDiv" style="display: flex; flex-direction: column; height:25%; margin-bottom:30px; border-Bottom: 1px solid black;">
-             <div>
+        
+         <div class="pop-container" style="margin:15px;">
+           <div id="topDiv" style="display: flex; flex-direction: column; height:25%; padding-bottom:5px; margin-bottom:30px; border-Bottom: 1px solid black; padding-top:10px;">
+             <div style="height:90%">
              <img id="identity_imgtt" style="width:120px; height:120px; margin: 10px; border: 2px solid black; border-radius: 10px; float: left;"></img>
-             <div style='display:flex;flex-direction: column;'>
+             <div style='display:flex;flex-direction: column; height: inherit;'>
 
                <h3 id="public_identity_title_box" style="padding:15px;"> 제목 </h3>
-               <p id="public_identity_desc_box" style="line-height: 25px; padding:5px; width: 90%; font-size:16px;">  내용 </p>
+               <p id="public_identity_desc_box" style="line-height: 25px; padding:5px; width: 90%; font-size:15px; overflow-y: scroll; ">  내용 </p>
 
              </div>
            </div>
-             <p class="public_identity_keyword" style="font-size: 12.5px; color: gray; text-align:right; margin-right:15px; color:gray; font-size:12px; display: flex; justify-content: flex-end;">  </p>
+             <p class="public_identity_keyword" style="height:10%; font-size: 12.5px; color: gray; text-align:right; margin-right:15px; color:gray; font-size:12px; display: flex; justify-content: flex-end;">  </p>
 
            </div>
 
@@ -1818,7 +1829,28 @@ $(document).on('click', ".identity, .identity_mindmap", function(){
                   var Ucontents = JSON.stringify(res);
                   //console.log("퍼블릭 정체성 액티비티"+Ucontents);
 
+                // 여기에 반환 값이 없으면
 
+                if(res.length === 0){
+                          
+                          $('#public_activity_box').empty();
+                           console.log("공백 확인");
+                           $('<p>', {
+                             text: "(비어있음)",
+ 
+                           }).css({
+                             fontSize: "12px",
+                             marginLeft:"4.5px",
+                             margin: "4.5px",
+                             color: 'gray',
+                             marginTop:"15px",
+ 
+ 
+                           }).appendTo('#public_activity_box');
+ 
+                           //appendTo('#public_item_box');
+ 
+                     }else{
 
                   $('#public_activity_box').empty();
 
@@ -1892,7 +1924,7 @@ $(document).on('click', ".identity, .identity_mindmap", function(){
 
                 }
 
-
+              }
 
 
               },
@@ -1910,10 +1942,31 @@ $(document).on('click', ".identity, .identity_mindmap", function(){
                       },
                   dataType : 'json',
                   success : function(res){
+                      console.log('확인');
                       var Ucontents = JSON.stringify(res);
                       //console.log("퍼블릭 정체성 아이템"+Ucontents);
+                      
+                      if(res.length === 0){
+                          
+                         $('#public_item_box').empty();
+                          console.log("공백 확인");
+                          $('<p>', {
+                            text: "(비어있음)",
+
+                          }).css({
+                            fontSize: "12px",
+                            marginLeft:"4.5px",
+                            margin: "4.5px",
+                            color: 'gray',
+                            marginTop:"15px",
 
 
+                          }).appendTo('#public_item_box');
+
+                          //appendTo('#public_item_box');
+
+                    }
+                    else{
                       $('#public_item_box').empty();
 
                       for (var i = 0; i < res.length; i++) {
@@ -1949,7 +2002,7 @@ $(document).on('click', ".identity, .identity_mindmap", function(){
                       });
 
                       $('<img>', {
-                         src: public_item_img
+                        src: public_item_img
 
                       }).css({
                         width: "30px",
@@ -1984,7 +2037,13 @@ $(document).on('click', ".identity, .identity_mindmap", function(){
 
                       VerticalList.appendTo(list);
 
+                      }
+
+
                     }
+
+
+                     
 
 
 
@@ -2006,6 +2065,28 @@ $(document).on('click', ".identity, .identity_mindmap", function(){
                           var Ucontents = JSON.stringify(res);
                           //console.log("퍼블릭 정체성 스킬"+Ucontents);
 
+
+
+                          if(res.length === 0){
+                          
+                            $('#public_skill_box').empty();
+                           console.log("공백 확인");
+                           $('<p>', {
+                             text: "(비어있음)",
+ 
+                           }).css({
+                             fontSize: "12px",
+                             marginLeft:"4.5px",
+                             margin: "4.5px",
+                             color: 'gray',
+                             marginTop:"15px",
+ 
+ 
+                           }).appendTo('#public_skill_box');
+ 
+                           //appendTo('#public_item_box');
+ 
+                     }else{
 
                           $('#public_skill_box').empty();
 
@@ -2079,7 +2160,7 @@ $(document).on('click', ".identity, .identity_mindmap", function(){
 
                         }
 
-
+                      }
 
 
                       },
@@ -2098,6 +2179,28 @@ $(document).on('click', ".identity, .identity_mindmap", function(){
                           success : function(res){
                               var Ucontents = JSON.stringify(res);
                               //console.log("퍼블릭 정체성 주의"+Ucontents);
+
+
+                              if(res.length === 0){
+                          
+                                  $('#public_caution_box').empty();
+                                console.log("공백 확인");
+                                $('<p>', {
+                                  text: "(비어있음)",
+
+                                }).css({
+                                  fontSize: "12px",
+                                  marginLeft:"4.5px",
+                                  margin: "4.5px",
+                                  color: 'gray',
+                                  marginTop:"15px",
+
+
+                                }).appendTo('#public_caution_box');
+
+                                //appendTo('#public_item_box');
+
+                          }else{
 
                               $('#public_caution_box').empty();
 
@@ -2171,7 +2274,7 @@ $(document).on('click', ".identity, .identity_mindmap", function(){
 
                             }
 
-
+                          }
                           },
                           error : function(XMLHttpRequest, textStatus, errorThrown){ // 비동기 통신이 실패할경우 error 콜백으로 들어옵니다.
                               alert("통신 실패.")
@@ -2197,7 +2300,7 @@ $(document).on('click', ".identity, .identity_mindmap", function(){
 
                                                             }).css({
 
-
+                                                               paddingBottom : '5px',
                                                             }).appendTo($('.public_identity_keyword'));
 
                                                         }
