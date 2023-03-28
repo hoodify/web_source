@@ -61,7 +61,7 @@
            header{ width: 100%; height: 80px; background-color: rgba( 0, 0, 0, 0.6 ); }
            footer{ width: 100%; height: 80px; background-color: rgba( 0, 0, 0, 0.6 ); }
 
-           .hook_text_space{width: 100%; height: 800px; background-color: rgba( 0, 0, 0, 0.1 ); display: flex; justify-content: center;}
+           .hook_text_space{width: 100%; height: 900px; background-color: rgba( 0, 0, 0, 0.1 ); display: flex; justify-content: center;}
            .hook_text{position: absolute; font-size: 40px; color: white; font-family:TmoneyRoundWindExtraBold;  }
            #hook01{display: none; margin-right: 750px; margin-top: 200px;}
            #hook02{display: none; margin-left: 550px; margin-top: 380px;}
@@ -137,7 +137,18 @@
            }
 
 
+           .pop-layer2 {
+             display: none;
+             position: fixed;
+             top: 50%;
+             left: 50%;
+             height: 85%;
+             background-color: #fff;
+             border: 3px solid black;
+             z-index: 1000;
+             border-radius: 8px;
 
+           }
 
            .pop-layer {
              display: none;
@@ -243,7 +254,7 @@
              cursor: pointer;
              width: 180px;
              border-radius: 9px;
-             height: 200px;
+             height: 120px;
              display: none;
              flex-direction: column;
              justify-content: center;
@@ -405,8 +416,78 @@
        <div class="hook_text_space">
 
          <p class="hook_text" id="hook01">당신을 표현하는 <span style="color:rgba( 251, 104, 53);">키워드</span></p>
+
+         <div class='identity_hook' id='identity_hook_01' style="position:absolute; display:none; margin-right:160px; margin-top:150px;  opacity: 0.5; display:flex; flex-direction: column;  align-items: center;">
+                <img class="identity_img" src="/hoodify/img/identity/hooodify_mini.png" style="width:50px; height:50px;">
+                <p class='identity_name' style="font-size: 10px;">  올빼미족   </p>
+         </div>
+
+         <div class='identity_hook' id='identity_hook_02' style="position:absolute; display:none; margin-right:500px; margin-top:80px;  opacity: 0.5; display:flex; flex-direction: column;  align-items: center;">
+                <img class="identity_img" src="/hoodify/img/identity/hooodify_mini.png" style="width:50px; height:50px;">
+                <p class='identity_name' style="font-size: 10px;">  자취인   </p>
+         </div>
+
+         <div class='identity_hook' id='identity_hook_03' style="position:absolute; display:none; margin-right:300px; margin-top:280px;  opacity: 0.5; display:flex; flex-direction: column;  align-items: center;">
+                <img class="identity_img" src="/hoodify/img/identity/hooodify_mini.png" style="width:50px; height:50px;">
+                <p class='identity_name' style="font-size: 10px;">  게임 플레이어   </p>
+         </div>
+
+         <div class='identity_hook' id='identity_hook_04' style="position:absolute; display:none; margin-right:600px; margin-top:320px;  opacity: 0.5; display:flex; flex-direction: column;  align-items: center;">
+                <img class="identity_img" src="/hoodify/img/identity/hooodify_mini.png" style="width:50px; height:50px;">
+                <p class='identity_name' style="font-size: 10px;">  게으른 움직임   </p>
+         </div>
+
+
+
          <p class="hook_text" id="hook02">당신이 얻고싶은 <span style="color:rgba( 40, 102, 177);">수식어</span></p>
+
+
+          <div class='identity_hook' id='identity_hook_05' style="position:absolute; display:none; margin-left:1160px; margin-top:350px;  opacity: 0.5; display:flex; flex-direction: column;  align-items: center;">
+                  <img class="identity_img" src="/hoodify/img/identity/hooodify_mini.png" style="width:50px; height:50px;">
+                  <p class='identity_name' style="font-size: 10px;">  작가   </p>
+          </div>
+
+          <div class='identity_hook' id='identity_hook_06' style="position:absolute; display:none; margin-left:700px; margin-top:230px;  opacity: 0.5; display:flex; flex-direction: column;  align-items: center;">
+                  <img class="identity_img" src="/hoodify/img/identity/hooodify_mini.png" style="width:50px; height:50px;">
+                  <p class='identity_name' style="font-size: 10px;">  디지털 노마드   </p>
+          </div>
+
+          <div class='identity_hook' id='identity_hook_07' style="position:absolute; display:none; margin-left:900px; margin-top:480px;  opacity: 0.5; display:flex; flex-direction: column;  align-items: center;">
+                  <img class="identity_img" src="/hoodify/img/identity/hooodify_mini.png" style="width:50px; height:50px;">
+                  <p class='identity_name' style="font-size: 10px;">  모험가의 심장   </p>
+          </div>
+
+          <div class='identity_hook' id='identity_hook_08' style="position:absolute; display:none; margin-left:600px; margin-top:520px;  opacity: 0.5; display:flex; flex-direction: column;  align-items: center;">
+                  <img class="identity_img" src="/hoodify/img/identity/hooodify_mini.png" style="width:50px; height:50px;">
+                  <p class='identity_name' style="font-size: 10px;">  전문가   </p>
+          </div>
+
+
          <p class="hook_text" id="hook03">세상의 모든 <span style="color:rgba( 130, 197, 88);">정체성</span></p>
+
+
+         <div class='identity_hook' id='identity_hook_09' style="position:absolute; display:none; margin-right:200px; margin-top:500px;  opacity: 0.5; display:flex; flex-direction: column;  align-items: center;">
+                <img class="identity_img" src="/hoodify/img/identity/hooodify_mini.png" style="width:50px; height:50px;">
+                <p class='identity_name' style="font-size: 10px;">  흙수저   </p>
+         </div>
+
+         <div class='identity_hook' id='identity_hook_10' style="position:absolute; display:none; margin-right:10px; margin-top:580px;  opacity: 0.5; display:flex; flex-direction: column;  align-items: center;">
+                <img class="identity_img" src="/hoodify/img/identity/hooodify_mini.png" style="width:50px; height:50px;">
+                <p class='identity_name' style="font-size: 10px;">  산책가   </p>
+         </div>
+
+         <div class='identity_hook' id='identity_hook_11' style="position:absolute; display:none; margin-right:100px; margin-top:700px;  opacity: 0.5; display:flex; flex-direction: column;  align-items: center;">
+                <img class="identity_img" src="/hoodify/img/identity/hooodify_mini.png" style="width:50px; height:50px;">
+                <p class='identity_name' style="font-size: 10px;">  커피 한 잔  </p>
+         </div>
+
+         <div class='identity_hook' id='identity_hook_12' style="position:absolute; display:none; margin-right:370px; margin-top:720px;  opacity: 0.5; display:flex; flex-direction: column;  align-items: center;">
+                <img class="identity_img" src="/hoodify/img/identity/hooodify_mini.png" style="width:50px; height:50px;">
+                <p class='identity_name' style="font-size: 10px;">  백수   </p>
+         </div>
+
+
+
 
        </div>
 
@@ -762,10 +843,10 @@
 
 
 
-             <p class="selection_box" id="selection_state2" style="cursor: default; background-color: rgba( 30, 40, 88); margin-left:450px; margin-bottom:180px;">경제 </p>
-             <p class="selection_box" id="selection_state3" style="cursor: default;background-color: rgba( 25, 51, 52); margin-right: 400px; margin-bottom:220px;">사회 </p>
-             <p class="selection_box" id="selection_state4" style="cursor: default;background-color: rgba( 15, 61, 72); margin-left: 550px; margin-top:280px;">생활 </p>
-             <p class="selection_box" id="selection_state5" style="cursor: default;background-color: rgba( 40, 50, 88); margin-right: 350px; margin-top:320px;">건강  </p>
+             <p class="selection_box" id="selection_state2" style="cursor: pointer; background-color: rgba( 30, 40, 88); margin-left:450px; margin-bottom:180px;">경제 </p>
+             <p class="selection_box" id="selection_state3" style="cursor: pointer;background-color: rgba( 25, 51, 52); margin-right: 400px; margin-bottom:220px;">사회 </p>
+             <p class="selection_box" id="selection_state4" style="cursor: pointer;background-color: rgba( 15, 61, 72); margin-left: 550px; margin-top:280px;">생활 </p>
+             <p class="selection_box" id="selection_state5" style="cursor: pointer;background-color: rgba( 40, 50, 88); margin-right: 350px; margin-top:320px;">건강  </p>
 
 
 
@@ -1143,7 +1224,7 @@
 
        </div>
 
-       <div id="add_content_layer" class="pop-layer" style="width:40%; justify-content: center;">
+       <div id="add_content_layer" class="pop-layer2" style=" justify-content: center;">
        <div style="position:absolute; top:0; width:100%; height:20px; background-color:rgba( 0, 0, 0, 0.85 ); "> </div>
 
          <div class="pop-container" style="margin:15px;">
@@ -1156,9 +1237,9 @@
 
           </div>
 
-          <div style="height:70%; display: flex;  justify-content: center;">
+          <div style="height:70%; display: flex;  justify-content: center; width: 100%;">
 
-            <textarea id="user_cont"  placeholder="내용을 입력하세요" style=" border: 2px solid black; border-radius: 10px; font-family: TmoneyRoundWindRegular; font-size: 16px; padding: 20px; width:100%; height:90%;"></textarea>
+            <textarea id="user_cont"  placeholder="내용을 입력하세요" style=" border: 2px solid black; border-radius: 10px; font-family: TmoneyRoundWindRegular; font-size: 16px; padding: 20px; width:100%; height:90%; resize: none;"></textarea>
 
          </div>
 
@@ -1320,9 +1401,29 @@ $.ajax({
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-$('#hook01').css("display","absolute").hide().delay(500).fadeIn("slow");
-$('#hook02').css("display","absolute").hide().delay(700).fadeIn("slow");
-$('#hook03').css("display","absolute").hide().delay(850).fadeIn("slow");
+$('#hook01').css("display","absolute").hide().delay(700).fadeIn("slow");
+$('#identity_hook_01').css("display","absolute").hide().delay(1500).fadeIn("slow");
+$('#identity_hook_02').css("display","absolute").hide().delay(1700).fadeIn("slow");
+$('#identity_hook_03').css("display","absolute").hide().delay(1900).fadeIn("slow");
+$('#identity_hook_04').css("display","absolute").hide().delay(2100).fadeIn("slow");
+
+
+
+$('#hook02').css("display","absolute").hide().delay(3200).fadeIn("slow");
+$('#identity_hook_05').css("display","absolute").hide().delay(4100).fadeIn("slow");
+$('#identity_hook_06').css("display","absolute").hide().delay(4300).fadeIn("slow");
+$('#identity_hook_07').css("display","absolute").hide().delay(4500).fadeIn("slow");
+$('#identity_hook_08').css("display","absolute").hide().delay(4600).fadeIn("slow");
+
+
+
+$('#hook03').css("display","absolute").hide().delay(6000).fadeIn("slow");
+$('#identity_hook_09').css("display","absolute").hide().delay(7100).fadeIn("slow");
+$('#identity_hook_10').css("display","absolute").hide().delay(7300).fadeIn("slow");
+$('#identity_hook_11').css("display","absolute").hide().delay(7500).fadeIn("slow");
+$('#identity_hook_12').css("display","absolute").hide().delay(7600).fadeIn("slow");
+
+
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1736,7 +1837,7 @@ function layer_popup(el){
       }
 
       $el.find('.btn_layerClose').click(function(){
-        $el.fadeOut("slow");
+        $el.fadeOut("fast");
 
 
 
@@ -2575,7 +2676,7 @@ $('#selection_personality4').click(function(){
 
 
 
-
+  $('#identity_selection_40').css("display","flex").hide().delay(400).fadeIn("slow");
   $('#identity_selection_12').css("display","flex").hide().delay(200).fadeIn("slow");
   $('#identity_selection_71').css("display","flex").hide().delay(100).fadeIn("slow");
   $('#identity_selection_2').css("display","flex").hide().delay(100).fadeIn("slow");
@@ -2600,7 +2701,8 @@ $('#selection_personality6').click(function(){
 
 
 
-
+  
+  $('#identity_selection_40').fadeOut("fast");
   $('#identity_selection_12').fadeOut("fast");
   $('#identity_selection_71').fadeOut("fast");
   $('#identity_selection_2').fadeOut("fast");
@@ -2640,7 +2742,7 @@ $('#selection_personality7').click(function(){
 
 
 
-
+  $('#identity_selection_40').fadeOut("fast");
   $('#identity_selection_12').fadeOut("fast");
   $('#identity_selection_71').fadeOut("fast");
   $('#identity_selection_2').fadeOut("fast");
@@ -2733,17 +2835,6 @@ $('#selection_state').click(function(){
   $('.selection_box3').fadeOut("fast");
 
   $('#toback').css("display","flex").hide().delay(200).fadeIn("slow");
-  $('#identity_selection_39').css("display","flex").hide().delay(300).fadeIn("slow");
-  $('#identity_selection_59').css("display","flex").hide().delay(200).fadeIn("slow");
-  $('#identity_selection_40').css("display","flex").hide().delay(400).fadeIn("slow");
-  $('#identity_selection_42').css("display","flex").hide().delay(400).fadeIn("slow");
-  $('#identity_selection_37').css("display","flex").hide().delay(400).fadeIn("slow");
-  $('#identity_selection_32').css("display","flex").hide().delay(500).fadeIn("slow");
-  $('#identity_selection_83').css("display","flex").hide().delay(800).fadeIn("slow");
-  $('#identity_selection_43').css("display","flex").hide().delay(600).fadeIn("slow");
-  $('#identity_selection_84').css("display","flex").hide().delay(200).fadeIn("slow");
-  $('#identity_selection_85').css("display","flex").hide().delay(700).fadeIn("slow");
-  $('#identity_selection_34').css("display","flex").hide().delay(700).fadeIn("slow");
 
 
 
@@ -2757,6 +2848,42 @@ $('#selection_state').click(function(){
 
 
 
+
+})
+///////////////////////////////////// 
+// 사회
+$('#selection_state3').click(function(){
+  
+  $('#identity_selection_40').css("display","flex").hide().delay(400).fadeIn("slow");
+  $('#identity_selection_42').css("display","flex").hide().delay(100).fadeIn("slow");
+  $('#identity_selection_37').css("display","flex").hide().delay(600).fadeIn("slow");
+  
+})
+///////////////////////////////////// 
+// 경제
+$('#selection_state2').click(function(){
+
+
+  $('#identity_selection_83').css("display","flex").hide().delay(800).fadeIn("slow");
+  $('#identity_selection_43').css("display","flex").hide().delay(600).fadeIn("slow");
+  $('#identity_selection_84').css("display","flex").hide().delay(200).fadeIn("slow");
+})
+
+///////////////////////////////////// 
+// 건강
+$('#selection_state5').click(function(){
+  $('#identity_selection_39').css("display","flex").hide().delay(300).fadeIn("slow");
+  $('#identity_selection_85').css("display","flex").hide().delay(700).fadeIn("slow");
+
+
+})
+///////////////////////////////////// 
+// 생활
+$('#selection_state4').click(function(){
+
+  $('#identity_selection_59').css("display","flex").hide().delay(200).fadeIn("slow");
+  $('#identity_selection_32').css("display","flex").hide().delay(500).fadeIn("slow");
+  $('#identity_selection_34').css("display","flex").hide().delay(700).fadeIn("slow");
 
 })
 
@@ -2885,11 +3012,15 @@ $('#selection_state').fadeOut("fast");
 $('#selection_work').fadeOut("fast");
 $('#selection_values').fadeOut("fast");
 
+
+$('.add_content').css("display","flex").hide().delay(700).fadeIn("slow");
 $('#identity_selection_9').css("display","flex").hide().delay(400).fadeIn("slow");
 $('#identity_selection_3').css("display","flex").hide().delay(500).fadeIn("slow");
 $('#identity_selection_95').css("display","flex").hide().delay(500).fadeIn("slow");
 $('#identity_selection_96').css("display","flex").hide().delay(500).fadeIn("slow");
 $('#identity_selection_97').css("display","flex").hide().delay(500).fadeIn("slow");
+
+
 
   /*
 $('#selection_personality2').css("display","flex").hide().delay(200).fadeIn("slow");

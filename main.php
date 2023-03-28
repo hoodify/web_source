@@ -66,7 +66,7 @@ body{
   width: 550px;
   height: 800px;
   background-color: #fff;
-  border: 2px solid black;
+  border: 3px solid black;
   z-index: 1000;
   border-radius: 12px;
 }
@@ -211,14 +211,14 @@ border: 1px solid #93b0bc;
 }
 
 .btn-r {
-  width: 96%;
+  width: 93%;
   height: 5%;
   border-top: 1px solid #304a8a;
   text-align: right;
   position: absolute;
   margin-left: 2%;
   margin-right: 2%;
-  bottom: 0;    
+  bottom: 10px;    
   display: flex;
   flex-direction: row-reverse;
 }
@@ -371,8 +371,8 @@ border: 1px solid #93b0bc;
         position: fixed;
         top: 50%;
         left: 50%;
-        width: 40%;
-        height: 80%;
+        width: 35%;
+        height: 50%;
         z-index: 1002;
         background-color: white;
         border-radius:10px;
@@ -388,11 +388,12 @@ border: 1px solid #93b0bc;
 }
 .search_layer {
              display: none;
+             justify-content: center;
              position: fixed;
              top: 50%;
              left: 50%;
-             width: 55%;
-             height: 92%;
+             width: 40%;
+             height: 85%;
              background-color: #fff;
              border: 3px solid black;
              z-index: 1009;
@@ -582,9 +583,10 @@ border: 1px solid #93b0bc;
 
 
     <div id="layer1" class="add_record_layer state_activity">
-      <div class="pop-container" style="width:100%">
-
-            <div style="display:flex;">
+      <div class="pop-container" style="width:100%; display: flex;  flex-direction: column;  align-items: center;">
+    
+      <div style="position:absolute; top:0; width:100%; height:20px; background-color:rgba( 0, 0, 0, 0.85 ); "> </div>
+            <div style="display:flex;  margin-top:15px;">
                 <img class = "popup_activity_img" src = "/hoodify/img/identity/hooodify_mini.png" style="margin:12px; height:150px; width:150px;">
                 <div style="display: flex; flex-direction: column; ">
                     <h4 class="popup_activity_title" style="margin:12px;"> activity title</h4>
@@ -593,7 +595,7 @@ border: 1px solid #93b0bc;
 
             </div>
 
-            <div style="display: flex; flex-direction: column; height:70%">
+            <div style="display: flex; flex-direction: column; height:70%;  width: 95%;">
                 <textarea class="record_title" placeholder="제목을 입력하세요" style="font-family: TmoneyRoundWindRegular; line-height:50%; margin:15px; resize:none; font-size:16px; padding: 8px;;"></textarea>    
                 <textarea class="record_cont" placeholder="내용을 입력하세요" style="font-family: TmoneyRoundWindRegular;  margin:15px; resize:none; font-size:16px; height:80%; padding:8px;"></textarea>
 
@@ -718,7 +720,7 @@ border: 1px solid #93b0bc;
     <div class = "identity_storage">
         <div style="position:absolute; top:0; width:100%; height:20px; background-color:rgba( 0, 0, 0, 0.85 );"> </div>
       <div class = "inactive_identity_list_container" style="width: 100%; padding:25px;">
-        <div style="width: 100%; height: 10%; display:flex; align-items: center; margin-bottom:25px; ">
+        <div style="width: 100%; height: 10%; display:flex; align-items: center; margin-bottom:25px;  border-Bottom: 1px solid black; ">
             <img src="/hoodify/img/identity/hooodify_mini.png" style="cursor:pointer; width:40px; height:40px; margin-left:10px; border: 2px solid black; border-radius: 12px;">
             <p style="font-family:TmoneyRoundWindExtraBold; font-size:20px; margin-left:25px;"> 창 고 </p>
         </div>
@@ -737,19 +739,20 @@ border: 1px solid #93b0bc;
         <div style="position:absolute; top:0; width:100%; height:20px; background-color:rgba( 0, 0, 0, 0.85 );"> </div>
       <div class = "profile_layer_container" style="width: 100%; padding:25px;">
         <div style="width: 100%; height: 20%; display:flex; margin-top:15px; margin-bottom:15px; ">
-            <img src="/hoodify/img/identity/hooodify_mini.png" style="width:100px; height:100px; border: 2px solid black; border-radius: 12px;">
-            <p style="font-family:TmoneyRoundWindExtraBold; font-size:20px; margin-left:25px; "> 프로필 이름 </p>
+            <img class = "profile_img" src="/hoodify/img/identity/hooodify_mini.png" style="width:100px; height:100px; border: 2px solid black; border-radius: 12px;">
+            <p class = "profile_nickname" style="font-family:TmoneyRoundWindExtraBold; font-size:20px; margin-left:25px; "> 프로필 이름 </p>
         </div>
 
-        <div class = "profile_details" style ="display:flex; height: 70%; border: 2px solid black; border-radius: 12px; ">
-    
-           <div style="margin:15px;">  이곳에 유저의 정보가 게시됩니다. <br> 최근 기록? <br> 자기소개? </div>
+        <div class = "profile_details" style ="display:flex; height: 70%;  flex-direction: column;">
+            <h3 style="margin-top:15px; margin-left:15px;">소개</h3>
+           <div class ="profile_introduction"style="margin:15px; height:25%; padding:20px; border: 2px solid black; border-radius: 12px;"> </div>
         </div>
-      </div>
-
-      <div class="btn-r">
+        <div class="btn-r">
         <div class="btn_layerClose generalBtn">닫기</div>
       </div>
+      </div>
+
+      
     </div>
 
 
@@ -758,7 +761,7 @@ border: 1px solid #93b0bc;
         <div style="position:absolute; top:0; width:100%; height:20px; background-color:rgba( 0, 0, 0, 0.85 );"> </div>
     
         
-      <div class = "search_layer_container" style="flex-direction: column; display: flex; align-items: flex-start; width: 100%; height:88%; padding:25px;">
+      <div class = "search_layer_container" style="flex-direction: column; display: flex; align-items: center; height: inherit; width: 90%; padding:25px; ">
         
       <div style="width: 100%; display: flex; flex-direction: row; align-items: center; margin-top: 25px;">
             <div class="search_text" tabindex="0" contenteditable="true" style="overflow-y: auto; width:100%; padding:5px; font-family: TmoneyRoundWindRegular; font-size:16px; border: 1px solid gray; border-radius: 5px;"></div>
@@ -785,14 +788,14 @@ border: 1px solid #93b0bc;
             <div class = "generalBtn category_btn">태도</div>
         
         </div>
-        <div class = "search_result" style = "margin-top : 20px; overflow-y: scroll;"> 
+        <div class = "search_result" style = "margin-top : 20px; overflow-y: scroll; float: left;    width: 100%;"> 
     
        
     
     
     </div>
 
-        <div class = "search_result_identity" style = "margin-top : 20px; display:none; flex-direction: column; height: 75%;"> 
+        <div class = "search_result_identity" style = "margin-top : 20px; display:none; flex-direction: column; height: 90%;"> 
             <div style = "display:flex;  flex-direction: row; margin-top:15px; border-Bottom:1px solid black; padding-bottom:10px; border-top:1px solid black; padding-top:10px;">
             <div style = "display:flex; flex-direction: row;">
                 <img class = search_identity_img style = 'width:120px; height:120px;'>
@@ -831,11 +834,13 @@ border: 1px solid #93b0bc;
 
         </div>
 
-      </div>
 
-      <div class="btn-r">
+        <div class="btn-r">
         <div class="btn_layerClose generalBtn">닫기</div>
       </div>
+      </div>
+
+      
     </div>
 
 
@@ -1077,6 +1082,29 @@ $('.category_btn').click(function(){
                                 
                                 var activity_data = res[0];
 
+
+                                if(activity_data.length === 0){
+                          
+                                    $('.search_activity_list').empty();
+                                    console.log("공백 확인");
+                                    $('<p>', {
+                                        text: "(비어있음)",
+            
+                                    }).css({
+                                        fontSize: "12px",
+                                        marginLeft:"4.5px",
+                                        margin: "4.5px",
+                                        color: 'gray',
+                                        marginTop:"15px",
+            
+            
+                                    }).appendTo('.search_activity_list');
+            
+            
+                                }
+
+                                else{
+
                                 for (var i = 0; i < activity_data.length; i++) {
                                     
                                     var activity_object = activity_data[i];
@@ -1137,9 +1165,29 @@ $('.category_btn').click(function(){
 
                                 }
 
-
+                            }
                                 var item_data = res[1];
 
+                                if(item_data.length === 0){
+                          
+                                    $('.search_item_list').empty();
+                                    console.log("공백 확인");
+                                    $('<p>', {
+                                        text: "(비어있음)",
+            
+                                    }).css({
+                                        fontSize: "12px",
+                                        marginLeft:"4.5px",
+                                        margin: "4.5px",
+                                        color: 'gray',
+                                        marginTop:"15px",
+            
+            
+                                    }).appendTo('.search_item_list');
+            
+            
+                                }
+                                else{
                                 for (var i = 0; i < item_data.length; i++) {
                                     
                                     var item_object = item_data[i];
@@ -1200,8 +1248,29 @@ $('.category_btn').click(function(){
 
                                 }
 
-
+                            }
                                 var skill_data = res[2];
+
+                                if(skill_data.length === 0){
+                          
+                                    $('.search_skill_list').empty();
+                                    console.log("공백 확인");
+                                    $('<p>', {
+                                        text: "(비어있음)",
+            
+                                    }).css({
+                                        fontSize: "12px",
+                                        marginLeft:"4.5px",
+                                        margin: "4.5px",
+                                        color: 'gray',
+                                        marginTop:"15px",
+            
+            
+                                    }).appendTo('.search_skill_list');
+            
+            
+                                }
+                                else{
 
                                 for (var i = 0; i < skill_data.length; i++) {
                                     
@@ -1262,8 +1331,33 @@ $('.category_btn').click(function(){
                                     VerticalList.appendTo(list);
 
                                 }
+                            }
 
+                            
                                 var caution_data = res[3];
+
+                                console.log(caution_data.length)
+                                if(caution_data.length === 0){
+                          
+                                    $('.search_defect_list').empty();
+                                    console.log("공백 확인");
+                                    $('<p>', {
+                                        text: "(비어있음)",
+            
+                                    }).css({
+                                        fontSize: "12px",
+                                        marginLeft:"4.5px",
+                                        margin: "4.5px",
+                                        color: 'gray',
+                                        marginTop:"15px",
+            
+            
+                                    }).appendTo('.search_defect_list');
+            
+            
+                                }
+                                else{
+
 
                                 for (var i = 0; i < caution_data.length; i++) {
                                     
@@ -1325,7 +1419,7 @@ $('.category_btn').click(function(){
 
                                 }
 
-
+                            }
 
 
                             },
@@ -1586,6 +1680,26 @@ function search_identity(){
                                 console.log(res);
                                 
                                 var activity_data = res[0];
+                                if(activity_data.length === 0){
+                          
+                                    $('.search_activity_list').empty();
+                                    console.log("공백 확인");
+                                    $('<p>', {
+                                        text: "(비어있음)",
+            
+                                    }).css({
+                                        fontSize: "12px",
+                                        marginLeft:"4.5px",
+                                        margin: "4.5px",
+                                        color: 'gray',
+                                        marginTop:"15px",
+            
+            
+                                    }).appendTo('.search_activity_list');
+            
+            
+                                }
+                                else{
 
                                 for (var i = 0; i < activity_data.length; i++) {
                                     
@@ -1646,9 +1760,30 @@ function search_identity(){
                                     VerticalList.appendTo(list);
 
                                 }
-
+                            }
 
                                 var item_data = res[1];
+                                if(item_data.length === 0){
+                          
+                                    $('.search_item_list').empty();
+                                    console.log("공백 확인");
+                                    $('<p>', {
+                                        text: "(비어있음)",
+            
+                                    }).css({
+                                        fontSize: "12px",
+                                        marginLeft:"4.5px",
+                                        margin: "4.5px",
+                                        color: 'gray',
+                                        marginTop:"15px",
+            
+            
+                                    }).appendTo('.search_item_list');
+            
+            
+                                }
+                                else{
+                                
 
                                 for (var i = 0; i < item_data.length; i++) {
                                     
@@ -1709,9 +1844,31 @@ function search_identity(){
                                     VerticalList.appendTo(list);
 
                                 }
+                            }
 
 
                                 var skill_data = res[2];
+                                if(skill_data.length === 0){
+                          
+                                    $('.search_skill_list').empty();
+                                    console.log("공백 확인");
+                                    $('<p>', {
+                                        text: "(비어있음)",
+            
+                                    }).css({
+                                        fontSize: "12px",
+                                        marginLeft:"4.5px",
+                                        margin: "4.5px",
+                                        color: 'gray',
+                                        marginTop:"15px",
+            
+            
+                                    }).appendTo('.search_skill_list');
+            
+            
+                                }
+                                else{
+
 
                                 for (var i = 0; i < skill_data.length; i++) {
                                     
@@ -1773,7 +1930,29 @@ function search_identity(){
 
                                 }
 
+                            }
                                 var caution_data = res[3];
+
+                                if(caution_data.length === 0){
+                          
+                                    $('.search_defect_list').empty();
+                                    console.log("공백 확인");
+                                    $('<p>', {
+                                        text: "(비어있음)",
+            
+                                    }).css({
+                                        fontSize: "12px",
+                                        marginLeft:"4.5px",
+                                        margin: "4.5px",
+                                        color: 'gray',
+                                        marginTop:"15px",
+            
+            
+                                    }).appendTo('.search_defect_list');
+            
+            
+                                }
+                                else{
 
                                 for (var i = 0; i < caution_data.length; i++) {
                                     
@@ -1835,7 +2014,7 @@ function search_identity(){
 
                                 }
 
-
+                                }
 
 
                             },
@@ -2005,26 +2184,16 @@ $('.to_search_list').click(function(){
 
 
     }
-    /*
-    $.ajax({
-        type : "POST",
-        url : "/hoodify/get_user_profile.php",
-        dataType : 'json',
-        success : function(res){
-            // res.nickname > 프로필 이름에 적용
-            // $('.nickname').text(res.nickname);
-
-        },
-        error : function(XMLHttpRequest, textStatus, errorThrown){ // 비동기 통신이 실패할경우 error 콜백으로 들어옵니다.
-            alert("통신 실패.")
-        }
-    });
-*/
+  
    
 /////////////////////////////////////////////////////////////////////////////////////
 // 검색 버튼
 
 $('.open_search_layer').click(function(){
+    $('.search_result').empty();
+    $('.search_result_identity').css({ display : 'none',});
+    $('.search_result').fadeIn('fast');
+    $('.category_container').css("display","flex").hide().fadeIn("fast");
     layer_popup($('.search_layer'));
 });
 
@@ -2034,7 +2203,29 @@ $('.open_search_layer').click(function(){
 
 $('.profile').click(function(){
 
+
+
+    $.ajax({
+        type : "POST",
+        url : "/hoodify/get_user_profile.php",
+        dataType : 'json',
+        success : function(res){
+
+            console.log(res[0]);
+            $('.profile_img').text(res[0].profile_img);
+            $('.profile_nickname').text(res[0].nickname);
+            $('.profile_introduction').text(res[0].introduction);
+
+
+        },
+        error : function(XMLHttpRequest, textStatus, errorThrown){ 
+            alert("통신 실패.")
+        }
+    });
+
+
     layer_popup($('.profile_layer'));
+
 
 })
 
@@ -3693,7 +3884,7 @@ function refresh_item_record_list(){
 
 
                     $('.popup_activity_record_title').text(record_title);
-                    $('.popup_activity_record_cont').text(record_title);
+                    $('.popup_activity_record_cont').text(record_cont);
 
                     // 수정시 activity record 리스트 갱신하기
                     
@@ -3726,7 +3917,7 @@ function refresh_item_record_list(){
                     if(res=="success"){
 
                         $('.popup_activity_record_title').text(record_title);
-                        $('.popup_activity_record_cont').text(record_title);
+                        $('.popup_activity_record_cont').text(record_cont);
 
                         // 수정시 item record 리스트 갱신하기
                         
