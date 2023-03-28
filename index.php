@@ -415,7 +415,7 @@
       </header>
        <div class="hook_text_space">
 
-         <p class="hook_text" id="hook01">당신을 표현하는 <span style="color:rgba( 251, 104, 53);">키워드</span></p>
+         <p class="hook_text" id="hook01">당신을 표현하는 <span style="color:rgba( 220,80,20);">키워드</span></p>
 
          <div class='identity_hook' id='identity_hook_01' style="position:absolute; display:none; margin-right:160px; margin-top:150px;  opacity: 0.5; display:flex; flex-direction: column;  align-items: center;">
                 <img class="identity_img" src="/hoodify/img/identity/hooodify_mini.png" style="width:50px; height:50px;">
@@ -439,7 +439,7 @@
 
 
 
-         <p class="hook_text" id="hook02">당신이 얻고싶은 <span style="color:rgba( 40, 102, 177);">수식어</span></p>
+         <p class="hook_text" id="hook02">당신이 얻고싶은 <span style="color:rgba( 20, 82, 200);">수식어</span></p>
 
 
           <div class='identity_hook' id='identity_hook_05' style="position:absolute; display:none; margin-left:1160px; margin-top:350px;  opacity: 0.5; display:flex; flex-direction: column;  align-items: center;">
@@ -463,7 +463,7 @@
           </div>
 
 
-         <p class="hook_text" id="hook03">세상의 모든 <span style="color:rgba( 130, 197, 88);">정체성</span></p>
+         <p class="hook_text" id="hook03">세상의 모든 <span style="color:rgba( 80,220,20)">정체성</span></p>
 
 
          <div class='identity_hook' id='identity_hook_09' style="position:absolute; display:none; margin-right:200px; margin-top:500px;  opacity: 0.5; display:flex; flex-direction: column;  align-items: center;">
