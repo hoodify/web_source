@@ -62,7 +62,30 @@
            footer{ width: 100%; height: 80px; background-color: rgba( 0, 0, 0, 0.6 ); }
 
            .hook_text_space{width: 100%; height: 900px; background-color: rgba( 0, 0, 0, 0.1 ); display: flex; justify-content: center;}
-           .hook_text{position: absolute; font-size: 40px; color: white; font-family:TmoneyRoundWindExtraBold;  }
+
+           .hook_text{
+            position: absolute; 
+            font-size: 40px; 
+            color: white; 
+            font-family:TmoneyRoundWindExtraBold; 
+            transition: color 0.2s ease-out 100ms;
+
+           }
+
+           .hook_text2{
+            position: absolute; 
+            font-size: 40px; 
+            color: white; 
+            font-family:TmoneyRoundWindExtraBold; 
+            transition: color 0.2s ease-out 100ms;
+
+           }
+           .hook_text2:hover{
+            color: rgba( 51, 88, 154); 
+
+           }
+
+
            #hook01{display: none; margin-right: 750px; margin-top: 200px;}
            #hook02{display: none; margin-left: 550px; margin-top: 380px;}
            #hook03{display: none; margin-right: 500px; margin-top: 600px;}
@@ -142,6 +165,7 @@
              position: fixed;
              top: 50%;
              left: 50%;
+            width: 30%;
              height: 85%;
              background-color: #fff;
              border: 3px solid black;
@@ -466,7 +490,7 @@
          <p class="hook_text" id="hook03">세상의 모든 <span style="color:rgba( 80,220,20)">정체성</span></p>
 
 
-         <div class='identity_hook' id='identity_hook_09' style="position:absolute; display:none; margin-right:200px; margin-top:500px;  opacity: 0.5; display:flex; flex-direction: column;  align-items: center;">
+         <div class='identity_hook' id='identity_hook_09' style="position:absolute; display:none; margin-right:240px; margin-top:500px;  opacity: 0.5; display:flex; flex-direction: column;  align-items: center;">
                 <img class="identity_img" src="/hoodify/img/identity/hooodify_mini.png" style="width:50px; height:50px;">
                 <p class='identity_name' style="font-size: 10px;">  흙수저   </p>
          </div>
@@ -486,6 +510,81 @@
                 <p class='identity_name' style="font-size: 10px;">  백수   </p>
          </div>
 
+
+         <div class='identity_hook' id='identity_hook_13' style="position:absolute; display:none; margin-right:1050px; margin-top:350px;  opacity: 0.5; display:flex; flex-direction: column;  align-items: center;">
+                <img class="identity_img" src="/hoodify/img/identity/hooodify_mini.png" style="width:50px; height:50px;">
+                <p class='identity_name' style="font-size: 10px;">  무계획   </p>
+         </div>
+         <div class='identity_hook' id='identity_hook_14' style="position:absolute; display:none; margin-left:370px; margin-top:220px;  opacity: 0.5; display:flex; flex-direction: column;  align-items: center;">
+                <img class="identity_img" src="/hoodify/img/identity/hooodify_mini.png" style="width:50px; height:50px;">
+                <p class='identity_name' style="font-size: 10px;">  프리랜서   </p>
+         </div>
+         <div class='identity_hook' id='identity_hook_15' style="position:absolute; display:none; margin-right:870px; margin-top:80px;  opacity: 0.5; display:flex; flex-direction: column;  align-items: center;">
+                <img class="identity_img" src="/hoodify/img/identity/hooodify_mini.png" style="width:50px; height:50px;">
+                <p class='identity_name' style="font-size: 10px;">  괴짜   </p>
+         </div>
+         <div class='identity_hook' id='identity_hook_16' style="position:absolute; display:none; margin-right:770px; margin-top:730px;  opacity: 0.5; display:flex; flex-direction: column;  align-items: center;">
+                <img class="identity_img" src="/hoodify/img/identity/hooodify_mini.png" style="width:50px; height:50px;">
+                <p class='identity_name' style="font-size: 10px;">  모태솔로  </p>
+         </div>
+
+         <div class='identity_hook' id='identity_hook_17' style="position:absolute; display:none; margin-left:10px; margin-top:400px;  opacity: 0.5; display:flex; flex-direction: column;  align-items: center;">
+                <img class="identity_img" src="/hoodify/img/identity/hooodify_mini.png" style="width:50px; height:50px;">
+                <p class='identity_name' style="font-size: 10px;">  미니멀리즘   </p>
+         </div>
+         <div class='identity_hook' id='identity_hook_18' style="position:absolute; display:none; margin-right:670px; margin-top:490px;  opacity: 0.5; display:flex; flex-direction: column;  align-items: center;">
+                <img class="identity_img" src="/hoodify/img/identity/hooodify_mini.png" style="width:50px; height:50px;">
+                <p class='identity_name' style="font-size: 10px;">  솔로 플레이어   </p>
+         </div>
+         <div class='identity_hook' id='identity_hook_19' style="position:absolute; display:none; margin-right:970px; margin-top:520px;  opacity: 0.5; display:flex; flex-direction: column;  align-items: center;">
+                <img class="identity_img" src="/hoodify/img/identity/hooodify_mini.png" style="width:50px; height:50px;">
+                <p class='identity_name' style="font-size: 10px;">  너드   </p>
+         </div>
+         <div class='identity_hook' id='identity_hook_20' style="position:absolute; display:none; margin-right:1270px; margin-top:50px;  opacity: 0.5; display:flex; flex-direction: column;  align-items: center;">
+                <img class="identity_img" src="/hoodify/img/identity/hooodify_mini.png" style="width:50px; height:50px;">
+                <p class='identity_name' style="font-size: 10px;">  유머감각   </p>
+         </div>
+
+
+         <div class='identity_hook' id='identity_hook_21' style="position:absolute; display:none; margin-left:1170px; margin-top:50px;  opacity: 0.5; display:flex; flex-direction: column;  align-items: center;">
+                <img class="identity_img" src="/hoodify/img/identity/hooodify_mini.png" style="width:50px; height:50px;">
+                <p class='identity_name' style="font-size: 10px;">  사무직   </p>
+         </div>
+         <div class='identity_hook' id='identity_hook_22' style="position:absolute; display:none; margin-left:870px; margin-top:100px;  opacity: 0.5; display:flex; flex-direction: column;  align-items: center;">
+                <img class="identity_img" src="/hoodify/img/identity/hooodify_mini.png" style="width:50px; height:50px;">
+                <p class='identity_name' style="font-size: 10px;">  캠핑족   </p>
+         </div>
+         <div class='identity_hook' id='identity_hook_23' style="position:absolute; display:none; margin-left:270px; margin-top:500px;  opacity: 0.5; display:flex; flex-direction: column;  align-items: center;">
+                <img class="identity_img" src="/hoodify/img/identity/hooodify_mini.png" style="width:50px; height:50px;">
+                <p class='identity_name' style="font-size: 10px;">  뚜벅이   </p>
+         </div>
+         <div class='identity_hook' id='identity_hook_24' style="position:absolute; display:none; margin-right:1270px; margin-top:680px;  opacity: 0.5; display:flex; flex-direction: column;  align-items: center;">
+                <img class="identity_img" src="/hoodify/img/identity/hooodify_mini.png" style="width:50px; height:50px;">
+                <p class='identity_name' style="font-size: 10px;">  알뜰살뜰   </p>
+         </div>
+
+
+         <div class='identity_hook' id='identity_hook_25' style="position:absolute; display:none; margin-left:1170px; margin-top:550px;  opacity: 0.5; display:flex; flex-direction: column;  align-items: center;">
+                <img class="identity_img" src="/hoodify/img/identity/hooodify_mini.png" style="width:50px; height:50px;">
+                <p class='identity_name' style="font-size: 10px;">  미적감각   </p>
+         </div>
+         <div class='identity_hook' id='identity_hook_26' style="position:absolute; display:none; margin-left:200px; margin-top:70px;  opacity: 0.5; display:flex; flex-direction: column;  align-items: center;">
+                <img class="identity_img" src="/hoodify/img/identity/hooodify_mini.png" style="width:50px; height:50px;">
+                <p class='identity_name' style="font-size: 10px;">  불운   </p>
+         </div>
+         <div class='identity_hook' id='identity_hook_27' style="position:absolute; display:none; margin-left:470px; margin-top:670px;  opacity: 0.5; display:flex; flex-direction: column;  align-items: center;">
+                <img class="identity_img" src="/hoodify/img/identity/hooodify_mini.png" style="width:50px; height:50px;">
+                <p class='identity_name' style="font-size: 10px;">  설계자   </p>
+         </div>
+         <div class='identity_hook' id='identity_hook_28' style="position:absolute; display:none; margin-left:1270px; margin-top:680px;  opacity: 0.5; display:flex; flex-direction: column;  align-items: center;">
+                <img class="identity_img" src="/hoodify/img/identity/hooodify_mini.png" style="width:50px; height:50px;">
+                <p class='identity_name' style="font-size: 10px;">  백수   </p>
+         </div>
+
+         <div class='identity_hook' id='identity_hook_29' style="position:absolute; display:none; margin-left:830px; margin-top:650px;  opacity: 0.5; display:flex; flex-direction: column;  align-items: center;">
+                <img class="identity_img" src="/hoodify/img/identity/hooodify_mini.png" style="width:50px; height:50px;">
+                <p class='identity_name' style="font-size: 10px;">  사색하는 철학자   </p>
+         </div>
 
 
 
@@ -824,29 +923,28 @@
        <div id='find_identities_container_space'>
          <div class= "content_space" id="find_identities_inner_space">
 
-           <p class="hook_text" id="start" style="cursor:pointer;"> 내 키워드 찾기 </p>
+           <p class="hook_text2" id="start" style="cursor:pointer;"> 내 키워드 찾기 </p>
 
 
            <div style="width:100%; height:100%; display:flex; justify-content: center;  align-items: center;" >
              <p class="selection_box" id="selection_style" style="background-color: rgba( 99, 2, 55); margin-right: 550px; margin-bottom:250px;">스타일</p>
              <p class="selection_box" id="selection_personality" style="background-color: rgba( 186, 159, 72); margin-left: 750px; margin-bottom:50px;">성격</p>
-             <p class="selection_box" id="selection_state" style="background-color: rgba( 15, 61, 72); margin-left: 150px; margin-bottom:80px;">상태 </p>
+             <p class="selection_box" id="selection_state" style="background-color: rgba( 15, 61, 72); margin-left: 150px; margin-bottom:80px;">생활 </p>
              <p class="selection_box" id="selection_work" style="background-color: rgba( 86, 80, 66); margin-left: 250px; margin-top:400px;">일&직업 </p>
              <p class="selection_box" id="selection_values" style="background-color: rgba( 130, 80, 66); margin-right: 650px; margin-top:350px;">이상향 </p>
 
-             <p class="selection_box" id="selection_work2" style="font-size: 22px; background-color: rgba( 30, 40, 88); margin-left:800px; margin-bottom:100px;">예술 & 문화 </p>
-             <p class="selection_box" id="selection_work3" style="background-color: rgba( 25, 51, 52); margin-left: 400px; margin-bottom:150px;"> IT </p>
-             <p class="selection_box" id="selection_work4" style="background-color: rgba( 15, 61, 72); margin-left: 850px; margin-top:280px;"> 서비스  </p>
-             <p class="selection_box" id="selection_work5" style="background-color: rgba( 40, 50, 88); margin-left: 450px; margin-top:420px;"> ???  </p>
+             <p class="selection_box" id="selection_work2" style="font-size: 22px; background-color: #0A3A40; margin-left:880px; margin-bottom:100px;">예술 & 문화 </p>
+             <p class="selection_box" id="selection_work3" style="background-color: #042326; margin-left: 300px; margin-bottom:250px;"> IT </p>
+             <p class="selection_box" id="selection_work4" style="background-color: #1E5959; margin-left: 850px; margin-top:280px;"> 서비스  </p>
+             <p class="selection_box" id="selection_work5" style="background-color: #1D7373; margin-left: 450px; margin-top:470px;"> 농업ㆍ어업  </p>
 
-             <p class="selection_box2" id="selection_work6" style="margin-left: 300px; margin-top: 150px; background-color: rgba( 49, 87, 138);" > 분야 </p>
+             <p class="selection_box2" id="selection_work6" style="margin-left: 300px; margin-top: 150px; background-color: #012E40;" > 분야 </p>
 
 
 
-             <p class="selection_box" id="selection_state2" style="cursor: pointer; background-color: rgba( 30, 40, 88); margin-left:450px; margin-bottom:180px;">경제 </p>
-             <p class="selection_box" id="selection_state3" style="cursor: pointer;background-color: rgba( 25, 51, 52); margin-right: 400px; margin-bottom:220px;">사회 </p>
-             <p class="selection_box" id="selection_state4" style="cursor: pointer;background-color: rgba( 15, 61, 72); margin-left: 550px; margin-top:280px;">생활 </p>
-             <p class="selection_box" id="selection_state5" style="cursor: pointer;background-color: rgba( 40, 50, 88); margin-right: 350px; margin-top:320px;">건강  </p>
+             <p class="selection_box" id="selection_state2" style=" background-color: rgba( 30, 40, 88); margin-left:550px; margin-bottom:100px;">경제 </p>
+             <p class="selection_box" id="selection_state3" style="background-color: rgba( 65, 51, 112); margin-right: 400px; margin-bottom:320px;">사회 </p>
+             <p class="selection_box" id="selection_state5" style="background-color: rgba( 40, 70, 98); margin-right: 50px; margin-top:370px;">건강  </p>
 
 
 
@@ -1006,17 +1104,17 @@
                   <p class='identity_name'>   미적 감각  </p>
               </div>
 
-              <div class='identity_mindmap selection' id='identity_selection_39' style="display: none; margin-right:680px; margin-top :540px;">
+              <div class='identity_mindmap selection' id='identity_selection_39' style="display: none; margin-right:480px; margin-top :480px;">
                 <img class="identity_img" src="/hoodify/img/identity/hooodify_mini.png">
                 <p class='identity_name'> 허약체질</p>
               </div>
 
-              <div class='identity_mindmap selection' id='identity_selection_59' style="display: none; margin-left:950px; margin-top:420px;">
+              <div class='identity_mindmap selection' id='identity_selection_59' style="display: none; margin-right:380px; margin-bottom:10px;">
                 <img class="identity_img" src="/hoodify/img/identity/hooodify_mini.png">
                 <p class='identity_name'>    문제투성이     </p>
               </div>
 
-              <div class='identity_mindmap selection' id='identity_selection_40' style="display: none; margin-right:350px; margin-bottom :420px;">
+              <div class='identity_mindmap selection' id='identity_selection_40' style="display: none; margin-right:280px; margin-bottom :550px;">
                 <img class="identity_img" src="/hoodify/img/identity/hooodify_mini.png">
                 <p class='identity_name'>  모태솔로  </p>
               </div>
@@ -1031,7 +1129,7 @@
                 <p class='identity_name'>  취준생   </p>
               </div>
 
-              <div class='identity_mindmap selection' id='identity_selection_32' style="display: none; margin-left:520px; margin-top :590px;">
+              <div class='identity_mindmap selection' id='identity_selection_32' style="display: none; margin-right:520px; margin-bottom :590px;">
                  <img class="identity_img" src="/hoodify/img/identity/hooodify_mini.png">
                  <p class='identity_name'>    자취인       </p>
                </div>
@@ -1041,22 +1139,22 @@
                  <p class='identity_name'>    빈털터리     </p>
                </div>
 
-               <div class='identity_mindmap selection' id='identity_selection_43' style="display: none;  margin-left:830px; margin-bottom :170px;">
+               <div class='identity_mindmap selection' id='identity_selection_43' style="display: none;  margin-left:890px; margin-bottom :120px;">
                  <img class="identity_img" src="/hoodify/img/identity/hooodify_mini.png">
                  <p class='identity_name'> 흙수저  </p>
                </div>
 
-               <div class='identity_mindmap selection' id='identity_selection_84' style="display: none; margin-left:720px; margin-bottom :420px;">
+               <div class='identity_mindmap selection' id='identity_selection_84' style="display: none; margin-left:720px; margin-bottom :370px;">
                  <img class="identity_img" src="/hoodify/img/identity/hooodify_mini.png">
                  <p class='identity_name'>  금수저    </p>
                </div>
 
-               <div class='identity_mindmap selection' id='identity_selection_85' style="display: none; margin-right:450px; margin-top: 650px;">
+               <div class='identity_mindmap selection' id='identity_selection_85' style="display: none; margin-right:250px; margin-top: 650px;">
                  <img class="identity_img" src="/hoodify/img/identity/hooodify_mini.png">
                  <p class='identity_name'> 인자강 </p>
                </div>
 
-               <div class='identity_mindmap selection' id='identity_selection_34' style="display: none; margin-left:900px; margin-top:680px;">
+               <div class='identity_mindmap selection' id='identity_selection_34' style="display: none; margin-left:50px; margin-top:680px;">
                  <img class="identity_img" src="/hoodify/img/identity/hooodify_mini.png">
                  <p class='identity_name'>    올빼미족      </p>
                </div>
@@ -1196,7 +1294,7 @@
 
 
 
-             <p id="toback" style="display: none; margin-left:1000px; margin-bottom:500px; background-color: rgba( 22, 100, 123);"> 처음으로 </p>
+             <p id="toback" style="display: none; margin-left:1200px; margin-bottom:700px; background-color: rgba( 22, 100, 123);"> 처음으로 </p>
 
 
           </div>
@@ -1422,6 +1520,26 @@ $('#identity_hook_09').css("display","absolute").hide().delay(7100).fadeIn("slow
 $('#identity_hook_10').css("display","absolute").hide().delay(7300).fadeIn("slow");
 $('#identity_hook_11').css("display","absolute").hide().delay(7500).fadeIn("slow");
 $('#identity_hook_12').css("display","absolute").hide().delay(7600).fadeIn("slow");
+
+
+
+$('#identity_hook_13').css("display","absolute").hide().delay(9000).fadeIn("slow");
+$('#identity_hook_14').css("display","absolute").hide().delay(9200).fadeIn("slow");
+$('#identity_hook_15').css("display","absolute").hide().delay(9300).fadeIn("slow");
+$('#identity_hook_16').css("display","absolute").hide().delay(9400).fadeIn("slow");
+$('#identity_hook_17').css("display","absolute").hide().delay(9500).fadeIn("slow");
+$('#identity_hook_18').css("display","absolute").hide().delay(9600).fadeIn("slow");
+$('#identity_hook_19').css("display","absolute").hide().delay(9100).fadeIn("slow");
+$('#identity_hook_20').css("display","absolute").hide().delay(9200).fadeIn("slow");
+$('#identity_hook_21').css("display","absolute").hide().delay(9300).fadeIn("slow");
+$('#identity_hook_22').css("display","absolute").hide().delay(9400).fadeIn("slow");
+$('#identity_hook_23').css("display","absolute").hide().delay(9600).fadeIn("slow");
+$('#identity_hook_24').css("display","absolute").hide().delay(9500).fadeIn("slow");
+$('#identity_hook_25').css("display","absolute").hide().delay(9600).fadeIn("slow");
+$('#identity_hook_26').css("display","absolute").hide().delay(9200).fadeIn("slow");
+$('#identity_hook_27').css("display","absolute").hide().delay(9100).fadeIn("slow");
+$('#identity_hook_28').css("display","absolute").hide().delay(9800).fadeIn("slow");
+$('#identity_hook_29').css("display","absolute").hide().delay(9600).fadeIn("slow");
 
 
 
@@ -2522,11 +2640,11 @@ $('#selection_style3').click(function(){
 
   $('#identity_selection_13').css("display","flex").hide().delay(200).fadeIn("slow");
   $('#identity_selection_58').css("display","flex").hide().delay(400).fadeIn("slow");
-  $('#identity_selection_10').css("display","flex").hide().delay(300).fadeIn("slow");
-  $('#identity_selection_31').css("display","flex").hide().delay(500).fadeIn("slow");
-  $('#identity_selection_53').css("display","flex").hide().delay(700).fadeIn("slow");
-  $('#identity_selection_25').css("display","flex").hide().delay(500).fadeIn("slow");
-  $('#identity_selection_2').css("display","flex").hide().delay(600).fadeIn("slow");
+  $('#identity_selection_10').css("display","flex").hide().delay(700).fadeIn("slow");
+  $('#identity_selection_31').css("display","flex").hide().delay(1000).fadeIn("slow");
+  $('#identity_selection_53').css("display","flex").hide().delay(1700).fadeIn("slow");
+  $('#identity_selection_25').css("display","flex").hide().delay(1500).fadeIn("slow");
+  $('#identity_selection_2').css("display","flex").hide().delay(2000).fadeIn("slow");
 
   $('.add_content').css("display","flex").hide().delay(200).fadeIn("slow");
 
@@ -2567,9 +2685,9 @@ $('#selection_style8').click(function(){
   $('#identity_selection_64').fadeOut("fast");
   $('#identity_selection_6').fadeOut("fast");
 
-  $('#identity_selection_62').css("display","flex").hide().delay(100).fadeIn("slow");
-  $('#identity_selection_63').css("display","flex").hide().delay(200).fadeIn("slow");
-  $('#identity_selection_65').css("display","flex").hide().delay(200).fadeIn("slow");
+  $('#identity_selection_62').css("display","flex").hide().delay(700).fadeIn("slow");
+  $('#identity_selection_63').css("display","flex").hide().delay(1000).fadeIn("slow");
+  $('#identity_selection_65').css("display","flex").hide().delay(500).fadeIn("slow");
 
   $('.add_content').css("display","flex").hide().delay(200).fadeIn("slow");
 })
@@ -2578,10 +2696,10 @@ $('#selection_style8').click(function(){
 $('#selection_style7').click(function(){
 
 
-  $('#identity_selection_24').css("display","flex").hide().delay(400).fadeIn("slow");
-  $('#identity_selection_25').css("display","flex").hide().delay(300).fadeIn("slow");
-  $('#identity_selection_61').css("display","flex").hide().delay(200).fadeIn("slow");
-  $('#identity_selection_66').css("display","flex").hide().delay(500).fadeIn("slow");
+  $('#identity_selection_24').css("display","flex").hide().delay(900).fadeIn("slow");
+  $('#identity_selection_25').css("display","flex").hide().delay(700).fadeIn("slow");
+  $('#identity_selection_61').css("display","flex").hide().delay(1200).fadeIn("slow");
+  $('#identity_selection_66').css("display","flex").hide().delay(1500).fadeIn("slow");
 
 
   $('#selection_style6').fadeOut("fast");
@@ -2649,11 +2767,13 @@ $('#selection_personality3').click(function(){
   $('#selection_personality3').fadeOut("fast");
   $('#selection_personality4').fadeOut("fast");
 
-  $('#identity_selection_67').css("display","flex").hide().delay(200).fadeIn("slow");
-  $('#identity_selection_68').css("display","flex").hide().delay(300).fadeIn("slow");
-  $('#identity_selection_69').css("display","flex").hide().delay(500).fadeIn("slow");
-  $('#identity_selection_70').css("display","flex").hide().delay(450).fadeIn("slow");
-  $('#identity_selection_82').css("display","flex").hide().delay(350).fadeIn("slow");
+
+  
+  $('#identity_selection_67').css("display","flex").hide().delay(700).fadeIn("slow");
+  $('#identity_selection_68').css("display","flex").hide().delay(800).fadeIn("slow");
+  $('#identity_selection_69').css("display","flex").hide().delay(1000).fadeIn("slow");
+  $('#identity_selection_70').css("display","flex").hide().delay(1450).fadeIn("slow");
+  $('#identity_selection_82').css("display","flex").hide().delay(1350).fadeIn("slow");
 
 
   $('#selection_personality5').css("display","flex").hide().delay(200).fadeIn("slow");
@@ -2676,12 +2796,12 @@ $('#selection_personality4').click(function(){
 
 
 
-  $('#identity_selection_40').css("display","flex").hide().delay(400).fadeIn("slow");
-  $('#identity_selection_12').css("display","flex").hide().delay(200).fadeIn("slow");
-  $('#identity_selection_71').css("display","flex").hide().delay(100).fadeIn("slow");
-  $('#identity_selection_2').css("display","flex").hide().delay(100).fadeIn("slow");
-  $('#identity_selection_36').css("display","flex").hide().delay(100).fadeIn("slow");
-  $('#identity_selection_72').css("display","flex").hide().delay(100).fadeIn("slow");
+  $('#identity_selection_40').css("display","flex").hide().delay(900).fadeIn("slow");
+  $('#identity_selection_12').css("display","flex").hide().delay(1500).fadeIn("slow");
+  $('#identity_selection_71').css("display","flex").hide().delay(2000).fadeIn("slow");
+  $('#identity_selection_2').css("display","flex").hide().delay(1800).fadeIn("slow");
+  $('#identity_selection_36').css("display","flex").hide().delay(700).fadeIn("slow");
+  $('#identity_selection_72').css("display","flex").hide().delay(1100).fadeIn("slow");
 
 
   $('#selection_personality5').css("display","flex").hide().delay(200).fadeIn("slow");
@@ -2695,31 +2815,20 @@ $('#selection_personality4').click(function(){
 //의존
 $('#selection_personality6').click(function(){
 
+
+
+
+
   $('#selection_personality5').fadeOut("fast");
   $('#selection_personality6').fadeOut("fast");
   $('#selection_personality7').fadeOut("fast");
 
 
-
-  
-  $('#identity_selection_40').fadeOut("fast");
-  $('#identity_selection_12').fadeOut("fast");
-  $('#identity_selection_71').fadeOut("fast");
-  $('#identity_selection_2').fadeOut("fast");
-  $('#identity_selection_36').fadeOut("fast");
-  $('#identity_selection_72').fadeOut("fast");
+  $('.selection').fadeOut("fast");
 
 
-  $('#identity_selection_67').fadeOut("fast");
-  $('#identity_selection_68').fadeOut("fast");
-  $('#identity_selection_69').fadeOut("fast");
-  $('#identity_selection_70').fadeOut("fast");
-  $('#identity_selection_82').fadeOut("fast");
-
-
-
-  $('#identity_selection_73').css("display","flex").hide().delay(100).fadeIn("slow");
-  $('#identity_selection_74').css("display","flex").hide().delay(100).fadeIn("slow");
+  $('#identity_selection_73').css("display","flex").hide().delay(800).fadeIn("slow");
+  $('#identity_selection_74').css("display","flex").hide().delay(1200).fadeIn("slow");
 
 
   $('#selection_personality8').css("display","flex").hide().delay(100).fadeIn("slow");
@@ -2741,19 +2850,7 @@ $('#selection_personality7').click(function(){
   $('#selection_personality7').fadeOut("fast");
 
 
-
-  $('#identity_selection_40').fadeOut("fast");
-  $('#identity_selection_12').fadeOut("fast");
-  $('#identity_selection_71').fadeOut("fast");
-  $('#identity_selection_2').fadeOut("fast");
-  $('#identity_selection_36').fadeOut("fast");
-  $('#identity_selection_72').fadeOut("fast");
-
-  $('#identity_selection_67').fadeOut("fast");
-  $('#identity_selection_68').fadeOut("fast");
-  $('#identity_selection_69').fadeOut("fast");
-  $('#identity_selection_70').fadeOut("fast");
-  $('#identity_selection_82').fadeOut("fast");
+  $('.selection').fadeOut("fast");
 
 
 
@@ -2774,12 +2871,7 @@ $('.add_content').css("display","flex").hide().delay(200).fadeIn("slow");
 //즉흥
 $('#selection_personality9').click(function(){
 
-
-  $('#identity_selection_73').fadeOut("fast");
-  $('#identity_selection_74').fadeOut("fast");
-  $('#identity_selection_75').fadeOut("fast");
-  $('#identity_selection_76').fadeOut("fast");
-  $('#identity_selection_12').fadeOut("fast");
+  $('.selection').fadeOut("fast");
 
   $('#selection_personality8').fadeOut("fast");
   $('#selection_personality9').fadeOut("fast");
@@ -2787,10 +2879,10 @@ $('#selection_personality9').click(function(){
   $('#selection_personality12').fadeOut("fast");
 
 
-  $('#identity_selection_77').css("display","flex").hide().delay(100).fadeIn("slow");
-  $('#identity_selection_78').css("display","flex").hide().delay(200).fadeIn("slow");
-  $('#identity_selection_10').css("display","flex").hide().delay(200).fadeIn("slow");
-  $('#identity_selection_79').css("display","flex").hide().delay(200).fadeIn("slow");
+  $('#identity_selection_77').css("display","flex").hide().delay(1100).fadeIn("slow");
+  $('#identity_selection_78').css("display","flex").hide().delay(1200).fadeIn("slow");
+  $('#identity_selection_10').css("display","flex").hide().delay(800).fadeIn("slow");
+  $('#identity_selection_79').css("display","flex").hide().delay(500).fadeIn("slow");
 
 
   $('.add_content').css("display","flex").hide().delay(200).fadeIn("slow");
@@ -2802,11 +2894,7 @@ $('#selection_personality9').click(function(){
 //계획
 $('#selection_personality10').click(function(){
 
-  $('#identity_selection_73').fadeOut("fast");
-  $('#identity_selection_74').fadeOut("fast");
-  $('#identity_selection_75').fadeOut("fast");
-  $('#identity_selection_76').fadeOut("fast");
-  $('#identity_selection_12').fadeOut("fast");
+ $('.selection').fadeOut("fast");
 
 
   $('#selection_personality8').fadeOut("fast");
@@ -2825,7 +2913,7 @@ $('#selection_personality10').click(function(){
 })
 
 
-// 상태
+// 생활
 
 $('#selection_state').click(function(){
 
@@ -2837,11 +2925,34 @@ $('#selection_state').click(function(){
   $('#toback').css("display","flex").hide().delay(200).fadeIn("slow");
 
 
+//경제
+  $('#selection_state2').css("display","flex").hide().delay(500).fadeIn("slow");
+  
+  $('#identity_selection_83').css("display","flex").hide().delay(800).fadeIn("slow");
+  $('#identity_selection_43').css("display","flex").hide().delay(600).fadeIn("slow");
+  $('#identity_selection_84').css("display","flex").hide().delay(700).fadeIn("slow");
+  
 
-  $('#selection_state2').css("display","flex").hide().delay(200).fadeIn("slow");
-  $('#selection_state3').css("display","flex").hide().delay(600).fadeIn("slow");
-  $('#selection_state4').css("display","flex").hide().delay(400).fadeIn("slow");
-  $('#selection_state5').css("display","flex").hide().delay(400).fadeIn("slow");
+  //사회
+  $('#selection_state3').css("display","flex").hide().delay(800).fadeIn("slow");
+  
+  $('#identity_selection_40').css("display","flex").hide().delay(1400).fadeIn("slow");
+  $('#identity_selection_42').css("display","flex").hide().delay(1100).fadeIn("slow");
+  $('#identity_selection_37').css("display","flex").hide().delay(1600).fadeIn("slow");
+  
+  $('#identity_selection_59').css("display","flex").hide().delay(1200).fadeIn("slow");
+  $('#identity_selection_32').css("display","flex").hide().delay(1900).fadeIn("slow");
+
+
+// 생활  $('#selection_state4').css("display","flex").hide().delay(400).fadeIn("slow");
+
+
+//건강
+  $('#selection_state5').css("display","flex").hide().delay(2000).fadeIn("slow");
+
+  $('#identity_selection_39').css("display","flex").hide().delay(2300).fadeIn("slow");
+  $('#identity_selection_85').css("display","flex").hide().delay(2700).fadeIn("slow");
+  $('#identity_selection_34').css("display","flex").hide().delay(2500).fadeIn("slow");
 
   $('.add_content').css("display","flex").hide().delay(200).fadeIn("slow");
 
@@ -2850,42 +2961,9 @@ $('#selection_state').click(function(){
 
 
 })
-///////////////////////////////////// 
-// 사회
-$('#selection_state3').click(function(){
-  
-  $('#identity_selection_40').css("display","flex").hide().delay(400).fadeIn("slow");
-  $('#identity_selection_42').css("display","flex").hide().delay(100).fadeIn("slow");
-  $('#identity_selection_37').css("display","flex").hide().delay(600).fadeIn("slow");
-  
-})
-///////////////////////////////////// 
-// 경제
-$('#selection_state2').click(function(){
 
 
-  $('#identity_selection_83').css("display","flex").hide().delay(800).fadeIn("slow");
-  $('#identity_selection_43').css("display","flex").hide().delay(600).fadeIn("slow");
-  $('#identity_selection_84').css("display","flex").hide().delay(200).fadeIn("slow");
-})
 
-///////////////////////////////////// 
-// 건강
-$('#selection_state5').click(function(){
-  $('#identity_selection_39').css("display","flex").hide().delay(300).fadeIn("slow");
-  $('#identity_selection_85').css("display","flex").hide().delay(700).fadeIn("slow");
-
-
-})
-///////////////////////////////////// 
-// 생활
-$('#selection_state4').click(function(){
-
-  $('#identity_selection_59').css("display","flex").hide().delay(200).fadeIn("slow");
-  $('#identity_selection_32').css("display","flex").hide().delay(500).fadeIn("slow");
-  $('#identity_selection_34').css("display","flex").hide().delay(700).fadeIn("slow");
-
-})
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // 일&직업
@@ -2906,11 +2984,11 @@ $('#selection_work').click(function(){
 
 
 
-  $('#identity_selection_15').css("display","flex").hide().delay(100).fadeIn("slow");
-  $('#identity_selection_86').css("display","flex").hide().delay(700).fadeIn("slow");
+  $('#identity_selection_15').css("display","flex").hide().delay(1100).fadeIn("slow");
+  $('#identity_selection_86').css("display","flex").hide().delay(1700).fadeIn("slow");
 
-  $('#identity_selection_21').css("display","flex").hide().delay(300).fadeIn("slow");
-  $('#identity_selection_18').css("display","flex").hide().delay(500).fadeIn("slow");
+  $('#identity_selection_21').css("display","flex").hide().delay(1300).fadeIn("slow");
+  $('#identity_selection_18').css("display","flex").hide().delay(1500).fadeIn("slow");
   $('#identity_selection_87').css("display","flex").hide().delay(800).fadeIn("slow");
 
 
@@ -3015,10 +3093,10 @@ $('#selection_values').fadeOut("fast");
 
 $('.add_content').css("display","flex").hide().delay(700).fadeIn("slow");
 $('#identity_selection_9').css("display","flex").hide().delay(400).fadeIn("slow");
-$('#identity_selection_3').css("display","flex").hide().delay(500).fadeIn("slow");
-$('#identity_selection_95').css("display","flex").hide().delay(500).fadeIn("slow");
-$('#identity_selection_96').css("display","flex").hide().delay(500).fadeIn("slow");
-$('#identity_selection_97').css("display","flex").hide().delay(500).fadeIn("slow");
+$('#identity_selection_3').css("display","flex").hide().delay(800).fadeIn("slow");
+$('#identity_selection_95').css("display","flex").hide().delay(1000).fadeIn("slow");
+$('#identity_selection_96').css("display","flex").hide().delay(1200).fadeIn("slow");
+$('#identity_selection_97').css("display","flex").hide().delay(1500).fadeIn("slow");
 
 
 
