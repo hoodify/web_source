@@ -4,23 +4,20 @@
 // 넘겨받은 정체성에 해당하는 콘텐츠 리스트 요청 처리
 
 
-  session_start();
-  
 
 // 해당 유저 코드가 user 테이블에 없으면 새로 추가
 
   try {
 
-                $dbName = "hoodify";
+
+
+                require("connect_db.php");
                 $user_code = $_POST['user_code'];
                 
                 $cookie_array = $_POST['identity_cookie'];
                 $cookie_array2 = explode(',', $cookie_array);
 
 
-
-                $conn = new PDO("mysql:host=127.0.0.1;dbname=$dbName", "root", "050638");
-                $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
                 $query = "SELECT * FROM user  WHERE user_value = '$user_code' ";
 

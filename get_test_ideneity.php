@@ -1,15 +1,9 @@
 <?php
 
-    session_start();
-
+   
     try {
 
-                  $dbName = "hoodify";
-
-
-                  $conn = new PDO("mysql:host=127.0.0.1;dbname=${dbName}", "root", "050638");
-                  $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                  $query = "SELECT * FROM identity";
+                require("connect_db.php");     $query = "SELECT * FROM identity";
 
                   $stmt = $conn->prepare($query);
                   $stmt->execute();

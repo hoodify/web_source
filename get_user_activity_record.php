@@ -9,14 +9,11 @@
   }
   else{
     try {
-                $dbName = "hoodify";
-                $tblName = "testTBL";
+                require("connect_db.php");
                 $user_code = $_SESSION['user_code'];
                 $activity_code = $_POST['activity_code'];
 
-                $conn = new PDO("mysql:host=127.0.0.1;dbname=${dbName}", "root", "050638");
-                $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
+              
                 $query = "SELECT * FROM user_activity WHERE user_code = '$user_code' AND activity_code = '$activity_code'";
 
                 $stmt = $conn->prepare($query);

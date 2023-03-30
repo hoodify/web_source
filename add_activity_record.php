@@ -7,7 +7,7 @@
 
   try {
 
-                $dbName = "hoodify";
+               require("connect_db.php");
 
                 $user_code = $_SESSION['user_code'];
 
@@ -16,9 +16,6 @@
                 $record_title = $_POST['record_title'];
                 $record_cont = $_POST['record_cont'];
 
-
-                $conn = new PDO("mysql:host=127.0.0.1;dbname=$dbName", "root", "050638");
-                $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
                 $query = "INSERT INTO user_activity (identity_code, activity_code, user_code, title, record) VALUES ('$identity_code', '$activity_code', '$user_code', '$record_title', '$record_cont')";
 

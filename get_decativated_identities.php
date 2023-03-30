@@ -13,12 +13,12 @@
   }
   else{
     try {
-                $dbName = "hoodify";
+      
+                require("connect_db.php");
+
                 $user_code = $_SESSION['user_code'];
 
-                $conn = new PDO("mysql:host=127.0.0.1;dbname=$dbName", "root", "050638");
-                $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
+             
                 $query = "SELECT * FROM user_identity INNER JOIN identity ON user_identity.identity_code = identity.identity_code WHERE user_identity.user_code = '$user_code' AND user_identity.active = 0";
 
                 $stmt = $conn->prepare($query);

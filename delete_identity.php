@@ -1,21 +1,13 @@
 <?php
 
-  session_start();
-
   try {
 
-
-                $dbName = "test";
-                  
-                $dbName = "hoodify";
+    require("connect_db.php");
                 $user_code = $_SESSION['user_code'];
 
                 $identity_code = $_POST['identity_code'];
 
 
-
-                $conn = new PDO("mysql:host=127.0.0.1;dbname=$dbName", "root", "050638");
-                $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
                 $query = "DELETE FROM user_identity WHERE identity_code = $identity_code AND user_code = $user_code;";
             
