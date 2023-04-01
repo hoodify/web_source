@@ -1,15 +1,15 @@
 
 
 <?php
+require("connect_db.php");
 
-  session_start();
 
   if(!isset($_SESSION['user_code'])){
     echo json_encode("nothing");
   }
   else{
     try {
-                require("connect_db.php");
+                
                 $user_code = $_SESSION['user_code'];
                 $activity_code = $_POST['activity_code'];
 

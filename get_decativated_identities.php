@@ -6,7 +6,7 @@
 // 세션에 유저 정보가 없으면 'nothing' 반환
 // 프론트에서 'nothing' 값을 받으면 일반 페이지 보임
 
-  session_start();
+require("connect_db.php");
 
   if(!isset($_SESSION['user_code'])){
     echo json_encode("nothing");
@@ -14,8 +14,7 @@
   else{
     try {
       
-                require("connect_db.php");
-
+              
                 $user_code = $_SESSION['user_code'];
 
              

@@ -62,8 +62,8 @@ body{
   position: fixed;
   top: 50%;
   left: 50%;
-  width: 550px;
-  height: 800px;
+  width: 35%;
+  height: 85%;
   background-color: #fff;
   border: 3px solid black;
   z-index: 1000;
@@ -75,12 +75,14 @@ body{
   position: fixed;
   top: 50%;
   left: 50%;
-  width: 550px;
-  height: 800px;
+  width: 35%;
+  height: 85%;
   background-color: #fff;
   border: 3px solid black;
   z-index: 1008;
   border-radius: 12px;
+  
+  justify-content: center;
 }
 
 
@@ -95,6 +97,7 @@ border-right: 1px solid black;
 .rightCont{
 
 flex:3;
+margin-top:15px;
 
 
 }
@@ -141,7 +144,7 @@ margin-right: 15px;
 .bar-menu ul.menu-body li {
   height: 20px;
   padding: 10px;
-  width: 85px;
+  width: 13%;
   margin-left: 10px;
   float: left;
   line-height: 20px;
@@ -267,8 +270,8 @@ border: 1px solid #93b0bc;
   position: fixed;
   top: 50%;
   left: 50%;
-  width: 550px;
-  height: 800px;
+  width: 35%;
+  height: 85%;  
   z-index: 1002;
   background-color: #fff;
   border: 3px solid #3571B5;
@@ -463,7 +466,7 @@ border: 1px solid #93b0bc;
                     <div class="pop-conts" id = "cont" style="display:flex; flex-direction: column; width: 60%; margin-left:10px; height: inherit;">
 
                     <h4 class = "identity_title_container"></h4>
-                    <p class = "identity_desc_container" style="overflow-y: scroll;"></p>
+                    <p class = "identity_desc_container" style="overflow-y: scroll; font-size:14px;"></p>
 
                     </div>
                 </div>
@@ -527,9 +530,9 @@ border: 1px solid #93b0bc;
             <div class = "RC RCactivity">
                 <div style="display: flex; align-items: center;">
                     <img class = "mylistIMG" style="width:70px; height:70px;  margin-right:10px;">
-                    <h3 class = "mylistT"> </h3>
+                    <h4 class = "mylistT"> </h4>
                 </div>
-              <p class = "mylistC" style='margin-bottom:15px;'> </p>
+              <p class = "mylistC" style='margin-bottom:15px; font-size:14px;'> </p>
               <hr/>
               <ul class="mylist"> </ul>
               <div id = 'addbtn_container'></div>
@@ -538,10 +541,10 @@ border: 1px solid #93b0bc;
             <div class = "RC RCitem">
              <div style="display: flex; align-items: center;">
                 <img class = "mylistIMG_item" style="width:70px; height:70px;  margin-right:10px;">
-                <h3 class = "mylistT_item"> </h3>
+                <h4 class = "mylistT_item"> </h4>
             </div>
 
-              <p class = "mylistC_item" style='margin-bottom:15px;'> </p>
+              <p class = "mylistC_item" style='margin-bottom:15px; font-size:14px;'> </p>
               <hr/>
               <ul class="mylist_item"> </ul>
               <div id = 'addbtn_container_item'></div>
@@ -550,9 +553,9 @@ border: 1px solid #93b0bc;
             <div class = "RC RCskill">
             <div style="display: flex; align-items: center;">
                     <img class = "mylistIMG_skill" style="width:70px; height:70px;  margin-right:10px;">
-                    <h3 class = "mylistT_skill"> </h3>
+                    <h4 class = "mylistT_skill"> </h4>
             </div>
-              <p class = "mylistC_skill" style='margin-bottom:15px;'> </p>
+              <p class = "mylistC_skill" style='margin-bottom:15px;font-size:14px;'> </p>
               <hr/>
               <ul class="mylist_skill"> </ul>
               <div id = 'addbtn_container_skill'></div>
@@ -564,9 +567,9 @@ border: 1px solid #93b0bc;
             <div class = "RC RCdefect">
             <div style="display: flex; align-items: center;">
                 <img class = "mylistIMG_defect" style="width:70px; height:70px;  margin-right:10px;">
-                <h3 class = "mylistT_defect"> </h3>
+                <h4 class = "mylistT_defect"> </h4>
                 </div>
-              <p class = "mylistC_defect" style='margin-bottom:15px;'> </p>
+              <p class = "mylistC_defect" style='margin-bottom:15px; font-size:14px;'> </p>
               <hr/>
               <ul class="mylist_defect"> </ul>
               <div id = 'addbtn_container_defect'></div>
@@ -592,9 +595,9 @@ border: 1px solid #93b0bc;
     <div id="layer1" class="add_record_layer state_activity">
       <div class="pop-container" style="width:100%; display: flex;  flex-direction: column;  align-items: center;">
     
-      <div style="position:absolute; top:0; width:100%; height:20px; background-color:rgba( 0, 0, 0, 0.85 ); "> </div>
-            <div style="display:flex;  margin-top:15px; width: 100%;">
-                <img class = "popup_activity_img" src = "/hoodify/img/identity/hooodify_mini.png" style="margin:12px; height:150px; width:150px;">
+            <div style="position:absolute; top:0; width:100%; height:20px; background-color:rgba( 0, 0, 0, 0.85 ); "> </div>
+            <div style="display:flex;  margin-top:15px; height: 20%; width: 100%;">
+                <img class = "popup_activity_img" src = "/hoodify/img/identity/hooodify_mini.png" style="margin:12px;">
                 <div style="display: flex; flex-direction: column; ">
                     <h4 class="popup_activity_title" style="margin:12px;"> activity title</h4>
                     <p class="popup_activity_desc" style="margin:12px;"> activity desc </p>
@@ -602,7 +605,7 @@ border: 1px solid #93b0bc;
 
             </div>
 
-            <div style="display: flex; flex-direction: column; height:70%;  width: 95%;">
+            <div style="display: flex; flex-direction: column; height:65%;  width: 95%;">
                 <textarea class="record_title" placeholder="제목을 입력하세요" style="font-family: TmoneyRoundWindRegular; line-height:50%; margin:15px; resize:none; font-size:16px; padding: 8px;;"></textarea>    
                 <textarea class="record_cont" placeholder="내용을 입력하세요" style="font-family: TmoneyRoundWindRegular;  margin:15px; resize:none; font-size:16px; height:80%; padding:8px;"></textarea>
 
@@ -610,8 +613,8 @@ border: 1px solid #93b0bc;
 
 
            <div class="btn-r">
-           <div class="btn_layerClose generalBtn">닫기</div>
-           <div class="btn_add_record generalBtn">추가</div>
+                <div class="btn_layerClose generalBtn">닫기</div>
+                <div class="btn_add_record generalBtn">추가</div>
             
            </div>
 
@@ -620,11 +623,11 @@ border: 1px solid #93b0bc;
 
 
 
-    <div class = "activity_post state_activity" style= "flex-direction: column;  border: 3px solid black; border-radius: 12px;">
+    <div class = "activity_post state_activity" style= "flex-direction: column;  border: 3px solid black; border-radius: 12px; align-items: center;">
     <div style="position:absolute; top:0; width:100%; height:20px; background-color:rgba( 0, 0, 0, 0.85 );"> </div>
     
 
-            <div style="display:flex; margin-top: 20px;">
+            <div style="display:flex; margin-top: 20px; width:100%;  ">
                 <img class = "popup_activity_img2" src = "/hoodify/img/identity/hooodify_mini.png" style="margin:12px; height:150px; width:150px;">
                 <div style="display: flex; flex-direction: column; ">
                     <h4 class="popup_activity_title2" style="margin:12px;"> activity title</h4>
@@ -633,7 +636,7 @@ border: 1px solid #93b0bc;
 
             </div>
 
-            <div style="display: flex; flex-direction: column; height:75%">
+            <div style="display: flex; flex-direction: column; width:100%;  height:75%" >
                 <h4 class="popup_activity_record_title" style="margin:25px;"></h4>  
 
                 <p class="popup_activity_record_cont" style="margin:25px;">tt</p>
@@ -668,7 +671,7 @@ border: 1px solid #93b0bc;
 
             <div style="display: flex; flex-direction: column; height:70%">
                 <textarea class="record_title_modify" placeholder="제목을 입력하세요" style="font-family: TmoneyRoundWindRegular; line-height:50%; margin:15px; resize:none; font-size:16px; padding: 8px;;"></textarea>    
-                <textarea class="record_cont_modify" placeholder="내용을 입력하세요" style="font-family: TmoneyRoundWindRegular;  margin:15px; resize:none; font-size:16px; height:80%; padding:8px;"></textarea>
+                <textarea class="record_cont_modify" placeholder="내용을 입력하세요" style="font-family: TmoneyRoundWindRegular;  margin:15px; resize:none; font-size:16px; height:65%; padding:8px;"></textarea>
 
             </div>
 
