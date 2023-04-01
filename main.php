@@ -44,8 +44,8 @@ body{
   position: fixed;
   top: 50%;
   left: 50%;
-  width: 1100px;
-  height: 750px;
+  width: 58%;
+  height: 80%;
   background-color: #fff;
   border: 3px solid black;
   z-index: 1000;
@@ -215,8 +215,6 @@ border: 1px solid #93b0bc;
   border-top: 1px solid #304a8a;
   text-align: right;
   position: absolute;
-  margin-left: 2%;
-  margin-right: 2%;
   bottom: 10px;    
   display: flex;
   flex-direction: row-reverse;
@@ -337,6 +335,7 @@ border: 1px solid #93b0bc;
              background-color: white;
              border-radius:10px;
              border: 3px solid black;
+             
  }
 
  .add_identity_check{
@@ -363,10 +362,12 @@ border: 1px solid #93b0bc;
         background-color: white;
         border-radius:10px;
         border: 3px solid black;
+        justify-content: center;
 }
 
 .profile_layer{
         display: none;
+        justify-content: center;
         position: fixed;
         top: 50%;
         left: 50%;
@@ -385,6 +386,12 @@ border: 1px solid #93b0bc;
 .search_result::-webkit-scrollbar {
     display:none
 }
+
+.identity_desc_container::-webkit-scrollbar {
+    display:none
+}
+
+
 .search_layer {
              display: none;
              justify-content: center;
@@ -419,6 +426,7 @@ border: 1px solid #93b0bc;
       </div>
     </header>
         
+
         <div style='display:flex; justify-content: space-between;align-items: center; background-color: rgba( 47, 58, 78, 0.85); height:5%; padding:20px;'>
          <div class='profile' style='display: flex; align-items: center;' >
             <img src="/hoodify/img/identity/hooodify_mini.png" style="width:50px; height:50px; border-radius:15px;"> 
@@ -448,14 +456,14 @@ border: 1px solid #93b0bc;
         <div class = "Dhorizontal">
           <div class = "leftCont" style="margin-top: 10px; margin-bottom: 2%; display:flex;     flex-direction: column;">
           <div style="height:20%">
-                <div style="display:flex;">
+                <div style="display:flex; height:100%;">
                     <img class = "identity_img_container"></img>
 
 
-                    <div class="pop-conts" id = "cont" style="display:flex; flex-direction: column; width: 60%; margin-left:10px;">
+                    <div class="pop-conts" id = "cont" style="display:flex; flex-direction: column; width: 60%; margin-left:10px; height: inherit;">
 
                     <h4 class = "identity_title_container"></h4>
-                    <p class = "identity_desc_container"></p>
+                    <p class = "identity_desc_container" style="overflow-y: scroll;"></p>
 
                     </div>
                 </div>
@@ -585,7 +593,7 @@ border: 1px solid #93b0bc;
       <div class="pop-container" style="width:100%; display: flex;  flex-direction: column;  align-items: center;">
     
       <div style="position:absolute; top:0; width:100%; height:20px; background-color:rgba( 0, 0, 0, 0.85 ); "> </div>
-            <div style="display:flex;  margin-top:15px;">
+            <div style="display:flex;  margin-top:15px; width: 100%;">
                 <img class = "popup_activity_img" src = "/hoodify/img/identity/hooodify_mini.png" style="margin:12px; height:150px; width:150px;">
                 <div style="display: flex; flex-direction: column; ">
                     <h4 class="popup_activity_title" style="margin:12px;"> activity title</h4>
@@ -698,7 +706,7 @@ border: 1px solid #93b0bc;
     </div>
 
     <div class="delete_check_identity">
-         <div style="margin-top:5%; margin-left:5%;"> 모든 관련 기록들이 삭제됩니다. 삭제하시겠습니까? </div>
+         <div style="margin-top:5%; margin-left:5%; width: 100%;"> 모든 관련 기록들이 삭제됩니다. 삭제하시겠습니까? </div>
          <div class="btn-r" style="margin-bottom: 25px;">
 
          <div class="btn_layerClose generalBtn">닫기</div>
@@ -956,7 +964,7 @@ border: 1px solid #93b0bc;
 $('.logout_btn').click(function(){
 
     
-    document.location.href='Logout.php';
+    document.location.href='logout.php';
     kakaoLogout();
 
 

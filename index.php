@@ -941,9 +941,9 @@
 
 
 
-             <p class="selection_box" id="selection_state2" style=" background-color: rgba( 30, 40, 88); margin-left:550px; margin-bottom:100px;">경제 </p>
-             <p class="selection_box" id="selection_state3" style="background-color: rgba( 65, 51, 112); margin-right: 400px; margin-bottom:320px;">사회 </p>
-             <p class="selection_box" id="selection_state5" style="background-color: rgba( 40, 70, 98); margin-right: 50px; margin-top:370px;">건강  </p>
+             <p class="selection_box" id="selection_state2" style="cursor:default; background-color: rgba( 30, 40, 88); margin-left:550px; margin-bottom:100px;">경제 </p>
+             <p class="selection_box" id="selection_state3" style="cursor:default; background-color: rgba( 65, 51, 112); margin-right: 400px; margin-bottom:320px;">사회 </p>
+             <p class="selection_box" id="selection_state5" style="cursor:default; background-color: rgba( 40, 70, 98); margin-right: 50px; margin-top:370px;">건강  </p>
 
 
 
@@ -1610,6 +1610,7 @@ function kakaoLogin() {
                 console.log("체크"+res);
                 $('.login_account').fadeOut('fast');
                 window.location.href='http://127.0.0.1/hoodify/main.php';
+               // window.location.href='https://hoodify.cafe24.com/hoodify/main.php';
 
               },
               error : function(XMLHttpRequest, textStatus, errorThrown){ // 비동기 통신이 실패할경우 error 콜백으로 들어옵니다.
