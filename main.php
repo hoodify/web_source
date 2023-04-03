@@ -3,9 +3,11 @@
 <html>
 <head>
     <meta charset="euc-kr">
-    <title>후디파이</title>
+    <title>후디파이. 세상의 모든 정체성</title>
     <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
     <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+    <link rel="icon" href="/hoodify/img/identity/hooodify_mini.png">
+
 
 </head>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -861,6 +863,47 @@ border: 1px solid #93b0bc;
 <footer style="bottom:0px; width: 100%; height: 30px; position : absolute; bottom : 0; background-color: rgba( 0, 0, 0, 0.85 );"></footer>
 
 <script>
+
+    $(document).ready(function(){
+
+        
+        $.ajax({
+            type : "POST",
+            url : "/hoodify/check_main_user.php",
+
+            success : function(res){
+
+            console.log('사용자 확인'+res);
+
+            if(res == "no user"){
+
+
+                // 간단히 로그인 화면만 보이게 만들기
+                // 레이아웃 숨기기
+                // 띄우는 레이아웃은 absolute로 가운데 보이기
+                // 로그인하면 화면 다시 불러오기
+                // 로그아웃은 화면 다시 불러오기
+                
+
+                console.log('공용 페이지');
+
+            }
+            else if(res == "user on"){
+
+                
+                console.log('개인 페이지');
+
+            }
+
+
+
+            },
+            error : function(XMLHttpRequest, textStatus, errorThrown){ // 비동기 통신이 실패할경우 error 콜백으로 들어옵니다.
+                alert("통신 실패.")
+            }
+        });
+
+    })
 
     var curr_identity_code;
 
