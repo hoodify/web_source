@@ -14,9 +14,10 @@
                 $record_title = $_POST['record_title'];
                 $record_cont = $_POST['record_cont'];
 
+                $public_state = $_POST['public_state'];
 
 
-                $query = "INSERT INTO user_item (identity_code, item_code, user_code, title, record) VALUES ('$identity_code', '$item_code', '$user_code', '$record_title', '$record_cont')";
+                $query = "INSERT INTO user_item (identity_code, item_code, user_code, title, record, public) VALUES ('$identity_code', '$item_code', '$user_code', '$record_title', '$record_cont', $public_state)";
 
                 $stmt = $conn->prepare($query);
 

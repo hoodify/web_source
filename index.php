@@ -1612,7 +1612,7 @@ function kakaoLogin() {
                 console.log("체크"+res);
                 $('.login_account').fadeOut('fast');
                 window.location.href='http://127.0.0.1/hoodify/main.php';
-               // window.location.href='https://hoodify.cafe24.com/hoodify/main.php';
+                //window.location.href='https://hoodify.cafe24.com/hoodify/main.php';
 
               },
               error : function(XMLHttpRequest, textStatus, errorThrown){ // 비동기 통신이 실패할경우 error 콜백으로 들어옵니다.
