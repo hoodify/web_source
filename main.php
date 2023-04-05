@@ -2729,7 +2729,7 @@ $.ajax({
 
                                                                     //현재 창의 identity의 acitivity 
                                                                     //console.log(activity);
-                                                                    $('.mylist').empty();
+                                                                    
                                                                     $('#addbtn_container').empty();
 
                                                                     $('.mylistIMG').css("display", "flex").attr("src",activity.activity_img);
@@ -2756,62 +2756,7 @@ $.ajax({
                                                                     $('.popup_activity_desc2').text(activity.activity_desc);
 
 
-                                                                        $.ajax({
-                                                                                type : "POST",
-                                                                                url : "/hoodify/get_user_activity_record.php",
-                                                                                data : {
-                                                                                        'activity_code': activity.activity_code,
-                                                                                    },
-                                                                                dataType : 'json',
-                                                                                success : function(res){
-                                                                                   
-
-                                                                                    for (var i = 0; i < res.length; i++) {
-
-                                                                                        var record = res[i];
-                                                                                        //console.log(res);
-
-                                                                                        $('<p>', {
-                                                                                            text: record.title,
-
-                                                                                            }).css({
-                                                                                            "padding": "12px",
-                                                                                            "width": "90%",
-                                                                                            "fontWeight": "bold",
-                                                                                            "borderBottom": "1px solid #D8D8D8",
-                                                                                        
-                                                                                        }).hover(function() {
-                                                                                        $(this).css("background-color", "#bad8f2");
-                                                                                        }, function(){
-                                                                                        $(this).css("background-color", "white");
-                                                                                        }).click(((record) => function (e){
-                                                                                           // console.log(record);
-
-                                                                                            Global_Var.userInfo.curr_record_code = record.user_activity_code;
-                                                                                           
-
-                                                                                            $('.popup_activity_record_title').text(record.title);
-                                                                                            $('.popup_activity_record_cont').text(record.record);
-                                                                                            
-
-
-                                                                                            layer_popup($('.activity_post'));
-
-
-
-
-                                                                                        })(record)).appendTo($('.mylist'));
-
-
-                                                                                    }
-
-
-
-                                                                                },
-                                                                                error : function(XMLHttpRequest, textStatus, errorThrown){ // 비동기 통신이 실패할경우 error 콜백으로 들어옵니다.
-                                                                                    alert("통신 실패.")
-                                                                                }
-                                                                            });
+                                                                    refresh_activity_record_list();
 
                                                                             
                                                                             // 추가하기 버튼 동적 생성
@@ -2919,7 +2864,7 @@ $.ajax({
 
                                                                     //현재 창의 identity의 item
                                                                    // console.log(item);
-                                                                    $('.mylist_item').empty();
+                                                                    
                                                                     $('#addbtn_container_item').empty();
 
                                                                     $('.mylistIMG_item').css("display", "flex").attr("src",item.item_img);
@@ -2946,63 +2891,8 @@ $.ajax({
                                                                     $('.popup_activity_desc2').text(item.item_desc);
 
 
-                                                                        $.ajax({
-                                                                                type : "POST",
-                                                                                url : "/hoodify/get_user_item_record.php",
-                                                                                data : {
-                                                                                        'item_code': item.item_code,
-                                                                                    },
-                                                                                dataType : 'json',
-                                                                                success : function(res){
-                                                                                   
 
-                                                                                    for (var i = 0; i < res.length; i++) {
-
-                                                                                        var record = res[i];
-                                                                                      //  console.log(res);
-
-                                                                                        $('<p>', {
-                                                                                            text: record.title,
-
-                                                                                            }).css({
-                                                                                            "padding": "12px",
-                                                                                            "width": "90%",
-                                                                                            "fontWeight": "bold",
-                                                                                            "borderBottom": "1px solid #D8D8D8",
-                                                                                        
-                                                                                        }).hover(function() {
-                                                                                        $(this).css("background-color", "#bad8f2");
-                                                                                        }, function(){
-                                                                                        $(this).css("background-color", "white");
-                                                                                        }).click(((record) => function (e){
-
-                                                                                            
-
-
-                                                                                            $('.popup_activity_record_title').text(record.title);
-                                                                                            $('.popup_activity_record_cont').text(record.record);
-                                                                                            
-                                                                                            Global_Var.userInfo.curr_record_code = record.user_item_code;
-                                                                                           
-
-
-                                                                                            layer_popup($('.activity_post'));
-
-
-
-
-                                                                                        })(record)).appendTo($('.mylist_item'));
-
-
-                                                                                    }
-
-
-
-                                                                                },
-                                                                                error : function(XMLHttpRequest, textStatus, errorThrown){ // 비동기 통신이 실패할경우 error 콜백으로 들어옵니다.
-                                                                                    alert("통신 실패.")
-                                                                                }
-                                                                            });
+                                                                    refresh_item_record_list();
 
                                                                             
                                                                             // 추가하기 버튼 동적 생성
@@ -3108,7 +2998,7 @@ $.ajax({
 
                                                             //현재 창의 identity의 skill
                                                             //console.log(skill);
-                                                            $('.mylist_skill').empty();
+                                                           
                                                             $('#addbtn_container_skill').empty();
 
                                                            $('.mylistIMG_skill').css("display", "flex").attr("src",skill.skill_img);
@@ -3136,61 +3026,9 @@ $.ajax({
                                                             $('.popup_activity_desc2').text(skill.skill_desc);
 
                                                             //console.log(skill);
-                                                            
-                                                                $.ajax({
-                                                                        type : "POST",
-                                                                        url : "/hoodify/get_user_skill_record.php",
-                                                                        data : {
-                                                                                'skill_code': skill.skill_code,
-                                                                            },
-                                                                        dataType : 'json',
-                                                                        success : function(res){
-                                                                            
 
-                                                                            for (var i = 0; i < res.length; i++) {
+                                                            refresh_skill_record_list();
 
-                                                                                var record = res[i];
-                                                                                console.log(res);
-
-                                                                                $('<p>', {
-                                                                                    text: record.title,
-
-                                                                                    }).css({
-                                                                                    "padding": "12px",
-                                                                                    "width": "90%",
-                                                                                    "fontWeight": "bold",
-                                                                                    "borderBottom": "1px solid #D8D8D8",
-                                                                                
-                                                                                }).hover(function() {
-                                                                                $(this).css("background-color", "#bad8f2");
-                                                                                }, function(){
-                                                                                $(this).css("background-color", "white");
-                                                                                }).click(((record) => function (e){
-
-                                                                                           
-
-                                                                                    $('.popup_activity_record_title').text(record.title);
-                                                                                    $('.popup_activity_record_cont').text(record.record);
-                                                                                    
-                                                                                    Global_Var.userInfo.curr_record_code = record.user_skill_code;
-                                                                                    
-
-                                                                                    layer_popup($('.activity_post'));
-
-
-                                                                                })(record)).appendTo($('.mylist_skill'));
-
-
-                                                                            }
-
-
-
-                                                                        },
-                                                                        error : function(XMLHttpRequest, textStatus, errorThrown){ // 비동기 통신이 실패할경우 error 콜백으로 들어옵니다.
-                                                                            alert("통신 실패.")
-                                                                        }
-                                                                    });
-                                                                    
                                                                     
                                                                     // 추가하기 버튼 동적 생성
                                                                     
@@ -3573,56 +3411,7 @@ $('#btn_addCom').click(function(){
          console.log(res);
           //입력시 activity record 리스트 갱신
          
-         $('.mylist').empty();
-            $.ajax({
-                        type : "POST",
-                        url : "/hoodify/get_user_activity_record.php",
-                        data : {
-                                'activity_code': Global_Var.userInfo.curr_activity_code,
-                            },
-                        dataType : 'json',
-                        success : function(res){
-                            
-
-                            for (var i = 0; i < res.length; i++) {
-
-                                var record = res[i];
-                                $('<p>', {
-                                    text: record.title,
-
-                                    }).css({
-                                    "padding": "12px",
-                                    "width": "90%",
-                                    "fontWeight": "bold",
-                                    "borderBottom": "1px solid #D8D8D8",
-                                
-                                }).hover(function() {
-                                $(this).css("background-color", "#bad8f2");
-                                }, function(){
-                                $(this).css("background-color", "white");
-                                }).click(((record) => function (e){
-
-                                    $('.popup_activity_record_title').text(record.title);
-                                    $('.popup_activity_record_cont').text(record.record);
-
-                                    Global_Var.userInfo.curr_record_code = record.user_activity_code;
-                                    
-                                    layer_popup($('.activity_post'));
-
-
-
-                                })(record)).appendTo($('.mylist'));
-
-
-                            }
-
-
-
-                        },
-                        error : function(XMLHttpRequest, textStatus, errorThrown){ // 비동기 통신이 실패할경우 error 콜백으로 들어옵니다.
-                            alert("통신 실패.")
-                        }
-                    });
+          refresh_activity_record_list();
 
 
                 
@@ -3655,60 +3444,7 @@ $('#btn_addCom').click(function(){
          console.log(res);
          //입력시 item record 리스트 갱신
          
-         $('.mylist_item').empty();
-            $.ajax({
-                        type : "POST",
-                        url : "/hoodify/get_user_item_record.php",
-                        data : {
-                                'item_code': Global_Var.userInfo.curr_item_code,
-                            },
-                        dataType : 'json',
-                        success : function(res){
-                            
-
-                            for (var i = 0; i < res.length; i++) {
-
-                                var record = res[i];
-                                console.log(record);
-
-                                $('<p>', {
-                                    text: record.title,
-
-                                    }).css({
-                                    "padding": "12px",
-                                    "width": "90%",
-                                    "fontWeight": "bold",
-                                    "borderBottom": "1px solid #D8D8D8",
-                                
-                                }).hover(function() {
-                                $(this).css("background-color", "#bad8f2");
-                                }, function(){
-                                $(this).css("background-color", "white");
-                                }).click(((record) => function (e){
-
-                                    Global_Var.userInfo.curr_record_code = record.user_item_code;
-
-                                    $('.popup_activity_record_title').text(record.title);
-                                    $('.popup_activity_record_cont').text(record.record);
-
-
-                                    
-                                    layer_popup($('.activity_post'));
-
-
-
-                                })(record)).appendTo($('.mylist_item'));
-
-
-                            }
-
-
-
-                        },
-                        error : function(XMLHttpRequest, textStatus, errorThrown){ // 비동기 통신이 실패할경우 error 콜백으로 들어옵니다.
-                            alert("통신 실패.")
-                        }
-                    });
+         refresh_item_record_list();
 
 
                 
@@ -3740,60 +3476,7 @@ $('#btn_addCom').click(function(){
 
             console.log(res);
             
-            $('.mylist_skill').empty();
-                $.ajax({
-                            type : "POST",
-                            url : "/hoodify/get_user_skill_record.php",
-                            data : {
-                                    'skill_code': Global_Var.userInfo.curr_skill_code,
-                                },
-                            dataType : 'json',
-                            success : function(res){
-                                
-
-                                for (var i = 0; i < res.length; i++) {
-
-                                    var record = res[i];
-                                    console.log(record);
-
-                                    $('<p>', {
-                                        text: record.title,
-
-                                        }).css({
-                                        "padding": "12px",
-                                        "width": "90%",
-                                        "fontWeight": "bold",
-                                        "borderBottom": "1px solid #D8D8D8",
-                                    
-                                    }).hover(function() {
-                                    $(this).css("background-color", "#bad8f2");
-                                    }, function(){
-                                    $(this).css("background-color", "white");
-                                    }).click(((record) => function (e){
-
-                                        Global_Var.userInfo.curr_record_code = record.user_skill_code;
-
-                                        $('.popup_activity_record_title').text(record.title);
-                                        $('.popup_activity_record_cont').text(record.record);
-
-
-                                        
-                                        layer_popup($('.activity_post'));
-
-
-
-                                    })(record)).appendTo($('.mylist_skill'));
-
-
-                                }
-
-
-
-                            },
-                            error : function(XMLHttpRequest, textStatus, errorThrown){ // 비동기 통신이 실패할경우 error 콜백으로 들어옵니다.
-                                alert("통신 실패.")
-                            }
-                        });
+            refresh_skill_record_list();
 
 
                     
@@ -3844,56 +3527,7 @@ if($('.activity_post').hasClass('state_activity')){
           
             if(res=="success"){
 
-                $('.mylist').empty();
-
-                    $.ajax({
-                                type : "POST",
-                                url : "/hoodify/get_user_activity_record.php",
-                                data : {
-                                        'activity_code': Global_Var.userInfo.curr_activity_code,
-                                    },
-                                dataType : 'json',
-                                success : function(res){
-                                    
-                                    for (var i = 0; i < res.length; i++) {
-
-                                        
-                                        var record = res[i];
-                                        console.log(record);
-                                        $('<p>', {
-                                            text: record.title,
-
-                                            }).css({
-                                            "padding": "12px",
-                                            "width": "90%",
-                                            "fontWeight": "bold",
-                                            "borderBottom": "1px solid #D8D8D8",
-                                        
-                                        }).hover(function() {
-                                        $(this).css("background-color", "#bad8f2");
-                                        }, function(){
-                                        $(this).css("background-color", "white");
-                                        }).click(((record) => function (e){
-
-                                            console.log(record[0]);
-                                            Global_Var.userInfo.curr_record_code = record.user_activity_code;
-
-                                            $('.popup_activity_record_title').text(record.title);
-                                            $('.popup_activity_record_cont').text(record.record);
-
-
-                                            layer_popup($('.activity_post'));
-
-
-
-                                        })(record)).appendTo($('.mylist'));
-                                    }
-                                },
-                                error : function(XMLHttpRequest, textStatus, errorThrown){ // 비동기 통신이 실패할경우 error 콜백으로 들어옵니다.
-                                    alert("통신 실패.")
-                                }
-                            });
-
+                refresh_activity_record_list();
 
 
                 $('.activity_post').fadeOut('fast');
@@ -3923,52 +3557,7 @@ else if($('.activity_post').hasClass('state_item')){
             if(res=="success"){
 
 
-                $('.mylist_item').empty();
-                
-                $.ajax({
-                            type : "POST",
-                            url : "/hoodify/get_user_item_record.php",
-                            data : {
-                                    'item_code': Global_Var.userInfo.curr_item_code,
-                                },
-                            dataType : 'json',
-                            success : function(res){
-                                
-                                for (var i = 0; i < res.length; i++) {
-
-                                    var record = res[i];
-                                    $('<p>', {
-                                        text: record.title,
-
-                                        }).css({
-                                        "padding": "12px",
-                                        "width": "90%",
-                                        "fontWeight": "bold",
-                                        "borderBottom": "1px solid #D8D8D8",
-                                    
-                                    }).hover(function() {
-                                    $(this).css("background-color", "#bad8f2");
-                                    }, function(){
-                                    $(this).css("background-color", "white");
-                                    }).click(((record) => function (e){
-
-                                        console.log(record.record_code);
-                                        Global_Var.userInfo.curr_record_code = record.user_item_code;
-
-                                        $('.popup_activity_record_title').text(record.title);
-                                        $('.popup_activity_record_cont').text(record.record);
-
-                                        layer_popup($('.activity_post'));
-
-
-
-                                    })(record)).appendTo($('.mylist_item'));
-                                }
-                            },
-                            error : function(XMLHttpRequest, textStatus, errorThrown){ // 비동기 통신이 실패할경우 error 콜백으로 들어옵니다.
-                                alert("통신 실패.")
-                            }
-                        });
+                refresh_item_record_list();
 
 
                 $('.activity_post').fadeOut('fast');
@@ -3999,52 +3588,7 @@ else if($('.activity_post').hasClass('state_skill')){
             if(res=="success"){
 
 
-                $('.mylist_skill').empty();
-                
-                $.ajax({
-                            type : "POST",
-                            url : "/hoodify/get_user_skill_record.php",
-                            data : {
-                                    'skill_code': Global_Var.userInfo.curr_skill_code,
-                                },
-                            dataType : 'json',
-                            success : function(res){
-                                
-                                for (var i = 0; i < res.length; i++) {
-
-                                    var record = res[i];
-                                    $('<p>', {
-                                        text: record.title,
-
-                                        }).css({
-                                        "padding": "12px",
-                                        "width": "90%",
-                                        "fontWeight": "bold",
-                                        "borderBottom": "1px solid #D8D8D8",
-                                    
-                                    }).hover(function() {
-                                    $(this).css("background-color", "#bad8f2");
-                                    }, function(){
-                                    $(this).css("background-color", "white");
-                                    }).click(((record) => function (e){
-
-                                        console.log(record.record_code);
-                                        Global_Var.userInfo.curr_record_code = record.user_skill_code;
-
-                                        $('.popup_activity_record_title').text(record.title);
-                                        $('.popup_activity_record_cont').text(record.record);
-
-                                        layer_popup($('.activity_post'));
-
-
-
-                                    })(record)).appendTo($('.mylist_skill'));
-                                }
-                            },
-                            error : function(XMLHttpRequest, textStatus, errorThrown){ // 비동기 통신이 실패할경우 error 콜백으로 들어옵니다.
-                                alert("통신 실패.")
-                            }
-                        });
+                refresh_skill_record_list();
 
 
                 $('.activity_post').fadeOut('fast');
@@ -4095,16 +3639,16 @@ $('.mylist').empty();
                             
                             for (var i = 0; i < res.length; i++) {
 
-                                var record = res[i];
-                                $('<p>', {
-                                    text: record.title,
-
-                                    }).css({
-                                    "padding": "12px",
-                                    "width": "90%",
-                                    "fontWeight": "bold",
-                                    "borderBottom": "1px solid #D8D8D8",
                                 
+                                var record = res[i]; 
+
+                                var record_list = $("<div>", {
+                                }).css({
+
+                                    display: "flex",
+                                    alignItems: "center",
+                                    borderBottom: "1px solid #D8D8D8",
+
                                 }).hover(function() {
                                 $(this).css("background-color", "#bad8f2");
                                 }, function(){
@@ -4114,11 +3658,33 @@ $('.mylist').empty();
                                     $('.popup_activity_record_title').text(record.title);
                                     $('.popup_activity_record_cont').text(record.record);
 
+                                    Global_Var.userInfo.curr_record_code = record.user_activity_code;
+                                    
                                     layer_popup($('.activity_post'));
 
 
+                                })(record)).appendTo($('.mylist'));;
 
-                                })(record)).appendTo($('.mylist'));
+                                    $('<img>', {
+                                        src: '/hoodify/img/scroll.png'
+
+                                    }).css({
+                                        width: "25px",
+                                        height: "25px",
+                                        margin: "4.5px",
+                                        float: "left",
+                                        margin: "7px",
+                                    }).appendTo(record_list);
+
+                                    $('<p>', {
+                                        text: record.title,
+
+                                        }).css({
+                                        "padding": "12px",
+                                        "width": "90%",
+                                        "fontWeight": "bold",
+                                    
+                                    }).appendTo(record_list);
                             }
                         },
                         error : function(XMLHttpRequest, textStatus, errorThrown){ // 비동기 통신이 실패할경우 error 콜백으로 들어옵니다.
@@ -4147,16 +3713,15 @@ $.ajax({
                 
                 for (var i = 0; i < res.length; i++) {
 
-                    var record = res[i];
-                    $('<p>', {
-                        text: record.title,
+                    var record = res[i]; 
 
-                        }).css({
-                        "padding": "12px",
-                        "width": "90%",
-                        "fontWeight": "bold",
-                        "borderBottom": "1px solid #D8D8D8",
-                    
+                    var record_list = $("<div>", {
+                    }).css({
+
+                        display: "flex",
+                        alignItems: "center",
+                        borderBottom: "1px solid #D8D8D8",
+
                     }).hover(function() {
                     $(this).css("background-color", "#bad8f2");
                     }, function(){
@@ -4166,11 +3731,33 @@ $.ajax({
                         $('.popup_activity_record_title').text(record.title);
                         $('.popup_activity_record_cont').text(record.record);
 
+                        Global_Var.userInfo.curr_record_code = record.user_item_code;
+                        
                         layer_popup($('.activity_post'));
 
 
+                    })(record)).appendTo($('.mylist_item'));;
 
-                    })(record)).appendTo($('.mylist_item'));
+                        $('<img>', {
+                            src: '/hoodify/img/scroll.png'
+
+                        }).css({
+                            width: "25px",
+                            height: "25px",
+                            margin: "4.5px",
+                            float: "left",
+                            margin: "7px",
+                        }).appendTo(record_list);
+
+                        $('<p>', {
+                            text: record.title,
+
+                            }).css({
+                            "padding": "12px",
+                            "width": "90%",
+                            "fontWeight": "bold",
+                        
+                        }).appendTo(record_list);
                 }
             },
             error : function(XMLHttpRequest, textStatus, errorThrown){ // 비동기 통신이 실패할경우 error 콜백으로 들어옵니다.
@@ -4198,16 +3785,15 @@ $.ajax({
                 
                 for (var i = 0; i < res.length; i++) {
 
-                    var record = res[i];
-                    $('<p>', {
-                        text: record.title,
+                    var record = res[i]; 
 
-                        }).css({
-                        "padding": "12px",
-                        "width": "90%",
-                        "fontWeight": "bold",
-                        "borderBottom": "1px solid #D8D8D8",
-                    
+                    var record_list = $("<div>", {
+                    }).css({
+
+                        display: "flex",
+                        alignItems: "center",
+                        borderBottom: "1px solid #D8D8D8",
+
                     }).hover(function() {
                     $(this).css("background-color", "#bad8f2");
                     }, function(){
@@ -4217,11 +3803,33 @@ $.ajax({
                         $('.popup_activity_record_title').text(record.title);
                         $('.popup_activity_record_cont').text(record.record);
 
+                        Global_Var.userInfo.curr_record_code = record.user_skill_code;
+                        
                         layer_popup($('.activity_post'));
 
 
+                    })(record)).appendTo($('.mylist_skill'));;
 
-                    })(record)).appendTo($('.mylist_skill'));
+                        $('<img>', {
+                            src: '/hoodify/img/scroll.png'
+
+                        }).css({
+                            width: "25px",
+                            height: "25px",
+                            margin: "4.5px",
+                            float: "left",
+                            margin: "7px",
+                        }).appendTo(record_list);
+
+                        $('<p>', {
+                            text: record.title,
+
+                            }).css({
+                            "padding": "12px",
+                            "width": "90%",
+                            "fontWeight": "bold",
+                        
+                        }).appendTo(record_list);
                 }
             },
             error : function(XMLHttpRequest, textStatus, errorThrown){ // 비동기 통신이 실패할경우 error 콜백으로 들어옵니다.
@@ -4373,7 +3981,6 @@ $('.btn_modify_com').click(function(){
                     $('.popup_activity_record_title').text(record_title);
                     $('.popup_activity_record_cont').text(record_cont);
 
-                    // 수정시 item record 리스트 갱신하기
                     
                     refresh_skill_record_list();
                     
