@@ -438,13 +438,29 @@ border: 1px solid #93b0bc;
            }
 
 
+   #space_01{
+
+    }
+    #space_01:after{
+
+    border-top:15px solid #333333;
+    border-left: 15px solid transparent;
+    border-right: 0px solid transparent;
+    border-bottom: 0px solid transparent;
+    content:"";
+    position:absolute;
+    top:2px;
+    left:-15px;
+
+    }
+
+
 </style>
 
 
 <body>
     <header style="display: flex; align-items: center;  width: 100%; height: 30px; background-color: rgba( 0, 0, 0, 0.85 );  z-index: 1010;    position: relative;">
       <div style="display: flex; align-items: center;">
-          <!-- <img src ="/hoodify/img/hoodify_CRM.png" style="margin-left:25px; width:50px; height:50px; border-radius:40px; "> -->
           <p style="color: white; margin-left:35px; letter-spacing:3px;">   H O O D I F Y </p>
 
 
@@ -472,8 +488,17 @@ border: 1px solid #93b0bc;
         <div class = 'public_main' style="align-items: center;  justify-content: center;width: 100%;  background-color: rgba( 47, 58, 78, 0.85); display:none; height: 100%; bottom: 30px;  position: absolute;">
 
                 <div class = 'login_account' style="padding: 20px; width: 20%; display:flex; justify-content: center; align-items: center; flex-direction: column;">
+                <div style="width: 100%; display: flex; height:50%; margin-bottom: 25px;">
+                   <img src ="/hoodify/img/identity/hooodify_mini.png" style="width:120px; height:120px; border-radius:20px; margin-right:15px; ">
+                    <div id="space_01" style="position: relative; border: 2px solid black; border-radius: 5px; padding:20px; width:100%; margin-right:30px;">
+                     <p> 시작해봅시다 </p>
+                </div>
+                </div>
+
                 <div >
-                <img class = "login_with_kakao" style="cursor: pointer; margin-top: 200px; width:100%; height:50px;" src="/hoodify/img/login/kakao_login_medium_wide.png">
+              
+                <img class = "login_with_kakao" style="cursor: pointer; margin-top: 20px; width:100%; height:50px;" src="/hoodify/img/login/kakao_login_medium_wide.png">
+
                 </div>
                
 
@@ -643,12 +668,8 @@ border: 1px solid #93b0bc;
             </div>
 
            <div style="width:95%; height:4%; display: flex; flex-direction: row-reverse; margin-right: 40px;"> 
-            
-                
                 <input type="checkbox"style="margin-left:8px;" class="public_check" name="public_check" checked>
                 <label for="public_check" > 공개 </label>
-           
-
             </div>
 
             <div style="display: flex; flex-direction: column; height:65%;  width: 95%;">
@@ -704,9 +725,10 @@ border: 1px solid #93b0bc;
   <div id="layer3" class="modify_record_layer state_activity">
   <div style="position:absolute; top:0; width:100%; height:20px; background-color:rgba( 0, 0, 0, 0.85 );"> </div>
     
-      <div class="pop-container" style="width:100%; margin-top:20px;" >
+      <div class="pop-container" style="width:100%; margin-top:20px; display: flex; flex-direction: column;
+    align-items: center;" >
 
-            <div style="display:flex;">
+            <div style="display:flex; width:100%;">
                 <img class = "popup_activity_img" src = "/hoodify/img/identity/hooodify_mini.png" style="margin:12px; height:150px; width:150px;">
                 <div style="display: flex; flex-direction: column; ">
                     <h4 class="popup_activity_title" style="margin:12px;"> activity title</h4>
@@ -715,7 +737,13 @@ border: 1px solid #93b0bc;
 
             </div>
 
-            <div style="display: flex; flex-direction: column; height:70%">
+            <div style="width:95%; height:4%; display: flex; flex-direction: row-reverse; margin-right: 40px;"> 
+                <input type="checkbox"style="margin-left:8px;" class="public_check_modify" name="public_check_modify" checked>
+                <label for="public_check_modify" > 공개 </label>
+            </div>
+
+
+            <div style="display: flex; flex-direction: column; height:70%; display: flex; flex-direction: column; width: 100%;">
                 <textarea class="record_title_modify" placeholder="제목을 입력하세요" style="font-family: TmoneyRoundWindRegular; line-height:50%; margin:15px; resize:none; font-size:16px; padding: 8px;;"></textarea>    
                 <textarea class="record_cont_modify" placeholder="내용을 입력하세요" style="font-family: TmoneyRoundWindRegular;  margin:15px; resize:none; font-size:16px; height:65%; padding:8px;"></textarea>
 
@@ -1266,6 +1294,8 @@ $.ajax({
                                     margin: "4.5px",
                                     float: "left",
                                     margin: "7px",
+                                    borderRadius: '12px',   
+
                                 }).appendTo(list);
 
 
@@ -1349,6 +1379,7 @@ $.ajax({
                                     margin: "4.5px",
                                     float: "left",
                                     margin: "7px",
+                                    borderRadius: '12px', 
                                 }).appendTo(list);
 
 
@@ -1433,6 +1464,7 @@ $.ajax({
                                     margin: "4.5px",
                                     float: "left",
                                     margin: "7px",
+                                    borderRadius: '12px', 
                                 }).appendTo(list);
 
 
@@ -1520,6 +1552,7 @@ $.ajax({
                                     margin: "4.5px",
                                     float: "left",
                                     margin: "7px",
+                                    borderRadius: '12px', 
                                 }).appendTo(list);
 
 
@@ -1578,6 +1611,7 @@ $.ajax({
                 height: "50px",
                 margin: "5px",
                 float: "left",
+                borderRadius: '12px', 
 
                 }).appendTo(list_container);        
 
@@ -1862,6 +1896,7 @@ $.ajax({
                                     margin: "4.5px",
                                     float: "left",
                                     margin: "7px",
+                                    borderRadius: '12px', 
                                 }).appendTo(list);
 
 
@@ -1946,6 +1981,7 @@ $.ajax({
                                     margin: "4.5px",
                                     float: "left",
                                     margin: "7px",
+                                    borderRadius: '12px', 
                                 }).appendTo(list);
 
 
@@ -2031,6 +2067,7 @@ $.ajax({
                                     margin: "4.5px",
                                     float: "left",
                                     margin: "7px",
+                                    borderRadius: '12px', 
                                 }).appendTo(list);
 
 
@@ -2115,6 +2152,7 @@ $.ajax({
                                     margin: "4.5px",
                                     float: "left",
                                     margin: "7px",
+                                    borderRadius: '12px', 
                                 }).appendTo(list);
 
 
@@ -2185,6 +2223,7 @@ $.ajax({
                 height: "50px",
                 margin: "5px",
                 float: "left",
+                borderRadius: '12px', 
 
                 }).appendTo(list_container);        
 
@@ -2447,6 +2486,8 @@ $.ajax({
             margin: "4.5px",
             float: "left",
             margin: "7px",
+            borderRadius: '12px', 
+
             }).appendTo(list);
 
             $('<p>', {
@@ -2822,6 +2863,7 @@ $.ajax({
                                                             height: "50px",
                                                             margin: "5px",
                                                             float: "left",
+                                                            borderRadius: '12px',  
 
                                                          }).appendTo(list_container);        
 
@@ -3012,6 +3054,8 @@ $.ajax({
                                                             height: "50px",
                                                             margin: "5px",
                                                             float: "left",
+                                                            borderRadius: '12px',  
+                                                            
 
                                                          }).appendTo(list_container);        
 
@@ -3196,6 +3240,7 @@ $.ajax({
                                                     height: "50px",
                                                     margin: "5px",
                                                     float: "left",
+                                                    borderRadius: '12px',  
 
                                                     }).appendTo(list_container);        
 
@@ -3374,6 +3419,7 @@ $.ajax({
                                                     height: "50px",
                                                     margin: "5px",
                                                     float: "left",
+                                                    borderRadius: '12px',  
 
                                                     }).appendTo(list_container);        
 
@@ -3420,6 +3466,8 @@ $.ajax({
                                       margin: "4.5px",
                                       float: "left",
                                       margin: "7px",
+                                      borderRadius: '12px',  
+                                      
                                     }).appendTo(list);
 
 
@@ -4027,18 +4075,6 @@ else if($('.activity_post').hasClass('state_skill')){
 
 
 
-/////////////////////////////////////////////////////////////////////////////////////
-// record 수정하기 버튼
-
-$('.btn_modify').click(function(){
-    var record_title = $('.popup_activity_record_title').text();
-    var record_cont = $('.popup_activity_record_cont').text();
-    console.log(record_title);
-    $('.record_title_modify').val(record_title);
-    $('.record_cont_modify').val(record_cont);
-    
-    layer_popup($('.modify_record_layer'));
-});
 
 
 /////////////////////////////////////////////////////////////////////////////////////
@@ -4197,6 +4233,18 @@ $.ajax({
 
 
 
+/////////////////////////////////////////////////////////////////////////////////////
+// record 수정하기 버튼
+
+$('.btn_modify').click(function(){
+    var record_title = $('.popup_activity_record_title').text();
+    var record_cont = $('.popup_activity_record_cont').text();
+    console.log(record_title);
+    $('.record_title_modify').val(record_title);
+    $('.record_cont_modify').val(record_cont);
+    
+    layer_popup($('.modify_record_layer'));
+});
 
 
 /////////////////////////////////////////////////////////////////////////////////////
@@ -4208,7 +4256,7 @@ $('.btn_modify_com').click(function(){
     var record_title = $('.record_title_modify').val();
     var record_cont = $('.record_cont_modify').val();
     var public_state;
-    if($('.public_check').is(':checked')){
+    if($('.public_check_modify').is(':checked')){
         public_state = 1;
 
     }else{
@@ -4316,7 +4364,7 @@ $('.btn_modify_com').click(function(){
                         'record_title' : record_title,
                         'record_cont' : record_cont,
                         'public_state' : public_state,
-                        
+
                     },
                 success : function(res){
                 console.log(res);
