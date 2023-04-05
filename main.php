@@ -8,7 +8,7 @@
     <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
     <link rel="icon" href="/hoodify/img/identity/hooodify_mini.png">
 
-
+    
 </head>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <meta name="viewport" content="width=device-width, initial-scale=1">

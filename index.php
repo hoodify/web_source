@@ -3,7 +3,7 @@
 <html>
 <head>
     <meta charset="euc-kr">
-    <title>후디파이</title>
+    <title>후디파이. 세상의 모든 정체성</title>
     <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
     <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 
@@ -1328,9 +1328,9 @@
 
          <div class="pop-container" style="margin:15px;">
          
-           <div style="height:20%; display:flex; align-items: center; margin-bottom: 15px; margin-top:20px;">
+           <div style="height:20%; display:flex; align-items: center; margin-bottom: 25px; margin-top:20px;">
              <img style="float: left; width:130px; height:130px;" src="/hoodify/img/identity/hooodify_mini.png"; >
-             <div id="space_01" style="position: relative; border: 2px solid black; border-radius: 10px; padding:20px;">
+             <div id="space_01" style="position: relative; border: 2px solid black; border-radius: 10px; padding:20px; height:80%">
              <p> 저희는 세상의 모든 정체성을 수집중입니다. <br> <br> 이곳에서 찾지 못한 당신의 정체성이 있다면 저희에게 알려주세요.</p>
            </div>
 
