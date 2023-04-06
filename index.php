@@ -7,7 +7,7 @@
     <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
     <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 
-    <link rel="icon" href="/hoodify/img/identity/hooodify_mini.png">
+    <link rel="icon" href="/hoodify/img/identity/hooodify_mini_round.png">
 
 </head>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">

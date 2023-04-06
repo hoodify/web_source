@@ -6,7 +6,7 @@
     <title>후디파이. 세상의 모든 정체성</title>
     <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
     <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
-    <link rel="icon" href="/hoodify/img/identity/hooodify_mini.png">
+    <link rel="icon" href="/hoodify/img/identity/hooodify_mini_round.png">
 
     
 </head>
@@ -454,6 +454,13 @@ border: 1px solid #93b0bc;
 
     }
 
+.mylist_box{
+    overflow-y: scroll; 
+}
+.mylist_box::-webkit-scrollbar {
+    display:none
+}
+
 
 </style>
 
@@ -590,14 +597,17 @@ border: 1px solid #93b0bc;
          
           <div class = "rightCont">
             <div class = "RC RCactivity">
-                <div style="display: flex; align-items: center;">
+                <div style="display: flex; align-items: center; height: 10%;">
                     <img class = "mylistIMG" style="width:70px; height:70px;  margin-right:10px;">
                     <h4 class = "mylistT"> </h4>
                 </div>
-              <p class = "mylistC" style='margin-bottom:15px; font-size:14px;'> </p>
-              <hr/>
-              <ul class="mylist"> </ul>
+              <p class = "mylistC" style='margin-bottom:15px; font-size:14px; height: 10%; margin-bottom:15px;'> </p>
+                <div class = 'mylist_box' style="height: 70%;">
+              <ul class="mylist"> 
+                
+              </ul>
               <div id = 'addbtn_container'></div>
+              </div>
             </div>
 
             <div class = "RC RCitem">
@@ -607,10 +617,10 @@ border: 1px solid #93b0bc;
             </div>
 
               <p class = "mylistC_item" style='margin-bottom:15px; font-size:14px;'> </p>
-              <hr/>
-              <ul class="mylist_item"> </ul>
-              <div id = 'addbtn_container_item'></div>
-
+              <div class = 'mylist_box' style="height: 70%;">
+                <ul class="mylist_item"> </ul>
+                <div id = 'addbtn_container_item'></div>
+                </div>
             </div>
             <div class = "RC RCskill">
             <div style="display: flex; align-items: center;">
@@ -618,10 +628,10 @@ border: 1px solid #93b0bc;
                     <h4 class = "mylistT_skill"> </h4>
             </div>
               <p class = "mylistC_skill" style='margin-bottom:15px;font-size:14px;'> </p>
-              <hr/>
+              <div class = 'mylist_box' style="height: 70%;">
               <ul class="mylist_skill"> </ul>
               <div id = 'addbtn_container_skill'></div>
-
+</div>
 
 
             </div>
@@ -632,10 +642,10 @@ border: 1px solid #93b0bc;
                 <h4 class = "mylistT_defect"> </h4>
                 </div>
               <p class = "mylistC_defect" style='margin-bottom:15px; font-size:14px;'> </p>
-              <hr/>
+              <div class = 'mylist_box' style="height: 70%;">
               <ul class="mylist_defect"> </ul>
               <div id = 'addbtn_container_defect'></div>
-
+</div>
 
 
             </div>
@@ -3637,6 +3647,9 @@ $('.mylist').empty();
                         dataType : 'json',
                         success : function(res){
                             
+                            var topline = $("<hr>", {
+                            }).css({marginTop:'10px',}).appendTo($('.mylistC'));
+
                             for (var i = 0; i < res.length; i++) {
 
                                 
@@ -3710,6 +3723,8 @@ $.ajax({
                 },
             dataType : 'json',
             success : function(res){
+                var topline = $("<hr>", {
+                 }).css({marginTop:'10px',}).appendTo($('.mylistC_item'));
                 
                 for (var i = 0; i < res.length; i++) {
 
@@ -3782,6 +3797,8 @@ $.ajax({
                 },
             dataType : 'json',
             success : function(res){
+                var topline = $("<hr>", {
+                 }).css({marginTop:'10px',}).appendTo($('.mylistC_skill'));
                 
                 for (var i = 0; i < res.length; i++) {
 
