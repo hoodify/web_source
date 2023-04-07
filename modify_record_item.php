@@ -16,9 +16,10 @@
                 $record_title = $_POST['record_title'];
                 $record_cont = $_POST['record_cont'];
 
+                $public_state = $_POST['public_state'];
 
             
-                $query = "UPDATE user_item SET title = '$record_title', record = '$record_cont' WHERE user_item_code = $record_code AND user_code = $user_code";
+                $query = "UPDATE user_item SET title = '$record_title', record = '$record_cont', public = $public_state WHERE user_item_code = $record_code AND user_code = $user_code";
                
                 $stmt = $conn->prepare($query);
                 

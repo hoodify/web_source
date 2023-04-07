@@ -601,7 +601,7 @@ border: 1px solid #93b0bc;
                     <img class = "mylistIMG" style="width:70px; height:70px;  margin-right:10px;">
                     <h4 class = "mylistT"> </h4>
                 </div>
-              <p class = "mylistC" style='margin-bottom:15px; font-size:14px; height: 10%; margin-bottom:15px;'> </p>
+              <p class = "mylistC" style='font-size:14px; height: 10%; padding-bottom:15px;'> </p>
                 <div class = 'mylist_box' style="height: 70%;">
               <ul class="mylist"> 
                 
@@ -616,7 +616,7 @@ border: 1px solid #93b0bc;
                 <h4 class = "mylistT_item"> </h4>
             </div>
 
-              <p class = "mylistC_item" style='margin-bottom:15px; font-size:14px;'> </p>
+              <p class = "mylistC_item" style=' font-size:14px; height: 10%; padding-bottom:15px;'> </p>
               <div class = 'mylist_box' style="height: 70%;">
                 <ul class="mylist_item"> </ul>
                 <div id = 'addbtn_container_item'></div>
@@ -627,7 +627,7 @@ border: 1px solid #93b0bc;
                     <img class = "mylistIMG_skill" style="width:70px; height:70px;  margin-right:10px;">
                     <h4 class = "mylistT_skill"> </h4>
             </div>
-              <p class = "mylistC_skill" style='margin-bottom:15px;font-size:14px;'> </p>
+              <p class = "mylistC_skill" style='font-size:14px; height: 10%; padding-bottom:15px;'> </p>
               <div class = 'mylist_box' style="height: 70%;">
               <ul class="mylist_skill"> </ul>
               <div id = 'addbtn_container_skill'></div>
@@ -1022,102 +1022,102 @@ border: 1px solid #93b0bc;
             else if(res == "user on"){
 
                 
-    var curr_identity_code;
+                var curr_identity_code;
 
-    $('.top_menu_container').css({display: 'flex',});
-    $('#main_list').css({display: 'flex',});
-    $('.public_main').css({display: 'none',});
+                $('.top_menu_container').css({display: 'flex',});
+                $('#main_list').css({display: 'flex',});
+                $('.public_main').css({display: 'none',});
 
-$(".RCitem").css({
-      display: "none",
-    });
-$(".RCskill").css({
-    display: "none",
-});
-$(".RCdefect").css({
-    display: "none",
-});
+            $(".RCitem").css({
+                display: "none",
+                });
+            $(".RCskill").css({
+                display: "none",
+            });
+            $(".RCdefect").css({
+                display: "none",
+            });
 
-    $(".mli").click(function(){
+                $(".mli").click(function(){
+                    
+                $(".mli").removeClass("active");
+                $(this).addClass("active");
 
-      $(".mli").removeClass("active");
-      $(this).addClass("active");
+                $(".LBC").css({
+                    display: "none",
+                });
 
-      $(".LBC").css({
-        display: "none",
-      });
+                $(".RC").css({
+                    display: "none",
+                });
 
-      $(".RC").css({
-        display: "none",
-      });
+                if($(this).hasClass("activity")){
+                    $(".Clist").css({
+                    display: "block",
+                    });
+                    $(".RCactivity").css({
+                    display: "block",
+                    });
 
-      if($(this).hasClass("activity")){
-        $(".Clist").css({
-          display: "block",
-        });
-        $(".RCactivity").css({
-          display: "block",
-        });
+                    $('.add_record_layer').removeClass("state_item state_skill").addClass("state_activity");
+                    $('.modify_record_layer').removeClass("state_item state_skill").addClass("state_activity");
+                    $('.activity_post').removeClass("state_item state_skill").addClass("state_activity");
 
-        $('.add_record_layer').removeClass("state_item state_skill").addClass("state_activity");
-        $('.modify_record_layer').removeClass("state_item state_skill").addClass("state_activity");
-        $('.activity_post').removeClass("state_item state_skill").addClass("state_activity");
+                }
 
-      }
+                else if($(this).hasClass("item")){
 
-      else if($(this).hasClass("item")){
+                    $(".Ilist").css({
+                    display: "flex",
+                    });
+                    $(".RCitem").css({
+                    display: "block",
+                    });
 
-        $(".Ilist").css({
-          display: "flex",
-        });
-        $(".RCitem").css({
-          display: "block",
-        });
+                    $('.add_record_layer').removeClass("state_activity state_skill").addClass("state_item");
+                    $('.modify_record_layer').removeClass("state_activity state_skill").addClass("state_item");
+                    $('.activity_post').removeClass("state_activity state_skill").addClass("state_item");
 
-        $('.add_record_layer').removeClass("state_activity state_skill").addClass("state_item");
-        $('.modify_record_layer').removeClass("state_activity state_skill").addClass("state_item");
-        $('.activity_post').removeClass("state_activity state_skill").addClass("state_item");
+                }
 
-      }
+                else if($(this).hasClass("skill")){
+                $(".Slist").css({
+                    display: "block",
+                    });
+                $(".RCskill").css({
+                    display: "block",
+                    });
 
-      else if($(this).hasClass("skill")){
-      $(".Slist").css({
-          display: "block",
-        });
-      $(".RCskill").css({
-          display: "block",
-        });
-
-        $('.add_record_layer').removeClass("state_activity state_item").addClass("state_skill");
-        $('.modify_record_layer').removeClass("state_activity state_item").addClass("state_skill");
-        $('.activity_post').removeClass("state_activity state_item").addClass("state_skill");
-
-
-      }
-      
-      else if($(this).hasClass("defect")){
-      $(".Dlist").css({
-          display: "block",
-        });
-      $(".RCdefect").css({
-          display: "block",
-        });
-
-        $('.add_record_layer').removeClass("state_activity state_item").addClass("state_skill");
-        $('.modify_record_layer').removeClass("state_activity state_item").addClass("state_skill");
-        $('.activity_post').removeClass("state_activity state_item").addClass("state_skill");
+                    $('.add_record_layer').removeClass("state_activity state_item").addClass("state_skill");
+                    $('.modify_record_layer').removeClass("state_activity state_item").addClass("state_skill");
+                    $('.activity_post').removeClass("state_activity state_item").addClass("state_skill");
 
 
-      }
+                }
+                
+                else if($(this).hasClass("defect")){
+                $(".Dlist").css({
+                    display: "block",
+                    });
+                $(".RCdefect").css({
+                    display: "block",
+                    });
+
+                    $('.add_record_layer').removeClass("state_activity state_item").addClass("state_skill");
+                    $('.modify_record_layer').removeClass("state_activity state_item").addClass("state_skill");
+                    $('.activity_post').removeClass("state_activity state_item").addClass("state_skill");
 
 
-      else if($(this).hasClass("setting")){
-      $(".setting_cont").css({
-          display: "block",
-        });
+                }
 
-      }
-    })
+
+                else if($(this).hasClass("setting")){
+                $(".setting_cont").css({
+                    display: "block",
+                    });
+
+                }
+                })
 ////////////////////////////////////////////////////////////////////////////////////
 ///////////// 로그아웃
 $('.logout_btn').click(function(){
@@ -2648,8 +2648,11 @@ $.ajax({
                                         $(".mylistT").empty();
                                         $(".mylistIMG").css("display", "none")
                                         $(".mylistC").empty();
+                                        
+                                        
                                         $(".mylistD").empty();
                                         $('.mylist').empty();
+                                        
 
                                         $(".mylistT_item").empty();
                                         $(".mylistIMG_item").css("display", "none")
@@ -2669,6 +2672,7 @@ $.ajax({
 
                                         $('#addbtn_container').empty();
                                         $('#addbtn_container_item').empty();
+                                        $('#addbtn_container_skill').empty();
 
 
                                         $('.identity_img_container').attr("src",identity.identity_img );
@@ -2747,6 +2751,8 @@ $.ajax({
                                                                     $('.mylistC').text("\u00a0"+"\u00a0"+activity.activity_desc);
                                                                     $('.add_record_layer').fadeOut('fast');
                                                                     
+                                                               
+
                                                                     // 해당 activity 전역 변수 설정
                                                                     Global_Var.userInfo.curr_activity_code = activity.activity_code;
 
@@ -3647,8 +3653,8 @@ $('.mylist').empty();
                         dataType : 'json',
                         success : function(res){
                             
-                            var topline = $("<hr>", {
-                            }).css({marginTop:'10px',}).appendTo($('.mylistC'));
+
+                           
 
                             for (var i = 0; i < res.length; i++) {
 
@@ -3676,7 +3682,7 @@ $('.mylist').empty();
                                     layer_popup($('.activity_post'));
 
 
-                                })(record)).appendTo($('.mylist'));;
+                                })(record)).appendTo($('.mylist'));
 
                                     $('<img>', {
                                         src: '/hoodify/img/scroll.png'
@@ -3723,8 +3729,7 @@ $.ajax({
                 },
             dataType : 'json',
             success : function(res){
-                var topline = $("<hr>", {
-                 }).css({marginTop:'10px',}).appendTo($('.mylistC_item'));
+                
                 
                 for (var i = 0; i < res.length; i++) {
 
@@ -3797,8 +3802,6 @@ $.ajax({
                 },
             dataType : 'json',
             success : function(res){
-                var topline = $("<hr>", {
-                 }).css({marginTop:'10px',}).appendTo($('.mylistC_skill'));
                 
                 for (var i = 0; i < res.length; i++) {
 
