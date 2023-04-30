@@ -974,9 +974,14 @@ border: 1px solid #93b0bc;
 
 <script>
     Kakao.init('07f6eafd69281ab56438dbcc4a88c39e');
+
+
+// 현재 로그인된 유저가 있는지 확인
+// 있다면 유저에 해당하는 정보 불러오기
+// 없다면 공용 main 페이지 보이기
+
     $(document).ready(function(){
 
-        
         $.ajax({
             type : "POST",
             url : "/hoodify/check_main_user.php",
@@ -1039,12 +1044,6 @@ border: 1px solid #93b0bc;
                                     },
                                     })
                                 }
-
-
-
-
-
-
 
             }
             else if(res == "user on"){
@@ -1146,6 +1145,9 @@ border: 1px solid #93b0bc;
 
                 }
                 })
+
+
+
 ////////////////////////////////////////////////////////////////////////////////////
 ///////////// 로그아웃
 $('.logout_btn').click(function(){
@@ -1174,6 +1176,7 @@ if (Kakao.Auth.getAccessToken()) {
 
 ///////////////////////////////////////////////////////////////////////////////////////
 // 카테고리 버튼 클릭 리스너  (검색 레이어)
+// '음식' 카테고리를 클릭하면 '음식'이라는 카테고리에 포함된 정체성의 리스트를 불러온다.
 
 $('.category_btn').click(function(){
 var category_text = $(this).text();
@@ -1192,9 +1195,6 @@ $.ajax({
      $('.search_result').empty();
 
       for (var i = 0; i < res.length; i++) {
-
-
-        
 
         var object = res[i];
         var object_name = object.identity_name;
@@ -1705,14 +1705,12 @@ $(document).ready(function() {
         }
         });
 
-
-
-
-
     
 });
+
 //////////////////////////////////////////////////////////////////////////////////////
 ///////// 세팅 > 정체성 삭제 버튼
+// 유저의 해당 정체성과 관련된 모든 기록 삭제함
 
 
 $('.delete_identity').click(function(){
@@ -1767,6 +1765,7 @@ if (event.keyCode == 27) {
 }
 
 });
+
 //////////////////////////////////////////////////////////////////////////////////////
 ///////// 검색
 
@@ -2302,7 +2301,7 @@ search_identity();
 
 
 ///////////////////////////////////////////////////////////////////////////////////////
-///////// 검색해서 추가
+///////// 검색결과 나온 정체성을 개인 리스트에 추가
 
 $('.add_identity').click(function(){
 
@@ -2343,8 +2342,6 @@ $.ajax({
 
 
 $('.add_identity_check').fadeOut('fast');
-// add_identity.php
-// identity_code
 
 
 })
@@ -2352,7 +2349,7 @@ $('.add_identity_check').fadeOut('fast');
 
 
 
-/////////////////////
+///////////////////////////////////////////////////////////////////////////////////////
 // 검색 결과에서 뒤로가기 > 정체성 리스트 다시 보이기
 
 $('.to_search_list').click(function(){
@@ -2365,20 +2362,12 @@ $('.category_container').css("display","flex").hide().fadeIn("fast");
 
 
 
-/////////////////////////////////////////////////////////////////////////////////////////////////
-// 유저 정보를 바탕으로 해당 유저의 정체성 리스트 불러오기
-// 유저 정보는 세션을 통해 받기
-// join sql 확인하기
-// 활성화된 정체성인지 확인 > db에 attribute 추가해야함
 
+///////////////////////////////////////////////////////////////////////////////////////
+// 전역 변수 설정. 현재 활성화된 정체성, 유저, activity 코드에 대한 정보를 담음
 Global_Var = {}
 Global_Var.userInfo = {
-   // 'Identity_ID_storage' : null,
-   // 'Record_ID_storage' : null,
-   // 'Content_ID_storage' : null,
-   // 'Item_ID_storage' : null,
 
-    
     'curr_identity_code' : null,
     'curr_activity_code' : null,
     'curr_item_code' : null,
@@ -2387,12 +2376,12 @@ Global_Var.userInfo = {
 
     'curr_record_code' : null,
 
-
 }
 
 
 /////////////////////////////////////////////////////////////////////////////////////
 // 검색 버튼
+// 검색 layer 띄우기
 
 $('.open_search_layer').click(function(){
 $('.search_result').empty();
@@ -2405,9 +2394,9 @@ layer_popup($('.search_layer'));
 
 /////////////////////////////////////////////////////////////////////////////////////
 // 프로필 버튼
+// 프로필 layer 띄우기
 
 $('.profile').click(function(){
-
 
 
 $.ajax({
@@ -2477,6 +2466,8 @@ $('.set_profile_message').click(function(){
 
 /////////////////////////////////////////////////////////////////////////////////////
 // 정체성 창고 버튼
+// 정체성 창고 layer 띄우기
+
 $('.identity_storage_btn').click(function(){
 storage_identities();
 });
@@ -2484,8 +2475,8 @@ storage_identities();
 
 
 
-////////////////////////////////////
-// 창고 리스트 불러오기
+/////////////////////////////////////////////////////////////////////////////////////
+// 창고 리스트 불러오기 및 새로고침
 
 function storage_identities(){
 
@@ -2591,12 +2582,11 @@ $.ajax({
 layer_popup($('.identity_storage'));
 
 
-
-
 }
 
 
-/////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////
+// 정체성 리스트에서 선택 정체성을 창고로 옮기기
 
 
 $('.move_to_storage').click(function(){
@@ -2629,8 +2619,10 @@ $('.pop-layer').fadeOut('fast');
 
 
 
-///////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////
 // 정체성 활성화 버튼
+// 창고에서 선택된 정체성을 메인 리스트로 불러오기
+
 
 $('.btn_activate').click(function(){
 
@@ -2661,8 +2653,9 @@ $.ajax({
 
 })
 
-//////////////////////////////////////////////////////////////////////////////////////???????????????????
-//////////// 메인 리스트 불러오기 
+/////////////////////////////////////////////////////////////////////////////////////
+//////////// 메인 리스트 불러오기 및 새로고침
+
 function get_main_list(){
 
 $('#main_list').empty();    
@@ -3588,8 +3581,6 @@ $('#btn_addCom').click(function(){
 // record 삭제 버튼
 
 $('.btn_delete').click(function(){
-
-   
     
 layer_popup($('.delete_check'));
 });
@@ -3692,19 +3683,12 @@ else if($('.activity_post').hasClass('state_skill')){
 
 }
 
-
-
-
 });
 
 
 
-
-
-
-
 /////////////////////////////////////////////////////////////////////////////////////
-// activity record 리스트 갱신
+// activity record 리스트 불러오기 및 새로고침
 
 function refresh_activity_record_list(){
 
@@ -3781,7 +3765,7 @@ $('.mylist').empty();
 }
 
 /////////////////////////////////////////////////////////////////////////////////////
-// item record 리스트 갱신
+// item record  리스트 불러오기 및 새로고침
 
 function refresh_item_record_list(){
 
@@ -3854,7 +3838,7 @@ $.ajax({
 }
 
 /////////////////////////////////////////////////////////////////////////////////////
-// skill record 리스트 갱신
+// skill record  리스트 불러오기 및 새로고침
 
 function refresh_skill_record_list(){
 
@@ -4103,59 +4087,6 @@ $('.btn_modify_com').click(function(){
 
 
 
-///////////////////////////////////////////////////////////////////////////////
-function layer_popup(el){
-
-
-    var $el = $(el);    //레이어의 id를 $el 변수에 저장
-
-    var $elWidth = ~~($el.outerWidth()),
-        $elHeight = ~~($el.outerHeight()),
-        docWidth = $(document).width(),
-        docHeight = $(document).height();
-
-
-
-    // 화면의 중앙에 레이어를 띄운다.
-    if ($elHeight < docHeight || $elWidth < docWidth) {
-        $el.css({
-            marginTop: -$elHeight /2,
-            marginLeft: -$elWidth/2
-        })
-        } else {
-        $el.css({top: 0, left: 0});
-        }
-
-        $el.find('.btn_layerClose').click(function(){
-        $el.fadeOut("fast");
-
-
-
-        return false;
-        });
-
-
-        $el.css("display","flex").hide().fadeIn("fast");
-
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -4172,9 +4103,49 @@ function layer_popup(el){
     })
 
 
+
+///////////////////////////////////////////////////////////////////////////////
+// 레이어 띄우기(공통)
+
+
+function layer_popup(el){
+
+
+var $el = $(el);    //레이어의 id를 $el 변수에 저장
+
+var $elWidth = ~~($el.outerWidth()),
+    $elHeight = ~~($el.outerHeight()),
+    docWidth = $(document).width(),
+    docHeight = $(document).height();
+
+
+
+// 화면의 중앙에 레이어를 띄운다.
+if ($elHeight < docHeight || $elWidth < docWidth) {
+    $el.css({
+        marginTop: -$elHeight /2,
+        marginLeft: -$elWidth/2
+    })
+    } else {
+    $el.css({top: 0, left: 0});
+    }
+
+    $el.find('.btn_layerClose').click(function(){
+    $el.fadeOut("fast");
+
+
+
+    return false;
+    });
+
+
+    $el.css("display","flex").hide().fadeIn("fast");
+
+}
+
+
+
     
-
-
 
 </script>
 
