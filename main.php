@@ -216,7 +216,6 @@ border: 1px solid #93b0bc;
 
 .btn-r {
   width: 93%;
-  height: 5%;
   border-top: 1px solid #304a8a;
   text-align: right;
   position: absolute;
@@ -391,6 +390,19 @@ border: 1px solid #93b0bc;
         border: 3px solid black;
 }
 
+#profile_message_layer{
+             position: fixed;
+             display: none;
+             width: 500px;
+             height: 220px;
+             z-index: 1020;
+             top: 50%;
+             left: 50%;
+             background-color: white;
+             border-radius:10px;
+             border: 3px solid black;
+             justify-content: center;
+ }
 
 .inactive_identity_list::-webkit-scrollbar {
                	display:none
@@ -601,8 +613,8 @@ border: 1px solid #93b0bc;
                     <img class = "mylistIMG" style="width:70px; height:70px;  margin-right:10px;">
                     <h4 class = "mylistT"> </h4>
                 </div>
-              <p class = "mylistC" style='font-size:14px; height: 10%; padding-bottom:15px;'> </p>
-                <div class = 'mylist_box' style="height: 70%;">
+              <p class = "mylistC" style='font-size:14px; height: 15%; padding-bottom:15px;'> </p>
+                <div class = 'mylist_box' style="height: 68%;">
               <ul class="mylist"> 
                 
               </ul>
@@ -616,8 +628,8 @@ border: 1px solid #93b0bc;
                 <h4 class = "mylistT_item"> </h4>
             </div>
 
-              <p class = "mylistC_item" style=' font-size:14px; height: 10%; padding-bottom:15px;'> </p>
-              <div class = 'mylist_box' style="height: 70%;">
+              <p class = "mylistC_item" style=' font-size:14px; height: 15%; padding-bottom:15px;'> </p>
+              <div class = 'mylist_box' style="height: 68%;">
                 <ul class="mylist_item"> </ul>
                 <div id = 'addbtn_container_item'></div>
                 </div>
@@ -627,8 +639,8 @@ border: 1px solid #93b0bc;
                     <img class = "mylistIMG_skill" style="width:70px; height:70px;  margin-right:10px;">
                     <h4 class = "mylistT_skill"> </h4>
             </div>
-              <p class = "mylistC_skill" style='font-size:14px; height: 10%; padding-bottom:15px;'> </p>
-              <div class = 'mylist_box' style="height: 70%;">
+              <p class = "mylistC_skill" style='font-size:14px; height: 15%; padding-bottom:15px;'> </p>
+              <div class = 'mylist_box' style="height: 68%;">
               <ul class="mylist_skill"> </ul>
               <div id = 'addbtn_container_skill'></div>
 </div>
@@ -839,6 +851,7 @@ border: 1px solid #93b0bc;
 
         <div class = "profile_details" style ="display:flex; height: 70%;  flex-direction: column;">
             <h3 style="margin-top:15px; margin-left:15px;">소개</h3>
+            <img id = "profile_message_setting" src="/hoodify/img/setting.png" style="height:25px; width:25px; display: block; margin-left: auto; margin-right: 10px; cursor:pointer;">
            <div class ="profile_introduction"style="margin:15px; height:25%; padding:20px; border: 2px solid black; border-radius: 12px;"> </div>
         </div>
         <div class="btn-r">
@@ -846,7 +859,22 @@ border: 1px solid #93b0bc;
       </div>
       </div>
 
-      
+    </div>
+
+    <div id ='profile_message_layer'>
+    <div style="position:absolute; top:0; width:100%; height:20px; background-color:rgba( 0, 0, 0, 0.85 );"> </div>
+      <div class = "profile_message_layer_container" style="width: 100%; padding:25px;">
+
+      <textarea id="profile_message_text" placeholder="내용을 입력하세요" style="font-family: TmoneyRoundWindRegular;  margin-top:15px; resize:none; font-size:16px; width: 100%; height:60%; padding:8px;"></textarea>
+      <div class="btn-r">
+
+        <div class="btn_layerClose generalBtn">닫기</div>
+        <div class="set_profile_message generalBtn">확인</div>
+      </div>
+
+      </div>
+
+
     </div>
 
 
@@ -2407,6 +2435,44 @@ layer_popup($('.profile_layer'));
 })
 
 
+/////////////////////////////////////////////////////////////////////////////////////
+// 프로필 메시지 설정 버튼
+
+$('#profile_message_setting').click(function(){
+
+        layer_popup('#profile_message_layer');
+
+})
+
+$('.set_profile_message').click(function(){
+
+    var profile_message = $('#profile_message_text').val();
+    console.log(profile_message);
+   $('#profile_message_layer').fadeOut('fast');
+
+
+   
+   
+   $.ajax({
+    type : "POST",
+    url : "/hoodify/modify_profile_message.php",
+    data: {
+            'profile_message': profile_message,
+    },
+
+    success : function(res){
+
+        $('.profile_introduction').text(profile_message);
+
+        },
+        error : function(XMLHttpRequest, textStatus, errorThrown){ 
+            alert("통신 실패.")
+    }
+    });
+   
+    
+
+})
 
 
 /////////////////////////////////////////////////////////////////////////////////////
