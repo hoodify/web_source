@@ -526,7 +526,8 @@ border: 1px solid #93b0bc;
         </div>
 
         <div style="width:100%;"> 
-            <div id='main_list' style='height:70%; margin:20px;     flex-direction: column;'>
+            <div style="margin-left: 20px; margin-top: 20px;"> <h4 id ="active_num">  /  </h4></div>
+            <div id='main_list' style='height:70%; margin-left:20px; margin-right:20px; margin-bottom:20px; margin-top:10px;  flex-direction: column;'>
                 
 
             </div>
@@ -2604,6 +2605,9 @@ $.ajax({
         if(res=='success'){
             get_main_list();
         }
+        else{
+            console.log(res);
+        }
 
 
 
@@ -3407,7 +3411,8 @@ $.ajax({
         }
 
 
-
+        $('#active_num').text($('#main_list').children().length + " / " + 3);
+        
 
 
     },
