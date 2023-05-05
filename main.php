@@ -127,8 +127,8 @@ margin-right: 15px;
 
 .bar-menu {
   position: relative;
-  cursor: pointer;
   overflow: hidden;
+  
 }
 
 #barMenu1 {
@@ -141,14 +141,16 @@ margin-right: 15px;
   position: relative;
   list-style: none;
   padding-inline-start: 10px;
+  display: flex;
+ 
 }
+
 
 .bar-menu ul.menu-body li {
   height: 20px;
   padding: 10px;
   width: 13%;
   margin-left: 10px;
-  float: left;
   line-height: 20px;
   vertical-align: middle;
   text-align:center;
