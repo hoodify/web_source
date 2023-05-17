@@ -4,7 +4,8 @@
 <head>
     <meta charset="euc-kr">
     <title>후디파이. 세상의 모든 정체성</title>
-    <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js" type="text/javascript"></script>
     <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
     <link rel="icon" href="/hoodify/img/identity/hooodify_mini_round.png">
 
@@ -31,6 +32,7 @@
 body{
     font-family: TmoneyRoundWindRegular;
     line-height: 30px;
+    background-color: #DEE3E7;
 }
 
 
@@ -280,6 +282,18 @@ border: 1px solid #93b0bc;
   border: 3px solid #3571B5;
 }
 
+.public_record_post{
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 35%;
+  height: 55%;  
+  z-index: 1002;
+  background-color: #fff;
+  border: 3px solid #3571B5;
+}
+
 .activity_post_cont{
   margin-left: 20px;
   margin-right: 20px;
@@ -452,27 +466,35 @@ border: 1px solid #93b0bc;
            }
 
 
-   #space_01{
+#space_01{
 
-    }
-    #space_01:after{
+}
+#space_01:after{
 
-    border-top:15px solid #333333;
-    border-left: 15px solid transparent;
-    border-right: 0px solid transparent;
-    border-bottom: 0px solid transparent;
-    content:"";
-    position:absolute;
-    top:2px;
-    left:-15px;
+border-top:15px solid #333333;
+border-left: 15px solid transparent;
+border-right: 0px solid transparent;
+border-bottom: 0px solid transparent;
+content:"";
+position:absolute;
+top:2px;
+left:-15px;
 
-    }
+}
 
 .mylist_box{
     overflow-y: scroll; 
 }
 .mylist_box::-webkit-scrollbar {
     display:none
+}
+
+#others_record::-webkit-scrollbar {
+    display:none
+}
+
+.mainIdentity{
+    background-color: #98a9b4;
 }
 
 
@@ -528,11 +550,20 @@ border: 1px solid #93b0bc;
         </div>
 
         <div style="width:100%;"> 
-            <div style="margin-left: 20px; margin-top: 20px;"> <h4 id ="active_num">  /  </h4></div>
-            <div id='main_list' style='height:70%; margin-left:20px; margin-right:20px; margin-bottom:20px; margin-top:10px;  flex-direction: column;'>
-                
+            <div style="margin-left: 20px; margin-top: 35px; display:flex; "> <h4 id ="active_num">  /  </h4> <h4 id ="current_identity" style="margin-left: 35px;"> 당신은 현재 'identity'입니다</h4></div>
+            
+            <div style="width: 100%; display:flex; flex-direction:row; margin-top:15px;">
+                <div id='main_list' style='height:70%; width:30%; margin-left:20px; margin-right:20px; margin-bottom:20px; margin-top:10px;  flex-direction: column;'>
+                </div>
+                <div id = 'others_record_container' style='margin-left:50px; margin-top:15px; height: calc(100vh - 350px); width:70%;'> 
+                    <h3 style="margin-bottom: 20px;"> 다른 사람들의 기록 </h3>
+                    <div id = 'others_record' style='display: flex; flex-wrap: wrap; align-content: flex-start; overflow-y:scroll; height: 100%;'> 
+                    </div>
+                </div>
+
 
             </div>
+
         </div>
     
   
@@ -615,13 +646,16 @@ border: 1px solid #93b0bc;
                 <div style="display: flex; align-items: center; height: 10%;">
                     <img class = "mylistIMG" style="width:70px; height:70px;  margin-right:10px;">
                     <h4 class = "mylistT"> </h4>
+                    
                 </div>
-              <p class = "mylistC" style='font-size:14px; height: 15%; padding-bottom:15px;'> </p>
-                <div class = 'mylist_box' style="height: 68%;">
+              <p class = "mylistC" style='font-size:14px; height: 12%; padding-bottom:15px;'> </p>
+              
+              <div id = 'addbtn_container' style="margin-bottom:15px;"></div>
+                <div class = 'mylist_box' style="height: 60%;">
+                
               <ul class="mylist"> 
                 
               </ul>
-              <div id = 'addbtn_container'></div>
               </div>
             </div>
 
@@ -631,10 +665,11 @@ border: 1px solid #93b0bc;
                 <h4 class = "mylistT_item"> </h4>
             </div>
 
-              <p class = "mylistC_item" style=' font-size:14px; height: 15%; padding-bottom:15px;'> </p>
-              <div class = 'mylist_box' style="height: 68%;">
+              <p class = "mylistC_item" style=' font-size:14px; height: 12%; padding-bottom:15px;'> </p>
+              
+              <div id = 'addbtn_container_item' style="margin-bottom:15px;"></div>
+              <div class = 'mylist_box' style="height: 60%;">
                 <ul class="mylist_item"> </ul>
-                <div id = 'addbtn_container_item'></div>
                 </div>
             </div>
             <div class = "RC RCskill">
@@ -642,10 +677,11 @@ border: 1px solid #93b0bc;
                     <img class = "mylistIMG_skill" style="width:70px; height:70px;  margin-right:10px;">
                     <h4 class = "mylistT_skill"> </h4>
             </div>
-              <p class = "mylistC_skill" style='font-size:14px; height: 15%; padding-bottom:15px;'> </p>
-              <div class = 'mylist_box' style="height: 68%;">
+              <p class = "mylistC_skill" style='font-size:14px; height: 12%; padding-bottom:15px;'> </p>
+              
+              <div id = 'addbtn_container_skill' style="margin-bottom:15px;"></div>
+              <div class = 'mylist_box' style="height: 60%;">
               <ul class="mylist_skill"> </ul>
-              <div id = 'addbtn_container_skill'></div>
 </div>
 
 
@@ -657,9 +693,10 @@ border: 1px solid #93b0bc;
                 <h4 class = "mylistT_defect"> </h4>
                 </div>
               <p class = "mylistC_defect" style='margin-bottom:15px; font-size:14px;'> </p>
-              <div class = 'mylist_box' style="height: 70%;">
+              
+              <div id = 'addbtn_container_defect' style="margin-bottom:15px;"></div>
+              <div class = 'mylist_box' style="height: 60%;">
               <ul class="mylist_defect"> </ul>
-              <div id = 'addbtn_container_defect'></div>
 </div>
 
 
@@ -731,7 +768,7 @@ border: 1px solid #93b0bc;
             <div style="display: flex; flex-direction: column; width:100%;  height:75%" >
                 <h4 class="popup_activity_record_title" style="margin:25px;"></h4>  
 
-                <p class="popup_activity_record_cont" style="margin:25px;">tt</p>
+                <p class="popup_activity_record_cont" style="margin:25px;"></p>
                 
 
             </div>
@@ -967,6 +1004,46 @@ border: 1px solid #93b0bc;
 
       
     </div>
+
+
+    
+
+    <div class = "public_record_post" style= "flex-direction: column;  border: 3px solid black; border-radius: 12px; align-items: center;">
+    <div style="position:absolute; top:0; width:100%; height:20px; background-color:rgba( 0, 0, 0, 0.85 );"> </div>
+    
+
+            
+            
+
+            <div style="display:flex; margin-top: 20px; width:100%; align-items: center;">
+                <img class = "record_post_activity_img" src = "/hoodify/img/identity/hooodify_mini.png" style="margin:12px; height:50px; width:50px;">
+                <div style="display: flex; flex-direction: column;">
+                    <h4 class="record_post_activity_title" style="margin:12px;"> activity title</h4>
+                </div>
+
+            </div>
+
+            <div style="display: flex; flex-direction: column; width:100%;" >
+                <h4 class="public_record_title" style="margin:25px;"></h4>  
+
+                <p class="public_record_cont" style="margin:25px; padding-left : 15px;"></p>
+                
+
+            </div>
+            <div style="width:100%; display: flex; justify-content:flex-end; position: absolute; bottom: 70px;">
+                <p class = "public_record_nickname" style="margin-right: 25px;"></p>
+            </div>
+
+
+
+
+    
+
+    <div class="btn-r">
+      <div class="btn_layerClose generalBtn">닫기</div>
+    </div>
+
+  </div>
 
 
 
@@ -2379,6 +2456,7 @@ Global_Var.userInfo = {
 
     'curr_record_code' : null,
 
+    'curr_main_identity' : null,
 }
 
 
@@ -2659,6 +2737,7 @@ $.ajax({
 
 })
 
+
 /////////////////////////////////////////////////////////////////////////////////////
 //////////// 메인 리스트 불러오기 및 새로고침
 
@@ -2682,26 +2761,53 @@ $.ajax({
 
 
                 var list = document.createElement("div");
+                console.log(identity);
 
+                if(i==0){
+                    $(list).addClass('mainIdentity');
+                                    
+                    $('#current_identity').text("당신은 현재 '"+ identity_name + "'입니다.");
+                    Global_Var.userInfo.curr_main_identity = res[i].identity_code;
+                    console.log(identity_name);
+
+                    get_public_record();
+
+                   
+            
+                }
+             
+//#98a9b4
 
                 $(list).css({
 
-                                      width: "500px",
+                                      
                                       height: "60px",
                                       padding: "5px",
                                       borderBottom: "1px solid #D8D8D8",
                                       display: 'flex',
-                                    //  alignItems: 'center',
                                       paddingBottom: '5px',
+                                      backgroundColor: '#BDC8CE',
                                       alignItems: 'center',
                                       overflow:'hidden',
 
-                                    }).hover(function() {
+                                    }).addClass("main_identity_item").attr('id',identity.identity_code).hover(function() {
+                                        if($(this).hasClass("mainIdentity")){
+                                            $(this).css("background-color", "#bad8f2");
+                                        }else{
                                       $(this).css("background-color", "#bad8f2");
+                                    }
                                        }, function(){
-                                     $(this).css("background-color", "white");
+                                        if($(this).hasClass("mainIdentity")){
+                                            $(this).css("background-color", "#98a9b4");
+                                        }else{
+                                         $(this).css("background-color", "#BDC8CE");
+                                        }
                                      }).click(((identity) => function (e) {
 
+
+                                        console.log('이 객체의 인덱스는 ' + $(this).index());
+
+                                        
                                         $('.identity_storage').fadeOut('fast');
                                         console.log(identity.identity_code);
                                         $('.Clist').empty();
@@ -3410,19 +3516,253 @@ $.ajax({
 
 
 
-        }
+        
+        
+                                }
 
 
         $('#active_num').text($('#main_list').children().length + " / " + 3);
-        
-
+       $('.mainIdentity').css({
+        backgroundColor : '#98a9b4',
+       })
+                
 
     },
     error : function(XMLHttpRequest, textStatus, errorThrown){ // 비동기 통신이 실패할경우 error 콜백으로 들어옵니다.
         alert("통신 실패.")
     }
 });
+
+
+    
+
 }
+
+
+function get_public_record(){
+
+    $('#others_record').empty();
+
+    $.ajax({
+                        type : "POST",
+                        url : "/hoodify/get_public_report.php",
+                        dataType : 'json',
+                        data: { 'identity_code' : Global_Var.userInfo.curr_main_identity,},
+                        success : function(res){
+
+                         for (var i = 0; i < res.length; i++) {
+
+                            
+                            var record = res[i];
+
+                            var record_activity = res[i].activity_name;
+                            var record_activity_img = res[i].activity_img;
+
+                            var record_name = res[i].title;
+                            var record_cont = res[i].record;
+                            var nickname = res[i].nickname;
+
+                            
+                            // record 카드 만들기
+                            var others_record = document.createElement("div");
+
+                            $(others_record).css({
+
+                                      width: "350px",
+                                      height: "170px",
+                                      padding: "8px",
+                                      border: "1px solid #586167",
+                                      flexDirection: 'column',
+                                      paddingBottom: '5px',
+                                      overflow:'hidden',
+                                      margin: '10px',
+                                      position: 'relative',
+                                      borderRadius: '12px',
+                                      backgroundColor: '#F0F3F4',
+                                      
+
+                                    }).hover(function() {
+                                      $(this).css("background-color", "#bad8f2");
+                                       }, function(){
+                                      $(this).css("background-color", "#F0F3F4");
+                                        
+                                     }).click(((record) => function (e) { 
+                
+
+                                        $('.record_post_activity_img').attr('src', record.activity_img);
+                                        $('.record_post_activity_title').text(record.activity_name);
+                                        $('.public_record_title').text(record.title);
+
+                                        
+                                        var applyBr = record.record.replace(/(?:\r\n|\r|\n)/g, '<br />');
+                                        $('.public_record_cont').html(applyBr);
+
+                                        $('.public_record_nickname').text("by  "+record.nickname);
+                                       
+
+
+                                        layer_popup($('.public_record_post'));
+
+                                        
+
+
+                                     })(record)).appendTo('#main_list');
+
+
+                                     var top_container = document.createElement("div");
+                                     $(top_container).css({
+                                      display: 'flex',
+                                      flexDirection: 'row',
+                                      alignItems: 'center',
+                                      
+                                     })
+
+
+                                     $('<img>',{
+                                        src: record_activity_img,
+
+                                        }).css({
+                                        width: "30px",
+                                        height: "30px",
+                                        margin: "5px",
+                                        float: "left",
+                                        borderRadius: '12px',  
+
+                                        }).appendTo(top_container);        
+
+                                                       
+                                    $('<p>', {
+                                        text: record_activity,
+
+                                        }).css({
+                                        "margin-left": "12px",
+                                        "fontWeight": "bold",
+                                        "font-size" : "16px",
+                                        "color" : "#697A87",
+                                    
+                                    }).appendTo(top_container);
+                                    $(top_container).appendTo(others_record);
+
+                                    $('<p>', {
+                                        text: record_name,
+
+                                        }).css({
+                                        "font-size" : "14px",
+                                        "margin-left": "12px",
+                                        "fontWeight": "bold",
+                                        "color" : "#586167",
+                                    
+                                    }).appendTo(others_record);
+
+                                    $('<p>', {
+                                        text: "\u00a0\u00a0" + record_cont,
+
+                                        }).css({
+                                        "font-size" : "12px",
+                                        "margin-left": "12px",
+                                        "fontWeight": "bold",
+                                        "color" : "#586167",
+                                        "word-wrap" : "break-word",
+                                        "height" : "60px",
+                                    
+                                    }).appendTo(others_record);
+
+
+                                    $('<p>', {
+                                        text: "by  " + nickname,
+
+                                        }).css({
+                                        "font-size" : "12px",
+                                        "margin-left": "12px",
+                                        "fontWeight": "bold",
+                                        "text-align" : 'right',
+                                        "color" : 'gray',
+                                        "position" : 'absolute',
+                                        "bottom" : '15px',
+                                        "right" : '15px',
+                                    
+                                    }).appendTo(others_record);
+
+
+                                    $(others_record).css("display","flex").hide().fadeIn('slow');
+                                    $(others_record).appendTo('#others_record');
+                                    
+
+
+                         }
+
+
+                        },
+                        error : function(XMLHttpRequest, textStatus, errorThrown){ // 비동기 통신이 실패할경우 error 콜백으로 들어옵니다.
+                            alert("통신 실패.")
+                        }
+                    });
+
+
+    }
+
+
+
+
+
+
+
+
+
+
+$('#main_list').sortable({
+    item: $('.main_identity_item'),
+    update: function(event, ui){
+    
+      var seq_array = [];
+      var first_identity = $('#main_list').children().eq(0).attr('id');
+      seq_array.push(first_identity);
+      var secod_identity = $('#main_list').children().eq(1).attr('id');
+      seq_array.push(secod_identity);
+      var third_identity = $('#main_list').children().eq(2).attr('id');
+      seq_array.push(third_identity);
+      
+    
+
+      $('#main_list').children().eq(0).addClass('mainIdentity').css("background-color", "#98a9b4");
+      $('#main_list').children().eq(1).removeClass('mainIdentity').css("background-color", "#BDC8CE");
+      $('#main_list').children().eq(2).removeClass('mainIdentity').css("background-color", "#BDC8CE");
+
+      var extracted_text = $('.mainIdentity').children().eq(1).children(1).text();
+      $('#current_identity').text("당신은 현재 '"+ extracted_text + "'입니다.");
+      
+
+      $.ajax({
+        type : "POST",
+        url : "/hoodify/update_identity_seq.php",
+        data: {
+                'identity_code_array': seq_array,
+             },
+        success : function(res){
+
+          console.log(res);
+
+
+        },
+        error : function(XMLHttpRequest, textStatus, errorThrown){ // 비동기 통신이 실패할경우 error 콜백으로 들어옵니다.
+            alert("통신 실패.")
+        }
+    });
+
+
+
+    Global_Var.userInfo.curr_main_identity = first_identity;
+
+    get_public_record();
+
+
+    }
+
+}).disableSelection();
+
+
+
+
 
 get_main_list();
 
@@ -3732,7 +4072,10 @@ $('.mylist').empty();
                                 }).click(((record) => function (e){
 
                                     $('.popup_activity_record_title').text(record.title);
-                                    $('.popup_activity_record_cont').text(record.record);
+                                    var applyBr = record.record.replace(/(?:\r\n|\r|\n)/g, '<br />');
+                                    $('.popup_activity_record_cont').html(applyBr);
+
+                                    
 
                                     Global_Var.userInfo.curr_record_code = record.user_activity_code;
                                     
@@ -3806,7 +4149,11 @@ $.ajax({
                     }).click(((record) => function (e){
 
                         $('.popup_activity_record_title').text(record.title);
-                        $('.popup_activity_record_cont').text(record.record);
+                        var applyBr = record.record.replace(/(?:\r\n|\r|\n)/g, '<br />');
+                        $('.popup_activity_record_cont').html(applyBr);
+
+
+                        
 
                         Global_Var.userInfo.curr_record_code = record.user_item_code;
                         
@@ -3878,7 +4225,8 @@ $.ajax({
                     }).click(((record) => function (e){
 
                         $('.popup_activity_record_title').text(record.title);
-                        $('.popup_activity_record_cont').text(record.record);
+                        var applyBr = record.record.replace(/(?:\r\n|\r|\n)/g, '<br />');
+                        $('.popup_activity_record_cont').html(applyBr);
 
                         Global_Var.userInfo.curr_record_code = record.user_skill_code;
                         
