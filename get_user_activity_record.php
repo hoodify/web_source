@@ -14,7 +14,7 @@ require("connect_db.php");
                 $activity_code = $_POST['activity_code'];
 
               
-                $query = "SELECT * FROM user_activity WHERE user_code = '$user_code' AND activity_code = '$activity_code'";
+                $query = "SELECT * FROM user_activity WHERE user_code = '$user_code' AND activity_code = '$activity_code' ORDER BY user_activity_code DESC";
 
                 $stmt = $conn->prepare($query);
                 $stmt->execute();
@@ -22,8 +22,17 @@ require("connect_db.php");
                 $row = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
                 $jsonResult = json_encode($row);
+                
+                
+                
+                
+                
+                
+                
+                
                 echo $jsonResult;
 
+                
 
 
           }

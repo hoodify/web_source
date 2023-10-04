@@ -24,7 +24,8 @@
 
                 if($stmt->execute()){
 
-                    echo "success";
+                  $last_id = $conn->lastInsertId();
+                  echo $last_id;
                 }
                 else{
                     echo "failure";

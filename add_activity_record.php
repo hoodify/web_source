@@ -20,11 +20,11 @@
                 $query = "INSERT INTO user_activity (identity_code, activity_code, user_code, title, record, public) VALUES ('$identity_code', '$activity_code', '$user_code', '$record_title', '$record_cont', $public_state)";
 
                 $stmt = $conn->prepare($query);
-
+                
 
                 if($stmt->execute()){
-
-                    echo "success";
+                    $last_id = $conn->lastInsertId();
+                    echo $last_id;
                 }
                 else{
                     echo "failure";

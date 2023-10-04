@@ -23,11 +23,10 @@
                 $stmt = $conn->prepare($query);
                 
                 if($stmt->execute()){
-                    echo "success";
+                  
+                  echo 'success';
                 }
-                else{
-                    echo "fail";
-                }
+                
                 
 
 

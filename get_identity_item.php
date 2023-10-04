@@ -10,7 +10,9 @@
                   require("connect_db.php");
                   $identity_code = $_POST['identity_code'];
 
-                   $query = "SELECT * FROM item  WHERE identity_code = '$identity_code' ";
+                   $query = "SELECT * FROM item INNER JOIN identity ON item.identity_code = identity.identity_code WHERE item.identity_code = '$identity_code' ";
+
+                  
 
                   $stmt = $conn->prepare($query);
                   $stmt->execute();

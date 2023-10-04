@@ -10,7 +10,7 @@
                 $identity_code = $_POST['identity_code'];
 
            
-                $query = "SELECT * FROM user_activity INNER JOIN user ON user_activity.user_code = user.user_code INNER JOIN activity ON user_activity.activity_code = activity.activity_code WHERE user_activity.identity_code = $identity_code AND user_activity.public = 1";
+                $query = "SELECT * FROM user_activity INNER JOIN user ON user_activity.user_code = user.user_code INNER JOIN activity ON user_activity.activity_code = activity.activity_code WHERE user_activity.identity_code = $identity_code AND user_activity.public = 1 ORDER BY user_activity.user_activity_code DESC";
                 
 
                 $stmt = $conn->prepare($query);

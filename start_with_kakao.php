@@ -12,6 +12,7 @@
 
 
                 require("connect_db.php");
+                
                 $user_code = $_POST['user_code'];
                 
                 $cookie_array = $_POST['identity_cookie'];
@@ -32,11 +33,13 @@
                     
                     $row = $stmtt->fetch(PDO::FETCH_ASSOC);
 
+                    
+
                     $_SESSION['user_code'] = $row['user_code'];
 
 
 
-                    echo "있었으";
+                    echo "user exist";
                     
                 }
 
@@ -60,14 +63,28 @@
                         $cookie_identity = $cookie_array2[$i];
                         $cookie_identity_int = (int)$cookie_identity;
 
+
+                        if($i < 3){
                         $query4 = "INSERT INTO user_identity (identity_code, user_code) VALUES ($cookie_identity_int, $row[user_code])";
                         $stmt4 = $conn->prepare($query4);
                         $stmt4->execute();
+                        }
+                        else{
+                        $query5 = "INSERT INTO user_identity (identity_code, user_code, active) VALUES ($cookie_identity_int, $row[user_code], 0)";
+                        $stmt5 = $conn->prepare($query5);
+                        $stmt5->execute();
+
+                        }
+
+
+
+
+
                     }
 
                     
                     
-                     echo "없었으";
+                     echo "not exist";
 
 
 

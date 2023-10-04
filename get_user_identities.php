@@ -15,7 +15,7 @@ require("connect_db.php");
     try {
                 
                 $user_code = $_SESSION['user_code'];
-
+/*
 
                 $min_sequence_query = "SELECT MIN(sequence_val) AS min_value FROM user_identity WHERE user_code = $user_code AND active = 1";
                 $result = $conn->query($min_sequence_query)->fetch();
@@ -49,7 +49,7 @@ require("connect_db.php");
 
 
                 }
-
+*/
 
 
                 $query = "SELECT * FROM user_identity INNER JOIN identity ON user_identity.identity_code = identity.identity_code WHERE user_identity.user_code = '$user_code' AND user_identity.active = 1 ORDER BY sequence_val";

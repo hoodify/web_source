@@ -9,17 +9,22 @@
                 $record_code = $_POST['record_code'];
 
 
-                $query = "DELETE FROM user_activity WHERE user_activity_code = $record_code AND user_code = $user_code";
-
-                $stmt = $conn->prepare($query);
-                if($stmt->execute()){
+                $query2 = "DELETE FROM img_activity WHERE user_activity_code = $record_code AND user_code = $user_code";
+                $stmt2 = $conn->prepare($query2);
+                $stmt2->execute();
                 
-                    echo "success";
 
-                }
-                else{
-                    echo "fail";
-                }
+                $query = "DELETE FROM user_activity WHERE user_activity_code = $record_code AND user_code = $user_code";
+                $stmt = $conn->prepare($query);
+                $stmt->execute();
+                
+                
+               
+                
+                
+                echo "success";
+
+                   
                 
                
 

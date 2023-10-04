@@ -4,6 +4,8 @@ session_start();
 
 unset($_SESSION['user_code']);
 
+session_destroy();
+
 
 ?>
 
