@@ -1,3 +1,18 @@
+<!--
+
+
+  php 에서 기대한 반환값이 json 형태일 때
+  오류나 예외처리 역시 json 형태로 반환해야 함
+  
+  echo json_encode("nothing");
+
+
+-->
+
+
+
+
+
 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js" type="text/javascript"></script>
