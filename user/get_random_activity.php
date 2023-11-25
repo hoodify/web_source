@@ -10,7 +10,7 @@
 
                 require("../connect_db.php");
 
-                 $user_code = $_SESSION['user_code'];
+                 //$identity = $_SESSION['user_code'];
                 
 
                  // 해당 유저의 활성화된 identity 리스트 inner join 각 identity code에 해당하는 activity들

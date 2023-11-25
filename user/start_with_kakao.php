@@ -15,13 +15,16 @@
                 
                 $user_code = $_POST['user_code'];
                 
-                $cookie_array = $_POST['identity_cookie'];
-                $cookie_array2 = explode(',', $cookie_array);
+
+
+
+                
+
+                
 
 
 
                 $query = "SELECT * FROM user  WHERE user_value = '$user_code' ";
-
                 $stmt = $conn->prepare($query);
                 $stmt->execute();
                 if($stmt->rowCount() > 0){
@@ -43,7 +46,12 @@
                     
                 }
 
-                else{
+             
+                else if (!empty($_POST["identity_cookie"])) {
+                   
+                    $cookie_array = $_POST['identity_cookie'];
+                    $cookie_array2 = explode(',', $cookie_array);
+
                     $query3 = "INSERT INTO user (user_value) VALUES ($user_code)";
                     $stmt3 = $conn->prepare($query3);
                     $stmt3->execute();
@@ -86,6 +94,24 @@
                     
                      echo "not exist";
 
+
+                } 
+
+
+                else{
+                    
+
+                    $query3 = "INSERT INTO user (user_value) VALUES ($user_code)";
+                    $stmt3 = $conn->prepare($query3);
+                    $stmt3->execute();
+
+                    $queryt = "SELECT user_code FROM user WHERE user_value = $user_code";
+                    $stmtt = $conn->prepare($queryt);
+                    $stmtt->execute();
+                    
+                    $row = $stmtt->fetch(PDO::FETCH_ASSOC);
+                    
+                    $_SESSION['user_code'] = $row['user_code'];
 
 
 

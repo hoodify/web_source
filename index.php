@@ -585,9 +585,10 @@
       <header style="display: flex; align-items: center;">
       <div style="display: flex; align-items: center;">
           <!-- <img src ="/hoodify/img/hoodify_CRM.png" style="margin-left:25px; width:50px; height:50px; border-radius:40px; "> -->
-          <p style="color: white; margin-left:45px; letter-spacing:3px; cursor:pointer"><a style="text-decoration: none; color:white" href="http://127.0.0.1/hoodify/index.php">   H O O D I F Y </a></p>
+          <p style="color: white; margin-left:45px; letter-spacing:3px; cursor:pointer"><a style="text-decoration: none; color:white" href="http://127.0.0.1/hoodify/index.php ">   H O O D I F Y </a></p>
 
-
+          <!-- https://hoodify.cafe24.com/hoodify/index.php -->
+          <!-- http://127.0.0.1/hoodify/index.php -->
       </div>
 
 
@@ -2260,8 +2261,8 @@ function kakaoLogin() {
               
                 console.log("체크"+res);
                 $('.login_account').fadeOut('fast');
-                window.location.href='http://127.0.0.1/hoodify/main.php';
-               // window.location.href='https://hoodify.cafe24.com/hoodify/main.php';
+                 window.location.href='http://127.0.0.1/hoodify/main.php';
+                //window.location.href='https://hoodify.cafe24.com/hoodify/main.php';
 
               },
               error : function(XMLHttpRequest, textStatus, errorThrown){ // 비동기 통신이 실패할경우 error 콜백으로 들어옵니다.
