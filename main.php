@@ -114,6 +114,8 @@
             <div class = "user_btn_space">
                 
                 <div class = 'button_container'>
+                    <img id = "random_question_btn" class ="menu_button2" title="랜던 질문 뽑기" src="/hoodify/img/question_icon.png">
+
                     <img id = "daily_check_btn" class ="menu_button2" title="오늘 체크 리스트" src="/hoodify/img/daily_check_icon.png">
                     <img id = "others_record_btn" class ="menu_button2" title="다른 사람들의 기록" src="/hoodify/img/others_record_icon.png">
                     <img id = "others_location_btn"class ="menu_button2" title="내 주위의 사람들" src="/hoodify/img/same_people_icon.png">
@@ -217,6 +219,34 @@
                 </div>
             </div>
 
+            <div class="btn-r">
+                <div class="btn_layerClose generalBtn">닫기</div>
+            </div>
+
+        </div>
+    </div>
+
+
+
+    <div class="get_random_question_layer" >
+        <div class="get_random_question_layer_container">
+        
+            <div class='top_bar'> 
+                <p class='top_word'> 추천 활동 </p>
+            </div>
+            
+            
+            <div class="random_question_text_container">
+                
+                <p id = "random_question_text"></p>
+                <div class = "random_question_activity"></div>
+
+                <div class= "reload_btn_container">
+                    <img class="reload_btn" src="/hoodify/img/identity/hooodify_mini.png">
+                </div>
+
+            </div>
+           
             <div class="btn-r">
                 <div class="btn_layerClose generalBtn">닫기</div>
             </div>
@@ -717,7 +747,7 @@
         <div class = "profile_nickname_layer_container">
             <div class="profile_nickname_layer_container2">
                 <textarea class="profile_nickname_text" placeholder="닉네임을 입력하세요" name="profile_nickname_text"></textarea>
-                <div class = "check_nickname generalBtn" style="width:80px;"> 중복 확인 </div>
+                <div class = "check_nickname generalBtn" style="width:90px;"> 중복 확인 </div>
             </div>
 
             <p class="check_nickname_message" style="font-size: 12px; display:none;"> 사용 가능한 아이디 표시</p>
@@ -2654,6 +2684,265 @@ function get_public_record(direction){
         });
 
 }
+
+
+
+/////////////////////////////////////////////////////////////////////////////////////
+/// 우측 main 레이아웃 보이기
+
+$('#random_question_btn').click(function(){
+
+    get_random_question();
+
+
+});
+
+$('.reload_btn').click(function(){
+
+    get_random_question();
+    
+})
+
+
+
+function get_random_question(){
+
+    $.ajax({
+        type : "POST",
+        url : "/hoodify/user/get_random_question.php",
+        dataType : 'json',    
+        success : function(res){
+
+            console.log('랜덤 질문 뽑기');
+            console.log(res);
+
+            var category_text = res[0].category_name;
+            console.log("activity category");
+            console.log(category_text);
+
+            $('#random_question_text').text("");
+
+
+            
+
+
+            
+
+            
+            if(category_text == "사람"){
+                //$('.random_question_text').text("오늘 누구를 만났나요? 그 사람과 무엇을 했는지 생각해봅시다.");
+               txt = "　오늘 누구를 만났나요? 그 사람과 무엇을 했는지 생각해봅시다.";
+            }
+            else if(category_text == "새로운 시도"){
+               // $('.random_question_text').text("오늘 했던 새로운 시도가 있었다면 적어봅시다.");
+               txt ="　오늘 했던 새로운 시도가 있었다면 적어봅시다.";
+            }
+            else if(category_text == "루틴"){
+               // $('.random_question_text').text("평소와 다를 것이 없는 하루인가요? 반복되는 내 일상을 생각해봅시다.");
+               txt ="　평소와 다를 것이 없는 하루인가요? 반복되는 내 일상을 생각해봅시다.";
+            }
+            else if(category_text == "사건사고"){
+               // $('.random_question_text').text("오늘 특별한 사건사고가 있었다면 기록해봅시다.");
+               txt = "　오늘 특별한 사건사고가 있었다면 기록해봅시다.";
+            }
+            else if(category_text == "야외"){
+               // $('.random_question_text').text("오늘 밖에 나갔다면 무엇을 했는지 적어봅시다.");
+               txt = "　오늘 밖에 나갔다면 무엇을 했는지 적어봅시다.";
+            }
+            else if(category_text == "실내"){
+               // $('.random_question_text').text("오늘 실내에 머무르면서 했던 활동에 대해 생각해봅시다.");
+               txt = "　오늘 실내에 머무르면서 했던 활동에 대해 생각해봅시다.";
+            }
+            else if(category_text == "창작"){
+               // $('.random_question_text').text("새로운 것을 만들어내는 일만큼 보람찬 것이 있을까요? 오늘 만들어낸 것이 있다면 생각해봅시다. 짧은 글부터 그림 또는 음악이 될 수도 있습니다.");
+               txt = "　새로운 것을 만들어내는 일만큼 보람찬 것이 있을까요? 오늘 만들어낸 것이 있다면 생각해봅시다. 짧은 글부터 그림 또는 음악이 될 수도 있습니다.";
+            }
+            else if(category_text == "감상"){
+               // $('.random_question_text').text("오늘 즐겼던 콘텐츠에 대해 생각해봅시다. 영상이나 음악 또는 글이 될 수도 있습니다.");
+               txt = "　오늘 즐겼던 콘텐츠에 대해 생각해봅시다. 영상이나 음악 또는 글이 될 수도 있습니다.";
+            }
+            else if(category_text == "소비"){
+               // $('.random_question_text').text("한 사람의 소비 목록으로 그 사람을 얼만큼이나 알 수 있을까요? 소비는 우리는 표현하는 수단이기도 합니다. 오늘 특별한 지출이 있었다면 기록해봅시다.");
+               txt = "　한 사람의 소비 목록으로 그 사람을 얼만큼이나 알 수 있을까요? 소비는 우리는 표현하는 수단이기도 합니다. 오늘 특별한 지출이 있었다면 기록해봅시다.";
+            }
+            else if(category_text == "식사"){
+               // $('.random_question_text').text("무엇을 먹었는지가 그 사람의 하루를 설명해주기도 합니다. 오늘 먹은 것은 무엇이었나요?");
+               txt = "　무엇을 먹었는지가 그 사람의 하루를 설명해주기도 합니다. 오늘 먹은 것은 무엇이었나요?";
+            }
+            else if(category_text == "구비"){
+               // $('.random_question_text').text("생활에 필요하거나 마음에 드는 것들을 구해 채워놓습니다.");
+               txt = "　생활에 필요하거나 마음에 드는 것들을 구해 채워놓습니다.";
+            }
+            else if(category_text == "휴식"){
+               // $('.random_question_text').text("빈둥거리며 몸과 마음을 재충전하는 시간이 필요할 때가 있습니다");
+               txt = "　빈둥거리며 몸과 마음을 재충전하는 시간이 필요할 때가 있습니다";
+            }
+            else if(category_text == '일'){
+               // $('.random_question_text').text("오늘 했던 일은 무엇인가요?");
+               txt = "　오늘 했던 일은 무엇인가요?";
+            }
+
+            setTimeout(
+                function() {
+                    $('#random_question_text').text(txt).hide().fadeIn('slow');
+                }
+            , 500);
+
+
+            $('.random_question_activity').empty();
+
+
+            setTimeout(
+                function() {
+                   
+
+                    for (var i = 0; i < res.length; i++) {
+
+                    var object = res[i];
+                    var object_name = object.activity_name;
+                    var list_container = document.createElement("div");
+
+                    $(list_container).css({
+
+                        width:"80px",
+                        height: "85px",
+                        padding: "5px",
+                        margin: '10px',
+                        display: 'flex',
+                        paddingBottom: '5px',
+                        alignItems: 'center',
+                        overflow:'hidden',
+                        cursor:'pointer',
+                        borderRadius: '8px', 
+                        'justify-content': 'center',
+                        'margin-left': '30px',
+                        'margin-right': '30px',
+                        'box-shadow': 'gray 4px 4px 5px 3px',
+                        'background-color': '#313843d6',
+                        'border': '2px solid white',
+
+                        }).hover(function() {
+                            $(this).css("background-color", "#bad8f2");
+                            }, function(){
+                                if($(this).hasClass("identity_selected")){
+                                $(this).css("background-color", "#bad8f2");
+                                }
+                                else{
+                                $(this).css("background-color", "#313843d6");
+                                }
+                        }).click(((object) => function (e) {
+
+                            $('.add_record_layer').css({height: '200px', top: '50%'});
+                            $('.record_title').css({display:'none'});
+                            $('.record_cont').css({display:'none'});
+                            $('.find_img_container').css({display:'none'});
+                            $('.btn_add_title').css({display:'flex'});
+                            $('.btn_add_content').css({display:'none'});
+                            $('.btn_add_record').css({display:'none'});
+                            $('.btn_add_img').css({display:'none'});
+
+                            // 이미지 파일 input 초기화
+                            var input = document.getElementById('u_file');
+                            input.value = null;
+
+                            // 추가하기 레이어 초기화
+                            var record_title = $('.record_title').val();
+                            var record_cont = $('.record_cont').val();
+                            
+                            Global_Var.userInfo.curr_identity_code = object.identity_code;
+                            Global_Var.userInfo.curr_activity_code = object.activity_code;
+
+                            // activity만 추가할 수 있음
+                            $('.add_record_layer').removeClass("state_item state_skill").addClass("state_activity");
+
+
+                            $('.popup_activity_img').attr("src",object.activity_img);
+                            $('.popup_activity_title').text(object.activity_name);
+                            $('.popup_activity_desc').text("　▶　"+ object.activity_desc);
+
+                            $('.popup_activity_desc_container').click(function(){
+
+                                $('.modal_cont').text("\u00a0"+"\u00a0"+object.activity_desc).css({'font-size':'14px',});
+                                $('#desc_modal').attr("title", object.activity_name);
+                                $('.ui-dialog-title').text(object.activity_name);
+
+                                $('#desc_modal').dialog({
+                                    modal: true, 
+                                }).prev(".ui-dialog-titlebar").css({"background":"#475169",'color':'white'});
+                                $('.ui-dialog').css({'z-index':'2000',});
+
+                            });
+
+                            
+                            $('.popup_activity_identity').text(object.identity_name);
+
+                            $('.record_title').val("");
+                            $('.record_cont').val("");
+                            $('.find_img_area').attr("src","");
+
+                            layer_popup($('.add_record_layer'));
+                        
+                        })(object)).addClass('').attr('id', object.activity_code).appendTo('.random_question_activity').hide().fadeIn('slow');
+
+
+                        var VerticalList = $("<div>", {}).css({ 'display':'flex', 'flex-direction': 'column', 'align-items': 'center', 'width' : '100px', });
+
+                        $('<img>', {
+                                        src: object.activity_img
+
+                                    }).css({
+                                        width: "40px",
+                                        height: "40px",
+                                        margin: "4.5px",
+                                        float: "left",
+                                        margin: "7px",
+                                        borderRadius: '8px', 
+                                        'margin-top': '0px',
+                                        border: "2px solid #586167", 
+
+                                    }).appendTo(VerticalList);
+
+                        $('<p>', {
+                                    text: object.activity_name,
+
+                                }).css({
+                                    
+                                    fontSize: "11px",
+                                    margin: "3px",
+                                    lineHeight:"12px",
+                                    fontWeight: 'bold',
+                                    color:'white',
+
+                                }).appendTo(VerticalList);    
+
+                                VerticalList.appendTo(list_container);    
+
+            }
+
+
+
+
+
+                },
+            2000);
+
+
+        },
+        error : function(XMLHttpRequest, textStatus, errorThrown){ 
+            alert("통신 실패.")
+        }
+    });
+
+
+
+
+
+
+
+    layer_popup('.get_random_question_layer');
+
+}
+
 
 
 /////////////////////////////////////////////////////////////////////////////////////
@@ -4941,7 +5230,7 @@ $('#others_location_container').css({'display':'none'});
                                                     'display':'flex',
                                                     'flex-direction':'row',
                                                     'align-items': 'center',
-                                                    'background-color': '#313843d6',
+                                                    'background-color': '#7188b1',
                                                     borderRadius: '12px',  
                                                     'padding-right':'15px',
                                                     'border': '2px solid white',
