@@ -72,29 +72,43 @@ if(isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST")
 
 
                         if($category == 'activity'){
-                            $check_query = "SELECT COUNT(*) FROM img_activity WHERE user_activity_code = $user_contents_code AND user_code =  $user_code";
+                            $check_query = "SELECT COUNT(*) FROM img_activity WHERE user_activity_code = :user_contents_code AND user_code =  $user_code";
                             $query2 = "UPDATE img_activity SET img_file_code = $last_id WHERE user_activity_code = $user_contents_code AND user_code =  $user_code";
                             $query3 = "INSERT INTO img_activity (user_activity_code, img_file_code, user_code) VALUES ('$user_contents_code', '$last_id', '$user_code')";
                             $url_query = "SELECT * FROM img_file INNER JOIN img_activity ON img_file.file_code = img_activity.img_file_code WHERE img_activity.user_activity_code = :user_contents_code";
                         }
 
                         else if($category == 'item'){
-                            $check_query = "SELECT COUNT(*) FROM img_item WHERE user_item_code = $user_contents_code AND user_code =  $user_code";
+                            $check_query = "SELECT COUNT(*) FROM img_item WHERE user_item_code = :user_contents_code AND user_code =  $user_code";
                             $query2 = "UPDATE img_item SET img_file_code = $last_id WHERE user_item_code = $user_contents_code AND user_code =  $user_code";
                             $query3 = "INSERT INTO img_item (user_item_code, img_file_code, user_code) VALUES ('$user_contents_code', '$last_id', '$user_code')";
                             $url_query = "SELECT * FROM img_file INNER JOIN img_item ON img_file.file_code = img_item.img_file_code WHERE img_item.user_item_code = :user_contents_code";
                         }
 
                         else if($category == 'skill'){
-                            $check_query = "SELECT COUNT(*) FROM img_skill WHERE user_skill_code = $user_contents_code AND user_code =  $user_code";
+                            $check_query = "SELECT COUNT(*) FROM img_skill WHERE user_skill_code = :user_contents_code AND user_code =  $user_code";
                             $query2 = "UPDATE img_skill SET img_file_code = $last_id WHERE user_skill_code = $user_contents_code AND user_code =  $user_code";
                             $query3 = "INSERT INTO img_skill (user_skill_code, img_file_code, user_code) VALUES ('$user_contents_code', '$last_id', '$user_code')";
                             $url_query = "SELECT * FROM img_file INNER JOIN img_skill ON img_file.file_code = img_skill.img_file_code WHERE img_skill.user_skill_code = :user_contents_code";
                         }
 
-                        $check_stmt = $conn->query($check_query);
 
+                        $get_sequence = "SELECT sequence_val AS sequence_val FROM user_identity WHERE user_code = $user_code AND identity_code = :identity_code";
+                        $seq_stmt = $conn->prepare($get_sequence);
+                        $seq_stmt->bindParam(':identity_code',$identity_code);
+                        $seq_stmt->execute();
+                        $sequence_row = $seq_stmt -> fetch();
+                        $sequence_val = $sequence_row["sequence_val"];
+
+
+                        $check_stmt = $conn->prepare($check_query);
+                        $check_stmt->bindParam(':user_contents_code',$user_contents_code);
+                        $check_stmt->execute();
                         $count = $check_stmt->fetchColumn();
+
+
+                       // $check_stmt = $conn->query($check_query);
+                       // $count = $check_stmt->fetchColumn();
 
 
 

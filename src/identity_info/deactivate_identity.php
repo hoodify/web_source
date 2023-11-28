@@ -22,15 +22,25 @@ parameter : identity_code
 
 
     // 비활성화할 정체성의 순서값 구하기
-    $get_sequence = "SELECT sequence_val AS sequence_val FROM user_identity WHERE user_code = $user_code AND identity_code = $identity_code";
-    $result = $conn->query($get_sequence)->fetch();
-    $sequence_val = $result['sequence_val'];
+    $get_sequence = "SELECT sequence_val AS sequence_val FROM user_identity WHERE user_code = $user_code AND identity_code = :identity_code";
+    $seq_stmt = $conn->prepare($get_sequence);
+    $seq_stmt->bindParam(':identity_code',$identity_code);
+    $seq_stmt->execute();
+    $sequence_row = $seq_stmt -> fetch();
+    $sequence_val = $sequence_row["sequence_val"];
+
+   
+    // $result = $conn->query($get_sequence)->fetch();
+   // $sequence_val = $result['sequence_val'];
+
+
+
 
 
     // 위의 순서값을 기준으로 리스트의 나머지 정체성의 순서값 업데이트
     $updt_query = "UPDATE user_identity SET sequence_val = sequence_val-1  WHERE sequence_val > :sequence_val AND active = 1";
     $updt_stmt = $conn->prepare($updt_query);
-    $stmt->bindParam(':sequence_val',$sequence_val);
+    $updt_stmt->bindParam(':sequence_val',$sequence_val);
     $updt_stmt->execute();
     
 
