@@ -30,6 +30,9 @@ parameter : identity_code
         // 현재 유저의 리스트에 있는 정체성 개수
         $max_sequence_query = "SELECT MAX(sequence_val) AS max_value FROM user_identity WHERE user_code = $user_code AND active = 1";
         $result = $conn->query($max_sequence_query)->fetch();
+
+
+
         $max_value = $result['max_value'];
 
         // 유저의 활성화된 정체성 개수 얻기
@@ -47,8 +50,9 @@ parameter : identity_code
         else{
 
           $sequence_val = $max_value+1;
-          $query = "UPDATE user_identity SET active = 1, sequence_val = $sequence_val WHERE user_code = $user_code AND identity_code = $identity_code";
+          $query = "UPDATE user_identity SET active = 1, sequence_val = $sequence_val WHERE user_code = $user_code AND identity_code = :identity_code";
           $stmt = $conn->prepare($query);
+          $stmt->bindParam(':identity_code', $identity_code);
           
           if($stmt->execute()){
               echo "success";

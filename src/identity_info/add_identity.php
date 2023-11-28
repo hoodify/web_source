@@ -51,8 +51,13 @@ parameter : identity_code
 
 
         // 해당 정체성을 유저의 보유 정체성에 추가
-        $query = "INSERT INTO user_identity (identity_code, user_code, active, sequence_val) VALUES ('$identity_code', '$user_code', $active_val, $sequence_val )";
+        $query = "INSERT INTO user_identity (identity_code, user_code, active, sequence_val) VALUES (:identity_code, :user_code, :active_val, :sequence_val)";
         $stmt = $conn->prepare($query);
+        $stmt->bindParam(':identity_code', $identity_code);
+        $stmt->bindParam(':user_code', $user_code);
+        $stmt->bindParam(':active_val', $active_val);
+        $stmt->bindParam(':sequence_val', $sequence_val);
+
         
         if($stmt->execute()){
               echo "success";

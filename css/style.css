@@ -141,6 +141,7 @@ main{
 
 .main_background_container1{
     width:500px;
+    height: fit-content;
     margin-left:20px; 
     padding-right:20px; 
     margin-top:10px;     
@@ -157,7 +158,7 @@ main{
 }
 
 .main_list_container{
-    height: 72%;
+    height: 100%;
     border-radius: 12px;  
     overflow-y: scroll;
     width:100%; 
@@ -801,9 +802,10 @@ border: 1px solid #93b0bc;
 .random_question_activity{
     display: flex;
     flex-wrap: wrap;
-    margin-top:25px;
-    height:50%;
+    margin-top:25px;    
+    height: 150px;
     overflow-y: scroll;
+    position: relative;
 }
 
 .random_question_activity::-webkit-scrollbar {
@@ -811,11 +813,10 @@ border: 1px solid #93b0bc;
 }
 
 .reload_btn_container{
-    width: 90%;    
-    display: flex;
-    flex-direction: row-reverse;
     position: absolute;
-    bottom: 60px;
+    float: right;
+    right: 15px;
+    bottom: 55px;
 }
 
 .reload_btn{
@@ -2150,6 +2151,9 @@ border: 1px solid #93b0bc;
     padding: 8px; 
     line-height:2em; 
     color:#475169;
+    text-decoration: underline;
+    text-underline-position: under;
+    text-underline-offset: 2px;
 }
 
 .search_data_container{

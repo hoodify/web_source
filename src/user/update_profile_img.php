@@ -74,6 +74,6 @@ if(isset($_POST) and $_SERVER['REQUEST_METHOD'] == "POST")
 }
  
 //echo json_encode($row['file_path']);
-echo $img_path;
+//echo $img_path;
  
 ?>
