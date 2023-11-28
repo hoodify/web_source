@@ -19,9 +19,11 @@ parameter : identity_code
 
       
         // 해당 정체성과 관련된 모든 키워드 받기
-        $query = "SELECT * FROM keyword INNER JOIN identity_keyword ON keyword.keyword_code = identity_keyword.keyword_code WHERE identity_keyword.identity_code = $identity_code";
+        $query = "SELECT * FROM keyword INNER JOIN identity_keyword ON keyword.keyword_code = identity_keyword.keyword_code WHERE identity_keyword.identity_code = :identity_code";
         
         $stmt = $conn->prepare($query);
+        $stmt->bindParam(':identity_code',$identity_code);
+        
         
         if($stmt->execute()){
 

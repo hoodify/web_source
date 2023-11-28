@@ -10,11 +10,14 @@
                 $search_text = $_POST['search_text'];
 
            
-                $query = "SELECT * FROM identity WHERE identity_name LIKE '%$search_text%'";
+                $query = "SELECT * FROM identity WHERE identity_name LIKE CONCAT('%', :search_text, '%')";
                
 
                 $stmt = $conn->prepare($query);
+                $stmt -> bindParam(':search_text',$search_text);
                 
+
+
                 if($stmt->execute()){
 
                   $row = $stmt->fetchAll(PDO::FETCH_ASSOC);

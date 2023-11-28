@@ -26,17 +26,19 @@ parameter : identity_code   정체성 코드
           // 이전 페이지일 경우
           if($direction == 'backward'){
 
-            $query = "SELECT * FROM (SELECT user_activity.user_activity_code, user_activity.identity_code, user_activity.activity_code, user_activity.title, user_activity.record, user_activity.date, activity.activity_name, activity.activity_img, user.nickname, identity.identity_name FROM user_activity INNER JOIN user ON user_activity.user_code = user.user_code INNER JOIN activity ON user_activity.activity_code = activity.activity_code INNER JOIN identity ON user_activity.identity_code = identity.identity_code WHERE user_activity.identity_code = $identity_code AND user_activity.user_activity_code > $last_id AND user_activity.public = 1 ORDER BY user_activity.user_activity_code ASC LIMIT 11) AS test ORDER BY user_activity_code DESC LIMIT 6";
+            $query = "SELECT * FROM (SELECT user_activity.user_activity_code, user_activity.identity_code, user_activity.activity_code, user_activity.title, user_activity.record, user_activity.date, activity.activity_name, activity.activity_img, user.nickname, identity.identity_name FROM user_activity INNER JOIN user ON user_activity.user_code = user.user_code INNER JOIN activity ON user_activity.activity_code = activity.activity_code INNER JOIN identity ON user_activity.identity_code = identity.identity_code WHERE user_activity.identity_code = :identity_code AND user_activity.user_activity_code > :last_id AND user_activity.public = 1 ORDER BY user_activity.user_activity_code ASC LIMIT 11) AS test ORDER BY user_activity_code DESC LIMIT 6";
           
           }
           
           // 다음 페이지일 경우
           else{
-            $query = "SELECT * FROM user_activity INNER JOIN user ON user_activity.user_code = user.user_code INNER JOIN activity ON user_activity.activity_code = activity.activity_code INNER JOIN identity ON user_activity.identity_code = identity.identity_code WHERE user_activity.identity_code = $identity_code AND user_activity.user_activity_code < $last_id AND user_activity.public = 1 ORDER BY user_activity.user_activity_code DESC LIMIT 6";
+            $query = "SELECT * FROM user_activity INNER JOIN user ON user_activity.user_code = user.user_code INNER JOIN activity ON user_activity.activity_code = activity.activity_code INNER JOIN identity ON user_activity.identity_code = identity.identity_code WHERE user_activity.identity_code = :identity_code AND user_activity.user_activity_code < :last_id AND user_activity.public = 1 ORDER BY user_activity.user_activity_code DESC LIMIT 6";
           }
 
 
           $stmt = $conn->prepare($query);
+          $stmt -> bindParam(':identity_code',$identity_code);
+          $stmt -> bindParam(':last_id',$last_id);
           
           if($stmt->execute()){
 

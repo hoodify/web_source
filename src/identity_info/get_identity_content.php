@@ -18,10 +18,13 @@ parameter : identity_code
           $identity_code = $_POST['identity_code'];
 
           // 해당 정체성에 대한 정보 반환
-          $query = "SELECT * FROM identity  WHERE identity_code = '$identity_code' ";
+          $query = "SELECT * FROM identity  WHERE identity_code = :identity_code ";
 
 
           $stmt = $conn->prepare($query);
+          $stmt->bindParam(':identity_code',$identity_code);
+
+
           $stmt->execute();
           $row = $stmt->fetchAll(PDO::FETCH_ASSOC);
 

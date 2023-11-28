@@ -25,8 +25,13 @@
                   if($check_stmt->rowCount() > 0)
                   {
 
-                    $update_query = "UPDATE user_location SET main_identity_code =$identity_code, latitude = $latitude, longitude = $longitude WHERE user_code = '$user_code'";
+                    $update_query = "UPDATE user_location SET main_identity_code =identity_code, latitude = :latitude, longitude = :longitude WHERE user_code = '$user_code'";
                     $update_stmt = $conn->prepare($update_query);
+
+                    $update_stmt->bindParam(':identity_code',$identity_code);
+                    $update_stmt->bindParam(':latitude',$latitude);
+                    $update_stmt->bindParam(':longitude',$longitude);
+
                     $update_stmt->execute();
                     
                   }
@@ -34,8 +39,13 @@
 
 
 
-                    $insert_query = "INSERT INTO user_location (user_code, main_identity_code, latitude, longitude) VALUES ('$user_code', '$identity_code', '$latitude', '$longitude')";
+                    $insert_query = "INSERT INTO user_location (user_code, main_identity_code, latitude, longitude) VALUES ('$user_code', :identity_code, :latitude, :longitude";
                     $insert_stmt = $conn->prepare($insert_query);
+                    
+                    $insert_stmt->bindParam(':identity_code',$identity_code);
+                    $insert_stmt->bindParam(':latitude',$latitude);
+                    $insert_stmt->bindParam(':longitude',$longitude);
+                    
                     $insert_stmt->execute();
 
                   }
@@ -43,9 +53,12 @@
                  
 
                   
-                  $query = "SELECT *, CASE WHEN user_location.user_code = $user_code THEN 'current' ELSE 'other' END AS currentuser FROM user_location INNER JOIN identity ON user_location.main_identity_code = identity.identity_code INNER JOIN user ON user_location.user_code = user.user_code WHERE user_location.main_identity_code = $identity_code";
+                  $query = "SELECT *, CASE WHEN user_location.user_code = $user_code THEN 'current' ELSE 'other' END AS currentuser FROM user_location INNER JOIN identity ON user_location.main_identity_code = identity.identity_code INNER JOIN user ON user_location.user_code = user.user_code WHERE user_location.main_identity_code = :identity_code";
 
                   $stmt = $conn->prepare($query);
+                  $stmt->bindParam(':identity_code',$identity_code);
+
+
                   $stmt->execute();
 
                   $row = $stmt->fetchAll(PDO::FETCH_ASSOC);

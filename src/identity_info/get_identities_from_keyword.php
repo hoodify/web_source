@@ -19,8 +19,9 @@ parameter : keyword_text
 
         
         // 해당 키워드와 이어진 정체성 받기
-        $query = "SELECT * FROM identity INNER JOIN identity_keyword ON identity.identity_code = identity_keyword.identity_code INNER JOIN keyword ON identity_keyword.keyword_code = keyword.keyword_code WHERE keyword_name ='$keyword_text'";
+        $query = "SELECT * FROM identity INNER JOIN identity_keyword ON identity.identity_code = identity_keyword.identity_code INNER JOIN keyword ON identity_keyword.keyword_code = keyword.keyword_code WHERE keyword_name =:keyword_text";
         $stmt = $conn->prepare($query);
+        $stmt->bindParam('keyword_text',$keyword_text);
         
         if($stmt->execute()){
 

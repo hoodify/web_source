@@ -21,6 +21,10 @@ parameter : identity_code
         $query = "SELECT * FROM caution  WHERE identity_code = '$identity_code' ";
 
         $stmt = $conn->prepare($query);
+        $stmt->bindParam(':identity_code',$identity_code);
+
+
+
         $stmt->execute();
         $row = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
