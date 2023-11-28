@@ -31,10 +31,11 @@ parameter : item_code
           $item_code = $_POST['item_code'];
 
           
-          $query = "SELECT * FROM user_item WHERE user_code = '$user_code' AND item_code = '$item_code'";
+          $query = "SELECT * FROM user_item WHERE user_code = '$user_code' AND item_code = :item_code";
 
 
           $stmt = $conn->prepare($query);
+          $stmt->bindParam(':item_code',$item_code);
 
           if($stmt->execute()){
 

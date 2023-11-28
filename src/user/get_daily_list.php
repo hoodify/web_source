@@ -16,9 +16,10 @@
 
 
 
-                  $query = "SELECT * FROM activity INNER JOIN identity ON activity.identity_code = identity.identity_code WHERE activity.identity_code = '$identity_code' ORDER BY activity.activity_level ASC";
+                  $query = "SELECT * FROM activity INNER JOIN identity ON activity.identity_code = identity.identity_code WHERE activity.identity_code = :identity_code ORDER BY activity.activity_level ASC";
 
                   $stmt = $conn->prepare($query);
+                  $stmt->bindParam(':identity_code',$identity_code);
                   $stmt->execute();
 
                   $row = $stmt->fetchAll(PDO::FETCH_ASSOC);

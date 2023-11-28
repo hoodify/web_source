@@ -28,8 +28,9 @@ parameter : identity_code
 
 
     // 위의 순서값을 기준으로 리스트의 나머지 정체성의 순서값 업데이트
-    $updt_query = "UPDATE user_identity SET sequence_val = sequence_val-1  WHERE sequence_val > $sequence_val AND active = 1";
+    $updt_query = "UPDATE user_identity SET sequence_val = sequence_val-1  WHERE sequence_val > :sequence_val AND active = 1";
     $updt_stmt = $conn->prepare($updt_query);
+    $stmt->bindParam(':sequence_val',$sequence_val);
     $updt_stmt->execute();
     
 

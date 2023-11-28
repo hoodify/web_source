@@ -20,10 +20,13 @@ parameter : identity_code
 
 
           // 해당 정체성의 모든 skill 불러오기
-          $query = "SELECT * FROM skill  WHERE identity_code = '$identity_code' ";
+          $query = "SELECT * FROM skill  WHERE identity_code = :identity_code";
 
 
           $stmt = $conn->prepare($query);
+          $stmt->bindParam(':identity_code',$identity_code);
+
+
           $stmt->execute();
           $row = $stmt->fetchAll(PDO::FETCH_ASSOC);
 

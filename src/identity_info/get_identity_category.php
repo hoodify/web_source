@@ -19,9 +19,10 @@ parameter : category_text
 
         
         // 해당 category에 연결된 모든 정체성 리스트 받기
-        $query = "SELECT * FROM identity INNER JOIN identity_category ON identity.identity_code = identity_category.identity_code INNER JOIN category ON identity_category.category_code = category.category_code WHERE category_name ='$category_text'";
+        $query = "SELECT * FROM identity INNER JOIN identity_category ON identity.identity_code = identity_category.identity_code INNER JOIN category ON identity_category.category_code = category.category_code WHERE category_name = :category_text";
         
         $stmt = $conn->prepare($query);
+        $stmt->bindParam(':category_text',$category_text);
         
         if($stmt->execute()){
 

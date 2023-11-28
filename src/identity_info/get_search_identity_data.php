@@ -13,23 +13,27 @@
 
 
 
-                  $query_activity = "SELECT * FROM activity  WHERE identity_code = '$identity_code' ";
+                  $query_activity = "SELECT * FROM activity  WHERE identity_code = :identity_code";
                   $stmt_activity = $conn->prepare($query_activity);
+                  $stmt_activity->bindParam(':identity_code',$identity_code);
                   $stmt_activity->execute();
                   $row_activity = $stmt_activity->fetchAll(PDO::FETCH_ASSOC);
 
-                  $query_item = "SELECT * FROM item  WHERE identity_code = '$identity_code' ";
+                  $query_item = "SELECT * FROM item  WHERE identity_code = :identity_code";
                   $stmt_item = $conn->prepare($query_item);
+                  $stmt_item->bindParam(':identity_code',$identity_code);
                   $stmt_item->execute();
                   $row_item = $stmt_item->fetchAll(PDO::FETCH_ASSOC);
 
-                  $query_skill= "SELECT * FROM skill  WHERE identity_code = '$identity_code' ";
+                  $query_skill= "SELECT * FROM skill  WHERE identity_code = :identity_code";
                   $stmt_skill = $conn->prepare($query_skill);
+                  $stmt_skill->bindParam(':identity_code',$identity_code);
                   $stmt_skill->execute();
                   $row_skill = $stmt_skill->fetchAll(PDO::FETCH_ASSOC);
 
-                  $query_caution = "SELECT * FROM caution  WHERE identity_code = '$identity_code' ";
+                  $query_caution = "SELECT * FROM caution  WHERE identity_code = :identity_code";
                   $stmt_caution = $conn->prepare($query_caution);
+                  $stmt_caution->bindParam(':identity_code',$identity_code);
                   $stmt_caution->execute();
                   $row_caution = $stmt_caution->fetchAll(PDO::FETCH_ASSOC);
 

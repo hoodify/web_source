@@ -8,9 +8,10 @@
 
 
 
-                $query = "SELECT * FROM user WHERE nickname = '$nickname'";
+                $query = "SELECT * FROM user WHERE nickname = :nickname";
 
                 $stmt = $conn->prepare($query);
+                $stmt->bindParam(':nickname',$nickname);
                 $stmt->execute(); 
 
                   if($stmt->rowCount() > 0){

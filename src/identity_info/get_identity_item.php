@@ -18,12 +18,14 @@ parameter : identity_code
         $identity_code = $_POST['identity_code'];
 
         // 해당 정체성의 모든 item 불러오기
-        $query = "SELECT * FROM item INNER JOIN identity ON item.identity_code = identity.identity_code WHERE item.identity_code = '$identity_code' ";
+        $query = "SELECT * FROM item INNER JOIN identity ON item.identity_code = identity.identity_code WHERE item.identity_code = :identity_code";
 
         
 
         $stmt = $conn->prepare($query);
+        $stmt->bindParam(':identity_code',$identity_code);
         $stmt->execute();
+        
         $row = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
         $jsonResult = json_encode($row);
