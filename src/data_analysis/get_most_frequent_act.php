@@ -17,9 +17,13 @@
 
               
                     $activity_query = "SELECT identity.identity_name,activity.activity_name, activity.activity_desc, activity.activity_img, COUNT(*) AS cnt FROM user_activity INNER JOIN activity ON user_activity.activity_code = activity.activity_code INNER JOIN identity ON activity.identity_code = identity.identity_code
-                                      WHERE user_code = '$user_code'  AND  MONTH(date) = $date_value GROUP BY user_activity.activity_code ORDER BY cnt DESC";
+                                      WHERE user_code = '$user_code'  AND  MONTH(date) = :date_value GROUP BY user_activity.activity_code ORDER BY cnt DESC";
 
                     $activity_stmt = $conn->prepare($activity_query);
+
+                    $activity_stmt->bindParam(':date_value',$date_value);
+
+
                     $activity_stmt->execute();
                     
                     $row = $activity_stmt->fetch(PDO::FETCH_ASSOC);

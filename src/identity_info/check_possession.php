@@ -12,9 +12,11 @@
 
 
 
-                $query = "SELECT * FROM user_identity WHERE identity_code = '$identity_code' AND user_code = '$user_code'";
+                $query = "SELECT * FROM user_identity WHERE identity_code = :identity_code AND user_code = '$user_code'";
 
                 $stmt = $conn->prepare($query);
+                $stmt->bindParam(':identity_code',$identity_code);
+
                 $stmt->execute(); 
 
                   if($stmt->rowCount() > 0){

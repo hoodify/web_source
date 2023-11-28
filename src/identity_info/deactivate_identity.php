@@ -34,9 +34,9 @@ parameter : identity_code
     
 
     // 비활성화할 정체성의 순서값, 활성화 값 업데이트
-    $query = "UPDATE user_identity SET active = 0, sequence_val = 99 WHERE user_code = $user_code AND identity_code = $identity_code";
+    $query = "UPDATE user_identity SET active = 0, sequence_val = 99 WHERE user_code = $user_code AND identity_code = :identity_code";
     $stmt = $conn->prepare($query);
-    
+    $stmt -> bindParam(':identity_code', $identity_code);
 
     if($stmt->execute()){
         echo "success";

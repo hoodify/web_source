@@ -19,15 +19,19 @@ parameter : identity_code
         $identity_code = $_POST['identity_code'];
 
         // 해당 정체성의 '총 유저 수' 반환 sql
-        $user_num_query = "SELECT identity.identity_name, COUNT(*) AS total_user_num FROM user_identity INNER JOIN identity ON user_identity.identity_code = identity.identity_code WHERE user_identity.sequence_val = 1 AND user_identity.identity_code = $identity_code";
+        $user_num_query = "SELECT identity.identity_name, COUNT(*) AS total_user_num FROM user_identity INNER JOIN identity ON user_identity.identity_code = identity.identity_code WHERE user_identity.sequence_val = 1 AND user_identity.identity_code = :identity_code";
         $stmt_user_num = $conn->prepare($user_num_query);
+        $stmt_user_num->bindParam(':identity_code',$identity_code);
+
         $stmt_user_num->execute();
         $row_user_num = $stmt_user_num->fetchAll(PDO::FETCH_ASSOC);
 
         
         // 해당 정체성의 유저들의 '활동 수 (activity 별)' 반환 sql
-        $check_query = "SELECT identity.identity_name, activity.activity_code, activity.activity_name, activity.activity_desc, COUNT(*) AS cnt FROM user_activity INNER JOIN activity ON user_activity.activity_code = activity.activity_code INNER JOIN identity ON user_activity.identity_code = identity.identity_code WHERE user_activity.identity_code =  $identity_code AND DAY(date) = DAY(NOW()) AND MONTH(date) = MONTH(NOW()) GROUP BY user_activity.activity_code"; 
+        $check_query = "SELECT identity.identity_name, activity.activity_code, activity.activity_name, activity.activity_desc, COUNT(*) AS cnt FROM user_activity INNER JOIN activity ON user_activity.activity_code = activity.activity_code INNER JOIN identity ON user_activity.identity_code = identity.identity_code WHERE user_activity.identity_code =  :identity_code AND DAY(date) = DAY(NOW()) AND MONTH(date) = MONTH(NOW()) GROUP BY user_activity.activity_code"; 
         $check_stmt = $conn->prepare($check_query);
+        $check_stmt->bindParam(':identity_code',$identity_code);
+
         $check_stmt->execute();
         $row = $check_stmt->fetchAll(PDO::FETCH_ASSOC);
 

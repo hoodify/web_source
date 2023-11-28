@@ -66,35 +66,48 @@
           
 
                     $activity_query = "SELECT COUNT(*) FROM user_activity WHERE user_code = '$user_code' AND identity_code = $identity_code 
-                                        AND  MONTH(date) = $date_value";
+                                        AND  MONTH(date) = :date_value";
 
                     $activity_stmt = $conn->prepare($activity_query);
+                    $activity_stmt->bindParam(':date_value',$date_value);
+
                     $activity_stmt->execute();
                     $count_activity = $activity_stmt -> fetchColumn();
                     $total_count = $total_count+$count_activity;
 
                   
-                    $item_query = "SELECT COUNT(*) FROM user_item WHERE user_code = '$user_code' AND identity_code = $identity_code
-                                    AND  MONTH(date) = $date_value";
+                    $item_query = "SELECT COUNT(*) FROM user_item WHERE user_code = '$user_code' AND identity_code = :identity_code
+                                    AND  MONTH(date) = :date_value";
 
                     $item_stmt = $conn->prepare($item_query);
+                    $item_stmt->bindParam(':identity_code',$identity_code);
+                    $item_stmt->bindParam(':date_value',$date_value);
+
                     $item_stmt->execute();
                     $count_item = $item_stmt -> fetchColumn();
                     $total_count = $total_count+$count_item;
 
 
-                    $skill_query = "SELECT COUNT(*) FROM user_skill WHERE user_code = '$user_code' AND identity_code = $identity_code
-                                    AND  MONTH(date) = $date_value";
+                    $skill_query = "SELECT COUNT(*) FROM user_skill WHERE user_code = '$user_code' AND identity_code = :identity_code
+                                    AND  MONTH(date) = :date_value";
                     $skill_stmt = $conn->prepare($skill_query);
+                    $skill_stmt->bindParam(':identity_code',$identity_code);
+                    $skill_stmt->bindParam(':date_value',$date_value);
+
+
                     $skill_stmt->execute();
                     $count_skill = $skill_stmt -> fetchColumn();
                     $total_count = $total_count+$count_skill;
 
 
-                    $caution_query = "SELECT COUNT(*) FROM user_caution WHERE user_code = '$user_code' AND identity_code = $identity_code
-                                      AND  MONTH(date) = $date_value";
+                    $caution_query = "SELECT COUNT(*) FROM user_caution WHERE user_code = '$user_code' AND identity_code = :identity_code
+                                      AND  MONTH(date) = :date_value";
 
                     $caution_stmt = $conn->prepare($caution_query);
+                    $caution_stmt->bindParam(':identity_code',$identity_code);
+                    $caution_stmt->bindParam(':date_value',$date_value);
+
+
                     $caution_stmt->execute();
                     $count_caution = $caution_stmt -> fetchColumn();
                     $total_count = $total_count+$count_caution;
