@@ -33,8 +33,9 @@ parameter : activity_code
         
           $query = "SELECT * FROM user_activity WHERE user_code = '$user_code' AND activity_code = :activity_code ORDER BY user_activity_code DESC";
           
-          $stmt->bindParam(':activity_code',$activity_code);
+          
           $stmt = $conn->prepare($query);
+          $stmt->bindParam(':activity_code',$activity_code);
           
 
             if($stmt->execute()){

@@ -18,7 +18,7 @@ parameter : identity_code
         $identity_code = $_POST['identity_code'];
 
         // 해당 정체성의 모든 caution 불러오기
-        $query = "SELECT * FROM caution  WHERE identity_code = '$identity_code' ";
+        $query = "SELECT * FROM caution  WHERE identity_code = :identity_code ";
 
         $stmt = $conn->prepare($query);
         $stmt->bindParam(':identity_code',$identity_code);
