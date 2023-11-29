@@ -145,7 +145,6 @@ main{
     margin-left:20px; 
     padding-right:20px; 
     margin-top:10px;     
-    border-right: 1px solid black;  
 }
 
 
@@ -815,7 +814,7 @@ border: 1px solid #93b0bc;
 .reload_btn_container{
     position: absolute;
     float: right;
-    right: 15px;
+    right: 30px;
     bottom: 55px;
 }
 
