@@ -25,7 +25,7 @@
                   if($check_stmt->rowCount() > 0)
                   {
 
-                    $update_query = "UPDATE user_location SET main_identity_code =identity_code, latitude = :latitude, longitude = :longitude WHERE user_code = '$user_code'";
+                    $update_query = "UPDATE user_location SET main_identity_code =:identity_code, latitude = :latitude, longitude = :longitude WHERE user_code = '$user_code'";
                     $update_stmt = $conn->prepare($update_query);
 
                     $update_stmt->bindParam(':identity_code',$identity_code);
@@ -39,7 +39,7 @@
 
 
 
-                    $insert_query = "INSERT INTO user_location (user_code, main_identity_code, latitude, longitude) VALUES ('$user_code', :identity_code, :latitude, :longitude";
+                    $insert_query = "INSERT INTO user_location (user_code, main_identity_code, latitude, longitude) VALUES ('$user_code', :identity_code, :latitude, :longitude)";
                     $insert_stmt = $conn->prepare($insert_query);
                     
                     $insert_stmt->bindParam(':identity_code',$identity_code);

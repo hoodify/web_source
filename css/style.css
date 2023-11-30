@@ -15,6 +15,7 @@
     font-style: normal;
 }
 html{
+    position: fixed;
     height: 100%;
     width: 100%;
 }
@@ -56,14 +57,18 @@ footer{
 /* ///////////////////////////////////////////////////////////////////////////////// */
 
 body{
-    height: 100vh;
     font-family: TmoneyRoundWindRegular;
     line-height: 30px;
     background-color: #f0f2f4;
+    height:100%;
+    width:100%;
+    position: fixed;
 }
 
 main{
-    height: 75%;
+    height: 100%;
+    width: 100%;
+    position: fixed;
 }
 
 
@@ -75,7 +80,7 @@ main{
     justify-content: space-between;
     align-items: center; 
     background-color: rgba( 47, 58, 78, 0.85); 
-    height:5%; 
+    height:50px; 
     padding:20px;
     
 }
@@ -128,7 +133,7 @@ main{
 }
 
 .main_background_container0{
-    height:100%;
+    height:75%;
 }
 
 .main_background{
@@ -183,6 +188,7 @@ main{
     margin-left:25px;     
     margin-bottom: 25px;
     width: 80%;
+    height:80%;
 }
 
 
@@ -193,10 +199,11 @@ main{
     margin-top:15px;  
     border: 2px solid #475169;       
     box-shadow: gray 6px 6px 5px 4px;
-    width:90%;
-    height:90%; 
     background-color:white; 
     border-radius:5px;
+    width: 90%;
+    max-width: 900px;
+    height: 100%;
 }
 
 .todays_cont_info{
@@ -236,7 +243,7 @@ main{
 #others_record_container{
     margin-left:30px; 
     margin-top:15px; 
-    height: calc(100vh - 350px); 
+    height: calc(100vh - 300px); 
     display:none;
     flex-direction: column;
 }
@@ -283,7 +290,8 @@ main{
     margin-top:15px; 
     flex-direction:column; 
     width:90%; 
-    height:90%;
+    max-width: 900px;
+    height:100%;
 }
 
 
@@ -509,7 +517,7 @@ border: 1px solid #93b0bc;
   height: 80%;
   background-color: #fff;
   border: 3px solid black;
-  z-index: 1000;
+  z-index: 1001;
   border-radius: 12px;
   min-width: 800px;
   min-height: 500px;
@@ -603,7 +611,7 @@ border: 1px solid #93b0bc;
 
 .identity_desc_container{
     font-size: 12px;
-    font-weight: bold;
+    font-family: 'TmoneyRoundWindExtraBold';
     padding: 12px;
     background-color: #eaecef;
     border: 3px solid white;
@@ -760,14 +768,14 @@ border: 1px solid #93b0bc;
     top: 50%;
     left: 50%;
     width: 40%;
-    height: 40%;
+    height: 50%;
     background-color: #fff;
     border: 3px solid black;
     z-index: 1000;
     border-radius: 12px;
     min-width: 650px;
     max-width: 500px;
-    min-height: 350px;
+    min-height: 450px;
     box-shadow: rgba(0, 0, 0, 0.3) 0px 0px 0px 9999px;
 }
 
@@ -802,7 +810,7 @@ border: 1px solid #93b0bc;
     display: flex;
     flex-wrap: wrap;
     margin-top:25px;    
-    height: 150px;
+    height: 240px;
     overflow-y: scroll;
     position: relative;
 }
@@ -955,7 +963,7 @@ border: 1px solid #93b0bc;
     display: flex; 
     flex-direction: column; 
     width:100%;
-    height:58%;
+    height:75%;
   }
 
   .record_date_container{
@@ -993,9 +1001,9 @@ border: 1px solid #93b0bc;
     border-Radius: 12px; 
     border: 2px solid white; 
     margin-top: 2px; 
-    height: 100%;
+    height: 80%;
     min-height: 90px;
-    max-height: 250px;
+    max-height: 325px;
 }
 
 .popup_activity_record_cont{
@@ -1010,7 +1018,6 @@ border: 1px solid #93b0bc;
 }
 
 .activity_post_container7{
-    height:15%; 
     width:100%; 
     display: flex; 
     flex-direction: row-reverse;
@@ -1325,6 +1332,7 @@ border: 1px solid #93b0bc;
     padding:25px; 
     background-color: #f0f2f4; 
     border-radius: 9px;
+    
 }
 
 .profile_layer_container2{
@@ -1565,7 +1573,7 @@ border: 1px solid #93b0bc;
     display: flex; 
     flex-direction: column; 
     width:100%; 
-    height: 58%;
+    height: 85%;
 }
 
 .public_record_post_container4{
@@ -1606,7 +1614,7 @@ border: 1px solid #93b0bc;
     margin-top: 2px; 
     height: 100%;
     min-height: 90px;
-    max-height: 250px;
+    max-height: 280px;
 }
 
 
@@ -1625,7 +1633,7 @@ border: 1px solid #93b0bc;
 .public_record_img_container{
 
     width:100%; 
-    margin-left:45px; 
+    margin-left:25px; 
     z-index: 2;
 }
 
@@ -1670,6 +1678,13 @@ border: 1px solid #93b0bc;
     margin-right: 35px;
 }
 
+
+/* ///////////////////////////////////////////////////////////////////////////////// */
+
+.arrow_btn{
+    color:#495364;
+    /* box-shadow: gray 2px 2px 2px 1px;*/
+}
 
 /* ///////////////////////////////////////////////////////////////////////////////// */
 
@@ -2005,8 +2020,9 @@ border: 1px solid #93b0bc;
     width:40px; 
     height:40px; 
     margin-left:10px; 
-    border: 2px solid black; 
-    border-radius: 12px;
+    border: 2px solid #475169;
+    border-radius: 8px;
+    box-shadow: gray 1px 1px 1px 1px;
 }
 
 .category_container{
@@ -2113,15 +2129,17 @@ border: 1px solid #93b0bc;
     padding-left: 10px; 
     padding-right: 10px; 
     margin-bottom:5px; 
-    background-color: #475169; 
+    background-color: #2a3243; 
+    /* #475169 */
     width: fit-content; 
     border-radius: 5px; 
     color: white;
 }
 
+
 .add_identity{
     margin-left:25px; 
-    border-radius: 8px;
+    border-radius: 4px;
 }
 
 .locked {
@@ -2135,21 +2153,23 @@ border: 1px solid #93b0bc;
   line-height: 25px;
   text-decoration: none;
   margin-left:25px;
-  border-radius: 8px;
+  border-radius: 4px;
+  box-shadow: gray 2px 2px 2px 1px;
+
 }
 
 .search_identity_desc{
-    width:80%; 
-    margin-top:15px; 
+    width:80%;  
     margin: 6px;  
+    font-style: italic;
     font-size: 13px; 
     font-weight: bold; 
-    background-color: #E0E6E9; 
+    background-color: #eaecef; 
     border: 2px solid #475169; 
     border-radius: 10px; 
     padding: 8px; 
     line-height:2em; 
-    color:#475169;
+    color:#3b3b3b;
     text-decoration: underline;
     text-underline-position: under;
     text-underline-offset: 2px;
@@ -2182,6 +2202,7 @@ border: 1px solid #93b0bc;
     padding:5px; 
     border-radius: 8px; 
     color:white;
+    box-shadow: gray 2px 2px 2px 1px;
     
 }
 
@@ -2226,9 +2247,8 @@ border: 1px solid #93b0bc;
 }
 
 .mylistC_common{
-
+    font-family: 'TmoneyRoundWindExtraBold';
     font-size:12px; 
-    font-weight: bold;
     padding: 10px;  
     padding-top: 7px;
     border: 2px solid white;
@@ -2503,6 +2523,9 @@ table.ui-datepicker-calendar { display:none; }
     word-break: break-all;
     overflow: scroll;
     background-color: white;
+    color: #091940;
+    font-style: italic;
+    letter-spacing: 1px;
     
 }
 .profile_introduction::-webkit-scrollbar {
@@ -2544,7 +2567,8 @@ table.ui-datepicker-calendar { display:none; }
     padding: 8px;
     border: 2px solid white; 
     border-radius:8px; 
-    width: 60%; 
+    width: 80%; 
+    max-width:400px;
     background-color: #313843; 
     box-shadow: gray 4px 4px 5px 3px
 }
@@ -2582,14 +2606,18 @@ table.ui-datepicker-calendar { display:none; }
 
 .ui-dialog{
 
-   font-family: TmoneyRoundWindRegular;
+    font-family: TmoneyRoundWindExtraBold;
    border: 2px solid #212121;
    border-radius: 8px;
+   font-size: 19px;
    box-shadow: rgba(0, 0, 0, 0.3) 0px 0px 0px 9999px; 
 
 }
 
-
+.modal_cont{
+    font-family: TmoneyRoundWindExtraBold;
+    font-size:17px;
+}
 
 
 
@@ -2602,7 +2630,6 @@ table.ui-datepicker-calendar { display:none; }
     background-color: rgba( 47, 58, 78, 0.85); 
     display:none; 
     height: 100%; 
-    bottom: 30px;  
     position: absolute;
 }
 

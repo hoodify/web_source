@@ -28,7 +28,7 @@ parameter : identity_code
 
         
         // 해당 정체성의 유저들의 '활동 수 (activity 별)' 반환 sql
-        $check_query = "SELECT identity.identity_name, activity.activity_code, activity.activity_name, activity.activity_desc, COUNT(*) AS cnt FROM user_activity INNER JOIN activity ON user_activity.activity_code = activity.activity_code INNER JOIN identity ON user_activity.identity_code = identity.identity_code WHERE user_activity.identity_code =  :identity_code AND DAY(date) = DAY(NOW()) AND MONTH(date) = MONTH(NOW()) GROUP BY user_activity.activity_code"; 
+        $check_query = "SELECT identity.identity_name, activity.activity_code, activity.activity_name, activity.activity_desc, COUNT(*) AS cnt FROM user_activity INNER JOIN activity ON user_activity.activity_code = activity.activity_code INNER JOIN identity ON user_activity.identity_code = identity.identity_code WHERE user_activity.identity_code = :identity_code AND DAY(date) = DAY(NOW()) AND MONTH(date) = MONTH(NOW()) GROUP BY user_activity.activity_code"; 
         $check_stmt = $conn->prepare($check_query);
         $check_stmt->bindParam(':identity_code',$identity_code);
 
