@@ -26,8 +26,7 @@
 
                 $query = "SELECT * FROM user  WHERE user_value = :user_code ";
                 $stmt = $conn->prepare($query);
-                $stmt -> bindParam(':user_code',$user_code)
-;
+                $stmt -> bindParam(':user_code',$user_code);
                 $stmt->execute();
                 if($stmt->rowCount() > 0){
 

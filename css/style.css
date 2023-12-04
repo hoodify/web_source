@@ -122,7 +122,6 @@ main{
 }
 
 
-
 /* ///////////////////////////////////////////////////////////////////////////////// */
 
 .no_identity{
@@ -146,7 +145,7 @@ main{
 
 .main_background_container1{
     width:500px;
-    height: fit-content;
+    height: 100%;
     margin-left:20px; 
     padding-right:20px; 
     margin-top:10px;     
@@ -162,7 +161,8 @@ main{
 }
 
 .main_list_container{
-    height: 100%;
+    height: 80%;
+    max-height: 500px;
     border-radius: 12px;  
     overflow-y: scroll;
     width:100%; 
@@ -767,14 +767,14 @@ border: 1px solid #93b0bc;
     flex-direction: column;
     top: 50%;
     left: 50%;
-    width: 40%;
-    height: 50%;
+    width: 55%;
+    height: 65%;
     background-color: #fff;
     border: 3px solid black;
     z-index: 1000;
     border-radius: 12px;
     min-width: 650px;
-    max-width: 500px;
+    max-width: 550px;
     min-height: 450px;
     box-shadow: rgba(0, 0, 0, 0.3) 0px 0px 0px 9999px;
 }
@@ -1481,7 +1481,7 @@ border: 1px solid #93b0bc;
 .notice{
     display:none; 
     width: 585px; 
-    height:400px; 
+    height:510px; 
     background-color:  white; 
     top: 50%; left: 50%;
     position: fixed;
@@ -1915,7 +1915,7 @@ border: 1px solid #93b0bc;
     resize:none; 
     font-size:16px; 
     width: 100%; 
-    height:120px; 
+    height:110px; 
     padding:8px;
  }
 
@@ -1984,7 +1984,7 @@ border: 1px solid #93b0bc;
     background-color: #fff;
     border: 3px solid black;
     z-index: 1009;
-    border-radius: 8px;
+    border-radius: 12px;
 
            }
 
@@ -2631,6 +2631,7 @@ table.ui-datepicker-calendar { display:none; }
     display:none; 
     height: 100%; 
     position: absolute;
+    margin-bottom: 190px;
 }
 
 .public_main .login_account{
@@ -2638,8 +2639,9 @@ table.ui-datepicker-calendar { display:none; }
     border-radius:10px;
     border: 3px solid black;
     box-shadow: rgba(0, 0, 0, 0.3) 0px 0px 0px 9999px;  
-    height: 450px; 
+    height: 550px; 
     width: 400px; 
+    margin-bottom: 150px;
     display:flex; 
     align-items: center; 
     flex-direction: column; 
@@ -2664,12 +2666,48 @@ table.ui-datepicker-calendar { display:none; }
     margin-right:15px;
 }
 
+.login_btn_container{
+
+    margin-top: 45px;
+}
+
+
 .login_with_kakao{
     cursor: pointer; 
-    margin-top: 100px; 
+    margin-top: 35px; 
     width:100%; 
     height:50px;
 }
+
+.test_btn_container{
+    
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    padding: 10px;
+    border-radius: 7px;
+    position: relative;
+    background-color: #6f84b1;
+    cursor: pointer;
+
+}
+
+#test_btn{
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    left: 15px;
+    border-radius: 8px;
+
+}
+
+#test_btn_word{
+    font-weight: bold;
+    font-size: 15px;
+    color: #232010;
+    
+}
+
 
 /* ///////////////////////////////////////////////////////////////////////////////// */
 

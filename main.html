@@ -75,16 +75,20 @@
         <div class = 'login_account' >
            
             <div class='top_bar' style="position: relative;"> 
-                <p class = 'top_word'> Login </p>
+                <p class = 'top_word'> 로 그 인 </p>
             </div>
 
             <div class="login_container">
                 <img src ="/hoodify/img/identity/hooodify_mini.png">
-                <h3 style="margin-top:15px; color:rgba( 0, 0, 0, 0.85 );"> 세상의 모든 정체성.  </h3>
-                <h3 style="margin-top:5px; color:rgba( 0, 0, 0, 0.85 );">  후디파이 </h3>
+                <h3 style="margin-top:15px; color:rgba( 0, 0, 0, 0.85 ); font-family: TmoneyRoundWindExtraBold;"> 인생이라는 콘텐츠.  </h3>
+                <h3 style="margin-top:5px; color:rgba( 0, 0, 0, 0.85 ); font-family: TmoneyRoundWindExtraBold;">  후디파이 </h3>
             </div>
 
-            <div>
+            <div class="login_btn_container">
+                <div class = 'test_btn_container'>
+                    <img id="test_btn" src ="/hoodify/img/identity/hooodify_mini.png"> 
+                    <p id = 'test_btn_word'> 테스트 계정으로 시작해보기 </p>
+                </div>
                 <img class = "login_with_kakao" src="/hoodify/img/login/kakao_login_medium_wide.png">
             </div>
 
@@ -96,7 +100,7 @@
 
     <div class = 'main_background_container0'> 
         <div class = "no_identity"> 
-            <p> <span class = 'open_search_layer'>검색</span>을 통해 자신의 키워드를 찾아보세요 </p>
+            <p> <span class = 'open_search_layer' style="cursor:pointer; font-family: TmoneyRoundWindExtraBold; color: #517ee7;">검색</span>을 통해 자신의 키워드를 찾아보세요 </p>
         </div>
         
         <div class='main_background'>
@@ -211,8 +215,8 @@
 
                 <div class = 'report_cont_container'> 
                     <div class= "space_01">
-                        <p>자신과 어울리는 키워드와 관련된 <span style="color:cornflowerblue; font-weight:bold"> 더 다양하고 구체적인 선택지 </span> 를 얻을 수 있습니다. <br><br>
-                        자신과 같은 키워드를 가진<span style="color:cornflowerblue; font-weight:bold"> 다른 사람에 대한 정보 </span>를 얻을 수 있습니다.</p>
+                        <p>자신과 어울리는 키워드와 관련된 <span style="color:cornflowerblue; font-family:TmoneyRoundWindExtraBold"> 더 다양하고 구체적인 선택지 </span> 를 얻을 수 있습니다. <br><br>
+                        자신과 같은 키워드를 가진<span style="color:cornflowerblue; font-family:TmoneyRoundWindExtraBold"> 다른 사람에 대한 정보 </span>를 얻을 수 있습니다.</p>
                     </div>
 
                     <div class="space_02">  
@@ -1004,6 +1008,7 @@
            <p style="font-size: 15px; margin-top:5px;"> 
                 　▶ 현재 <span style="color: #517ee7; font-family: 'TmoneyRoundWindExtraBold';"> 테스트 버전</span>으로 개발 중입니다. 불안정한 기능들이 있습니다.  <br>
                 <br> 　▶ 유저 데이터는 주기적으로 <span style="color: #517ee7; font-family: 'TmoneyRoundWindExtraBold';">초기화</span> 하고 있습니다. 작성한 기록들이 사라질 수 있습니다.<br>
+                <br> 　▶  <span style="color: #517ee7; font-family: 'TmoneyRoundWindExtraBold';">테스트 유저</span>로 시작한 경우 로그아웃을 하거나 일정 시간이 지나면 모든 기록이 <span style="color: #517ee7; font-family: 'TmoneyRoundWindExtraBold';">초기화</span> 됩니다. <br>
                 <br> 　▶ 모든 정체성과 하위 콘텐츠들은 계속해서 <span style="color: #517ee7; font-family: 'TmoneyRoundWindExtraBold';">업데이트</span>하고 있습니다. <br>
                 <br> 　▶ 피드백과 오류 제보는 <span style="color: #517ee7; font-family: 'TmoneyRoundWindExtraBold';">hoodify.crm@gmail.com</span> 으로 보내주시면 반영하겠습니다.
             </p>
@@ -1071,7 +1076,7 @@
     </div>
 
 
-    <div id="desc_modal" style='display:none; width: 400px;'>
+    <div id="desc_modal" style='display:none;'>
         <div class = 'modal_cont' ></div>
     </div>
 
@@ -1113,8 +1118,8 @@ Global_Var.userInfo = {
 ///////////////////////////////////////////////////////////////////////////////////////
 // 주소 설정. 테스트(로컬) 또는 운영
 
-//var address_type = 'http://127.0.0.1/hoodify/main.html';
-var address_type = 'https://hoodify.cafe24.com/hoodify/main.html';
+var address_type = 'http://127.0.0.1/hoodify/main.html';
+//var address_type = 'https://hoodify.cafe24.com/hoodify/main.html';
 
 
 ///////////////////////////////////////////////////////////////////////////////////////
@@ -1783,12 +1788,42 @@ $(".mli").click(function(){
 });
 
 
+////////////////////////////////////////////////////////////////////////////////////               
+/////// 테스트 계정으로 시작하기 버튼 이벤트
+
+$('.test_btn_container').click(function(){
+
+    
+    $.ajax({
+            type : "POST",
+            url : "/hoodify/src/user/test_start.php",
+            data : {
+                   
+                },
+            dataType : 'json',  
+            success : function(res){
+            
+                console.log('테스트 유저');
+                console.log(res);
+                window.location.href=address_type;
+
+            },
+            error : function(XMLHttpRequest, textStatus, errorThrown){ // 비동기 통신이 실패할경우 error 콜백으로 들어옵니다.
+                alert("통신 실패.")
+            }
+            });
+
+
+
+})
 
 ////////////////////////////////////////////////////////////////////////////////////               
 /////// 카카오로 시작하기 버튼 이벤트
 $('.login_with_kakao').click(function(){
     kakaoLogin();
 })
+
+
 
 ////////////////////////////////////////////////////////////////////////////////////
 ////// 카카오로 로그인하기
@@ -1940,11 +1975,25 @@ $('.open_report').click(function(){
                         console.log(res);
                         if(res[1].length === 0){
 
-                            console.log('nothing');
-                            $('.notice_message').html("새로운 하루가 시작되었습니다. "
-                            + '<br>'+'"'+'<span style="color: #517ee7; font-family: TmoneyRoundWindExtraBold">'
-                            +res[0][0].identity_name +'</span>'+'"(으)로서 첫 기록을 남겨보세요.');
+                            if(res[0][0].identity_name != null){
+
+                                $('.notice_message').html("새로운 하루가 시작되었습니다. "
+                                + '<br>'+'"'+'<span style="color: #517ee7; font-family: TmoneyRoundWindExtraBold">'
+                                +res[0][0].identity_name +'</span>'+'"(으)로서 첫 기록을 남겨보세요.');
+                            }
+
+                            else{
+
+                                $('.notice_message').html("새로운 하루가 시작되었습니다. "
+                                + '<br>'+'<span style="color: #517ee7; font-family: TmoneyRoundWindExtraBold">'
+                                    +'자신의 키워드'+'</span>'+'를 찾고 기록을 남겨보세요.');
                                 
+                            }
+
+                            
+                                
+
+                                    
                         }
                         else{
                             var data = res[1][0];
@@ -2174,126 +2223,137 @@ $('.history_list').empty();
        dataType : 'json',
        success : function(res){
 
-           $('<h4>', {
-               text: "정체성 순위",
-           }).css({
-                   
-                   marginLeft: "8px",
-                   lineHeight:"12px",
-                   marginBottom: '15px',
-                   width: 'fit-content',
-                   'background-color': '#475169',
-                   'border-radius': '5px',
-                   'color': 'white',
-                   padding:'8px',
-                   fontSize: "13px",
-                   'box-shadow': 'gray 2px 2px 3px 1px',
+            console.log('정체성 순위 값');
+            console.log(res);
 
-           }).appendTo('.history_list'); 
+            if(res != null){
 
-           for (var i = 0; i < res.length; i++) {
+                $('<h4>', {
+                    text: "정체성 순위",
+                }).css({
+                        
+                        marginLeft: "8px",
+                        lineHeight:"12px",
+                        marginBottom: '15px',
+                        width: 'fit-content',
+                        'background-color': '#475169',
+                        'border-radius': '5px',
+                        'color': 'white',
+                        padding:'8px',
+                        fontSize: "13px",
+                        'box-shadow': 'gray 2px 2px 3px 1px',
 
-               var object = res[i];
-               var object_name = object.identity_name;
-               var list_container = document.createElement("div");
+                }).appendTo('.history_list'); 
 
-               $(list_container).css({
+                for (var i = 0; i < res.length; i++) {
 
-                   width:"750px",
-                   height: "80px",
-                   padding: "5px",
-                   display: 'flex',
-                   paddingBottom: '5px',
-                   alignItems: 'center',
-                   overflow:'hidden',
+                    var object = res[i];
+                    var object_name = object.identity_name;
+                    var list_container = document.createElement("div");
 
-                   }).click(((object) => function (e) {
+                    $(list_container).css({
 
+                        width:"750px",
+                        height: "80px",
+                        padding: "5px",
+                        display: 'flex',
+                        paddingBottom: '5px',
+                        alignItems: 'center',
+                        overflow:'hidden',
 
-                   })).appendTo('.history_list');
-
-
-                   var VerticalList = $("<div>", {
-
-
-                               }).css({
-
-                                   display:'flex',
-                                   'flex-direction': 'column',
-                                   'align-items': 'center',
-                                   'width' : '100px',
-
-                               });
-
-                   $('<img>', {
-                                   src: object.identity_img
-
-                               }).css({
-                                   width: "40px",
-                                   height: "40px",
-                                   margin: "4.5px",
-                                   float: "left",
-                                   margin: "7px",
-                                   borderRadius: '8px', 
-                                   border: "2px solid #586167", 
-
-                               }).appendTo(VerticalList);
+                        }).click(((object) => function (e) {
 
 
-                   $('<p>', {
-                               text: object.identity_title,
-
-                           }).css({
-                               
-                               fontSize: "11px",
-                               margin: "3px",
-                               lineHeight:"12px",
+                        })).appendTo('.history_list');
 
 
-                           }).appendTo(VerticalList);    
-                           VerticalList.appendTo(list_container);       
+                        var VerticalList = $("<div>", {
 
 
-                           var barContainer = $("<div>", {
-                               
-                           }).css({
-                           
-                               display: 'flex',
-                               'flex-direction': 'row',
+                                    }).css({
 
-                           });      
+                                        display:'flex',
+                                        'flex-direction': 'column',
+                                        'align-items': 'center',
+                                        'width' : '100px',
 
+                                    });
 
-                           var bar_width;
-                           bar_width = 20*object.count;
+                        $('<img>', {
+                                        src: object.identity_img
 
-                           var graph_bar = $('<div>', {
+                                    }).css({
+                                        width: "40px",
+                                        height: "40px",
+                                        margin: "4.5px",
+                                        float: "left",
+                                        margin: "7px",
+                                        borderRadius: '8px', 
+                                        border: "2px solid #586167", 
 
-                           }).css({
-                               
-                               width: bar_width,
-                               height: "20px",
-                               backgroundColor: '#4c5566',
-                               'animation': 'bar_graph 1s linear 1',
-
-                           }).appendTo(barContainer);  
-
-
-                           $('<p>', {
-                               text: object.count,
-
-                           }).css({
-                               
-                               fontSize: "11px",
-                               margin: "3px",
-                               lineHeight:"12px",
-                               marginLeft: '10px',
+                                    }).appendTo(VerticalList);
 
 
-                           }).appendTo(barContainer);  
-                           barContainer.appendTo(list_container);  
-               
-           }
+                        $('<p>', {
+                                    text: object.identity_title,
+
+                                }).css({
+                                    
+                                    fontSize: "11px",
+                                    margin: "3px",
+                                    lineHeight:"12px",
+
+
+                                }).appendTo(VerticalList);    
+                                VerticalList.appendTo(list_container);       
+
+
+                                var barContainer = $("<div>", {
+                                    
+                                }).css({
+                                
+                                    display: 'flex',
+                                    'flex-direction': 'row',
+
+                                });      
+
+
+                                var bar_width;
+                                bar_width = 20*object.count;
+
+                                var graph_bar = $('<div>', {
+
+                                }).css({
+                                    
+                                    width: bar_width,
+                                    height: "20px",
+                                    backgroundColor: '#4c5566',
+                                    'animation': 'bar_graph 1s linear 1',
+
+                                }).appendTo(barContainer);  
+
+
+                                $('<p>', {
+                                    text: object.count,
+
+                                }).css({
+                                    
+                                    fontSize: "11px",
+                                    margin: "3px",
+                                    lineHeight:"12px",
+                                    marginLeft: '10px',
+
+
+                                }).appendTo(barContainer);  
+                                barContainer.appendTo(list_container);  
+                    
+                }
+            }
+
+            else{
+                console.log('아직 아무 기록 없음');
+            }
+
 
        },
        error : function(XMLHttpRequest, textStatus, errorThrown){ // 비동기 통신이 실패할경우 error 콜백으로 들어옵니다.
@@ -2316,116 +2376,123 @@ $('.history_list').empty();
            dataType: 'json',
            success : function(res){
 
-               var list_container = document.createElement("div");
+                console.log('가장 많이 한 활동');
+                console.log(res);
+                if(res != false){
 
-               $(list_container).css({
+                    var list_container = document.createElement("div");
 
-                   width:"750px",
-                   padding: "5px",
-                   display: 'flex',
-                   paddingBottom: '5px',
-                   alignItems: 'center',
-                   overflow:'hidden',
-                   marginTop: '15px',
+                    $(list_container).css({
 
-               }).appendTo('.most_activity');
+                        width:"750px",
+                        padding: "5px",
+                        display: 'flex',
+                        paddingBottom: '5px',
+                        alignItems: 'center',
+                        overflow:'hidden',
+                        marginTop: '15px',
 
-
-               var VerticalList = $("<div>", {
-
-                   }).css({
-
-                           display:'flex',
-                           'flex-direction': 'column',
-                           'width' : '120px',
-                           marginLeft : '15px',
-                           'align-items': 'center',
-
-                   });
+                    }).appendTo('.most_activity');
 
 
-                   $('<h4>', {
-                       text: "가장 많이 한 활동",
+                    var VerticalList = $("<div>", {
 
-                   }).css({
-                           
-                           fontSize: "13px",
-                           margin: "3px",
-                           lineHeight:"12px",
-                           marginTop:'20px',
-                           marginBottom:'20px',
-                           margin: "3px",
-                           width: 'fit-content',
-                           'background-color': '#475169',
-                           'border-radius': '5px',
-                           'color': 'white',
-                           padding:'8px',
-                           'box-shadow': 'gray 2px 2px 3px 1px',
-                           
-                   }).appendTo(VerticalList); 
+                        }).css({
 
-                   $('<p>', {
-                       text: res.identity_name,
+                                display:'flex',
+                                'flex-direction': 'column',
+                                'width' : '120px',
+                                marginLeft : '15px',
+                                'align-items': 'center',
 
-                   }).css({
-                       
-                           fontSize: "12px",
-                           margin: "3px",
-                           lineHeight:"12px",
-                           "font-weight": "bold",
-                           'margin-left':'10px',
-                       
-
-                   }).appendTo(VerticalList); 
+                        });
 
 
-                   $('<img>', {
-                           src: res.activity_img
+                        $('<h4>', {
+                            text: "가장 많이 한 활동",
 
-                       }).css({
-                           width: "50px",
-                           height: "50px",
-                           margin: "4.5px",
-                           float: "left",
-                           margin: "7px",
-                           borderRadius: '8px', 
-                           border: "2px solid #586167", 
-                           'margin-left':'10px',
+                        }).css({
+                                
+                                fontSize: "13px",
+                                margin: "3px",
+                                lineHeight:"12px",
+                                marginTop:'20px',
+                                marginBottom:'20px',
+                                margin: "3px",
+                                width: 'fit-content',
+                                'background-color': '#475169',
+                                'border-radius': '5px',
+                                'color': 'white',
+                                padding:'8px',
+                                'box-shadow': 'gray 2px 2px 3px 1px',
+                                
+                        }).appendTo(VerticalList); 
 
-                       }).appendTo(VerticalList);
+                        $('<p>', {
+                            text: res.identity_name,
 
+                        }).css({
+                            
+                                fontSize: "12px",
+                                margin: "3px",
+                                lineHeight:"12px",
+                                "font-weight": "bold",
+                                'margin-left':'10px',
+                            
 
-                   $('<p>', {
-                       text: res.activity_name,
-
-                   }).css({
-                           
-                           fontSize: "11px",
-                           margin: "3px",
-                           lineHeight:"12px",
-                           'margin-left':'10px',
-
-
-                   }).appendTo(VerticalList);    
-
-
-                   VerticalList.appendTo(list_container);   
-                   
-                   $('<p>', {
-                       text: res.cnt + " 회",
-
-                   }).css({
-                       
-                       fontSize: "14px",
-                       margin: "3px",
-                       lineHeight:"12px",
-                       marginTop : '50px',
-                       "font-weight": "bold",
-                       
+                        }).appendTo(VerticalList); 
 
 
-                   }).appendTo(list_container); 
+                        $('<img>', {
+                                src: res.activity_img
 
+                            }).css({
+                                width: "50px",
+                                height: "50px",
+                                margin: "4.5px",
+                                float: "left",
+                                margin: "7px",
+                                borderRadius: '8px', 
+                                border: "2px solid #586167", 
+                                'margin-left':'10px',
+
+                            }).appendTo(VerticalList);
+
+
+                        $('<p>', {
+                            text: res.activity_name,
+
+                        }).css({
+                                
+                                fontSize: "11px",
+                                margin: "3px",
+                                lineHeight:"12px",
+                                'margin-left':'10px',
+
+
+                        }).appendTo(VerticalList);    
+
+
+                        VerticalList.appendTo(list_container);   
+                        
+                        $('<p>', {
+                            text: res.cnt + " 회",
+
+                        }).css({
+                            
+                            fontSize: "14px",
+                            margin: "3px",
+                            lineHeight:"12px",
+                            marginTop : '50px',
+                            "font-weight": "bold",
+                            
+
+
+                        }).appendTo(list_container); 
+                    }
+                    else{
+                        console.log("아직 아무 기록 없음");
+                    }
 
            },
            error : function(XMLHttpRequest, textStatus, errorThrown){ 
@@ -2791,6 +2858,11 @@ $('#random_question_btn').click(function(){
 
     get_random_question();
 
+    
+
+
+    layer_popup('.get_random_question_layer');
+
 
 });
 
@@ -2830,47 +2902,53 @@ function get_random_question(){
             
             if(category_text == "사람"){
                 
-                txt = '<span style="color: cornflowerblue; font-weight: bold;">' +"　다른 사람" +'</span>' +"들은 삶을 채워주는 흥미로운 콘텐츠입니다. 오늘 누구를 만났나요? 그 사람과 어떤 얘기를 나누고 무엇을 했는지 생각해봅시다.";
+                txt = '<span style="color: cornflowerblue; font-family:TmoneyRoundWindExtraBold;">' +"　다른 사람" +'</span>' +"들은 삶을 채워주는 흥미로운 콘텐츠입니다. 오늘 누구를 만났나요? 그 사람과 어떤 얘기를 나누고 무엇을 했는지 생각해봅시다.";
 
             }
             else if(category_text == "새로운 시도"){
-                txt ="　때로 우리는 일상을 벗어난 " + '<span style="color: cornflowerblue; font-weight: bold;">' +"새로운 시도"  +'</span>'+ "를 하기도 합니다. 오늘 했던 새로운 시도가 있었다면 적어봅시다.";
+                txt ="　때로 우리는 일상을 벗어난 " + '<span style="color: cornflowerblue; font-family:TmoneyRoundWindExtraBold;">' +"새로운 시도"  +'</span>'+ "를 하기도 합니다. 오늘 했던 새로운 시도가 있었다면 적어봅시다.";
             }
             else if(category_text == "루틴"){
-                txt ="　우리 삶은 대부분 " + '<span style="color: cornflowerblue; font-weight: bold;">'+ "반복되는 일상" +'</span>'+ "으로 이루어져 있습니다. 평소와 다를 것이 없는 하루인가요? 되풀이되는 내 하루를 기록으로 남겨봅시다.";
+                txt ="　우리 삶은 대부분 " + '<span style="color: cornflowerblue; font-family:TmoneyRoundWindExtraBold;">'+ "반복되는 일상" +'</span>'+ "으로 이루어져 있습니다. 평소와 다를 것이 없는 하루인가요? 되풀이되는 내 하루를 기록으로 남겨봅시다.";
             }
             else if(category_text == "사건사고"){
-               txt = "　때로는 살면서 예상치 못한 "+ '<span style="color: cornflowerblue; font-weight: bold;">'+"사건 사고"+'</span>'+"가 생기기도 합니다. 오늘 있었던 특별한 이벤트를 기록해봅시다.";
+               txt = "　때로는 살면서 예상치 못한 "+ '<span style="color: cornflowerblue; font-family:TmoneyRoundWindExtraBold;">'+"사건 사고"+'</span>'+"가 생기기도 합니다. 오늘 있었던 특별한 이벤트를 기록해봅시다.";
             }
             else if(category_text == "야외"){
-               txt = "　오늘 "+ '<span style="color: cornflowerblue; font-weight: bold;">'+"집 밖" +'</span>'+"을 나간 적이 있었나요? 나갔다면 무엇을 했는지 적어봅시다.";
+               txt = "　오늘 "+ '<span style="color: cornflowerblue; font-family:TmoneyRoundWindExtraBold;">'+"집 밖" +'</span>'+"을 나간 적이 있었나요? 나갔다면 무엇을 했는지 적어봅시다.";
             }
             else if(category_text == "실내"){
-               txt = "　오늘 "+ '<span style="color: cornflowerblue; font-weight: bold;">'+"방 안" +'</span>'+"에 머무르면서 했던 활동에 대해 생각해봅시다.";
+               txt = "　오늘 "+ '<span style="color: cornflowerblue; font-family:TmoneyRoundWindExtraBold;">'+"방 안" +'</span>'+"에 머무르면서 했던 활동에 대해 생각해봅시다.";
             }
             else if(category_text == "창작"){
-               txt = '<span style="color: cornflowerblue; font-weight: bold;">'+"　새로운 것" +'</span>'+"을 만들어내는 일만큼 보람찬 것이 있을까요? 오늘 만들어낸 것이 있다면 생각해봅시다. 짧은 글부터 그림 또는 음악이 될 수도 있습니다.";
+               txt = '<span style="color: cornflowerblue; font-family:TmoneyRoundWindExtraBold;>'+"　새로운 것" +'</span>'+"을 만들어내는 일만큼 보람찬 것이 있을까요? 오늘 만들어낸 것이 있다면 생각해봅시다. 짧은 글부터 그림 또는 음악이 될 수도 있습니다.";
             }
             else if(category_text == "감상"){
-              txt = "　오늘 "+'<span style="color: cornflowerblue; font-weight: bold;">'+"즐겼던 콘텐츠"+'</span>'+"에 대해 생각해봅시다. 영상이나 음악 또는 글이 될 수도 있습니다.";
+              txt = "　오늘 "+'<span style="color: cornflowerblue; font-family:TmoneyRoundWindExtraBold;">'+"즐겼던 콘텐츠"+'</span>'+"에 대해 생각해봅시다. 영상이나 음악 또는 글이 될 수도 있습니다.";
             }
             else if(category_text == "소비"){
-                txt = "　한 사람의 "+'<span style="color: cornflowerblue; font-weight: bold;">'+"소비"+'</span>'+ "목록으로 그 사람을 얼만큼이나 알 수 있을까요? 소비는 우리는 표현하는 수단이기도 합니다. 오늘 특별한 지출이 있었다면 기록해봅시다.";
+                txt = "　한 사람의 "+'<span style="color: cornflowerblue; font-family:TmoneyRoundWindExtraBold;">'+"소비"+'</span>'+ "목록으로 그 사람을 얼만큼이나 알 수 있을까요? 소비는 우리는 표현하는 수단이기도 합니다. 오늘 특별한 지출이 있었다면 기록해봅시다.";
             }
             else if(category_text == "식사"){
-               txt = "　무엇을 먹었는지가 그 사람의 하루를 설명해주기도 합니다. "+'<span style="color: cornflowerblue; font-weight: bold;">'+"오늘 먹은 것"+'</span>'+"은 무엇이었나요?";
+               txt = "　무엇을 먹었는지가 그 사람의 하루를 설명해주기도 합니다. "+'<span style="color: cornflowerblue; font-family:TmoneyRoundWindExtraBold;">'+"오늘 먹은 것"+'</span>'+"은 무엇이었나요?";
             }
             else if(category_text == "구비"){
-               txt = '<span style="color: cornflowerblue; font-weight: bold;">'+"　생활에 필요"+'</span>'+"하거나 "+'<span style="color: cornflowerblue; font-weight: bold;">'+"마음에 드는 것"+'</span>'+"들을 구해 채워놓습니다.";
+               txt = '<span style="color: cornflowerblue; font-family:TmoneyRoundWindExtraBold;">'+"　생활에 필요"+'</span>'+"하거나 "+'<span style="color: cornflowerblue; font-weight: bold;">'+"마음에 드는 것"+'</span>'+"들을 구해 채워놓습니다.";
             }
             else if(category_text == "휴식"){
-               txt = "　빈둥거리며 몸과 마음을 "+'<span style="color: cornflowerblue; font-weight: bold;">'+"재충전"+'</span>'+"하는 시간이 필요할 때가 있습니다";
+               txt = "　빈둥거리며 몸과 마음을 "+'<span style="color: cornflowerblue; font-family:TmoneyRoundWindExtraBold;">'+"재충전"+'</span>'+"하는 시간이 필요할 때가 있습니다";
             }
             else if(category_text == '일'){
-               txt = "　삶은 "+'<span style="color: cornflowerblue; font-weight: bold;">'+"자기 일"+'</span>'+"을 찾아 수행해나가는 과정입니다. 오늘 했던  내 일은 무엇인가요?";
+               txt = "　삶은 "+'<span style="color: cornflowerblue; font-family:TmoneyRoundWindExtraBold;">'+"자기 일"+'</span>'+"을 찾아 수행해나가는 과정입니다. 오늘 했던  내 일은 무엇인가요?";
             }
             else if(category_text == '정리'){
                txt = "　때로는 덜어내고 정리하면서 삶을 더 활기차게 만듭니다. 오늘 정리한 것들이 있다면 적어봅시다.";
+            }
+            else if(category_text == '공부'){
+               txt = "　새로운 것들에 대해 조사하고 공부합니다.";
+            }
+            else if(category_text == '기록'){
+               txt = "　생각이나 느낌을 기록으로 남깁니다. 글로 적어내면서 생각이 정리되고 명확해집니다";
             }
 
 
@@ -3042,10 +3120,6 @@ function get_random_question(){
 
 
 
-
-
-
-    layer_popup('.get_random_question_layer');
 
 }
 
@@ -4349,7 +4423,6 @@ $('.set_profile_nickname ').click(function(){
     var nickname_text = $('.profile_nickname_text').val();
     console.log(nickname_text);
     $('.profile_nickname').text(nickname_text);
-    $('.nickname').text(nickname_text);
     $('.profile_nickname_layer').fadeOut('fast');
 
 
@@ -4637,8 +4710,8 @@ function serverUpdateImage_profile(){
         console.log("[serverUploadImage] : [response] : " + response);
         console.log("");
 
-        
-        $('.show_profile').attr("src",response);
+        get_profile_information()
+        //$('.show_profile').attr("src",response);
 
         // $('.post_img').attr('href', response);
 
