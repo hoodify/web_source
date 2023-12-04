@@ -31,9 +31,9 @@ parameter : skill_code
           
           $query = "SELECT * FROM user_skill WHERE user_code = '$user_code' AND skill_code = :skill_code";
 
+          $stmt = $conn->prepare($query);
           $stmt->bindParam(':skill_code',$skill_code);
           
-          $stmt = $conn->prepare($query);
 
           if($stmt->execute()){
 

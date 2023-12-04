@@ -169,11 +169,11 @@
 
 
 
-    <div class="indivisual_record_layer" >
+    <div class="indivisual_record_layer common_layer" >
         <div class="indivisual_record_layer_container">
         
             <div class='top_bar'> 
-                <p class='top_word'> Report </p>
+                <p class='top_word'> 개인 기록 </p>
             </div>
             
             <div class="indivisual_record_layer_top">
@@ -215,8 +215,12 @@
 
                 <div class = 'report_cont_container'> 
                     <div class= "space_01">
-                        <p>자신과 어울리는 키워드와 관련된 <span style="color:cornflowerblue; font-family:TmoneyRoundWindExtraBold"> 더 다양하고 구체적인 선택지 </span> 를 얻을 수 있습니다. <br><br>
-                        자신과 같은 키워드를 가진<span style="color:cornflowerblue; font-family:TmoneyRoundWindExtraBold"> 다른 사람에 대한 정보 </span>를 얻을 수 있습니다.</p>
+                        <p>나와 비슷한 사람들은 어떤 활동들을 하고 있을까?<br>
+                         ▶ 자신과 비슷한 키워드 조합을 가진<span style="color:cornflowerblue; font-family:TmoneyRoundWindExtraBold"> 다른 사람들의 정보 </span>를 확인할 수 있습니다. <br><br>
+                         
+                         나에게 어울리는 키워드는 무엇일까요?
+                         자신과 어울리는 키워드, 그리고 그와 관련된 <span style="color:cornflowerblue; font-family:TmoneyRoundWindExtraBold"> 더 다양하고 구체적인 선택지 </span> 를 얻을 수 있습니다. </p>
+                       
                     </div>
 
                     <div class="space_02">  
@@ -668,7 +672,7 @@
 
 
 
-    <div class = "identity_storage">
+    <div class = "identity_storage common_layer">
 
         <div class='top_bar'> 
             <p class = 'top_word'> 창 고 </p>
@@ -946,7 +950,7 @@
 
     <div class="daily_report common_layer">
         <div class='top_bar'> 
-            <p class = 'top_word'> Report</p>
+            <p class = 'top_word'> 일일 확인</p>
         </div>
 
         <div class="daily_report_container">
@@ -4451,6 +4455,7 @@ $('.apply_profile_change').click(function(){
 
                     if(res=='success'){
 
+                        $('.nickname').text(nickname_text);
                         console.log('profile_nickname_change_check')
 
                     }
@@ -4480,6 +4485,7 @@ $('.apply_profile_change').click(function(){
                 success : function(res){
 
                     $('.profile_introduction').text(profile_message);
+                    
 
                     },
                     error : function(XMLHttpRequest, textStatus, errorThrown){ 
@@ -5343,6 +5349,19 @@ $('#others_location_container').css({'display':'none'});
                                                             $('.popup_activity_img').attr("src",activity.activity_img);
                                                             $('.popup_activity_title').text(activity.activity_name);
                                                             $('.popup_activity_desc').text("　▶　"+activity.activity_desc);
+                                                            $('.popup_activity_desc_container').click(function(){
+                                                                
+
+                                                                $('.modal_cont').text("\u00a0"+"\u00a0"+activity.activity_desc);
+                                                                $('#desc_modal').attr("title", activity.activity_name);
+                                                                $('.ui-dialog-title').text(activity.activity_name);
+
+                                                                $('#desc_modal').dialog({
+                                                                    modal: true, 
+                                                                }).prev(".ui-dialog-titlebar").css({"background":"#475169",'color':'white'});
+                                                                $('.ui-dialog').css({'z-index':'2000',});
+
+                                                            });
 
                                                             
                                                             refresh_activity_record_list();
@@ -5439,7 +5458,7 @@ $('#others_location_container').css({'display':'none'});
                                                     }).css({
                                                     "margin-left": "5px",
                                                     'font-size': '14px',
-                                                    'font-weight': 'bold',
+                                                    'font-family': 'TmoneyRoundWindExtraBold',
                                                     'padding-right': '12px',
                                                     'padding-left': '12px',
                                                     'color':'white',
@@ -5617,7 +5636,7 @@ $('#others_location_container').css({'display':'none'});
                                                     }).css({
                                                         "margin-left": "5px",
                                                     'font-size': '14px',
-                                                    'font-weight': 'bold',
+                                                    'font-family': 'TmoneyRoundWindExtraBold',
                                                     'padding-right': '12px',
                                                     'padding-left': '12px',
                                                     'color':'white',
@@ -5758,7 +5777,7 @@ $('#others_location_container').css({'display':'none'});
                                             }).css({
                                                 "margin-left": "5px",
                                                     'font-size': '14px',
-                                                    'font-weight': 'bold',
+                                                    'font-family': 'TmoneyRoundWindExtraBold',
                                                     'padding-right': '12px',
                                                     'padding-left': '12px',
                                                     color:'white',
@@ -5885,7 +5904,7 @@ $('#others_location_container').css({'display':'none'});
                                             }).css({
                                                 "margin-left": "5px",
                                                     'font-size': '14px',
-                                                    'font-weight': 'bold',
+                                                    'font-family': 'TmoneyRoundWindExtraBold',
                                                     'padding-right': '12px',
                                                     'padding-left': '12px',
                                                     color:'white', 
@@ -6403,6 +6422,9 @@ $.ajax({
                                 $('.record_date').text(record.date);
                                 
                                 var applyBr = record.record.replace(/(?:\r\n|\r|\n)/g, '<br />');
+                                console.log('이게 실행되면');
+                                applyBr.replaceAll("(?i)<script", "&lt;script");
+                                
                                 $('.popup_activity_record_cont').html(applyBr);
 
                                 
