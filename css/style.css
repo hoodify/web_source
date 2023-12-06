@@ -82,6 +82,8 @@ main{
     background-color: rgba( 47, 58, 78, 0.85); 
     height:50px; 
     padding:20px;
+    font-family: 'TMONEYROUNDWINDEXTRABOLD';
+    font-size: 15px;
     
 }
 
@@ -569,10 +571,12 @@ border: 1px solid #93b0bc;
 
 .leftCont_container1{
   display:flex;    
-  border: 3px solid white;     
-  margin: 15px;  
+  border: 5px solid #222b41;     
+  margin: 20px;
+  margin-bottom: 3px;
+  margin-top:23px;
   padding: 10px;   
-  background-color: #464d58; 
+  background-color: #475169; 
   border-radius:12px; 
   box-shadow: gray 4px 4px 5px 3px;
 }
@@ -595,14 +599,16 @@ border: 1px solid #93b0bc;
 
     padding-top:3px; 
     padding-bottom:3px; 
-    padding-left: 10px;  
-    padding-right: 10px; 
+    padding-left: 15px;
+    padding-right: 12px;
+    letter-spacing: 3px;
     margin-bottom:5px; 
-    background-color: #516b958c;  
+    background-color: #1c2a41;  
     width: fit-content;  
     border-radius: 5px; 
     color: white;
     border: 2px solid white;
+   
     font-family: 'TmoneyRoundWindExtraBold';
 
 
@@ -1481,7 +1487,7 @@ border: 1px solid #93b0bc;
 
 .notice{
     display:none; 
-    width: 585px; 
+    width: 610px; 
     height:510px; 
     background-color:  white; 
     top: 50%; left: 50%;
@@ -2189,7 +2195,12 @@ border: 1px solid #93b0bc;
 
 /* ///////////////////////////////////////////////////////////////////////////////// */           
            
+.common_layer{
+    transition-property: height, top, margin-top, margin-left;/* 어떤 css 프로퍼티를 transition할지 지정 */
+    transition-duration: 0.8s, 0.8s, 0.8s, 0.8s; 
+}
 
+/* ///////////////////////////////////////////////////////////////////////////////// */         
 
 .to_search_list{
     height: 22px;
@@ -2251,25 +2262,25 @@ border: 1px solid #93b0bc;
 
 .mylistC_common{
     font-family: 'TmoneyRoundWindExtraBold';
-    font-size:12px; 
-    padding: 10px;  
+    font-size: 12px;
+    padding: 6px;
     padding-top: 7px;
-    border: 2px solid white;
+    /* border: 2px solid white; */
     border-radius: 10px;
     padding-bottom: 25px;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: normal;
     line-height: 2;
-    height:  2.5em;
-    margin-left:5px;
+    height: 3em;
+    margin-left: 5px;
+    margin: 10px;
     text-align: left;
-    color:#3b3b3b;
-    max-width:380px;
+    color: #313843;
+    max-width: 380px;
     background-color: #eaecef;
     font-style: italic;
-    cursor:pointer;
-    
+    cursor: pointer;
     text-decoration: underline gray;
     text-decoration-line: underline;
     text-underline-offset: 6px;
@@ -2277,43 +2288,51 @@ border: 1px solid #93b0bc;
     display: -webkit-box;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
-
-
 }
 
 
+
+
+
 .mylistIMG_common{
-    width:40px; 
-    height:40px;  
-    margin-right:10px;  
-    border: 2px solid #637193;   
+    width: 35px;
+    height: 35px;
+    margin: 5px;
+    margin-right: 10px;
+    border: 1px solid #111316;
     border-radius: 8px;
 }
 
 .mylistT_common{
-    font-size: 14px;  
-    padding-right: 12px;  
-    padding-left: 12px;  
+    font-size: 16px;
+    padding-right: 12px;
+    padding-left: 12px;
     color: white;
     border-radius: 5px;
-    border: 2px solid white;  
-    background-color: #47525f;
+    /* border: 2px solid white; */
+    /* background-color: #47525f; */
     font-family: 'TmoneyRoundWindExtraBold';
-     
-    width: fit-content;    
+    width: fit-content;
+    letter-spacing: 3px;
 
 }
 
 
 .mylist_container{
-    display: flex; 
-    align-items: flex-start; 
+    display: flex;
+    align-items: center;
     margin-bottom: 5px;
     flex-direction: row;
-    border-radius: 12px;
-    padding-right: 15px;
-    width: fit-content;
-    padding: 5px;
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
+    /* border-radius: 12px; */
+    /* padding-right: 15px; */
+    /* width: fit-content; */
+    /* width: 100%; */
+    /* padding: 5px; */
+    /* padding-top: 0px; */
+    background-color: #3b3b3b;
+    /* padding: 5px; */
 
     
 }
@@ -2567,13 +2586,16 @@ table.ui-datepicker-calendar { display:none; }
 .right_content_container{
 
 
-    padding: 8px;
-    border: 2px solid white; 
-    border-radius:8px; 
-    width: 80%; 
-    max-width:400px;
-    background-color: #8893a3; 
-    box-shadow: gray 4px 4px 5px 3px
+       /* padding: 8px; */
+       border: 2px solid #111316;
+       border-radius: 8px;
+       width: 80%;
+       max-width: 350px;
+       background-color: #eaecef;
+       margin-top: 8px;
+       padding-top: 0px;
+       box-shadow: gray 4px 4px 5px 3px;
+   
 }
 
 
@@ -2618,8 +2640,10 @@ table.ui-datepicker-calendar { display:none; }
 }
 
 .modal_cont{
-    font-family: TmoneyRoundWindExtraBold;
-    font-size:17px;
+    font-family: TmoneyRoundWindRegular;
+    font-size: 15px;
+    font-weight: bold;
+    color: #272f35;
 }
 
 

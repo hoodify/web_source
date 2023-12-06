@@ -209,17 +209,17 @@
             </div>
 
             <div class="subscription_layout">
-                <div class="subscription_layout_container"> 
+                <div class="subscription_layout_container" style="font-family: 'TmoneyRoundWindExtraBold'; font-size: 20px;"> 
                     <h4> 구독 서비스 (기획중)</h4>
                 </div>
 
                 <div class = 'report_cont_container'> 
                     <div class= "space_01">
-                        <p>나와 비슷한 사람들은 어떤 활동들을 하고 있을까?<br>
-                         ▶ 자신과 비슷한 키워드 조합을 가진<span style="color:cornflowerblue; font-family:TmoneyRoundWindExtraBold"> 다른 사람들의 정보 </span>를 확인할 수 있습니다. <br><br>
+                        <br><p><span style=" font-family:TmoneyRoundWindExtraBold">나와 비슷한 사람들은 어떤 활동들을 하고 있을까?</span><br>
+                         - 자신과 비슷한 키워드 조합을 가진<span style="color:cornflowerblue; font-family:TmoneyRoundWindExtraBold"> 다른 사람들의 정보 </span>를 확인할 수 있습니다. <br><br>
                          
-                         나에게 어울리는 키워드는 무엇일까요?
-                         자신과 어울리는 키워드, 그리고 그와 관련된 <span style="color:cornflowerblue; font-family:TmoneyRoundWindExtraBold"> 더 다양하고 구체적인 선택지 </span> 를 얻을 수 있습니다. </p>
+                         <span style=" font-family:TmoneyRoundWindExtraBold">나에게 어울리는 키워드는 무엇일까요?</span> <br>
+                         - 자신과 어울리는 키워드, 그리고 그와 관련된 <span style="color:cornflowerblue; font-family:TmoneyRoundWindExtraBold"> 더 다양하고 구체적인 선택지 </span> 를 얻을 수 있습니다. </p>
                        
                     </div>
 
@@ -1012,7 +1012,7 @@
            <p style="font-size: 15px; margin-top:5px;"> 
                 　▶ 현재 <span style="color: #517ee7; font-family: 'TmoneyRoundWindExtraBold';"> 테스트 버전</span>으로 개발 중입니다. 불안정한 기능들이 있습니다.  <br>
                 <br> 　▶ 유저 데이터는 주기적으로 <span style="color: #517ee7; font-family: 'TmoneyRoundWindExtraBold';">초기화</span> 하고 있습니다. 작성한 기록들이 사라질 수 있습니다.<br>
-                <br> 　▶  <span style="color: #517ee7; font-family: 'TmoneyRoundWindExtraBold';">테스트 유저</span>로 시작한 경우 로그아웃을 하거나 일정 시간이 지나면 모든 기록이 <span style="color: #517ee7; font-family: 'TmoneyRoundWindExtraBold';">초기화</span> 됩니다. <br>
+                <br> 　▶  <span style="color: #e75151; font-family: 'TmoneyRoundWindExtraBold';">테스트 유저</span>로 시작한 경우 로그아웃을 하거나 일정 시간이 지나면 모든 기록이 <span style="color: #517ee7; font-family: 'TmoneyRoundWindExtraBold';">초기화</span> 됩니다. <br>
                 <br> 　▶ 모든 정체성과 하위 콘텐츠들은 계속해서 <span style="color: #517ee7; font-family: 'TmoneyRoundWindExtraBold';">업데이트</span>하고 있습니다. <br>
                 <br> 　▶ 피드백과 오류 제보는 <span style="color: #517ee7; font-family: 'TmoneyRoundWindExtraBold';">hoodify.crm@gmail.com</span> 으로 보내주시면 반영하겠습니다.
             </p>
@@ -1079,10 +1079,14 @@
 
     </div>
 
-
-    <div id="desc_modal" style='display:none;'>
-        <div class = 'modal_cont' ></div>
-    </div>
+    
+       
+        <div id="desc_modal"  style='display:none;'>
+          
+            
+            <div class = 'modal_cont' ></div>
+        </div>
+    
 
 
         <footer></footer>
@@ -1172,6 +1176,7 @@ $(window).on('resize', function(){
         $('.common_layer').each(function(i, obj){
            
            var display_val = $(this).css('display');
+           console.log(display_val);
           
            if(display_val != 'none'){
 
@@ -1190,6 +1195,7 @@ $(window).on('resize', function(){
                 $el.css({top: 0, left: 0});
 
             }
+            $(this).css({top: '50%'});
 
 
            }
@@ -1202,6 +1208,19 @@ $(window).on('resize', function(){
 
     //
 
+});
+
+///////////////////////////////////////////////////////////////////////////////////////
+// 모달 배경 클릭 시 닫기
+
+$(document).mouseup(function (e){
+	if($(".ui-dialog").has(e.target).length === 0){
+		//$(".ui-dialog").css({'display':'none'})
+       // $('.ui-widget-overlay').remove();
+       //$(".ui-dialog").hide();
+       //
+       $(".ui-dialog-titlebar-close").trigger("click");
+	}
 });
 
 
@@ -2437,7 +2456,7 @@ $('.history_list').empty();
 
                         }).css({
                             
-                                fontSize: "12px",
+                                fontSize: "13px",
                                 margin: "3px",
                                 lineHeight:"12px",
                                 "font-weight": "bold",
@@ -2468,10 +2487,12 @@ $('.history_list').empty();
 
                         }).css({
                                 
-                                fontSize: "11px",
+                                fontSize: "13px",
                                 margin: "3px",
                                 lineHeight:"12px",
                                 'margin-left':'10px',
+                                "font-weight": "bold",
+                                
 
 
                         }).appendTo(VerticalList);    
@@ -2916,7 +2937,7 @@ function get_random_question(){
                 txt ="　우리 삶은 대부분 " + '<span style="color: cornflowerblue; font-family:TmoneyRoundWindExtraBold;">'+ "반복되는 일상" +'</span>'+ "으로 이루어져 있습니다. 평소와 다를 것이 없는 하루인가요? 되풀이되는 내 하루를 기록으로 남겨봅시다.";
             }
             else if(category_text == "사건사고"){
-               txt = "　때로는 살면서 예상치 못한 "+ '<span style="color: cornflowerblue; font-family:TmoneyRoundWindExtraBold;">'+"사건 사고"+'</span>'+"가 생기기도 합니다. 오늘 있었던 특별한 이벤트를 기록해봅시다.";
+               txt = "　때로는 살면서 예상치 못한 "+ '<span style="color: cornflowerblue; font-family:TmoneyRoundWindExtraBold;">'+"사건 사고"+'</span>'+"가 생기기도 합니다. 오늘 있었던 특별한 사건을 기록해봅시다.";
             }
             else if(category_text == "야외"){
                txt = "　오늘 "+ '<span style="color: cornflowerblue; font-family:TmoneyRoundWindExtraBold;">'+"집 밖" +'</span>'+"을 나간 적이 있었나요? 나갔다면 무엇을 했는지 적어봅시다.";
@@ -2925,13 +2946,13 @@ function get_random_question(){
                txt = "　오늘 "+ '<span style="color: cornflowerblue; font-family:TmoneyRoundWindExtraBold;">'+"방 안" +'</span>'+"에 머무르면서 했던 활동에 대해 생각해봅시다.";
             }
             else if(category_text == "창작"){
-               txt = '<span style="color: cornflowerblue; font-family:TmoneyRoundWindExtraBold;>'+"　새로운 것" +'</span>'+"을 만들어내는 일만큼 보람찬 것이 있을까요? 오늘 만들어낸 것이 있다면 생각해봅시다. 짧은 글부터 그림 또는 음악이 될 수도 있습니다.";
+               txt = '<span style="color: cornflowerblue; font-family:TmoneyRoundWindExtraBold;">'+"　새로운 것" +'</span>'+"을 만들어내는 일만큼 보람찬 것이 있을까요? 오늘 만들어낸 것이 있다면 생각해봅시다. 짧은 글부터 그림 또는 음악이 될 수도 있습니다.";
             }
             else if(category_text == "감상"){
               txt = "　오늘 "+'<span style="color: cornflowerblue; font-family:TmoneyRoundWindExtraBold;">'+"즐겼던 콘텐츠"+'</span>'+"에 대해 생각해봅시다. 영상이나 음악 또는 글이 될 수도 있습니다.";
             }
             else if(category_text == "소비"){
-                txt = "　한 사람의 "+'<span style="color: cornflowerblue; font-family:TmoneyRoundWindExtraBold;">'+"소비"+'</span>'+ "목록으로 그 사람을 얼만큼이나 알 수 있을까요? 소비는 우리는 표현하는 수단이기도 합니다. 오늘 특별한 지출이 있었다면 기록해봅시다.";
+                txt = "　우리는 한 사람의 "+'<span style="color: cornflowerblue; font-family:TmoneyRoundWindExtraBold;">'+"소비"+'</span>'+ "목록으로 그 사람을 어느정도 추측할 수 있습니다. 소비는 우리는 표현하는 수단이기도 합니다. 오늘 특별한 지출이 있었다면 기록해봅시다.";
             }
             else if(category_text == "식사"){
                txt = "　무엇을 먹었는지가 그 사람의 하루를 설명해주기도 합니다. "+'<span style="color: cornflowerblue; font-family:TmoneyRoundWindExtraBold;">'+"오늘 먹은 것"+'</span>'+"은 무엇이었나요?";
@@ -2954,6 +2975,11 @@ function get_random_question(){
             else if(category_text == '기록'){
                txt = "　생각이나 느낌을 기록으로 남깁니다. 글로 적어내면서 생각이 정리되고 명확해집니다";
             }
+            else if(category_text == '이벤트'){
+               txt = "　시험이나 발표. 고백과 이별 등 평소와는 다른 중요한 이벤트가 생기는 날이 있습니다.";
+            }
+          
+
 
 
             
@@ -5428,7 +5454,7 @@ $('#others_location_container').css({'display':'none'});
                                                     'display':'flex',
                                                     'flex-direction':'row',
                                                     'align-items': 'center',
-                                                    'background-color': '#7794bf',
+                                                    'background-color': '#525861',
                                                     // 58709e // 7abaac // d64e5c // #c98990 // cd757e //#cd7575 / 9eb5d7 //d79e9e
                                                     borderRadius: '12px',  
                                                     'padding-right':'15px',
