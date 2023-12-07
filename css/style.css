@@ -578,7 +578,7 @@ border: 1px solid #93b0bc;
   padding: 10px;   
   background-color: #475169; 
   border-radius:12px; 
-  box-shadow: gray 4px 4px 5px 3px;
+  box-shadow: gray 4px 4px 3px 1px;;
 }
 
 
@@ -728,7 +728,7 @@ border: 1px solid #93b0bc;
     min-height: 110px;
     border: 2px solid #586167;
     overflow-y: scroll; 
-    background-color: #f0f2f4;
+    background-color: #e7e8eb;
     margin-bottom: 5px;
     margin-top:5px;
     height:100%;
@@ -1560,9 +1560,9 @@ border: 1px solid #93b0bc;
 }
 
 .record_post_activity_img{
-    margin:12px; 
-    height:55px; 
-    width:55px; 
+    margin:8px; 
+    height:50px; 
+    width:50px; 
     border-radius: 9px;
 }
 
@@ -1580,7 +1580,7 @@ border: 1px solid #93b0bc;
     display: flex; 
     flex-direction: column; 
     width:100%; 
-    height: 85%;
+    height: 75%;
 }
 
 .public_record_post_container4{
@@ -1619,7 +1619,7 @@ border: 1px solid #93b0bc;
     border-Radius: 12px; 
     border: 2px solid white; 
     margin-top: 2px; 
-    height: 100%;
+    height: 60%;
     min-height: 90px;
     max-height: 280px;
 }
@@ -1676,7 +1676,7 @@ border: 1px solid #93b0bc;
     display: flex; 
     justify-content:flex-end; 
     position: absolute; 
-    bottom: 90px; 
+    bottom: 60px; 
     z-index: 1;
 }
 
@@ -2276,7 +2276,7 @@ border: 1px solid #93b0bc;
     margin-left: 5px;
     margin: 10px;
     text-align: left;
-    color: #313843;
+    color: #212835;
     max-width: 380px;
     background-color: #eaecef;
     font-style: italic;
@@ -2331,7 +2331,8 @@ border: 1px solid #93b0bc;
     /* width: 100%; */
     /* padding: 5px; */
     /* padding-top: 0px; */
-    background-color: #3b3b3b;
+    background-color: #262e3b;
+    /* #3b3b3b; */
     /* padding: 5px; */
 
     
