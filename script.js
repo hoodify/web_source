@@ -2862,16 +2862,16 @@ $(document).ready(function() {
 
     $('.record_cont').on('keyup', function() {
 
-        if($(this).val().length > 500) {
-            $(this).val($(this).val().substring(0, 500));
+        if($(this).val().length > 1500) {
+            $(this).val($(this).val().substring(0, 1500));
         }
 
     });
 
     $('.record_cont_modify').on('keyup', function() {
 
-        if($(this).val().length > 500) {
-            $(this).val($(this).val().substring(0, 500));
+        if($(this).val().length > 1500) {
+            $(this).val($(this).val().substring(0, 1500));
         }
 
     });
@@ -4966,6 +4966,7 @@ $('.btn_add_title').click(function(){
         if($('.record_title').val().length<2){
 
             alert("제목을 입력하세요 (2자 이상)");
+            console.log('count');
 
         }
 
@@ -5836,7 +5837,7 @@ $('.btn_modify_com').click(function(){
 
     }
 
-    else if($('.record_cont_modify').val().length<5){
+    else if($('.record_cont_modify').val().length<10){
 
         alert("내용을 입력하세요(10자 이상)");
 

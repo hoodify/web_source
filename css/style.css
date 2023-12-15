@@ -578,46 +578,56 @@ border: 1px solid #93b0bc;
 
 
 .leftCont_container1{
-  display:flex;    
-  border: 5px solid #222b41;     
-  margin: 20px;
-  margin-bottom: 3px;
-  margin-top:23px;
-  padding: 10px;   
-  background-color: #475169; 
-  border-radius:12px; 
-  box-shadow: gray 4px 4px 3px 1px;
+    display: flex;
+    /* border: 5px solid #222b41; */
+    margin: 20px;
+    margin-bottom: 3px;
+    margin-top: 23px;
+    align-items: center;
+    /* padding: 10px; */
+    /* background-color: #475169; */
+    /* border-radius: 12px; */
+    /* box-shadow: gray 4px 4px 3px 1px; */
 }
 
 
 
 .pop_conts{
     height: 20%;
-    margin-right: 15px;
-    display:flex; 
-    flex-direction: column; 
-    width: 75%; 
-    margin-left:10px; 
+    /* margin-right: 15px; */
+    display: flex;
+    flex-direction: column;
+    /* width: 75%; */
+    margin-left: 10px;
     height: inherit;
+    /* box-shadow: gray 4px 4px 5px 3px; */
+    /* box-shadow: gray 4px 4px 5px 3px; */
+    border: 2px solid black;
+    border-radius: 8px;
+    box-shadow: gray 3px 3px 2px 2px;
 
 }
 
 
 .identity_title_container{
 
-    padding-top:3px; 
-    padding-bottom:3px; 
+    padding-top: 3px;
+    padding-bottom: 3px;
     padding-left: 15px;
     padding-right: 12px;
     letter-spacing: 3px;
-    margin-bottom:5px; 
-    background-color: #1c2a41;  
-    width: fit-content;  
-    border-radius: 5px; 
+    /* margin-bottom: 5px; */
+    background-color: #475169;
+    /* width: fit-content; */
+    /* border-radius: 5px; */
+    /* border: 2px solid black; */
     color: white;
-    border: 2px solid white;
-   
+    /* border: 2px solid white; */
+    font-size:20px;
     font-family: 'TmoneyRoundWindExtraBold';
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
+    border-bottom: 2px solid black;
 
 
 }
@@ -625,29 +635,31 @@ border: 1px solid #93b0bc;
 
 
 .identity_desc_container{
-    font-size: 12px;
+    font-size: 13px;
     font-family: 'TmoneyRoundWindExtraBold';
     padding: 12px;
     background-color: #eaecef;
-    border: 3px solid white;
-    border-radius: 7px;
+    /* border: 2px solid black; */
+    /* border-radius: 7px; */
     color: #3b3b3b;
     padding-top: 6px;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: normal;
     line-height: 2;
-    height: 3.6em;
-    margin-left: 5px;
+    height: 5.6em;
+    /* margin-left: 5px; */
     text-align: left;
     word-wrap: break-word;
     text-decoration: underline gray;
     text-decoration-line: underline;
     text-underline-offset: 6px;
     display: -webkit-box;
-    -webkit-line-clamp: 2;
+    -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
     cursor: pointer;
+    border-bottom-right-radius: 8px;
+    border-bottom-left-radius: 8px;
 
 }
 
@@ -1027,6 +1039,7 @@ border: 1px solid #93b0bc;
     border: 2px solid white; 
     margin-top: 2px; 
     height: inherit;
+    max-height: 300px;
 }
 
 .popup_activity_record_cont{
@@ -1286,18 +1299,27 @@ border: 1px solid #93b0bc;
 }
 
 .add_record_layer_container3{
-    display: flex; 
-    flex-direction: column; 
-    width: 90%; 
-    margin-top:5px;
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    margin-top: 5px;
+    border: 2px solid black;
+    border-radius: 8px;
+    margin: 8px;
+
 
 }
 
 .add_record_layer_container4{
-    display: flex; 
-    justify-content: space-between; 
-    margin-right:25px; 
-    align-items: center;  
+    display: flex;
+    justify-content: space-between;
+    /* margin-right: 25px; */
+    align-items: center;
+    background-color: #637193;
+    width: auto;
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
+    border-bottom: 2px solid black;
 }
 
 .add_record_layer_container5{
@@ -2366,7 +2388,7 @@ border: 1px solid #93b0bc;
 }
 
 .mylistT_common{
-    font-size: 16px;
+    font-size: 17px;
     padding-right: 12px;
     padding-left: 12px;
     color: white;
@@ -2420,36 +2442,37 @@ border: 1px solid #93b0bc;
     width: fit-content;
     /*padding-left: 15px;*/
     /*padding-right: 15px;*/
-    margin:8px;
+    margin:5px;
     /* margin-left: 15px; */
     font-size: 18px;
     color: #ffffff;
     /* background-color: #637193; */
     border-radius: 8px;
     /* border: 2px solid white; */
+    font-family: 'TmoneyRoundWindExtraBold';
 
 }
 
 
 .popup_activity_title.in_add_layer{
-  /* margin-bottom: 4px; */
-  width: fit-content;
-  padding-left: 15px;
-  padding-right: 15px;
-  margin-top: 10px;
-  margin-left: 0px;
-  /* margin-left: 15px; */
-  font-size: 18px;
-  color: #ffffff;
-  background-color: #637193;
-  border-radius: 8px;
-  border: 2px solid black;
+    margin-bottom: 4px; 
+    width: fit-content;
+    padding-left: 15px;
+    padding-right: 15px;
+    /* margin-top: 10px; */
+    margin-left: 0px;
+    /* margin-left: 15px; */
+    font-size: 18px;
+    color: #ffffff;
+    /* background-color: #637193; */
+    /* border-radius: 8px; */
+    /* border: 2px solid black;*/
 
 }
 
 .popup_activity_img.in_add_layer{
 
-    border: 3px solid black;
+    border: 4px solid #091940;
     margin:12px; 
 
 }
@@ -2463,9 +2486,9 @@ border: 1px solid #93b0bc;
     font-size: 12px;
     padding-left: 5px;
     padding-right: 5px;
-    background-color: #637193;
+    background-color: rgba( 47, 58, 78, 0.85);
     position: absolute;
-     border: 2px solid black;
+    border: 1px solid black;
     right: 15px;
 
 }
@@ -2475,7 +2498,7 @@ border: 1px solid #93b0bc;
 
 
 .popup_activity_desc{
-    color: #212737;
+    color: black;
     margin: 6px;
     padding: 5px;
     font-size: 13px;
@@ -2515,7 +2538,7 @@ border: 1px solid #93b0bc;
     margin: 6px;
     height: 36px;
     width: 36px;
-    border-radius: 9px;
+    border-radius: 20px;
 
 
 }
@@ -2542,10 +2565,10 @@ border: 1px solid #93b0bc;
 .popup_activity_desc_container{
     
     margin-right: 15px;
-    background-color:ghostwhite;  
-    border-Radius: 8px; 
-    border: 2px solid #475169;
-    cursor:pointer;
+    background-color: ghostwhite;
+    border-Radius: 8px;
+    /* border: 2px solid #475169; */
+    cursor: pointer;
 
 
 }
@@ -2700,7 +2723,7 @@ table.ui-datepicker-calendar { display:none; }
        background-color: #eaecef;
        margin-top: 8px;
        padding-top: 0px;
-       box-shadow: gray 4px 4px 5px 3px;
+       box-shadow: gray 3px 3px 2px 2px;
    
 }
 
