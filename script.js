@@ -61,9 +61,6 @@ var color_box = ['#a9d4f4', '#7bc1b2', '#fed081', '#f96c6c', '#3571b5', '#7cc0d3
 
 
 
-
-
-
 ///////////////////////////////////////////////////////////////////////////////////////
 // 화면 크기가 조정될 때 display된 layer들의 크기를 조정
 
@@ -355,6 +352,8 @@ function get_daily_list(){
                                     modal: true, 
                                 }).prev(".ui-dialog-titlebar").css({"background":"#475169",'color':'white'});
                                 $('.ui-dialog').css({'z-index':'2000',});
+
+                              
 
                             });
 
@@ -4345,7 +4344,7 @@ $('#others_location_container').css({'display':'none'});
                                                     'align-items': 'center',
                                                     'background-color': '#525861',
                                                     // 58709e // 7abaac // d64e5c // #c98990 // cd757e //#cd7575 / 9eb5d7 //d79e9e
-                                                    borderRadius: '12px',  
+                                                    borderRadius: '10px',  
                                                     'padding-right':'15px',
                                                     'border': '2px solid white',
                                                     'box-shadow': 'rgb(155 144 144) 4px 2px 4px 1px',
@@ -4508,7 +4507,7 @@ $('#others_location_container').css({'display':'none'});
                                                     'flex-direction':'row',
                                                     'align-items': 'center',
                                                     'background-color': '#313843d6',
-                                                    borderRadius: '12px',  
+                                                    borderRadius: '10px',  
                                                     'padding-right':'15px',
                                                     'border': '2px solid white',
                                                     'box-shadow': 'rgb(155 144 144) 4px 2px 4px 1px',
@@ -4636,7 +4635,7 @@ $('#others_location_container').css({'display':'none'});
                                                         'flex-direction':'row',
                                                         'align-items': 'center',
                                                         'background-color': '#313843d6',
-                                                        borderRadius: '12px',  
+                                                        borderRadius: '10px',  
                                                         'padding-right':'15px',
                                                         'border': '2px solid white',
                                                         'box-shadow': 'rgb(155 144 144) 4px 2px 4px 1px',
@@ -4749,7 +4748,7 @@ $('#others_location_container').css({'display':'none'});
                                                     'flex-direction':'row',
                                                     'align-items': 'center',
                                                     'background-color': '#313843d6',
-                                                    borderRadius: '8px',  
+                                                    borderRadius: '10px',  
                                                     'padding-right':'15px',
                                                     'border': '2px solid white',
                                                     'box-shadow': 'rgb(155 144 144) 4px 2px 4px 1px',

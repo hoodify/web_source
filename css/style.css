@@ -1027,7 +1027,7 @@ border: 1px solid #93b0bc;
     color: white; 
     padding: 5px; 
     padding-left:18px;  
-    border: 2px solid white;
+    border: 2px solid black;
   }
 
 .activity_post_container6{
@@ -1035,8 +1035,8 @@ border: 1px solid #93b0bc;
     background-color: #E0E6E9;
     margin:20px; 
     margin-left: 35px; 
-    border-Radius: 12px; 
-    border: 2px solid white; 
+    border-Radius: 8px; 
+    border: 2px solid black; 
     margin-top: 2px; 
     height: inherit;
     max-height: 300px;
@@ -2245,7 +2245,7 @@ border: 1px solid #93b0bc;
 .search_identity_desc{
     width:80%;  
     margin: 6px;  
-    font-size: 13px; 
+    font-size: 14px; 
     font-weight: bold; 
     background-color: #eaecef; 
     border: 2px solid #475169; 
@@ -2256,6 +2256,7 @@ border: 1px solid #93b0bc;
     text-decoration: underline;
     text-underline-position: under;
     text-underline-offset: 2px;
+    font-family: 'TmoneyRoundWindExtraBold';
 }
 
 .search_data_container{
@@ -2347,7 +2348,7 @@ border: 1px solid #93b0bc;
 
 .mylistC_common{
     font-family: 'TmoneyRoundWindExtraBold';
-    font-size: 12px;
+    font-size: 13px;
     padding: 6px;
     padding-top: 7px;
     /* border: 2px solid white; */
@@ -2357,9 +2358,8 @@ border: 1px solid #93b0bc;
     text-overflow: ellipsis;
     white-space: normal;
     line-height: 2;
-    height: 3em;
+    height: 5.6em;
     margin-left: 5px;
-    margin: 10px;
     text-align: left;
     color: #212835;
     max-width: 380px;
@@ -2370,7 +2370,7 @@ border: 1px solid #93b0bc;
     text-underline-offset: 6px;
     word-wrap: break-word;
     display: -webkit-box;
-    -webkit-line-clamp: 2;
+    -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
 }
 
@@ -2820,6 +2820,7 @@ table.ui-datepicker-calendar { display:none; }
     border-radius:20px; 
     margin-left:15px; 
     margin-right:15px;
+    border: 6px solid #16213b;
 }
 
 .login_btn_container{
@@ -2833,6 +2834,8 @@ table.ui-datepicker-calendar { display:none; }
     margin-top: 35px; 
     width:100%; 
     height:50px;
+    border: 2px solid #4b4b4b;
+    border-radius: 10px;
 }
 
 .test_btn_container{
@@ -2845,6 +2848,8 @@ table.ui-datepicker-calendar { display:none; }
     position: relative;
     background-color: #6f84b1;
     cursor: pointer;
+    border: 2px solid #4b4b4b;
+    border-radius: 10px;
 
 }
 
