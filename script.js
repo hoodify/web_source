@@ -269,6 +269,7 @@ function get_daily_list(){
 
         $(".show_date").text($.datepicker.formatDate('yy.  mm.  dd (DD)', new Date()));
         $('.show_identity_name').text(extracted_text);
+        
 
 
         $.ajax({
@@ -1514,6 +1515,7 @@ $('.open_sub_btn').click(function(){
 $('#others_record_btn').click(function(){
 
     last_id = 999;
+
     get_public_record();
 
 });
@@ -1533,6 +1535,7 @@ function get_public_record(direction){
 
         $('#others_record').empty();
         var extracted_text = $('.mainIdentity').children().eq(1).children(1).text();
+        $('.activity_current_identity').text(extracted_text);
         $('.others_record_mark').fadeIn("slow");
         $('#others_record_container').css({'display':'flex'});
 
@@ -1680,6 +1683,7 @@ function get_public_record(direction){
                             "margin-left": "12px",
                             "font-size" : "16px",
                             "color" : "white",
+                            'font-family':'TmoneyRoundWindExtraBold',
                         
                         }).appendTo(top_container);
                         $(top_container).appendTo(others_record);
@@ -1691,7 +1695,7 @@ function get_public_record(direction){
                             "font-size" : "14px",
                             "margin-left": "12px",
                             "margin-top": "5px",
-                            "fontWeight": "bold",
+                            'font-family': 'TmoneyRoundWindExtraBold',
                             "color" : "#192731",
                         
                         }).appendTo(others_record);
@@ -1725,7 +1729,7 @@ function get_public_record(direction){
                             }).css({
                             "font-size" : "12px",
                             "margin": "12px",
-                            "fontWeight": "bold",
+                            'font-family': 'TmoneyRoundWindExtraBold',
                             "color" : "#586167",
                             "word-wrap" : "break-word",
                             "height" : "60px",
@@ -1811,237 +1815,240 @@ function get_random_question(){
 
             console.log('랜덤 질문 뽑기');
             console.log(res);
+            if(res=='empty'){
 
-            var category_text = res[0].category_name;
-            console.log("activity category");
-            console.log(category_text);
+                console.log('데이터가 없음');
+                $('.no_data').text('데이터를 추가중입니다.')
+            }
 
-            $('#random_question_text').text("");
-            $('#random_question_category').text("");
-            $('.reload_btn_container').css({'display':'none',});
+            else{
+                var category_text = res[0].category_name;
+                console.log("activity category");
+                console.log(category_text);
+
+                $('#random_question_text').text("");
+                $('#random_question_category').text("");
+                $('.reload_btn_container').css({'display':'none',});
 
 
-            
+                var txt;
 
-
-            var txt;
-
-            
-            if(category_text == "사람"){
                 
-                txt = '<span style="color: cornflowerblue; font-family:TmoneyRoundWindExtraBold;">' +"　다른 사람" +'</span>' +"들은 삶을 채워주는 흥미로운 콘텐츠입니다. 오늘 누구를 만났나요? 그 사람과 어떤 얘기를 나누고 무엇을 했는지 생각해봅시다.";
+                if(category_text == "사람"){
+                    
+                    txt = '<span style="color: cornflowerblue; font-family:TmoneyRoundWindExtraBold;">' +"　다른 사람" +'</span>' +"들은 삶을 채워주는 흥미로운 콘텐츠입니다. 오늘 누구를 만났나요? 그 사람과 어떤 얘기를 나누고 무엇을 했는지 생각해봅시다.";
 
-            }
-            else if(category_text == "새로운 시도"){
-                txt ="　때로 우리는 일상을 벗어난 " + '<span style="color: cornflowerblue; font-family:TmoneyRoundWindExtraBold;">' +"새로운 시도"  +'</span>'+ "를 하기도 합니다. 오늘 했던 새로운 시도가 있었다면 적어봅시다.";
-            }
-            else if(category_text == "루틴"){
-                txt ="　우리 삶은 대부분 " + '<span style="color: cornflowerblue; font-family:TmoneyRoundWindExtraBold;">'+ "반복되는 일상" +'</span>'+ "으로 이루어져 있습니다. 평소와 다를 것이 없는 하루인가요? 되풀이되는 내 하루를 기록으로 남겨봅시다.";
-            }
-            else if(category_text == "사건사고"){
-               txt = "　때로는 살면서 예상치 못한 "+ '<span style="color: cornflowerblue; font-family:TmoneyRoundWindExtraBold;">'+"사건 사고"+'</span>'+"가 생기기도 합니다. 오늘 있었던 특별한 사건을 기록해봅시다.";
-            }
-            else if(category_text == "야외"){
-               txt = "　오늘 "+ '<span style="color: cornflowerblue; font-family:TmoneyRoundWindExtraBold;">'+"집 밖" +'</span>'+"을 나간 적이 있었나요? 나갔다면 무엇을 했는지 적어봅시다.";
-            }
-            else if(category_text == "실내"){
-               txt = "　오늘 "+ '<span style="color: cornflowerblue; font-family:TmoneyRoundWindExtraBold;">'+"방 안" +'</span>'+"에 머무르면서 했던 활동에 대해 생각해봅시다.";
-            }
-            else if(category_text == "창작"){
-               txt = '<span style="color: cornflowerblue; font-family:TmoneyRoundWindExtraBold;">'+"　새로운 것" +'</span>'+"을 만들어내는 일만큼 보람찬 것이 있을까요? 오늘 만들어낸 것이 있다면 생각해봅시다. 짧은 글부터 그림 또는 음악이 될 수도 있습니다.";
-            }
-            else if(category_text == "감상"){
-              txt = "　오늘 "+'<span style="color: cornflowerblue; font-family:TmoneyRoundWindExtraBold;">'+"즐겼던 콘텐츠"+'</span>'+"에 대해 생각해봅시다. 영상이나 음악 또는 글이 될 수도 있습니다.";
-            }
-            else if(category_text == "소비"){
-                txt = "　우리는 한 사람의 "+'<span style="color: cornflowerblue; font-family:TmoneyRoundWindExtraBold;">'+"소비"+'</span>'+ "목록으로 그 사람을 어느정도 추측할 수 있습니다. 소비는 우리는 표현하는 수단이기도 합니다. 오늘 특별한 지출이 있었다면 기록해봅시다.";
-            }
-            else if(category_text == "식사"){
-               txt = "　무엇을 먹었는지가 그 사람의 하루를 설명해주기도 합니다. "+'<span style="color: cornflowerblue; font-family:TmoneyRoundWindExtraBold;">'+"오늘 먹은 것"+'</span>'+"은 무엇이었나요?";
-            }
-            else if(category_text == "구비"){
-               txt = '<span style="color: cornflowerblue; font-family:TmoneyRoundWindExtraBold;">'+"　생활에 필요"+'</span>'+"하거나 "+'<span style="color: cornflowerblue; font-weight: bold;">'+"마음에 드는 것"+'</span>'+"들을 구해 채워놓습니다.";
-            }
-            else if(category_text == "휴식"){
-               txt = "　빈둥거리며 몸과 마음을 "+'<span style="color: cornflowerblue; font-family:TmoneyRoundWindExtraBold;">'+"재충전"+'</span>'+"하는 시간이 필요할 때가 있습니다";
-            }
-            else if(category_text == '일'){
-               txt = "　삶은 "+'<span style="color: cornflowerblue; font-family:TmoneyRoundWindExtraBold;">'+"자기 일"+'</span>'+"을 찾아 수행해나가는 과정입니다. 오늘 했던  내 일은 무엇인가요?";
-            }
-            else if(category_text == '정리'){
-               txt = "　때로는 덜어내고 정리하면서 삶을 더 활기차게 만듭니다. 오늘 정리한 것들이 있다면 적어봅시다.";
-            }
-            else if(category_text == '공부'){
-               txt = "　새로운 것들에 대해 조사하고 공부합니다.";
-            }
-            else if(category_text == '기록'){
-               txt = "　생각이나 느낌을 기록으로 남깁니다. 글로 적어내면서 생각이 정리되고 명확해집니다";
-            }
-            else if(category_text == '이벤트'){
-               txt = "　시험이나 발표. 고백과 이별 등 평소와는 다른 중요한 이벤트가 생기는 날이 있습니다.";
-            }
-          
-
-
-
+                }
+                else if(category_text == "새로운 시도"){
+                    txt ="　때로 우리는 일상을 벗어난 " + '<span style="color: cornflowerblue; font-family:TmoneyRoundWindExtraBold;">' +"새로운 시도"  +'</span>'+ "를 하기도 합니다. 오늘 했던 새로운 시도가 있었다면 적어봅시다.";
+                }
+                else if(category_text == "루틴"){
+                    txt ="　우리 삶은 대부분 " + '<span style="color: cornflowerblue; font-family:TmoneyRoundWindExtraBold;">'+ "반복되는 일상" +'</span>'+ "으로 이루어져 있습니다. 평소와 다를 것이 없는 하루인가요? 되풀이되는 내 하루를 기록으로 남겨봅시다.";
+                }
+                else if(category_text == "사건사고"){
+                txt = "　때로는 살면서 예상치 못한 "+ '<span style="color: cornflowerblue; font-family:TmoneyRoundWindExtraBold;">'+"사건 사고"+'</span>'+"가 생기기도 합니다. 오늘 있었던 특별한 사건을 기록해봅시다.";
+                }
+                else if(category_text == "야외"){
+                txt = "　오늘 "+ '<span style="color: cornflowerblue; font-family:TmoneyRoundWindExtraBold;">'+"집 밖" +'</span>'+"을 나간 적이 있었나요? 나갔다면 무엇을 했는지 적어봅시다.";
+                }
+                else if(category_text == "실내"){
+                txt = "　오늘 "+ '<span style="color: cornflowerblue; font-family:TmoneyRoundWindExtraBold;">'+"방 안" +'</span>'+"에 머무르면서 했던 활동에 대해 생각해봅시다.";
+                }
+                else if(category_text == "창작"){
+                txt = '<span style="color: cornflowerblue; font-family:TmoneyRoundWindExtraBold;">'+"　새로운 것" +'</span>'+"을 만들어내는 일만큼 보람찬 것이 있을까요? 오늘 만들어낸 것이 있다면 생각해봅시다. 짧은 글부터 그림 또는 음악이 될 수도 있습니다.";
+                }
+                else if(category_text == "감상"){
+                txt = "　오늘 "+'<span style="color: cornflowerblue; font-family:TmoneyRoundWindExtraBold;">'+"즐겼던 콘텐츠"+'</span>'+"에 대해 생각해봅시다. 영상이나 음악 또는 글이 될 수도 있습니다.";
+                }
+                else if(category_text == "소비"){
+                    txt = "　우리는 한 사람의 "+'<span style="color: cornflowerblue; font-family:TmoneyRoundWindExtraBold;">'+"소비"+'</span>'+ "목록으로 그 사람을 어느정도 추측할 수 있습니다. 소비는 우리는 표현하는 수단이기도 합니다. 오늘 특별한 지출이 있었다면 기록해봅시다.";
+                }
+                else if(category_text == "식사"){
+                txt = "　무엇을 먹었는지가 그 사람의 하루를 설명해주기도 합니다. "+'<span style="color: cornflowerblue; font-family:TmoneyRoundWindExtraBold;">'+"오늘 먹은 것"+'</span>'+"은 무엇이었나요?";
+                }
+                else if(category_text == "구비"){
+                txt = '<span style="color: cornflowerblue; font-family:TmoneyRoundWindExtraBold;">'+"　생활에 필요"+'</span>'+"하거나 "+'<span style="color: cornflowerblue; font-weight: bold;">'+"마음에 드는 것"+'</span>'+"들을 구해 채워놓습니다.";
+                }
+                else if(category_text == "휴식"){
+                txt = "　빈둥거리며 몸과 마음을 "+'<span style="color: cornflowerblue; font-family:TmoneyRoundWindExtraBold;">'+"재충전"+'</span>'+"하는 시간이 필요할 때가 있습니다";
+                }
+                else if(category_text == '일'){
+                txt = "　삶은 "+'<span style="color: cornflowerblue; font-family:TmoneyRoundWindExtraBold;">'+"자기 일"+'</span>'+"을 찾아 수행해나가는 과정입니다. 오늘 했던  내 일은 무엇인가요?";
+                }
+                else if(category_text == '정리'){
+                txt = "　때로는 덜어내고 정리하면서 삶을 더 활기차게 만듭니다. 오늘 정리한 것들이 있다면 적어봅시다.";
+                }
+                else if(category_text == '공부'){
+                txt = "　새로운 것들에 대해 조사하고 공부합니다.";
+                }
+                else if(category_text == '기록'){
+                txt = "　생각이나 느낌을 기록으로 남깁니다. 글로 적어내면서 생각이 정리되고 명확해집니다";
+                }
+                else if(category_text == '이벤트'){
+                txt = "　시험이나 발표. 고백과 이별 등 평소와는 다른 중요한 이벤트가 생기는 날이 있습니다.";
+                }
             
-            setTimeout(
-                function() {
-                    $('.reload_btn_container').hide().fadeIn('slow');
-                }
-            , 2400);
+
+
+
+                
+                setTimeout(
+                    function() {
+                        $('.reload_btn_container').hide().fadeIn('slow');
+                    }
+                , 2400);
+                
             
-           
-            setTimeout(
-                function() {
-                    $('#random_question_category').text(category_text).hide().fadeIn('slow');
-                }
-            , 300);
+                setTimeout(
+                    function() {
+                        $('#random_question_category').text(category_text).hide().fadeIn('slow');
+                    }
+                , 300);
 
-            setTimeout(
-                function() {
-                    $('#random_question_text').html(txt).hide().fadeIn('slow');
-                }
-            , 500);
-
-
-            $('.random_question_activity').empty();
+                setTimeout(
+                    function() {
+                        $('#random_question_text').html(txt).hide().fadeIn('slow');
+                    }
+                , 500);
 
 
-            setTimeout(
-                function() {
-                   
+                $('.random_question_activity').empty();
 
-                    for (var i = 0; i < res.length; i++) {
 
-                    var object = res[i];
-                    var object_name = object.activity_name;
-                    var list_container = document.createElement("div");
+                setTimeout(
+                    function() {
+                    
 
-                    $(list_container).css({
+                        for (var i = 0; i < res.length; i++) {
 
-                        width:"80px",
-                        height: "85px",
-                        padding: "5px",
-                        margin: '10px',
-                        display: 'flex',
-                        paddingBottom: '5px',
-                        alignItems: 'center',
-                        overflow:'hidden',
-                        cursor:'pointer',
-                        borderRadius: '8px', 
-                        'justify-content': 'center',
-                        'margin-left': '30px',
-                        'margin-right': '30px',
-                        'box-shadow': 'gray 4px 4px 5px 3px',
-                        'background-color': '#313843d6',
-                        'border': '2px solid white',
+                        var object = res[i];
+                        var object_name = object.activity_name;
+                        var list_container = document.createElement("div");
 
-                        }).hover(function() {
-                            $(this).css("background-color", "#bad8f2");
-                            }, function(){
-                                if($(this).hasClass("identity_selected")){
+                        $(list_container).css({
+
+                            width:"80px",
+                            height: "85px",
+                            padding: "5px",
+                            margin: '10px',
+                            display: 'flex',
+                            paddingBottom: '5px',
+                            alignItems: 'center',
+                            overflow:'hidden',
+                            cursor:'pointer',
+                            borderRadius: '8px', 
+                            'justify-content': 'center',
+                            'margin-left': '30px',
+                            'margin-right': '30px',
+                            'box-shadow': 'gray 4px 4px 5px 3px',
+                            'background-color': '#313843d6',
+                            'border': '2px solid white',
+
+                            }).hover(function() {
                                 $(this).css("background-color", "#bad8f2");
-                                }
-                                else{
-                                $(this).css("background-color", "#313843d6");
-                                }
-                        }).click(((object) => function (e) {
+                                }, function(){
+                                    if($(this).hasClass("identity_selected")){
+                                    $(this).css("background-color", "#bad8f2");
+                                    }
+                                    else{
+                                    $(this).css("background-color", "#313843d6");
+                                    }
+                            }).click(((object) => function (e) {
 
-                            $('.add_record_layer').css({height: '200px', top: '50%'});
-                            $('.record_title').css({display:'none'});
-                            $('.record_cont').css({display:'none'});
-                            $('.find_img_container').css({display:'none'});
-                            $('.btn_add_title').css({display:'flex'});
-                            $('.btn_add_content').css({display:'none'});
-                            $('.btn_add_record').css({display:'none'});
-                            $('.btn_add_img').css({display:'none'});
+                                $('.add_record_layer').css({height: '200px', top: '50%'});
+                                $('.record_title').css({display:'none'});
+                                $('.record_cont').css({display:'none'});
+                                $('.find_img_container').css({display:'none'});
+                                $('.btn_add_title').css({display:'flex'});
+                                $('.btn_add_content').css({display:'none'});
+                                $('.btn_add_record').css({display:'none'});
+                                $('.btn_add_img').css({display:'none'});
 
-                            // 이미지 파일 input 초기화
-                            var input = document.getElementById('u_file');
-                            input.value = null;
+                                // 이미지 파일 input 초기화
+                                var input = document.getElementById('u_file');
+                                input.value = null;
 
-                            // 추가하기 레이어 초기화
-                            var record_title = $('.record_title').val();
-                            var record_cont = $('.record_cont').val();
+                                // 추가하기 레이어 초기화
+                                var record_title = $('.record_title').val();
+                                var record_cont = $('.record_cont').val();
+                                
+                                Global_Var.userInfo.curr_identity_code = object.identity_code;
+                                Global_Var.userInfo.curr_activity_code = object.activity_code;
+
+                                // activity만 추가할 수 있음
+                                $('.add_record_layer').removeClass("state_item state_skill").addClass("state_activity");
+
+
+                                $('.popup_activity_img').attr("src",object.activity_img);
+                                $('.popup_activity_title').text(object.activity_name);
+                                $('.popup_activity_desc').text("　▶　"+ object.activity_desc);
+
+                                $('.popup_activity_desc_container').click(function(){
+
+                                    $('.modal_cont').text("\u00a0"+"\u00a0"+object.activity_desc);
+                                    $('#desc_modal').attr("title", object.activity_name);
+                                    $('.ui-dialog-title').text(object.activity_name);
+
+                                    $('#desc_modal').dialog({
+                                        modal: true, 
+                                    }).prev(".ui-dialog-titlebar").css({"background":"#475169",'color':'white'});
+                                    $('.ui-dialog').css({'z-index':'2000',});
+
+                                });
+
+                                
+                                $('.popup_activity_identity').text(object.identity_name);
+
+                                $('.record_title').val("");
+                                $('.record_cont').val("");
+                                $('.find_img_area').attr("src","");
+
+                                layer_popup($('.add_record_layer'));
                             
-                            Global_Var.userInfo.curr_identity_code = object.identity_code;
-                            Global_Var.userInfo.curr_activity_code = object.activity_code;
-
-                            // activity만 추가할 수 있음
-                            $('.add_record_layer').removeClass("state_item state_skill").addClass("state_activity");
+                            })(object)).addClass('').attr('id', object.activity_code).appendTo('.random_question_activity').hide().fadeIn('slow');
 
 
-                            $('.popup_activity_img').attr("src",object.activity_img);
-                            $('.popup_activity_title').text(object.activity_name);
-                            $('.popup_activity_desc').text("　▶　"+ object.activity_desc);
+                            var VerticalList = $("<div>", {}).css({ 'display':'flex', 'flex-direction': 'column', 'align-items': 'center', 'width' : '100px', });
 
-                            $('.popup_activity_desc_container').click(function(){
+                            $('<img>', {
+                                            src: object.activity_img
 
-                                $('.modal_cont').text("\u00a0"+"\u00a0"+object.activity_desc);
-                                $('#desc_modal').attr("title", object.activity_name);
-                                $('.ui-dialog-title').text(object.activity_name);
+                                        }).css({
+                                            width: "40px",
+                                            height: "40px",
+                                            margin: "4.5px",
+                                            float: "left",
+                                            margin: "7px",
+                                            borderRadius: '8px', 
+                                            'margin-top': '0px',
+                                            border: "2px solid #586167", 
 
-                                $('#desc_modal').dialog({
-                                    modal: true, 
-                                }).prev(".ui-dialog-titlebar").css({"background":"#475169",'color':'white'});
-                                $('.ui-dialog').css({'z-index':'2000',});
+                                        }).appendTo(VerticalList);
 
-                            });
-
-                            
-                            $('.popup_activity_identity').text(object.identity_name);
-
-                            $('.record_title').val("");
-                            $('.record_cont').val("");
-                            $('.find_img_area').attr("src","");
-
-                            layer_popup($('.add_record_layer'));
-                        
-                        })(object)).addClass('').attr('id', object.activity_code).appendTo('.random_question_activity').hide().fadeIn('slow');
-
-
-                        var VerticalList = $("<div>", {}).css({ 'display':'flex', 'flex-direction': 'column', 'align-items': 'center', 'width' : '100px', });
-
-                        $('<img>', {
-                                        src: object.activity_img
+                            $('<p>', {
+                                        text: object.activity_name,
 
                                     }).css({
-                                        width: "40px",
-                                        height: "40px",
-                                        margin: "4.5px",
-                                        float: "left",
-                                        margin: "7px",
-                                        borderRadius: '8px', 
-                                        'margin-top': '0px',
-                                        border: "2px solid #586167", 
+                                        
+                                        fontSize: "11px",
+                                        margin: "3px",
+                                        lineHeight:"12px",
+                                        fontWeight: 'bold',
+                                        color:'white',
 
-                                    }).appendTo(VerticalList);
+                                    }).appendTo(VerticalList);    
 
-                        $('<p>', {
-                                    text: object.activity_name,
+                                    VerticalList.appendTo(list_container);    
 
-                                }).css({
-                                    
-                                    fontSize: "11px",
-                                    margin: "3px",
-                                    lineHeight:"12px",
-                                    fontWeight: 'bold',
-                                    color:'white',
+                }
 
-                                }).appendTo(VerticalList);    
 
-                                VerticalList.appendTo(list_container);    
 
+
+
+                    },
+                1800);
             }
-
-
-
-
-
-                },
-            1800);
-
 
         },
         error : function(XMLHttpRequest, textStatus, errorThrown){ 
@@ -2081,10 +2088,12 @@ $('#others_location_btn').click(function(){
 
    $('#others_record_container').css({'display':'none'});
    $('#todays_activities_container').css({'display':'none'});
-   
+   var extracted_text = $('.mainIdentity').children().eq(1).children(1).text();
+   $('.map_current_identity').text(extracted_text);
 
     
     $('#others_location_container').css("display","flex").hide().fadeIn('slow');
+
     
     getUserLocation();
 
@@ -4046,8 +4055,11 @@ $('#others_location_container').css({'display':'none'});
                                         
                         $('#current_identity').text(identity_name);
                         $('.current_identity_name').css("display","flex").hide().fadeIn('slow');
+                       
 
                         Global_Var.userInfo.curr_main_identity = res[i].identity_code;
+
+                
                         console.log('main identity');
                         console.log(Global_Var.userInfo.curr_main_identity);
                 
