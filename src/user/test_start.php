@@ -1,6 +1,5 @@
-
 <?php
-
+session_start(); 
 // 테스트 유저로 시작하기
 
 
@@ -9,6 +8,7 @@
 
 
                 require("../../connect_db.php");
+                
                 
            
                 $query = "INSERT INTO user (nickname) VALUES ('테스트유저') ";

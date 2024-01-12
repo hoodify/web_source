@@ -1,6 +1,4 @@
-
-
-  <?php
+<?php
 
   // 넘겨받은 정체성에 해당하는 콘텐츠 리스트 요청 처리
 
@@ -11,7 +9,11 @@
                 require("../../connect_db.php");
                 $identity_code = $_POST['identity_code'];
 
-
+                  $query_identity =  "SELECT * FROM identity  WHERE identity_code = :identity_code";
+                  $stmt_identity = $conn->prepare($query_identity);
+                  $stmt_identity->bindParam(':identity_code',$identity_code);
+                  $stmt_identity->execute();
+                  $row_identity = $stmt_identity->fetchAll(PDO::FETCH_ASSOC);
 
                   $query_activity = "SELECT * FROM activity  WHERE identity_code = :identity_code";
                   $stmt_activity = $conn->prepare($query_activity);
@@ -38,8 +40,16 @@
                   $row_caution = $stmt_caution->fetchAll(PDO::FETCH_ASSOC);
 
 
+                  $query_support = "SELECT * FROM support  WHERE identity_code = :identity_code";
+                  $stmt_support = $conn->prepare($query_support);
+                  $stmt_support->bindParam(':identity_code',$identity_code);
+                  $stmt_support->execute();
+                  $row_support = $stmt_support->fetchAll(PDO::FETCH_ASSOC);
 
-                 $mergeArray = array(0=>$row_activity, 1=>$row_item, 2=>$row_skill, 3=>$row_caution);
+
+
+
+                 $mergeArray = array(0=>$row_activity, 1=>$row_item, 2=>$row_skill, 3=>$row_caution, 4=>$row_support, 5=>$row_identity);
 
                  $resultJSON = json_encode($mergeArray);
 

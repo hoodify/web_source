@@ -13,6 +13,7 @@ Global_Var.userInfo = {
     'curr_item_code' : null,
     'curr_skill_code' : null,
     'curr_defect_code' : null,
+    'curr_support_code' : null,
     'curr_record_code' : null,
     'curr_main_identity' : null,
 
@@ -156,6 +157,7 @@ function get_identities_from_category(category_text){
                         paddingBottom: '5px',
                         alignItems: 'center',
                         overflow:'hidden',
+                        cursor:'pointer',
 
                         }).hover(function() {
                         $(this).css("background-color", "#bad8f2");
@@ -204,13 +206,7 @@ function get_identities_from_category(category_text){
                             // 해당 정체성에 대한 정보 불러오기
                             get_identity_search_data(object.identity_code);
 
-
-                            $('.search_identity_img').attr("src",object.identity_img);
-                            $('.search_identity_name').text(object.identity_name);
-                            $('.search_identity_desc').text("\u00a0"+"\u00a0"+object.identity_desc);
-                            $('.search_result_identity').css("display","flex").hide().fadeIn('fast');
-                            $('.search_result').css({ display : 'none',});
-                            $('.category_container').css({ display : 'none',});
+                          
 
 
                         })(object)).appendTo('.search_result');
@@ -624,9 +620,9 @@ $(".mli").click(function(){
     // Activity 버튼
     if($(this).hasClass("activity")){
 
-        $('.add_record_layer').removeClass("state_item state_skill").addClass("state_activity");
-        $('.modify_record_layer').removeClass("state_item state_skill").addClass("state_activity");
-        $('.activity_post').removeClass("state_item state_skill").addClass("state_activity");
+        $('.add_record_layer').removeClass("state_item state_skill state_defect state_support").addClass("state_activity");
+        $('.modify_record_layer').removeClass("state_item state_skill state_defect state_support").addClass("state_activity");
+        $('.activity_post').removeClass("state_item state_skill state_defect state_support").addClass("state_activity");
 
         $(".Clist").css({
         display: "block",
@@ -643,9 +639,9 @@ $(".mli").click(function(){
     // Item 버튼
     else if($(this).hasClass("item")){
 
-        $('.add_record_layer').removeClass("state_activity state_skill").addClass("state_item");
-        $('.modify_record_layer').removeClass("state_activity state_skill").addClass("state_item");
-        $('.activity_post').removeClass("state_activity state_skill").addClass("state_item");
+        $('.add_record_layer').removeClass("state_activity state_skill state_defect state_support").addClass("state_item");
+        $('.modify_record_layer').removeClass("state_activity state_skill state_defect state_support").addClass("state_item");
+        $('.activity_post').removeClass("state_activity state_skill state_defect state_support").addClass("state_item");
 
         $(".Ilist").css({
         display: "block",
@@ -662,9 +658,9 @@ $(".mli").click(function(){
     // Skill 버튼
     else if($(this).hasClass("skill")){
 
-        $('.add_record_layer').removeClass("state_activity state_item").addClass("state_skill");
-        $('.modify_record_layer').removeClass("state_activity state_item").addClass("state_skill");
-        $('.activity_post').removeClass("state_activity state_item").addClass("state_skill");
+        $('.add_record_layer').removeClass("state_activity state_item state_defect state_support").addClass("state_skill");
+        $('.modify_record_layer').removeClass("state_activity state_item state_defect state_support").addClass("state_skill");
+        $('.activity_post').removeClass("state_activity state_item state_defect state_support").addClass("state_skill");
 
         $(".Slist").css({
         display: "block",
@@ -681,13 +677,32 @@ $(".mli").click(function(){
     // Defect 버튼
     else if($(this).hasClass("defect")){
 
-        $('.add_record_layer').removeClass("state_activity state_item").addClass("state_defect");
-        $('.modify_record_layer').removeClass("state_activity state_item").addClass("state_defect");
-        $('.activity_post').removeClass("state_activity state_item").addClass("state_defect");
+        $('.add_record_layer').removeClass("state_activity state_item state_skill state_support").addClass("state_defect");
+        $('.modify_record_layer').removeClass("state_activity state_item state_skill state_support").addClass("state_defect");
+        $('.activity_post').removeClass("state_activity state_item state_skill state_support").addClass("state_defect");
 
         $(".Dlist").css({
         display: "block",
         });
+        $(".RC").css({
+        display: "none",
+        });
+        $(".RCplain").css({
+        display: "flex",
+        });
+    }
+
+    else if($(this).hasClass("support")){
+
+        $('.add_record_layer').removeClass("state_activity state_item state_skill state_defect").addClass("state_support");
+        $('.modify_record_layer').removeClass("state_activity state_item state_skill state_defect").addClass("state_support");
+        $('.activity_post').removeClass("state_activity state_item state_skill state_defect").addClass("state_support");
+
+
+        $(".SPTlist").css({
+        display: "block",
+        });
+
         $(".RC").css({
         display: "none",
         });
@@ -714,6 +729,53 @@ $(".mli").click(function(){
 
 
 ////////////////////////////////////////////////////////////////////////////////////               
+/////// 인기 정체성 클릭 이벤트
+
+$('.popular_identity').click(function(){
+
+
+    $('.hook_identity_space').css({display:'none'});
+    $('.search_result_identity').css({display:'none'});
+
+
+    var get_id_str = $(this).attr('id');
+    var get_id = get_id_str.replace(/[^0-9]/g,''); 
+
+    get_identity_search_data(get_id);
+
+    Global_Var.userInfo.curr_identity_code = get_id;
+
+    // 이미 보유하고 있는 정체성인지 확인
+    $.ajax({
+        type : "POST",
+        url : "/hoodify/src/identity_info/check_possession.php",
+        data : { 'identity_code' : get_id},
+        success : function(res){
+
+            if(res=='possession'){
+
+                $('.add_identity').css({ display : 'none',});
+                $('.locked').css({ display : 'block',});
+
+            }else if(res=='no possession'){
+
+                $('.add_identity').css({ display : 'block',});
+                $('.locked').css({ display : 'none',});
+
+            }
+
+        },
+        error : function(XMLHttpRequest, textStatus, errorThrown){ 
+            alert("통신 실패.")
+        }
+    });
+
+});
+
+
+
+
+////////////////////////////////////////////////////////////////////////////////////               
 /////// 테스트 계정으로 시작하기 버튼 이벤트
 
 $('.test_btn_container').click(function(){
@@ -736,7 +798,7 @@ $('.test_btn_container').click(function(){
             error : function(XMLHttpRequest, textStatus, errorThrown){ // 비동기 통신이 실패할경우 error 콜백으로 들어옵니다.
                 alert("통신 실패.")
             }
-            });
+        });
 
 
 
@@ -945,7 +1007,7 @@ $('.open_report').click(function(){
                     }
                 });
 
-            layer_popup('.daily_report')
+           // layer_popup('.daily_report')
         
         },
         500);
@@ -1531,6 +1593,7 @@ function get_public_record(direction){
 
     $('#others_location_container').css({'display':'none'});
     $('#todays_activities_container').css({'display':'none'});
+    $('#daily_log_container').css({'display':'none'});
 
 
         $('#others_record').empty();
@@ -1788,11 +1851,16 @@ function get_public_record(direction){
 $('#random_question_btn').click(function(){
 
     get_random_question();
+   // layer_popup('.get_random_question_layer');
 
-    
+   // 보이기 
+   
+   $('#others_record_container').css({'display':'none'});
+   $('#others_location_container').css({'display':'none'});
+   $('#todays_activities_container').css({'display':'none'});
+   $('#daily_log_container').css({'display':'flex'});
 
-
-    layer_popup('.get_random_question_layer');
+   
 
 
 });
@@ -1833,7 +1901,6 @@ function get_random_question(){
 
                 var txt;
 
-                
                 if(category_text == "사람"){
                     
                     txt = '<span style="color: cornflowerblue; font-family:TmoneyRoundWindExtraBold;">' +"　다른 사람" +'</span>' +"들은 삶을 채워주는 흥미로운 콘텐츠입니다. 오늘 누구를 만났나요? 그 사람과 어떤 얘기를 나누고 무엇을 했는지 생각해봅시다.";
@@ -1894,14 +1961,14 @@ function get_random_question(){
                 
                 setTimeout(
                     function() {
-                        $('.reload_btn_container').hide().fadeIn('slow');
+                       // $('.reload_btn_container').hide().fadeIn('slow');
                     }
                 , 2400);
                 
             
                 setTimeout(
                     function() {
-                        $('#random_question_category').text(category_text).hide().fadeIn('slow');
+                        $('#random_question_category').text(category_text+" log").hide().fadeIn('slow');
                     }
                 , 300);
 
@@ -2072,6 +2139,7 @@ $('#daily_check_btn').click(function(){
     get_daily_list();
     $('#others_record_container').css({'display':'none'});
     $('#others_location_container').css({'display':'none'});
+    $('#daily_log_container').css({'display':'none'});
 
 })
 
@@ -2088,6 +2156,8 @@ $('#others_location_btn').click(function(){
 
    $('#others_record_container').css({'display':'none'});
    $('#todays_activities_container').css({'display':'none'});
+   
+   $('#daily_log_container').css({'display':'none'});
    var extracted_text = $('.mainIdentity').children().eq(1).children(1).text();
    $('.map_current_identity').text(extracted_text);
 
@@ -2230,11 +2300,269 @@ $('.on_construction').click(function(){
 
 });
 
+$('.mbti_btn').click(function(){
+
+    var mbti = $(this).attr('class').split(' ')[0];
+    console.log('mbti');
+    console.log(mbti);
+
+    var identity_array = [];
+
+    if(mbti=="ISTJ"){
+
+        identity_array = [12,80,81,71,36,16,13,109];
+        get_identity_list(identity_array);
+
+    }
+    else if (mbti=="ISFJ"){
+        
+        identity_array = [10,12,135,80,71,73,74];
+        get_identity_list(identity_array);
+        
+    }
+    else if (mbti=="INFJ"){
+        
+        identity_array = [71,77,79,8,74,80,6];
+        get_identity_list(identity_array);
+
+    }
+    else if (mbti=="INTJ"){
+
+        identity_array = [12,81,77,8,2,76,79,77,80];
+        get_identity_list(identity_array);
+        
+    }
+    else if (mbti=="ISTP"){
+        
+        identity_array = [10,12,142,78,76,81,36,13,71,11];
+        get_identity_list(identity_array);
+        
+    }
+    else if (mbti=="ISFP"){
+        
+        identity_array = [10,36,11,77,2,71,9];
+        get_identity_list(identity_array);
+        
+    }
+    else if (mbti=="INFP"){
+        
+        identity_array = [74,73,36,77,8,71,72,79];
+        get_identity_list(identity_array);
+        
+    }
+    else if (mbti=="INTP"){
+        
+        identity_array = [12,79,8,10,2,1,76];
+        get_identity_list(identity_array);
+        
+    }
+    else if (mbti=="ESTP"){
+        
+        identity_array = [81,97,9,67,3];
+        get_identity_list(identity_array);
+        
+    }
+    else if (mbti=="ESFP"){
+        
+        identity_array = [67,69,68,6,77,64];
+        get_identity_list(identity_array);
+        
+    }
+    else if (mbti=="ENFP"){
+        
+        identity_array = [11,10,82,68,78,67];
+        get_identity_list(identity_array);
+        
+    }
+    else if (mbti=="ENTP"){
+        
+        identity_array = [12,76,96,2,9,16];
+        get_identity_list(identity_array);
+        
+    }
+    else if (mbti=="ESTJ"){
+        
+        identity_array = [81,80,16,109,96];
+        get_identity_list(identity_array);
+        
+    }
+    else if (mbti=="ESFJ"){
+        
+        identity_array = [80,74,69,67];
+        get_identity_list(identity_array);
+        
+    }
+    else if (mbti=="ENFJ"){
+        
+        identity_array = [80,82,69];
+        get_identity_list(identity_array);
+        
+    }
+    else if (mbti=="ENTJ"){
+        
+        identity_array = [96,76,81];
+        get_identity_list(identity_array);
+        
+    }
+
+
+
+});
+
+function get_identity_list(identity_code_array){
+
+
+    $('.hook_identity_space').css({ display : 'none',});
+    $('.search_result_identity').css({ display : 'none',});
+    $('.show_keywords_container').css({ display : 'none',});
+    $('.search_result').css("display","block").hide().fadeIn('fast');
+
+    $('.category_container').css("display","flex").hide().fadeIn('fast');
+
+
+   
+    $.ajax({
+        type : "POST",
+        url : "/hoodify/src/identity_info/get_identity_list.php",
+        data : {
+                'identity_code_array' : identity_code_array,
+            },
+        dataType : 'json',  
+        success : function(res){
+
+            console.log('identity_list_mbti');
+            console.log(res);
+
+
+            $('.search_result').empty();
+            for (var i = 0; i < res.length; i++) {
+
+                var object = res[i][0];
+                var object_name = object.identity_name;
+                var list_container = document.createElement("div");
+
+                $(list_container).css({
+
+                        height: "60px",
+                        padding: "5px",
+                        borderBottom: "1px solid #D8D8D8",
+                        display: 'flex',
+                        paddingBottom: '5px',
+                        alignItems: 'center',
+                        overflow:'hidden',
+                        cursor:'pointer',
+
+                        }).hover(function() {
+                        $(this).css("background-color", "#bad8f2");
+                        }, function(){
+                        $(this).css("background-color", "white");
+                        }).click(((object) => function (e) {
+
+                            $('.show_keywords_container').css({ display : 'none',});
+
+                            $('.search_identity_img').attr("src",object.identity_img);
+                            $('.search_identity_name').text(object.identity_name);
+                            $('.search_identity_desc').text("\u00a0"+"\u00a0"+object.identity_desc);
+
+                            $('.search_activity_list').empty();
+                            $('.search_item_list').empty();
+                            $('.search_skill_list').empty();
+                            $('.search_defect_list').empty();
+
+                            Global_Var.userInfo.curr_identity_code = object.identity_code;
+
+                            // 이미 보유하고 있는 정체성인지 확인
+                            $.ajax({
+                                type : "POST",
+                                url : "/hoodify/src/identity_info/check_possession.php",
+                                data : { 'identity_code' : object.identity_code},
+                                success : function(res){
+
+                                    if(res=='possession'){
+
+                                        $('.add_identity').css({ display : 'none',});
+                                        $('.locked').css({ display : 'block',});
+
+                                    }else if(res=='no possession'){
+
+                                        $('.add_identity').css({ display : 'block',});
+                                        $('.locked').css({ display : 'none',});
+
+                                    }
+
+                                },
+                                error : function(XMLHttpRequest, textStatus, errorThrown){ 
+                                    alert("통신 실패.")
+                                }
+                            });
+
+                            // 해당 정체성에 대한 정보 불러오기
+                            get_identity_search_data(object.identity_code);
+
+                          
+
+
+                        })(object)).appendTo('.search_result');
+                
+
+                        $('<img>',{
+
+                            src: object.identity_img,
+                        }).css({
+                        width: "50px",
+                        height: "50px",
+                        margin: "5px",
+                        float: "left",
+                        borderRadius: '8px', 
+                        border: "2px solid #586167",
+
+                        }).appendTo(list_container);        
+
+                    
+                        $('<p>', {
+                            text: object.identity_name,
+
+                        }).css({
+                        "margin-left": "12px",
+                        "width": "100%",
+                        "fontWeight": "bold",
+                        
+                        }).appendTo(list_container);
+
+
+            }
+
+        
+          
+
+        },
+        error : function(XMLHttpRequest, textStatus, errorThrown){ // 비동기 통신이 실패할경우 error 콜백으로 들어옵니다.
+            alert("통신 실패.")
+        }
+    });
+
+
+
+}
+
 
 ////////////////////////////////////////////////////////////////////////////////////
-// 준비중입니다 창 띄우기
+// 검색한 정체성 정보
 
 function get_identity_search_data(identity_code){
+
+    $('.search_result_identity').css("display","flex").hide().fadeIn('fast');
+
+    $('.search_result').css({ display : 'none',});
+    $('.category_container').css({ display : 'none',});
+    $('.show_keywords_container').css({ display : 'none',});
+
+    $('.search_activity_list').empty();
+    $('.search_item_list').empty();
+    $('.search_skill_list').empty();
+    $('.search_defect_list').empty();
+
+
 
     $.ajax({
         type : "POST",
@@ -2242,6 +2570,16 @@ function get_identity_search_data(identity_code){
         data : {'identity_code' : identity_code},
         dataType : 'json',
         success : function(res){
+
+
+            console.log('확인중');
+            console.log(res);
+
+            var identity_data = res[5][0];
+            $('.search_identity_img').attr("src",identity_data.identity_img);
+            $('.search_identity_name').text(identity_data.identity_name);
+            $('.search_identity_desc').text("\u00a0"+"\u00a0"+identity_data.identity_desc);
+
 
             
             var activity_data = res[0];
@@ -2586,6 +2924,93 @@ function get_identity_search_data(identity_code){
                 }
             }
 
+
+            // 해당 정체성의 support 정보
+            var support_data = res[4];
+            if(support_data.length === 0){
+
+                $('.search_support_list').empty();
+                console.log("공백 확인");
+                $('<p>', {
+                    text: "(비어있음)",
+
+                }).css({
+                    fontSize: "12px",
+                    marginLeft:"4.5px",
+                    margin: "4.5px",
+                    color: 'gray',
+                    marginTop:"15px",
+
+
+                }).appendTo('.search_support_list');
+
+
+            }
+            else{
+                for (var i = 0; i < support_data.length; i++) {
+                    
+                    var support_object = support_data[i];
+                    var list = document.createElement("div");
+
+                    $(list).css({
+
+                    
+                        height: "70px",
+                        borderBottom: "1px solid #D8D8D8",
+                        display: 'flex',
+                        paddingBottom: '5px',
+                        alignItems: 'center',
+                        overflow:'hidden',
+
+                    }).appendTo('.search_support_list');
+
+                    var VerticalList = $("<div>", {
+                    }).css({
+
+                    });
+
+                    $('<img>', {
+                        src: support_object.support_img
+
+                    }).css({
+                        width: "30px",
+                        height: "30px",
+                        margin: "4.5px",
+                        float: "left",
+                        margin: "7px",
+                        borderRadius: '8px', 
+                        border: "2px solid #586167",
+                    }).appendTo(list);
+
+
+                    $('<p>', {
+                        text: support_object.support_name,
+
+                    }).css({
+                        margin: "4.5px",
+                        "font-weight": "bold",
+                
+
+
+                    }).appendTo(VerticalList);
+/*
+                    $('<p>', {
+                        text: support_object.support_desc,
+
+                    }).css({
+                        fontSize: "13px",
+                        margin: "4.5px",
+                        lineHeight:"15px",
+
+
+                    }).appendTo(VerticalList);
+*/
+                    VerticalList.appendTo(list);
+
+                }
+            }
+
+
         },
         error : function(XMLHttpRequest, textStatus, errorThrown){ // 비동기 통신이 실패할경우 error 콜백으로 들어옵니다.
             alert("통신 실패.")
@@ -2604,6 +3029,9 @@ $('.category_btn').click(function(){
 
     $('.search_result').empty();
     $('.search_result').css({ display : 'none',});
+    $('.hook_identity_space').css({ display : 'none',});
+
+    
 
     var category_text = $(this).text();
     console.log(category_text);
@@ -2962,6 +3390,117 @@ $('#btn_deleteCom_identity').click(function(){
 
 });
 
+/////////////////////////////////////////////////////////////////////////////////////
+// 메시지 카드 
+// 
+
+$('.message_test').click(function(){
+// ttttt
+    $(".RC").css({
+        display: "none",
+    });
+
+    $(".RCmessage").css("display","flex").hide().fadeIn("fast");
+
+
+    $.ajax({
+        type : "POST",
+        url : "/hoodify/src/identity_info/get_message_data.php",
+        data : {
+            'identity_code' : Global_Var.userInfo.curr_identity_code, 
+        },
+        dataType : 'json',
+        success : function(res){
+
+            console.log('메시지');
+            console.log(res);
+           $('.mylist_message').empty();
+
+            for (var i = 0; i < res.length; i++) {
+                
+                var object = res[i];
+
+                var list_container = document.createElement("div");
+
+                $(list_container).css({
+
+                        display: "flex",
+                        alignItems: "center",
+                    // borderRight: "1px solid #D8D8D8",
+                    // borderBottom: "1px solid #D8D8D8",
+                        cursor:'pointer',
+                        width:'95px',
+                        height:'100px',
+                        flexDirection:'column',
+                        'padding-top':'15px',
+                        'border-radius' : '11px',
+
+                        }).hover(function() {
+                        $(this).css("background-color", "#bad8f2");
+                        }, function(){
+                        $(this).css("background-color", "white");
+                        }).click(((object) => function (e) {
+
+                            console.log(object);
+
+                            $('.message_identity').text(object.identity_name);
+                            $('.message_cont').text(object.message);
+                            $('.message_from').text("from '"+object.nickname+"'");
+                            
+                            
+
+                            layer_popup($('.message_card_layer'));
+                           
+
+                        })(object)).appendTo(".mylist_message ");
+
+                
+                $('<img>',{
+
+                    src: "/hoodify/img/identity/hooodify_mini.png",
+                }).css({
+                    width: "45px",
+                    height: "45px",
+                    margin: "4.5px",
+                    'margin-bottom':'0px',
+                    float: "left",
+                    "border-radius": "10px",
+                    "border": "2px solid #475169"
+
+                }).appendTo(list_container);        
+
+            
+                $('<p>', {
+                    text:"from '"+object.nickname +"'",
+
+                }).css({
+                    'max-width':'75px',
+                    "font-family": "TmoneyRoundWindExtraBold",
+                    'font-size':'13px',
+                    "color" : '#47525f',
+                    "overflow": "hidden",
+                    "text-overflow": "ellipsis",
+                    "white-space": "nowrap",
+                
+                }).appendTo(list_container);
+
+            }
+
+        },
+        error : function(XMLHttpRequest, textStatus, errorThrown){ // 비동기 통신이 실패할경우 error 콜백으로 들어옵니다.
+            alert("통신 실패.")
+        }
+    });
+
+
+
+
+
+
+
+
+});
+
 
 
 /////////////////////////////////////////////////////////////////////////////////////
@@ -2970,13 +3509,25 @@ $('#btn_deleteCom_identity').click(function(){
 
 $('.open_search_layer').click(function(){
     $('.search_result').empty();
-    $('.search_result_identity').css({ display : 'none',});
     
+    $('.hook_identity_space').css("display","flex").hide().fadeIn("fast");
+    $('.search_result_identity').css({ display : 'none',});
     $('.show_keywords_container').css({ display : 'none',});
+    $('.search_result').css({ display : 'none',});
+    
     
 
-    $('.search_result').fadeIn('fast');
+   // $('.').fadeIn('fast');
     $('.category_container').css("display","flex").hide().fadeIn("fast");
+
+
+    // 인기 키워드 창 채우기
+
+
+
+    // mbti로 찾기 창 열기
+
+
     layer_popup($('.search_layer'));
 });
 
@@ -2997,6 +3548,8 @@ $('.search_text').on('keydown', function(event) {
 ///////// 검색 버튼 이벤트
 
 function search_identity(){
+    
+    $('.hook_identity_space').css({ display : 'none',});
     $('.search_result_identity').css({ display : 'none',});
     $('.show_keywords_container').css({ display : 'none',});
     $('.search_result').css("display","block").hide().fadeIn('fast');
@@ -3035,6 +3588,7 @@ function search_identity(){
                         paddingBottom: '5px',
                         alignItems: 'center',
                         overflow:'hidden',
+                        cursor:'pointer',
 
                         }).hover(function() {
                         $(this).css("background-color", "#bad8f2");
@@ -3052,6 +3606,7 @@ function search_identity(){
                             $('.search_item_list').empty();
                             $('.search_skill_list').empty();
                             $('.search_defect_list').empty();
+                            $('.search_support_list').empty();
 
                             Global_Var.userInfo.curr_identity_code = object.identity_code;
 
@@ -3083,15 +3638,8 @@ function search_identity(){
                             get_identity_search_data(object.identity_code);
 
 
-                            $('.search_identity_img').attr("src",object.identity_img);
-                            $('.search_identity_name').text(object.identity_name);
-                            $('.search_identity_desc').text("\u00a0"+"\u00a0"+object.identity_desc);
 
-                            $('.search_result_identity').css("display","flex").hide().fadeIn('fast');
-
-                            $('.search_result').css({ display : 'none',});
-                            $('.category_container').css({ display : 'none',});
-                            $('.show_keywords_container').css({ display : 'none',});
+                           
 
 
                         })(object)).appendTo(".search_result");
@@ -3139,7 +3687,7 @@ $('.search_btn').click(function(){
 
 
 ///////////////////////////////////////////////////////////////////////////////////////
-///////// 검색결과 나온 정체성을 개인 리스트에 추가
+///////// 검색결과 나온 정체성을 개인 리스트에 추가 
 
 $('.add_identity').click(function(){
 
@@ -3157,13 +3705,19 @@ $('#add_identity_checkCom').click(function(){
             },
             success : function(res){
 
-                if(res=='success'){
+                console.log('세션 체크');
+                console.log(res);
+                if(res.match('success')){
 
                     $('.add_identity').css({ display : 'none',});
                     $('.locked').css({ display : 'block',});
                     get_main_list();
 
 
+                }
+                else if(res.match('no_session')){
+                    console.log('세션 없음');
+                    console.log(res);
                 }
                 else{
                     console.log(res);
@@ -3188,10 +3742,14 @@ $('#add_identity_checkCom').click(function(){
 
 $('.to_search_list').click(function(){
     
+
     $('.show_keywords_container').css({ display : 'none',});
+
     $('.search_result_identity').css({ display : 'none',});
-    $('.search_result').fadeIn('fast');
+    $('.search_result').css({ display : 'none',});
     $('.category_container').css("display","flex").hide().fadeIn("fast");
+    $('.hook_identity_space').css("display","flex").hide().fadeIn("fast");
+    
 })
 
 
@@ -4030,7 +4588,13 @@ $('#others_location_container').css({'display':'none'});
                 $('#others_record').empty();
                 $('.others_record_mark').fadeOut('slow');
                 $('.main_background').css({'display':'none'});
-                $('.no_identity').css({'display':'flex'});
+
+                setTimeout(function(){
+
+                    $('.no_identity').css("display","flex").hide().fadeIn('slow');
+            
+                }, 500);
+               
 
 
             }
@@ -4108,6 +4672,7 @@ $('#others_location_container').css({'display':'none'});
                                 $(".Ilist ").css("display", "none");
                                 $(".Slist ").css("display", "none");
                                 $(".Dlist ").css("display", "none");
+                                $(".SPTlist ").css("display", "none");
                                 $(".setting_cont").css("display", "none");
 
                                 $('.RC').css("display", "none");
@@ -4123,6 +4688,7 @@ $('#others_location_container').css({'display':'none'});
                                 $('.Ilist').empty();
                                 $('.Slist').empty();
                                 $('.Dlist').empty();
+                                $('.SPTlist').empty();
                                 
 
                                 $(".mylistT").empty();
@@ -4262,6 +4828,7 @@ $('#others_location_container').css({'display':'none'});
                                                             $('.RCitem').hide();
                                                             $('.RCskill').hide();
                                                             $('.RCdefect').hide();
+                                                            $('.RCsupport').hide();
                                                     
 
                                                             // 해당 activity 전역 변수 설정
@@ -4293,21 +4860,23 @@ $('#others_location_container').css({'display':'none'});
 
                                                                 
                                                                 $('<p>',{
-                                                                    text: "내 기록 추가하기",
+                                                                    text: "+",
 
                                                                 }).attr('id', 'add_record'
                                                                 ).css({
                                                                     width: "120px",
-                                                                    color: "#3f5a9d",
+                                                                    color: "#313843",
                                                                     fontWeight: "bold",
                                                                     cursor:"pointer",
+                                                                    'font-size': '45px',
+                                                                    'margin-left': '10px',
                                                                    
 
 
                                                                 }).hover(function() {
                                                                     $(this).css("color", "#4674e7");
                                                                     }, function(){
-                                                                    $(this).css("color", "#3f5a9d");
+                                                                    $(this).css("color", "#313843");
                                                                 }).click(function(){
 
                                                                     $('.add_record_layer').css({height: '200px', top: '50%'});
@@ -4354,12 +4923,12 @@ $('#others_location_container').css({'display':'none'});
                                                     'display':'flex',
                                                     'flex-direction':'row',
                                                     'align-items': 'center',
-                                                    'background-color': '#525861',
+                                                   // 'background-color': '#525861',
                                                     // 58709e // 7abaac // d64e5c // #c98990 // cd757e //#cd7575 / 9eb5d7 //d79e9e
                                                     borderRadius: '10px',  
                                                     'padding-right':'15px',
-                                                    'border': '2px solid white',
-                                                    'box-shadow': 'rgb(155 144 144) 4px 2px 4px 1px',
+                                                  //  'border': '2px solid white',
+                                                  //  'box-shadow': 'rgb(155 144 144) 4px 2px 4px 1px',
 
                                                 }).appendTo(list_container);
 
@@ -4367,9 +4936,9 @@ $('#others_location_container').css({'display':'none'});
                                                 var activity_img_container = $('<img>',{
                                                     src: activity.activity_img,
                                                     }).css({
-                                                    width: "30px",
-                                                    height: "30px",
-                                                    margin: "5px",
+                                                    width: "40px",
+                                                    height: "40px",
+                                                    marginLeft: "5px",
                                                     float: "left",
                                                     borderRadius: '8px',   
                                                     border: "2px solid #475169",                                                            
@@ -4387,7 +4956,7 @@ $('#others_location_container').css({'display':'none'});
                                                     'font-family': 'TmoneyRoundWindExtraBold',
                                                     'padding-right': '12px',
                                                     'padding-left': '12px',
-                                                    'color':'white',
+                                                   // 'color':'white',
                                                     
                                                 
                                                 }).appendTo(contents_container);
@@ -4446,6 +5015,7 @@ $('#others_location_container').css({'display':'none'});
                                                             $('.RCactivity').hide();
                                                             $('.RCskill').hide();
                                                             $('.RCdefect').hide();
+                                                            $('.RCsupport').hide();
                                                             
                                                             Global_Var.userInfo.curr_item_code = item.item_code;
 
@@ -4463,16 +5033,22 @@ $('#others_location_container').css({'display':'none'});
 
                                                                     
                                                                 $('<p>',{
-                                                                    text: "내 기록 추가하기",
+                                                                    text: "+",
 
                                                                 }).attr('id', 'add_record_item'
                                                                 ).css({
                                                                     width: "120px",
-                                                                    color: "#3f5a9d",
+                                                                    color: "#313843",
                                                                     fontWeight: "bold",
                                                                     cursor:"pointer",
+                                                                    'font-size': '45px',
+                                                                    'margin-left': '10px',
 
 
+                                                                }).hover(function() {
+                                                                    $(this).css("color", "#4674e7");
+                                                                    }, function(){
+                                                                    $(this).css("color", "#313843");
                                                                 }).click(function(){
 
                                                                     $('.add_record_layer').css({height: '200px', top: '50%'});
@@ -4518,20 +5094,20 @@ $('#others_location_container').css({'display':'none'});
                                                     'display':'flex',
                                                     'flex-direction':'row',
                                                     'align-items': 'center',
-                                                    'background-color': '#313843d6',
+                                                   // 'background-color': '#313843d6',
                                                     borderRadius: '10px',  
                                                     'padding-right':'15px',
-                                                    'border': '2px solid white',
-                                                    'box-shadow': 'rgb(155 144 144) 4px 2px 4px 1px',
+                                                   // 'border': '2px solid white',
+                                                   // 'box-shadow': 'rgb(155 144 144) 4px 2px 4px 1px',
 
                                                 }).appendTo(list_container);
 
                                                 $('<img>',{
                                                     src: item.item_img,
                                                     }).css({
-                                                    width: "30px",
-                                                    height: "30px",
-                                                    margin: "5px",
+                                                    width: "40px",
+                                                    height: "40px",
+                                                    marginLeft: "5px",
                                                     float: "left",
                                                     borderRadius: '8px',   
                                                     border: "2px solid #475169",    
@@ -4549,7 +5125,7 @@ $('#others_location_container').css({'display':'none'});
                                                     'font-family': 'TmoneyRoundWindExtraBold',
                                                     'padding-right': '12px',
                                                     'padding-left': '12px',
-                                                    'color':'white',
+                                                   // 'color':'white',
                                                 
                                                 }).appendTo(contents_container);
 
@@ -4608,6 +5184,7 @@ $('#others_location_container').css({'display':'none'});
                                                         $('.RCactivity').hide();
                                                         $('.RCitem').hide();
                                                         $('.RCdefect').hide();
+                                                        $('.RCsupport').hide();
                                                         
                                                         // 해당 skill 전역 변수 설정
                                                         Global_Var.userInfo.curr_skill_code = skill.skill_code;
@@ -4646,11 +5223,11 @@ $('#others_location_container').css({'display':'none'});
                                                         'display':'flex',
                                                         'flex-direction':'row',
                                                         'align-items': 'center',
-                                                        'background-color': '#313843d6',
+                                                      //  'background-color': '#313843d6',
                                                         borderRadius: '10px',  
                                                         'padding-right':'15px',
-                                                        'border': '2px solid white',
-                                                        'box-shadow': 'rgb(155 144 144) 4px 2px 4px 1px',
+                                                      //  'border': '2px solid white',
+                                                      //  'box-shadow': 'rgb(155 144 144) 4px 2px 4px 1px',
 
                                                     }).appendTo(list_container);
 
@@ -4658,9 +5235,9 @@ $('#others_location_container').css({'display':'none'});
                                             $('<img>',{
                                                     src: skill.skill_img,
                                                 }).css({
-                                                    width: "30px",
-                                                    height: "30px",
-                                                    margin: "5px",
+                                                    width: "40px",
+                                                    height: "40px",
+                                                    marginLeft: "5px",
                                                     float: "left",
                                                     borderRadius: '8px',   
                                                     border: "2px solid #475169",     
@@ -4677,7 +5254,7 @@ $('#others_location_container').css({'display':'none'});
                                                     'font-family': 'TmoneyRoundWindExtraBold',
                                                     'padding-right': '12px',
                                                     'padding-left': '12px',
-                                                    color:'white',
+                                                 //   color:'white',
                                             
                                             }).appendTo(contents_container);
 
@@ -4730,6 +5307,7 @@ $('#others_location_container').css({'display':'none'});
                                                         $('.RCitem').hide();
                                                         $('.RCskill').hide();
                                                         $('.RCactivity').hide();
+                                                        $('.RCsupport').hide();
 
 
                                                         // 해당 defect 전역 변수 설정
@@ -4759,11 +5337,11 @@ $('#others_location_container').css({'display':'none'});
                                                     'display':'flex',
                                                     'flex-direction':'row',
                                                     'align-items': 'center',
-                                                    'background-color': '#313843d6',
+                                                 //   'background-color': '#313843d6',
                                                     borderRadius: '10px',  
                                                     'padding-right':'15px',
-                                                    'border': '2px solid white',
-                                                    'box-shadow': 'rgb(155 144 144) 4px 2px 4px 1px',
+                                                 //   'border': '2px solid white',
+                                                  //  'box-shadow': 'rgb(155 144 144) 4px 2px 4px 1px',
 
                                                 }).appendTo(list_container);
 
@@ -4771,9 +5349,9 @@ $('#others_location_container').css({'display':'none'});
                                             $('<img>',{
                                                     src: defect.caution_img,
                                                 }).css({
-                                                    width: "30px",
-                                                    height: "30px",
-                                                    margin: "5px",
+                                                    width: "40px",
+                                                    height: "40px",
+                                                    marginLeft: "5px",
                                                     float: "left",
                                                     borderRadius: '8px',   
                                                     border: "2px solid #475169",       
@@ -4790,7 +5368,7 @@ $('#others_location_container').css({'display':'none'});
                                                     'font-family': 'TmoneyRoundWindExtraBold',
                                                     'padding-right': '12px',
                                                     'padding-left': '12px',
-                                                    color:'white', 
+                                               //     color:'white', 
                                             
                                             }).appendTo(contents_container);
 
@@ -4805,6 +5383,159 @@ $('#others_location_container').css({'display':'none'});
                                         alert("통신 실패.")
                                     }
                                 });
+
+
+
+
+
+
+
+                                // 여기에서 support 정보 불러오기  
+
+                                $.ajax({
+                                    type : "POST",
+                                    url : "/hoodify/src/identity_info/get_identity_support.php",
+                                    data: {
+                                            'identity_code': Global_Var.userInfo.curr_identity_code,
+                                            },
+                                    dataType: 'json',
+                                    success : function(res){
+                        
+                                        console.log("support 데이터 테스트");
+                                        console.log(res);
+
+
+                                        for (var i = 0; i < res.length; i++) {
+                                                
+                                                var support = res[i];
+                                                var list_container = $("<div>", {
+                                                    }).css({
+
+                                                        width: "100%",
+                                                        display: "inline-flex",
+                                                        alignItems: "center",
+                                                        borderBottom: "1px solid #D8D8D8",
+                                                        cursor: 'pointer',
+                                                        'padding':'10px',
+                                                        'background-color': 'white',
+                                                        
+                                                    }).click(((support) => function (e) {
+
+                                                        $('.mylistIMG_support').css("display", "flex").attr("src",support.support_img);
+
+                                                        $('.mylistT_support').text(support.support_name);
+                                                        $('.mylistC_support').text("\u00a0"+"\u00a0"+support.support_name);
+
+                                                        $('.mylistC_support').click(function(){
+
+                                                            $('.modal_cont').text("\u00a0"+"\u00a0"+support.support_name);
+                                                            $('#desc_modal').attr("title", support.support_name);
+                                                            $('.ui-dialog-title').text(support.support_name);
+
+                                                            $('#desc_modal').dialog({
+                                                                modal: true, 
+                                                                
+                                                            }).prev(".ui-dialog-titlebar").css({"background":"#475169",'color':'white'});
+
+                                                            $('.ui-dialog').css({'z-index':'2000',});
+
+                                                        });
+
+                                                        $('.add_record_layer').fadeOut('fast');
+                                                        
+                                                        $('.RCsupport').hide().fadeIn('fast');
+
+                                                        $('.RCplain').hide();
+                                                        $('.RCitem').hide();
+                                                        $('.RCskill').hide();
+                                                        $('.RCactivity').hide();
+                                                        $('.RCdefect').hide();
+
+
+                                                        // 해당 defect 전역 변수 설정
+                                                        Global_Var.userInfo.curr_support_code = support.support_code;
+
+                                                        $('.contents_item.support').removeClass("itemActive").css("background-color", "white");
+                                                        $(this).css("background-color", "#bad8f2");
+                                                        $(this).addClass("itemActive");
+
+
+
+
+
+                                                    })(support)).hover(function() {
+                                                                    $(this).css("background-color", "#bad8f2");
+                                                                }, function(){
+                                                                if($(this).hasClass("itemActive")){
+                                                                    $(this).css("background-color", "#bad8f2");
+                                                                }
+                                                                else{
+                                                                    $(this).css("background-color", "white");
+                                                                }
+                                                            }).addClass("contents_item support").appendTo($('.SPTlist'));
+
+
+
+                                                
+                                                var contents_container = $("<div>",{
+
+                                                }).css({
+
+                                                    'display':'flex',
+                                                    'flex-direction':'row',
+                                                    'align-items': 'center',
+                                                    // 58709e // 7abaac // d64e5c // #c98990 // cd757e //#cd7575 / 9eb5d7 //d79e9e
+                                                    borderRadius: '10px',  
+                                                    'padding-right':'15px',
+
+                                                }).appendTo(list_container);
+
+
+                                                var support_img_container = $('<img>',{
+                                                    src: support.support_img,
+                                                    }).css({
+                                                    width: "40px",
+                                                    height: "40px",
+                                                    marginLeft: "5px",
+                                                    float: "left",
+                                                    borderRadius: '10px',   
+                                                    border: "2px solid #10141c",                                                            
+                                                    
+
+                                                }).appendTo(contents_container);   
+
+
+                                                var content_name = $('<p>', {
+                                                    text: support.support_name,
+
+                                                    }).css({
+                                                    'font-size': '15px',
+                                                    'font-family': 'TmoneyRoundWindExtraBold',
+                                                    'padding-right': '8px',
+                                                    'padding-left': '8px',
+                                                    'margin-left': '5px',
+                                                    
+                                                
+                                                }).appendTo(contents_container);
+
+                                            }
+
+
+
+
+                        
+                                    },
+                                    error : function(XMLHttpRequest, textStatus, errorThrown){ // 비동기 통신이 실패할경우 error 콜백으로 들어옵니다.
+                                        alert("통신 실패.")
+                                    }
+                                });
+
+
+
+
+
+
+
 
 
                                 layer_popup($('.main_layer'));
@@ -4894,6 +5625,8 @@ $('.main_list').sortable({
     $('#others_record').empty();
 
     $('#todays_activities_container').css({'display':'none'});
+    
+    $('#daily_log_container').css({'display':'none'});
     $('#others_record_container').css({'display':'none'});
     $('#others_location_container').css({'display':'none'});
 
@@ -4977,7 +5710,7 @@ $('.btn_add_title').click(function(){
         if($('.record_title').val().length<2){
 
             alert("제목을 입력하세요 (2자 이상)");
-            console.log('count');
+          //  console.log('count');
 
         }
 
@@ -5218,7 +5951,7 @@ $('#btn_deleteCom').click(function(){
 
         $.ajax({
             type : "POST",
-            url : "/hoodify/src/src/record_CRUD/delete_item_record.php",
+            url : "/hoodify/src/record_CRUD/delete_item_record.php",
             data : {
                     'record_code': record_code,
                 },
@@ -5295,13 +6028,14 @@ $.ajax({
 
                                 display: "flex",
                                 alignItems: "center",
-                                borderRight: "1px solid #D8D8D8",
-                                borderBottom: "1px solid #D8D8D8",
+                               // borderRight: "1px solid #D8D8D8",
+                               // borderBottom: "1px solid #D8D8D8",
                                 cursor:'pointer',
-                                width:'85px',
+                                width:'95px',
                                 height:'100px',
                                 flexDirection:'column',
-                                'padding-top':'5px',
+                                'padding-top':'15px',
+                                'border-radius' : '11px',
                                 
 
                             }).hover(function() {
@@ -5390,6 +6124,7 @@ $.ajax({
                                     width: "45px",
                                     height: "45px",
                                     margin: "4.5px",
+                                    'margin-bottom':'0px',
                                     float: "left",
                                     "border-radius": "10px",
                                     "border": "2px solid #475169"
@@ -5402,9 +6137,9 @@ $.ajax({
                                   
 
                                     }).css({
-                                    'max-width':'70px',
-                                    "fontWeight": "bold",
-                                    'font-size':'11px',
+                                    'max-width':'75px',
+                                    "font-family": "TmoneyRoundWindExtraBold",
+                                    'font-size':'13px',
                                     "color" : '#47525f',
                                     "overflow": "hidden",
                                     "text-overflow": "ellipsis",
@@ -5436,7 +6171,7 @@ $.ajax({
 
                             // 해당 activity의 count 표시하기
                             var total_count = $('.mylist').children('div').length;
-                            $('.count_activity').text("보유 기록: " + total_count);
+                            $('.count_activity').text("소장 기록: " + total_count);
 
 
 
@@ -5500,13 +6235,14 @@ $.ajax({
 
                     display: "flex",
                     alignItems: "center",
-                    borderRight: "1px solid #D8D8D8",
-                    borderBottom: "1px solid #D8D8D8",
+                   // borderRight: "1px solid #D8D8D8",
+                   // borderBottom: "1px solid #D8D8D8",
                     cursor:'pointer',
-                    width:'100px',
+                    width:'95px',
                     height:'100px',
                     flexDirection:'column',
                     'padding-top':'5px',
+                    'border-radius':'11px',
 
                 }).hover(function() {
                 $(this).css("background-color", "#bad8f2");
@@ -5594,20 +6330,20 @@ $.ajax({
                         text: record.title,
 
                         }).css({
-                            'max-width':'70px',
-                                    "fontWeight": "bold",
-                                    'font-size':'11px',
-                                    "color" : '#47525f',
-                                    "overflow": "hidden",
-                                    "text-overflow": "ellipsis",
-                                    "white-space": "nowrap",
+                            'max-width':'75px',
+                            "font-family": "TmoneyRoundWindExtraBold",
+                            'font-size':'13px',
+                            "color" : '#47525f',
+                            "overflow": "hidden",
+                            "text-overflow": "ellipsis",
+                            "white-space": "nowrap",
                     
                     }).appendTo(record_list);
             }
 
             // 해당 item의 count 표시하기
             var total_count = $('.mylist_item').children('div').length;
-            $('.count_item').text("보유 기록: " + total_count);
+            $('.count_item').text("소장 기록: " + total_count);
 
             if(($(".mylist_item").has("div").length === 0)){
 

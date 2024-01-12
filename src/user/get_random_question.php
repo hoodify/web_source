@@ -1,5 +1,3 @@
-
-
 <?php
 
 // 유저가 가진 activity 중 임의의 activity_category에 해당하는 값들 반환

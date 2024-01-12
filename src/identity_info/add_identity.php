@@ -1,4 +1,7 @@
 <?php
+session_start();
+?>
+<?php
 
 
 /*////////////////////////////////////////////////////
@@ -14,6 +17,7 @@ parameter : identity_code
 
       // DB 접속        
       require("../../connect_db.php");
+      session_start(); 
 
       // 세션에 유저 정보가 있는지 확인
       if(isset($_SESSION['user_code'])){
@@ -59,6 +63,8 @@ parameter : identity_code
         $stmt->bindParam(':sequence_val', $sequence_val);
 
         
+      
+
         if($stmt->execute()){
               echo "success";
           }
@@ -69,7 +75,7 @@ parameter : identity_code
       }
       
       else{
-        echo "no user";
+        echo "no_session";
       }
 
   }

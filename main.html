@@ -103,7 +103,10 @@
 
     <div class = 'main_background_container0'> 
         <div class = "no_identity"> 
-            <p style="font-family: 'TmoneyRoundWindRegular'; color: #555555; font-size: 18px;"> <span class = 'open_search_layer open_search_layer_btn' style="cursor:pointer; font-family: TmoneyRoundWindExtraBold;">검색</span>을 통해 자신의 키워드를 찾아보세요 </p>
+            <p> 나에게 어울리는 단어는? </p> <br>
+            
+            <p> 얻고싶은 타이틀, 수식어가 있나요? </p><br>
+            <p> <span class = 'open_search_layer open_search_layer_btn' style="cursor:pointer; font-family: TmoneyRoundWindExtraBold;">검색</span>을 통해 자신의 키워드를 찾아보세요 </p>
         </div>
         
         <div class='main_background'>
@@ -119,12 +122,12 @@
                 </div>
             </div>
 
-            <div style="border: 1px solid rgb(0 0 0 / 52%);"></div>
+            <div style="border: 1px solid rgb(0 0 0 / 52%); height: 85%;"></div>
 
             <div class = "user_btn_space">
                 
                 <div class = 'button_container'>
-                    <img id = "random_question_btn" class ="menu_button2" title="랜던 질문 뽑기" src="/hoodify/img/question_icon.png">
+                    <img id = "random_question_btn" class ="menu_button2" title="랜던 질문 뽑기" src="/hoodify/img/indivisual_log_icon.png">
 
                     <img id = "daily_check_btn" class ="menu_button2" title="오늘 체크 리스트" src="/hoodify/img/daily_check_icon.png">
                     <img id = "others_record_btn" class ="menu_button2" title="다른 사람들의 기록" src="/hoodify/img/others_record_icon.png">
@@ -163,9 +166,32 @@
                     <div id="map"></div>
                 </div>
 
+                <div id = 'daily_log_container'> 
+                    <div class="random_question_text_container">
+                        <p id = "random_question_category"></p>
+                        <p id = "random_question_text"></p>
+                        <div class = "random_question_activity">
+                            <p class= 'no_data'></p>
+                        </div>
+        
+                        <div class= "reload_btn_container" style="display: none;">
+                            <div class= "reload_btn_container2" style="display: flex; flex-direction: column; align-items: center;">
+                                <p style="font-size: 10px; margin-bottom: -8px; font-weight: bold;">다시뽑기</p>
+                                <img class="reload_btn" src="/hoodify/img/identity/hooodify_mini.png">
+                            </div>
+                        </div>
+        
+                    </div>
+
+                </div>
+
+
+
+
             </div>
 
         </div>
+        <footer></footer>
 
     </div>
 
@@ -311,19 +337,24 @@
                             <div class ="mli item"> <img class=mli_img src="/hoodify/img/identity/hooodify_mini.png"> Item</div>
                             <div class ="mli skill"> <img class=mli_img src="/hoodify/img/identity/hooodify_mini.png"> Skill</div>
                             <div class ="mli defect"> <img class=mli_img src="/hoodify/img/identity/hooodify_mini.png"> Defect</div>
+                            <div class ="mli support"> <img class=mli_img src="/hoodify/img/identity/hooodify_mini.png"> Support</div>
                             <div class = "mli setting"> <img class=mli_img src="/hoodify/img/identity/hooodify_mini.png"> setting</div>
                         </div>
                     </div>
                     
-
-                    <div class = "LBC Clist activity"></div>
-                    <div class = "LBC Ilist item"></div>
-                    <div class = "LBC Slist skill"></div>
-                    <div class = "LBC Dlist defect"></div>
+                    
+                        <div class = "LBC Clist activity"></div>
+                        <div class = "LBC Ilist item"></div>
+                        <div class = "LBC Slist skill"></div>
+                        <div class = "LBC Dlist defect"></div>
+                        <div class = "LBC SPTlist support"></div>
 
                     <div class = "LBC setting_cont setting">
-                        <div class="move_to_storage"> 창고로  </div>
-                        <div class="delete_identity"> 삭제하기   </div>
+                        <div class="move_to_storage font3"> 창고로  </div>
+                        
+                        <div class="message_test font3"> 내가 받은 메시지  </div>
+
+                        <div class="delete_identity font3"> 삭제하기   </div>
                     </div>
 
                     <div class="load_all_list"> 
@@ -414,6 +445,44 @@
                             <ul class="mylist_defect list_container_common"> </ul>
                         </div>
                     </div>
+
+
+                    <div class = "RC RCsupport">
+                        <div  class = 'right_content_container'>
+                            <div class = "mylist_container">
+                                <img class = "mylistIMG_support mylistIMG_common">
+                                <h4 class = "mylistT_support mylistT_common"> </h4>
+                            </div>
+                            <p class = "mylistC_support mylistC_common"> </p>
+                        </div>
+
+                        <div id = 'addbtn_container_support' style="margin-bottom:15px;">
+                        </div>
+
+                        <div class = 'mylist_box'>
+                            <ul class="mylist_support list_container_common"> </ul>
+                        </div>
+                    </div>
+
+
+                    <div class = "RC RCmessage">
+                        <div  class = 'message_container'>
+
+                            <img style="width: 75px; height: 75px;" src = "/hoodify/img/identity/hooodify_mini.png"> 
+                            <p style="margin: 10px; font-size: 18px;font-family: 'TmoneyRoundWindExtraBold'; color: rgb(71 81 105);"> 내가 받은 카드 박스 </p>
+
+                        </div>
+
+                        <div class = 'mylist_box'>
+                            <ul class="mylist_message list_container_common"> 
+
+                                <li class = "test_object"></li>
+                            </ul>
+                        </div>
+                    </div>
+
+
+
 
                 </div>
 
@@ -823,6 +892,64 @@
                 <div class = "generalBtn category_btn">취미</div>
                 <div class = "generalBtn category_btn">취향</div>
                 <div class = "generalBtn category_btn">태도</div>
+
+            </div>
+
+
+            <div class = "hook_identity_space"> 
+
+                <div class="popular_identity_space">
+
+                    <p class = "font2"> ▶  인기 키워드 </p>
+                    <div class = "popular_identity_list" style="display: flex;">
+
+                        <div class="popular_identity" id = 'pid13'> 
+                            <img src="/hoodify/img/identity/hooodify_mini.png">
+                            <p>너드</p>
+                        </div>
+
+                        <div class="popular_identity" id = 'pid45'> 
+                            <img src="/hoodify/img/identity/hooodify_mini.png">
+                            <p>인방 시청자</p>
+                        </div>
+
+                        <div class="popular_identity" id = 'pid3'> 
+                            <img  src="/hoodify/img/identity/hooodify_mini.png">
+                            <p>정체성2</p>
+                        </div>
+
+                        <div class="popular_identity" id = 'pid104'> 
+                            <img  src="/hoodify/img/identity/hooodify_mini.png">
+                            <p>커뮤니티 이용자</p>
+                        </div>
+
+                        <div class="popular_identity" id = 'pid5'> 
+                            <img  src="/hoodify/img/identity/hooodify_mini.png">
+                            <p>정체성4</p>
+                        </div>
+
+                        <div class="popular_identity" id = 'pid6'> 
+                            <img  src="/hoodify/img/identity/hooodify_mini.png">
+                            <p>정체성5</p>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                    
+
+                <div class="mbti_identity_space">
+
+                    <p class = "font2">▶  MBTI로 찾기 </p>
+                    <div class = "mbti_identity_list" style="margin-left:20px;">
+                        <p class = "ISTJ mbti_btn">ISTJ</p> <p class = "ISFJ mbti_btn">ISFJ</p> <p class = "INFJ mbti_btn">INFJ</p> <p class = "INTJ mbti_btn">INTJ</p> <p class = "ISTP mbti_btn">ISTP</p> <p class = "ISFP mbti_btn">ISFP</p> <p class = "INFP mbti_btn">INFP</p> <p class = "INTP mbti_btn">INTP</p> 
+                        <p class = "ESTP mbti_btn">ESTP</p> <p class = "ESFP mbti_btn">ESFP</p> <p class = "ENFP mbti_btn">ENFP</p> <p class = "ENTP mbti_btn">ENTP</p> <p class = "ESTJ mbti_btn">ESTJ</p> <p class = "ESFJ mbti_btn">ESFJ</p> <p class = "ENFJ mbti_btn">ENFJ</p> <p class = "ENTJ mbti_btn">ENTJ</p> 
+
+                    </div>
+
+                </div>
+
             </div>
 
             <div class = "search_result" > 
@@ -843,14 +970,16 @@
 
                             <div class = "search_result_identity_container4">
                                 <h4 class = "search_identity_name"></h4>
-                                <div class = 'add_identity generalBtn' > 추가 </div>
-                                <div class = 'locked'> 보유중 </div>
+                               
                             </div>
 
-                            <p class = "search_identity_desc"></p>      
+                            <p class = "search_identity_desc"></p>    
+                            <div class = 'add_identity generalBtn' > 추 가 </div>
+                            <div class = 'locked'> 보유중 </div>  
                         </div>
 
                         <div class = "to_search_list"> 뒤로</div>
+                        
 
                     </div>
                 </div>
@@ -875,6 +1004,11 @@
                     <div>
                         <p class="search_category_title"> Defect </p>
                         <div class = "search_defect_list"></div>
+                    </div>
+
+                    <div>
+                        <p class="search_support_title"> Support </p>
+                        <div class = "search_support_list"></div>
                     </div>
 
                 </div>
@@ -956,6 +1090,40 @@
             <div class="generalBtn  btn_layerClose">확인</div>
         </div>
     </div>
+
+
+    <div class="message_card_layer common_layer">
+        <div class='top_bar'> 
+            <p class = 'top_word'> 메시지 카드</p>
+        </div>
+
+        <div style="    width: 100%;">
+            <div class="message_card_container">
+                <img class="underway_text_container" src="/hoodify/img/identity/hooodify_mini.png"> 
+                <p class = "message_identity" style="margin-top:10px;     margin-top: 10px;
+                font-family: 'TmoneyRoundWindExtraBold';
+                color: #414141;"> 정체성</p>
+            </div>
+
+            <div class="message_cont_container" style="margin: 30px; padding: 20px; margin-top: 5px; height: 110px; background-color: #eaecef; border-radius: 6px;     border: 2px solid #586167;">
+                <p class="message_cont" style="    color: #3b3b3b;
+                
+                font-size: 14px;
+                font-family: 'TmoneyRoundWindExtraBold';"> 메시지 내용</p>
+            </div>
+
+            <div class = "" style="width: -webkit-fill-available; display: flex; justify-content: flex-end; padding-right: 30px;     bottom: 55px;   position: absolute;">
+                <p style="font-family: 'TmoneyRoundWindExtraBold';
+                font-size: 14px;     color: #3b3b3b;" class = "message_from"></p>
+            </div>
+
+            
+        </div>
+        <div class="btn-r">
+            <div class="generalBtn  btn_layerClose">확인</div>
+        </div>
+    </div>
+
 
 
     <div class="daily_report common_layer">
@@ -1100,7 +1268,7 @@
     
 
 
-        <footer></footer>
+        
     </main>
 </body>
 

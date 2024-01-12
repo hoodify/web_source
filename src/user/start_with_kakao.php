@@ -1,6 +1,5 @@
-
 <?php
-
+session_start(); 
 // 넘겨받은 정체성에 해당하는 콘텐츠 리스트 요청 처리
 
 
@@ -13,13 +12,8 @@
 
                 require("../../connect_db.php");
                 
+
                 $user_code = $_POST['user_code'];
-                
-
-
-
-                
-
                 
 
 
