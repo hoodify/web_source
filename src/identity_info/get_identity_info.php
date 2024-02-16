@@ -13,6 +13,7 @@
 
         // 넘겨받는 parameter, 정체성 코드
         $identity_code = $_POST['identity_code'];
+        $user_code = $_SESSION['user_code'];
 
 
 
@@ -27,7 +28,8 @@
 
 
         // 해당 정체성의 모든 activity 불러오기
-        $activity_qry = "SELECT * FROM activity INNER JOIN identity ON activity.identity_code = identity.identity_code WHERE activity.identity_code = :identity_code ORDER BY activity.activity_level ASC";
+       // $activity_qry = "SELECT * FROM activity INNER JOIN identity ON activity.identity_code = identity.identity_code INNER JOIN user_activity_relation ON activity.activity_code = user_activity_relation.activity_code WHERE identity.identity_code = :identity_code AND user_activity_relation.user_code = $user_code ORDER BY user_activity_relation.sequence_val";
+        $activity_qry = "SELECT * FROM user_activity_relation INNER JOIN activity ON user_activity_relation.activity_code = activity.activity_code INNER JOIN identity ON activity.identity_code = identity.identity_code WHERE activity.identity_code = :identity_code AND user_activity_relation.user_code = $user_code ORDER BY user_activity_relation.sequence_val";
 
 
         $activity_stmt = $conn->prepare($activity_qry);

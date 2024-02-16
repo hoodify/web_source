@@ -33,19 +33,25 @@ parameter : identity_code 정체성 코드
 
 
         // parameter 값 INSERT
-        $query = "INSERT INTO user_activity (identity_code, activity_code, user_code, title, record, public) VALUES ('$identity_code', '$activity_code', '$user_code', '$record_title', '$record_cont', $public_state)";
+        $query = "INSERT INTO user_activity (identity_code, activity_code, user_code, title, record, public) VALUES (:identity_code, :activity_code, :user_code, :record_title, :record_cont, :public_state)";
 
         $stmt = $conn->prepare($query);
+
+
+        $stmt->execute(array(
+          ':identity_code' => $identity_code,
+          ':activity_code' => $activity_code,
+          ':user_code' => $user_code,
+          ':record_title' => $record_title,
+          ':record_cont' =>  $record_cont,
+          ':public_state' => $public_state
+        ));
+
+
       
-        if($stmt->execute()){
-            
-            // INSERT한 기록 id값 반환
-            $last_id = $conn->lastInsertId();
-            echo $last_id;
-        }
-        else{
-            echo "failure";
-        }
+          $last_id = $conn->lastInsertId();
+          echo $last_id;
+     
 
         
   }

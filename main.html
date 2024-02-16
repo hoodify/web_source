@@ -22,13 +22,17 @@
 
     <script src="/hoodify/script.js"></script>
 
+    
+    <link rel="stylesheet" href="/hoodify/css/style.css?after" type="text/css">
+
+    <link rel="preload" href="https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/SDMiSaeng.woff" as="font" type="font/woff2" crossorigin>
+ 
 
     <link rel="stylesheet" href="/hoodify/src/fancybox/jquery.fancybox-1.3.4.css" type="text/css" media="screen" />
     
     
     <link rel="icon" href="/hoodify/img/identity/hooodify_mini_round.png">
 
-    <link rel="stylesheet" href="/hoodify/css/style.css" type="text/css">
 
 
     
@@ -65,6 +69,7 @@
 
         <div id='top_menu' style='display:flex;'>
             <p class = 'identity_storage_btn top_menu_btn'>창고 </p>
+            <p class = 'friends_btn top_menu_btn'>친구 </p>
             <p class = 'open_search_layer top_menu_btn'>검색 </p>
             <p class = 'logout_btn top_menu_btn'> 로그아웃 </p>
         </div>
@@ -83,8 +88,16 @@
 
             <div class="login_container">
                 <img src ="/hoodify/img/identity/hooodify_mini.png">
-                <h3 style="margin-top:15px; color:rgba( 0, 0, 0, 0.85 ); font-family: TmoneyRoundWindExtraBold;"> 나만의 키워드.  </h3>
-                <h3 style="margin-top:5px; color:rgba( 0, 0, 0, 0.85 ); font-family: TmoneyRoundWindExtraBold;">  후디파이 </h3>
+                <h3 style="margin-top:25px;     color: #2b2b2b;
+                font-family: 'SDMiSaeng';
+                font-size: 50px;
+                letter-spacing: 5px;
+            "> 나만의 키워드.  </h3>
+                <h3 style="margin-top:25px; color: #2b2b2b;
+                font-family: 'SDMiSaeng';
+                font-size: 50px;
+                letter-spacing: 5px;
+            ">  　후디파이 </h3>
             </div>
 
             <div class="login_btn_container">
@@ -103,10 +116,7 @@
 
     <div class = 'main_background_container0'> 
         <div class = "no_identity"> 
-            <p> 나에게 어울리는 단어는? </p> <br>
-            
-            <p> 얻고싶은 타이틀, 수식어가 있나요? </p><br>
-            <p> <span class = 'open_search_layer open_search_layer_btn' style="cursor:pointer; font-family: TmoneyRoundWindExtraBold;">검색</span>을 통해 자신의 키워드를 찾아보세요 </p>
+            <p> <span class = 'open_search_layer open_search_layer_btn' style="cursor:pointer;">검색</span>을 통해 자신의 키워드를 찾아보세요 </p>
         </div>
         
         <div class='main_background'>
@@ -469,7 +479,7 @@
                         <div  class = 'message_container'>
 
                             <img style="width: 75px; height: 75px;" src = "/hoodify/img/identity/hooodify_mini.png"> 
-                            <p style="margin: 10px; font-size: 18px;font-family: 'TmoneyRoundWindExtraBold'; color: rgb(71 81 105);"> 내가 받은 카드 박스 </p>
+                            <p style="margin: 10px; font-size: 18px;font-family: 'TmoneyRoundWindExtraBold'; color: 272e3f;"> 내가 받은 카드 </p>
 
                         </div>
 
@@ -599,16 +609,19 @@
                 </a>
             </div>
 
+
+            <div class="btn-r" style="margin-left: 20px;">
+                <div class="btn_layerClose generalBtn">닫기</div>
+                <div class="btn_modify generalBtn">수정</div>
+                <div class="btn_delete generalBtn">삭제</div>
+            </div>
+    
+
         </div>
 
         
 
-        <div class="btn-r">
-            <div class="btn_layerClose generalBtn">닫기</div>
-            <div class="btn_modify generalBtn">수정</div>
-            <div class="btn_delete generalBtn">삭제</div>
-        </div>
-
+       
     </div>
 
 
@@ -772,6 +785,93 @@
 
     </div>
 
+    
+    <div class = "friends_layout common_layer">
+
+        <div class='top_bar'> 
+            <p class = 'top_word'> 친구 목록 </p>
+        </div>
+
+        <div class = "friends_list_container">
+            <div class= "friends_container">
+                <img class="friends_img" src="/hoodify/img/identity/hooodify_mini.png">
+                <p style="font-family:TmoneyRoundWindExtraBold; font-size:20px; margin-left:25px;"> 친구 리스트. </p> 
+            </div>
+
+            <div class = "to_friends_list">뒤로</div>
+            <div class = "friends_list" style ="height: 80%; overflow-y: scroll; flex-direction: column;"> 
+            
+                    준비중입니다.
+            </div>
+
+            <div class = "friend_message" style ="height: 80%; overflow-y: scroll;  flex-direction: column;"> 
+            
+                <p class="friend_from"></p>
+                <div class="friend_message_container">
+                    <div class = "friend_message_list">
+
+                    </div>
+                </div>
+
+            </div>
+
+            <div class = "vote_friend" style ="display:none; height: 80%; overflow-y: scroll; flex-direction: column;"> 
+            
+                <p style="font-family: 'TmoneyRoundWindExtraBold';     letter-spacing: 1.2px; color: #313843;
+                font-size: 19px;">▶ 내 주변에서 '<span style="    font-family: 'SDMiSaeng'; color:#4faf82;
+                    font-size: 30px; font-weight: bold;">작가</span>'와 어울리는 사람은?</p>
+                <div>
+                    <div class = "candidates_container">
+
+                        <div class="candidate">
+                            <img src="/hoodify/img/identity/hooodify_mini.png">
+                            <p class="candidate_name"> 친구 이름1 </p>
+                        </div>
+
+                        <div class="candidate">
+                            <img src="/hoodify/img/identity/hooodify_mini.png">
+                            <p class="candidate_name"> 친구 이름2 </p>
+                        </div>
+
+                        <div class="candidate">
+                            <img src="/hoodify/img/identity/hooodify_mini.png">
+                            <p class="candidate_name"> 친구 이름3 </p>
+                        </div>
+
+                        <div class="candidate">
+                            <img src="/hoodify/img/identity/hooodify_mini.png">
+                            <p class="candidate_name"> 친구 이름4 </p>
+                        </div>
+                        
+                        <div class="candidate">
+                            <img src="/hoodify/img/identity/hooodify_mini.png">
+                            <p class="candidate_name"> 친구 이름5 </p>
+                        </div><div class="candidate">
+
+                            <img src="/hoodify/img/identity/hooodify_mini.png">
+                            <p class="candidate_name"> 친구 이름6 </p>
+                        </div>
+                    </div>
+
+                    <div class="candidate_btn_container">
+
+                        <img class="show_all_candidates_btn menu_button3" src="/hoodify/img/others_record_icon.png">
+                        <img class="candidates_reroll_btn menu_button3" src="/hoodify/img/refresh.png">
+
+                    </div>
+
+                </div>
+            </div>
+
+
+        </div>
+
+        <div class="btn-r">
+            <div class="btn_layerClose generalBtn">닫기</div>
+        </div>
+
+    </div>
+
 
 
     <div class = "profile_layer common_layer">
@@ -867,6 +967,13 @@
     
         
         <div class = "search_layer_container">
+            <p class = "category_sentence" style="width: 95%;
+            display: none;
+            font-family: 'TmoneyRoundWindExtraBold';
+            font-size: 20px;
+            margin-top: 20px;
+            color: #495364;"> 자신에게 맞는 '<span class= "list_category" style="font-family: 'SDMiSaeng'; font-size: 36px; font-weight: bold; color: #f18461; letter-spacing: 4px;"></span>' 키워드를 찾아보세요</p>
+            <div class = "to_search_list"> 뒤로</div>
         
             <div class = 'search_layer_container2'>
                 <div class="search_text" tabindex="0" contenteditable="true">
@@ -875,12 +982,56 @@
             </div>
        
             <div class = "category_container">
+
+
+
+                
+
+                <!--
+                <div class = "generalBtn category_btn">성향</div> 
+               
+                
+
+                <div  class="selection_box category_btn" id="selection_personality" style="background-color: #4c5566;">
+                    <p>성향</p>
+                        <div class="selection_box_anm">
+                        <img class = "selection_box_img" src="/hoodify/img/identity/hooodify_mini.png" style="height:30px; width:30px; border-radius:10px;">
+                        </div>
+                </div> 
+
+
+
+                <div  class="selection_box category_btn" id="selection_personality" style="background-color: #4c5566;">
+                    <p>상태</p>
+                        <div class="selection_box_anm">
+                        <img class = "selection_box_img" src="/hoodify/img/identity/hooodify_mini.png" style="height:50px; width:50px; border-radius:10px;">
+                        </div>
+                </div> 
+
+                <div  class="selection_box category_btn" id="selection_personality" style="background-color: #4c5566;">
+                    <p>생활</p>
+                        <div class="selection_box_anm">
+                        <img class = "selection_box_img" src="/hoodify/img/identity/hooodify_mini.png" style="height:50px; width:50px; border-radius:10px;">
+                        </div>
+                </div> 
+
+                <div  class="selection_box category_btn" id="selection_personality" style="background-color: #4c5566;">
+                    <p>취향</p>
+                        <div class="selection_box_anm">
+                        <img class = "selection_box_img" src="/hoodify/img/identity/hooodify_mini.png" style="height:50px; width:50px; border-radius:10px;">
+                        </div>
+                </div> 
+
+
                 <div class = "generalBtn category_btn">가치관</div>
                 <div class = "generalBtn category_btn">능력</div>
                 <div class = "generalBtn category_btn">상태</div>
                 <div class = "generalBtn category_btn">생활</div>
-                <div class = "generalBtn category_btn">성격</div>
                 <div class = "generalBtn category_btn">성향</div>
+                <div class = "generalBtn category_btn">취미</div>
+                <div class = "generalBtn category_btn">취향</div>
+
+                 <div class = "generalBtn category_btn">성격</div>
                 <div class = "generalBtn category_btn">습관</div>
                 <div class = "generalBtn category_btn">신체</div>
                 <div class = "generalBtn category_btn">예술</div>
@@ -889,48 +1040,54 @@
                 <div class = "generalBtn category_btn">자기관리</div>
                 <div class = "generalBtn category_btn">지성</div>
                 <div class = "generalBtn category_btn">직업</div>
-                <div class = "generalBtn category_btn">취미</div>
-                <div class = "generalBtn category_btn">취향</div>
                 <div class = "generalBtn category_btn">태도</div>
-
+-->
             </div>
 
 
             <div class = "hook_identity_space"> 
 
+                <p class = 'category_btn font2'>▶  내  <span style="font-family: 'SDMiSaeng'; font-size: 32px; font-weight: bold; color: #f18461; letter-spacing: 4px;">성향</span> 키워드 찾기</p>
+
+                <p class = 'category_btn font2'>▶  내  <span style="font-family: 'SDMiSaeng'; font-size: 32px; font-weight: bold; color: #4faf82; letter-spacing: 4px;">생활</span> 키워드 찾기</p>
+
+                <p class = 'category_btn font2'>▶  내  <span style="font-family: 'SDMiSaeng'; font-size: 32px; font-weight: bold; color: #4eb0d7; letter-spacing: 4px;">취향</span> 키워드 찾기</p>
+
                 <div class="popular_identity_space">
 
-                    <p class = "font2"> ▶  인기 키워드 </p>
-                    <div class = "popular_identity_list" style="display: flex;">
+                    <p class = "popular_keyword_btn font2" style="cursor: pointer;  width: fit-content;"> ▶  인기 키워드 </p>
+                    <div class = "popular_identity_list" style="display: none;
+                    border-radius: 8px; margin-bottom: 25px;
+                    ">
 
-                        <div class="popular_identity" id = 'pid13'> 
+                        <div class="popular_identity" id = 'pid17'> 
                             <img src="/hoodify/img/identity/hooodify_mini.png">
-                            <p>너드</p>
+                            <p>작가</p>
                         </div>
 
-                        <div class="popular_identity" id = 'pid45'> 
+                        <div class="popular_identity pid_2" id = 'pid46' style="background-color: #c3ad8e;"> 
                             <img src="/hoodify/img/identity/hooodify_mini.png">
-                            <p>인방 시청자</p>
+                            <p>여행가</p>
                         </div>
 
-                        <div class="popular_identity" id = 'pid3'> 
+                        <div class="popular_identity" id = 'pid77'> 
                             <img  src="/hoodify/img/identity/hooodify_mini.png">
-                            <p>정체성2</p>
+                            <p>아티스트</p>
                         </div>
 
-                        <div class="popular_identity" id = 'pid104'> 
+                        <div class="popular_identity pid_2"  id = 'pid64' style="background-color: #c3ad8e;"> 
                             <img  src="/hoodify/img/identity/hooodify_mini.png">
-                            <p>커뮤니티 이용자</p>
+                            <p>패션 피플</p>
                         </div>
 
-                        <div class="popular_identity" id = 'pid5'> 
+                        <div class="popular_identity" id = 'pid32'> 
                             <img  src="/hoodify/img/identity/hooodify_mini.png">
-                            <p>정체성4</p>
+                            <p>자취인</p>
                         </div>
 
-                        <div class="popular_identity" id = 'pid6'> 
+                        <div class="popular_identity pid_2" id = 'pid34' style="background-color: #c3ad8e;"> 
                             <img  src="/hoodify/img/identity/hooodify_mini.png">
-                            <p>정체성5</p>
+                            <p>올빼미족</p>
                         </div>
 
                     </div>
@@ -941,8 +1098,8 @@
 
                 <div class="mbti_identity_space">
 
-                    <p class = "font2">▶  MBTI로 찾기 </p>
-                    <div class = "mbti_identity_list" style="margin-left:20px;">
+                    <p class = "find_mbti_btn font2"  style="cursor: pointer; width: fit-content;">▶  MBTI로 찾기 </p>
+                    <div class = "mbti_identity_list" style="margin-left:20px; display: none;">
                         <p class = "ISTJ mbti_btn">ISTJ</p> <p class = "ISFJ mbti_btn">ISFJ</p> <p class = "INFJ mbti_btn">INFJ</p> <p class = "INTJ mbti_btn">INTJ</p> <p class = "ISTP mbti_btn">ISTP</p> <p class = "ISFP mbti_btn">ISFP</p> <p class = "INFP mbti_btn">INFP</p> <p class = "INTP mbti_btn">INTP</p> 
                         <p class = "ESTP mbti_btn">ESTP</p> <p class = "ESFP mbti_btn">ESFP</p> <p class = "ENFP mbti_btn">ENFP</p> <p class = "ENTP mbti_btn">ENTP</p> <p class = "ESTJ mbti_btn">ESTJ</p> <p class = "ESFJ mbti_btn">ESFJ</p> <p class = "ENFJ mbti_btn">ENFJ</p> <p class = "ENTJ mbti_btn">ENTJ</p> 
 
@@ -978,7 +1135,6 @@
                             <div class = 'locked'> 보유중 </div>  
                         </div>
 
-                        <div class = "to_search_list"> 뒤로</div>
                         
 
                     </div>
@@ -1021,6 +1177,77 @@
             </div>
 
         </div>
+
+    </div>
+
+
+
+    <div class="pick_layer common_layer">
+        <div class='top_bar'> 
+            <p class = 'top_word'> 선 택 </p>
+        </div>
+
+        <div class = "pick_layer_container" >
+
+            <div class = "pick_space" style="margin-top:15px;"  >    
+                
+                <p style="font-family: 'SDMiSaeng';
+                margin: 15px;
+                font-size: 45px;
+                color: #262626;
+                font-weight: bold;     letter-spacing: 3px;"> 자신의 키워드를 찾아봅시다 </p>  
+
+                <div style="display: flex;     margin-top: 30px;">
+                
+                    <div  class="selection_box" id="selection_personality" style="background-color: #4c5566;">
+                    <p>성향</p>
+                        <div class="selection_box_anm">
+                        <img class = "selection_box_img" src="/hoodify/img/identity/hooodify_mini.png" style="height:50px; width:50px; border-radius:10px;">
+                        </div>
+                    </div> 
+
+                    <div  class="selection_box" id="selection_living" style="background-color:  #4c5566; opacity: 0.2; filter: brightness(0.9); pointer-events : none;">
+                        <p>생활</p>
+                        <div class="selection_box_anm">
+                        <img class = "selection_box_img" src="/hoodify/img/identity/hooodify_mini.png" style="height:50px; width:50px; border-radius:10px;opacity: 0.3;
+                        filter: brightness(0.9);">
+                        </div>
+                    </div> 
+
+                    <div  class="selection_box" id="selection_taste" style="background-color:  #4c5566; opacity: 0.2;  filter: brightness(0.9); pointer-events : none;">
+                        <p>취향</p>
+                        <div class="selection_box_anm">
+                        <img class = "selection_box_img" src="/hoodify/img/identity/hooodify_mini.png" style="height:50px; width:50px;">
+                        </div>
+                    </div> 
+
+                    <div  class="selection_box" id="selection_hobby" style="background-color:  #4c5566; opacity: 0.2;   filter: brightness(0.9); pointer-events : none;">
+                        <p>취미</p>
+                        <div class="selection_box_anm">
+                        <img class = "selection_box_img" src="/hoodify/img/identity/hooodify_mini.png" style="height:50px; width:50px; border-radius:10px;">
+                        </div>
+                    </div> 
+                </div>
+               
+
+                <div class= "keyword_space">
+
+
+
+                </div>
+
+            </div>
+            <div class = "bucket">
+
+
+            </div>
+
+        </div>
+
+        <div class="btn-r">
+            <div class="btn_layerClose generalBtn">닫기</div>
+        </div>
+
 
     </div>
 

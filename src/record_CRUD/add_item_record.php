@@ -30,20 +30,21 @@ parameter : identity_code 정체성 코드
         $public_state = $_POST['public_state'];
 
         // parameter 값 INSERT
-        $query = "INSERT INTO user_item (identity_code, item_code, user_code, title, record, public) VALUES ('$identity_code', '$item_code', '$user_code', '$record_title', '$record_cont', $public_state)";
+        $query = "INSERT INTO user_item (identity_code, item_code, user_code, title, record, public) VALUES (:identity_code, :item_code, :user_code, :record_title, :record_cont, :public_state)";
 
 
         $stmt = $conn->prepare($query);
 
-        if($stmt->execute()){
+          $stmt->execute(array(
+          ':identity_code' => $identity_code,
+          ':item_code' => $item_code,
+          ':user_code' => $user_code,
+          ':record_title' => $record_title,
+          ':record_cont' =>  $record_cont,
+          ':public_state' => $public_state
+        ));
 
-          // INSERT한 기록 id값 반환
-          $last_id = $conn->lastInsertId();
-          echo $last_id;
-        }
-        else{
-            echo "failure";
-        }
+        echo 'complete';
 
   }
 

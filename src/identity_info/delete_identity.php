@@ -39,8 +39,13 @@ parameter : identity_code
       // 지리 정보 삭제
       $query5 = "DELETE FROM user_location WHERE main_identity_code = $identity_code AND user_code = $user_code";
 
+
+      // activity sequence 정보 삭제
+      $query6 = "DELETE user_activity_relation FROM user_activity_relation INNER JOIN activity ON user_activity_relation.activity_code = activity.activity_code WHERE activity.identity_code = $identity_code AND user_activity_relation.user_code = $user_code";
+
+
       // identity 데이터 삭제
-      $query6 = "DELETE FROM user_identity WHERE identity_code = $identity_code AND user_code = $user_code";
+      $query7 = "DELETE FROM user_identity WHERE identity_code = $identity_code AND user_code = $user_code";
     
 
       $stmt1 = $conn->prepare($query1);
@@ -49,9 +54,10 @@ parameter : identity_code
       $stmt4 = $conn->prepare($query4);
       $stmt5 = $conn->prepare($query5);
       $stmt6 = $conn->prepare($query6);
+      $stmt7 = $conn->prepare($query7);
 
 
-      if($stmt1->execute() AND $stmt2->execute() AND $stmt3->execute() AND $stmt4->execute() AND $stmt5->execute() AND $stmt6->execute()){
+      if($stmt1->execute() AND $stmt2->execute() AND $stmt3->execute() AND $stmt4->execute() AND $stmt5->execute() AND $stmt6->execute() AND $stmt7->execute()){
       
           echo "success";
 

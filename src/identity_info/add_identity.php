@@ -63,6 +63,35 @@ parameter : identity_code
         $stmt->bindParam(':sequence_val', $sequence_val);
 
         
+        // 해당 identity의 모든 acitivty
+        // 
+
+        $activities_query = "SELECT * FROM `activity` WHERE identity_code =:identity_code";
+        $activities_stmt = $conn->prepare($activities_query);
+        $activities_stmt->bindParam(':identity_code', $identity_code);
+
+        $activities_stmt->execute();
+        $row = $activities_stmt->fetchAll(PDO::FETCH_ASSOC);
+
+
+        for ($i = 0; $i < count($row); $i++) {
+
+          $activity_code = $row[$i]['activity_code'];
+
+          $activity_query = "INSERT INTO user_activity_relation (activity_code, user_code, sequence_val) VALUES (:activity_code, :user_code, :sequence_val)";
+
+          $sequence_numb = $i+1;
+
+          $activity_stmt = $conn->prepare($activity_query);
+          $activity_stmt->bindParam(':activity_code', $activity_code);
+          $activity_stmt->bindParam(':user_code', $user_code);
+          $activity_stmt->bindParam(':sequence_val', $sequence_numb);
+
+          $activity_stmt->execute();
+
+        }
+
+
       
 
         if($stmt->execute()){

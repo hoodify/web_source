@@ -125,10 +125,113 @@ $(document).mouseup(function (e){
 	}
 });
 
+///////////////////////////////////////////////////////////////////////////////////////
+// category -> identity 목록 불러오기
+/*
+$('#selection_personality').click(function(){
 
+    console.log("selection_personality");
+    load_selected_keywords('성향');
+
+});
+
+function load_selected_keywords(category){
+
+    $.ajax({
+        type : "POST",
+        url : "/hoodify/src/identity_info/get_identity_category.php",
+        data: { 'category_text' : category,},
+        dataType : 'json',
+        success : function(res){
+
+        console.log(res);
+
+        /// 카테고리에 따른 정체성 목록 불러오기 (각 항목에 대한 클릭 이벤트)
+        $('.bucket').empty();
+        for (var i = 0; i < res.length; i++) {
+
+            var object = res[i];
+            var object_name = object.identity_name;
+            var list_container = document.createElement("div");
+
+            $(list_container).css({
+
+                    width: 'fit-content',
+                    padding: "5px",
+                    display: 'flex',
+                    paddingBottom: '5px',
+                    alignItems: 'center',
+                    overflow:'hidden',
+                    cursor:'pointer',
+                    'margin-right': '15px',
+                    'boder-radius' : '8px',
+
+                    }).hover(function() {
+                    $(this).css("background-color", "#bad8f2");
+                    }, function(){
+                    $(this).css("background-color", "white");
+                    }).click(((object) => function (e) {
+
+                        $('.show_keywords_container').css({ display : 'none',});
+
+                        $('.search_identity_img').attr("src",object.identity_img);
+                        $('.search_identity_name').text(object.identity_name);
+                        $('.search_identity_desc').text("\u00a0"+"\u00a0"+object.identity_desc);
+
+                        $('.search_activity_list').empty();
+                        $('.search_item_list').empty();
+                        $('.search_skill_list').empty();
+                        $('.search_defect_list').empty();
+
+                        Global_Var.userInfo.curr_identity_code = object.identity_code;
+
+                        
+
+
+                    })(object)).appendTo('.bucket');
+            
+
+                    $('<img>',{
+
+                        src: object.identity_img,
+                    }).css({
+                    width: "50px",
+                    height: "50px",
+                    margin: "5px",
+                    float: "left",
+                    borderRadius: '8px', 
+                    border: "2px solid #586167",
+
+                    }).appendTo(list_container);        
+
+                
+                    $('<p>', {
+                        text: object.identity_name,
+
+                    }).css({
+                    "width": "100%",
+                    "fontWeight": "bold",
+                    
+                    }).appendTo(list_container);
+
+
+        }
+
+
+        },
+        error : function(XMLHttpRequest, textStatus, errorThrown){ // 비동기 통신이 실패할경우 error 콜백으로 들어옵니다.
+            alert("통신 실패.")
+        }
+    });
+
+
+}
+*/
 ///////////////////////////////////////////////////////////////////////////////////////
 // category -> identity 목록 불러오기
     
+
+
 function get_identities_from_category(category_text){
 
     $.ajax({
@@ -140,6 +243,7 @@ function get_identities_from_category(category_text){
 
             console.log(res);
 
+            $('.to_search_list').css("display","flex").hide().fadeIn('slow');
             /// 카테고리에 따른 정체성 목록 불러오기 (각 항목에 대한 클릭 이벤트)
             $('.search_result').empty();
             for (var i = 0; i < res.length; i++) {
@@ -151,6 +255,7 @@ function get_identities_from_category(category_text){
                 $(list_container).css({
 
                         height: "60px",
+                        width:"320px",
                         padding: "5px",
                         borderBottom: "1px solid #D8D8D8",
                         display: 'flex',
@@ -158,6 +263,7 @@ function get_identities_from_category(category_text){
                         alignItems: 'center',
                         overflow:'hidden',
                         cursor:'pointer',
+                        'margin-right':'15px',
 
                         }).hover(function() {
                         $(this).css("background-color", "#bad8f2");
@@ -736,6 +842,7 @@ $('.popular_identity').click(function(){
 
     $('.hook_identity_space').css({display:'none'});
     $('.search_result_identity').css({display:'none'});
+    $('.to_search_list').css("display","flex").hide().fadeIn('slow');
 
 
     var get_id_str = $(this).attr('id');
@@ -944,6 +1051,23 @@ $(document).keyup(function(e) {
 
 $('.open_report').click(function(){
 
+    //WIP
+
+    if( $('.main_list').is(':empty') ) {
+
+        
+        setTimeout(
+            function() {
+                layer_popup($('.search_layer'));
+            }
+        , 800);
+
+
+    }
+
+
+
+    /*
     setTimeout(
 
         function() {
@@ -1011,7 +1135,7 @@ $('.open_report').click(function(){
         
         },
         500);
-
+*/
 });
 
 
@@ -1790,14 +1914,14 @@ function get_public_record(direction){
                             html: "\u00a0\u00a0" + record_cont_line,
 
                             }).css({
-                            "font-size" : "12px",
+                            "font-size" : "20px",
                             "margin": "12px",
-                            'font-family': 'TmoneyRoundWindExtraBold',
+                            'font-family': 'SDMiSaeng',
                             "color" : "#586167",
                             "word-wrap" : "break-word",
                             "height" : "60px",
                             "overflow": "hidden",
-                            "backgroundColor": "#f0f2f4",
+                            "backgroundColor": "#f9fcff",
                             "padding":"5px",
                             "border": "1.5px solid #586167",
                             "border-radius": "8px",
@@ -2303,8 +2427,17 @@ $('.on_construction').click(function(){
 $('.mbti_btn').click(function(){
 
     var mbti = $(this).attr('class').split(' ')[0];
+
+    $('.to_search_list').css("display","flex").hide().fadeIn('slow');
+
     console.log('mbti');
     console.log(mbti);
+
+    $('.category_sentence').css("display","flex").hide().fadeIn('fast');
+
+    
+    $('.list_category').text(mbti);
+    $('.list_category').css({ color : "#f18461",});
 
     var identity_array = [];
 
@@ -2415,7 +2548,7 @@ function get_identity_list(identity_code_array){
     $('.hook_identity_space').css({ display : 'none',});
     $('.search_result_identity').css({ display : 'none',});
     $('.show_keywords_container').css({ display : 'none',});
-    $('.search_result').css("display","block").hide().fadeIn('fast');
+    $('.search_result').css("display","flex").hide().fadeIn('fast');
 
     $('.category_container').css("display","flex").hide().fadeIn('fast');
 
@@ -2444,6 +2577,7 @@ function get_identity_list(identity_code_array){
                 $(list_container).css({
 
                         height: "60px",
+                        width:"320px",
                         padding: "5px",
                         borderBottom: "1px solid #D8D8D8",
                         display: 'flex',
@@ -2451,6 +2585,7 @@ function get_identity_list(identity_code_array){
                         alignItems: 'center',
                         overflow:'hidden',
                         cursor:'pointer',
+                        'margin-right':'15px',
 
                         }).hover(function() {
                         $(this).css("background-color", "#bad8f2");
@@ -2556,6 +2691,10 @@ function get_identity_search_data(identity_code){
     $('.search_result').css({ display : 'none',});
     $('.category_container').css({ display : 'none',});
     $('.show_keywords_container').css({ display : 'none',});
+    $('.category_sentence').css({ display : 'none',});
+
+
+    
 
     $('.search_activity_list').empty();
     $('.search_item_list').empty();
@@ -2927,9 +3066,10 @@ function get_identity_search_data(identity_code){
 
             // 해당 정체성의 support 정보
             var support_data = res[4];
+            $('.search_support_list').empty();
             if(support_data.length === 0){
 
-                $('.search_support_list').empty();
+                
                 console.log("공백 확인");
                 $('<p>', {
                     text: "(비어있음)",
@@ -3030,10 +3170,17 @@ $('.category_btn').click(function(){
     $('.search_result').empty();
     $('.search_result').css({ display : 'none',});
     $('.hook_identity_space').css({ display : 'none',});
+    $('.category_sentence').css("display","flex").hide().fadeIn('fast');
 
     
 
-    var category_text = $(this).text();
+    var category_text = $(this).children("span").text();
+    var category_text_color = $(this).children("span").css("color");
+    console.log(category_text_color);
+
+    $('.list_category').text(category_text);
+    $('.list_category').css({ color : category_text_color,});
+
     console.log(category_text);
 
     get_identities_from_category(category_text);
@@ -3265,7 +3412,7 @@ $('.category_btn').click(function(){
 
     $('.show_keywords_container').css({ display : 'none',});
     $('.search_result_identity').css({ display : 'none',});
-    $('.search_result').css("display","block").hide().fadeIn('fast');
+    $('.search_result').css("display","flex").hide().fadeIn('fast');
 
 
 
@@ -3395,7 +3542,7 @@ $('#btn_deleteCom_identity').click(function(){
 // 
 
 $('.message_test').click(function(){
-// ttttt
+
     $(".RC").css({
         display: "none",
     });
@@ -3514,6 +3661,7 @@ $('.open_search_layer').click(function(){
     $('.search_result_identity').css({ display : 'none',});
     $('.show_keywords_container').css({ display : 'none',});
     $('.search_result').css({ display : 'none',});
+    $('.category_sentence').css({ display : 'none',});
     
     
 
@@ -3521,14 +3669,51 @@ $('.open_search_layer').click(function(){
     $('.category_container').css("display","flex").hide().fadeIn("fast");
 
 
-    // 인기 키워드 창 채우기
 
-
-
-    // mbti로 찾기 창 열기
-
-
+    $('.to_search_list').css("display","none");
     layer_popup($('.search_layer'));
+});
+
+
+$('.popular_keyword_btn').click(function(){
+
+    var display_val = $('.popular_identity_list').css('display');
+
+    if(display_val == 'none'){
+        
+        $('.popular_identity_list').css({height: 'fit-content'});
+        
+
+        $('.popular_identity_list').css("display","flex").hide().fadeIn('slow');
+    
+
+
+       
+    }
+    else{
+        $('.popular_identity_list').css("display","none");
+    }
+
+});
+
+$('.find_mbti_btn').click(function(){
+
+
+    var display_val = $('.mbti_identity_list').css('display');
+
+    if(display_val == 'none'){
+        $('.mbti_identity_list').css("display","flex").hide().fadeIn("fast");
+        //$('.search_layer_container').scrollTop($('.search_layer_container')[0].scrollHeight);
+        var heightval = $('.search_layer_container')[0].scrollHeight;
+        $('.search_layer_container').animate({
+            scrollTop: heightval
+          }, 2000);
+    }
+    else{
+        $('.mbti_identity_list').css("display","none");
+    }
+
+    
 });
 
 
@@ -3552,7 +3737,7 @@ function search_identity(){
     $('.hook_identity_space').css({ display : 'none',});
     $('.search_result_identity').css({ display : 'none',});
     $('.show_keywords_container').css({ display : 'none',});
-    $('.search_result').css("display","block").hide().fadeIn('fast');
+    $('.search_result').css("display","flex").hide().fadeIn('fast');
     
     $('.category_container').css("display","flex").hide().fadeIn('fast');
 
@@ -3579,7 +3764,6 @@ function search_identity(){
 
                 $(list_container).css({
 
-                        width:"100%",
                         minWidth: "500px",
                         height: "60px",
                         padding: "5px",
@@ -3744,6 +3928,8 @@ $('.to_search_list').click(function(){
     
 
     $('.show_keywords_container').css({ display : 'none',});
+    $('.to_search_list').fadeOut('fast');
+    $('.category_sentence').css({ display : 'none',});
 
     $('.search_result_identity').css({ display : 'none',});
     $('.search_result').css({ display : 'none',});
@@ -4344,6 +4530,149 @@ $('.find_img_profile').on('click', function (){
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
+
+/////////////////////////////////////////////////////////////////////////////////////
+// 친구 목록 버튼
+
+$('.friends_btn').click(function(){
+
+    get_friends_list();
+
+});
+
+
+$('.to_friends_list').click(function(){
+
+
+    $('.friend_from').text("");
+    $('.to_friends_list').css({'display':'none'});
+    $('.friends_list').css("display","flex").hide().fadeIn('slow');
+
+});
+/////////////////////////////////////////////////////////////////////////////////////
+// 친구 리스트 불러오기
+
+function get_friends_list(){
+
+    //$(".friends_list").empty();
+    $('.friend_message').css({'display':'none'});
+
+    $('.to_friends_list').css({'display':'none'});
+   // 
+   $('.friends_list').css("display","flex").hide().fadeIn('slow');
+  
+    
+    
+    $.ajax({
+        type : "POST",
+        url : "/hoodify/src/user/get_friends_data.php",
+        dataType : 'json',
+        success : function(res){
+
+            console.log(res);
+            if(res.length!=0){
+
+                console.log('WIP');
+                for (var i = 0; i < res.length; i++) {
+
+                    var friend = res[i];
+
+                    var list = document.createElement("div");
+                    
+                    $(list).css({
+
+                        height: "60px",
+                        padding: "5px",
+                        borderBottom: "1px solid #D8D8D8",
+                        display: 'flex',
+                        paddingBottom: '5px',
+                        alignItems: 'center',
+                        overflow:'hidden',
+
+                        }).hover(function() {
+                                $(this).css("background-color", "#bad8f2");
+                            }, function(){
+                                if($(this).hasClass("itemActive")){
+                                $(this).css("background-color", "#bad8f2");
+                                }
+                                else{
+                                $(this).css("background-color", "white");
+                                }
+                            }).click(((friend) => function (e) {
+                        
+                                
+                                console.log(friend.user_code);
+                                
+                                $('.to_friends_list').css({'display':'flex'});
+
+                                $('.friend_from').text("from "+friend.nickname);
+                                
+
+
+                                $('.friends_list').css({'display':'none'});
+                                $('.friend_message').css("display","flex").hide().fadeIn('slow');
+
+
+                                // 여기서 해당 친구가 보낸 message 리스트를 보여줌
+                                
+                                
+                        
+                        })(friend)).appendTo(".friends_list");
+
+
+                    var VerticalList = $("<div>", { }).css({   });
+
+
+                    $('<img>', {
+
+                            src: friend.profile_img,
+
+                        }).css({
+                        width: "50px",
+                        height: "50px",
+                        margin: "4.5px",
+                        float: "left",
+                        margin: "7px",
+                        borderRadius: '8px', 
+                        border: "2px solid #586167",
+
+                    }).appendTo(list);
+
+                    $('<p>', {
+
+                        text: friend.nickname,
+
+                        }).css({
+                        margin: "4.5px",
+                        fontFamily:"TmoneyRoundWindExtraBold",
+
+
+                    }).appendTo(VerticalList);
+
+
+                    VerticalList.appendTo(list);
+                        
+                }
+
+            }
+            else{
+                console.log('WIP2');
+                $('.friends_list').css({'display':'none'});
+                $('.vote_friend').css("display","flex").hide().fadeIn('slow');
+            }
+
+        },
+        error : function(XMLHttpRequest, textStatus, errorThrown){ // 비동기 통신이 실패할경우 error 콜백으로 들어옵니다.
+            alert("통신 실패.")
+        }
+    });
+
+    layer_popup($('.friends_layout'));
+
+}
+
+
+
 		
 
 /////////////////////////////////////////////////////////////////////////////////////
@@ -4593,7 +4922,12 @@ $('#others_location_container').css({'display':'none'});
 
                     $('.no_identity').css("display","flex").hide().fadeIn('slow');
             
-                }, 500);
+                }, 1500);
+
+                // WIP
+                // hook 팝업 띄우기
+
+
                
 
 
@@ -4783,9 +5117,10 @@ $('#others_location_container').css({'display':'none'});
                                                 
                                                 var activity = activity_array[i];
                                                 var list_container = $("<div>", {
-                                                    }).css({
+                                                    }).attr('id', activity.activity_code
+                                                    ).css({
 
-                                                        width: "100%",
+                                                        width: "360px",
                                                         display: "inline-flex",
                                                         alignItems: "center",
                                                         borderBottom: "1px solid #D8D8D8",
@@ -4860,16 +5195,17 @@ $('#others_location_container').css({'display':'none'});
 
                                                                 
                                                                 $('<p>',{
-                                                                    text: "+",
+                                                                    text: "기록 추가",
 
                                                                 }).attr('id', 'add_record'
                                                                 ).css({
-                                                                    width: "120px",
+                                                                    width: "140px",
                                                                     color: "#313843",
                                                                     fontWeight: "bold",
                                                                     cursor:"pointer",
-                                                                    'font-size': '45px',
+                                                                    'font-size': '30px',
                                                                     'margin-left': '10px',
+                                                                    'font-family':'SDMiSaeng',ㄹㅍ
                                                                    
 
 
@@ -5684,7 +6020,60 @@ $('.main_list').sortable({
 }).disableSelection();
 
 
+/////////////////////////////////////////////////////////////////////////////////////
+//////////// activity 리스트 순서 드래그 앤 드롭 이벤트
 
+$('.Clist').sortable({
+
+    item: $('.contents_item'),
+    update: function(event, ui){
+
+/////
+    var seq_array = [];
+
+    var first_identity = $('.Clist').children().eq(0).attr('id');
+    seq_array.push(first_identity);
+    var second_identity = $('.Clist').children().eq(1).attr('id');
+    seq_array.push(second_identity);
+    var third_identity = $('.Clist').children().eq(2).attr('id');
+    seq_array.push(third_identity);
+    var fourth_identity = $('.Clist').children().eq(3).attr('id');
+    seq_array.push(fourth_identity);
+    var fifth_identity = $('.Clist').children().eq(4).attr('id');
+    seq_array.push(fifth_identity);
+    var sixth_identity = $('.Clist').children().eq(5).attr('id');
+    seq_array.push(sixth_identity);
+    var seventh_identity = $('.Clist').children().eq(6).attr('id');
+    seq_array.push(seventh_identity);
+
+
+//    $('.main_list').children().css("color", "black");
+  //  $('.main_list').children().removeClass('mainIdentity').css("background-color", "#bdc8ce52");
+    //$('.main_list').children().eq(0).addClass('mainIdentity').css({"background-color": "#475169", "color":'white'});
+
+    var extracted_text = $('.mainIdentity').children().eq(1).children(1).text();
+    $('#current_identity').text(extracted_text).hide().fadeIn("slow");
+
+        $.ajax({
+            type : "POST",
+            url : "/hoodify/src/identity_info/update_activity_seq.php",
+            data: {
+                    'activity_code_array': seq_array,
+                    },
+            success : function(res){
+
+                console.log(res);
+
+            },
+            error : function(XMLHttpRequest, textStatus, errorThrown){ // 비동기 통신이 실패할경우 error 콜백으로 들어옵니다.
+                alert("통신 실패.")
+            }
+        });
+
+    }
+
+
+}).disableSelection();
 
 
 
@@ -5781,7 +6170,8 @@ $('#btn_addCom').click(function(){
     var curr_item_code = Global_Var.userInfo.curr_item_code;
     var curr_skill_code = Global_Var.userInfo.curr_skill_code;
 
-
+    console.log("레코드 확인");
+    console.log(record_cont);
 
 
     var public_state;
@@ -6022,9 +6412,10 @@ $.ajax({
 
                             
                             var record = res[i]; 
+                            // #a7afc2
 
                             var record_list = $("<div>", {
-                            }).css({
+                            }).addClass('each_record').css({
 
                                 display: "flex",
                                 alignItems: "center",
@@ -6032,16 +6423,21 @@ $.ajax({
                                // borderBottom: "1px solid #D8D8D8",
                                 cursor:'pointer',
                                 width:'95px',
-                                height:'100px',
+                                height:'105px',
                                 flexDirection:'column',
-                                'padding-top':'15px',
-                                'border-radius' : '11px',
+                                'padding-top':'5px',
+                                'border-radius' : '8px',
+                                'border': '2px solid black',
+                                'margin':'15px',
+                                'background-color':'#637193',
+                                'box-shadow': '#9b9b9b 2px 2px 2px 1px',
+                                
                                 
 
                             }).hover(function() {
                             $(this).css("background-color", "#bad8f2");
                             }, function(){
-                            $(this).css("background-color", "white");
+                            $(this).css("background-color", "#637193");
                             }).click(((record) => function (e){
 
                                 $('.popup_activity_record_title').text(record.title);
@@ -6083,6 +6479,7 @@ $.ajax({
 
                                         });
 
+
                                         $('.modify_img').css({display: 'flex',});
 
 
@@ -6096,6 +6493,7 @@ $.ajax({
                                         $('.post_img_s').css({display: 'none',});
                                         $('.modify_img').attr("src", ''); 
                                         $('.post_img_s').attr('src', '');
+                                        
 
                                     }
                                        
@@ -6121,29 +6519,34 @@ $.ajax({
                                     src: '/hoodify/img/identity/hooodify_mini.png'
 
                                 }).css({
-                                    width: "45px",
-                                    height: "45px",
+                                    width: "50px",
+                                    height: "50px",
                                     margin: "4.5px",
                                     'margin-bottom':'0px',
                                     float: "left",
                                     "border-radius": "10px",
-                                    "border": "2px solid #475169"
+                                    "border": "2px solid #3b3b3b"
                                 }).appendTo(record_list);
 
                                 $('<p>', {
                                     text: record.title,
 
-
-                                  
-
                                     }).css({
-                                    'max-width':'75px',
+                                    'width':'65px',
                                     "font-family": "TmoneyRoundWindExtraBold",
-                                    'font-size':'13px',
-                                    "color" : '#47525f',
+                                    'font-size':'12px',
+                                    "color" : 'black',
                                     "overflow": "hidden",
                                     "text-overflow": "ellipsis",
                                     "white-space": "nowrap",
+                                    'border-radius': '6px',
+                                    'background-color': 'white',
+                                    'padding-left': '7px',
+                                    'padding-right': '7px',
+                                    'margin-top': '8px',
+                                    'border': '1px solid black',
+                                    'line-height': '200%',
+
                                 
                                 }).appendTo(record_list);
                        
@@ -6164,9 +6567,20 @@ $.ajax({
                                 
                                 }).appendTo(record_list);
                        */
+
+
+
+
+                                
+                              
                        
                        
                             };
+                            $(".each_record:even").css("background-color", "#a7afc2").hover(function() {
+                                $(this).css("background-color", "#bad8f2");
+                                }, function(){
+                                $(this).css("background-color", "#a7afc2");
+                                });
 
 
                             // 해당 activity의 count 표시하기
@@ -6194,6 +6608,8 @@ $.ajax({
                                 }).appendTo($('.mylist'));
 
                         }
+
+
 
 
 
@@ -6239,15 +6655,20 @@ $.ajax({
                    // borderBottom: "1px solid #D8D8D8",
                     cursor:'pointer',
                     width:'95px',
-                    height:'100px',
+                    height:'105px',
                     flexDirection:'column',
                     'padding-top':'5px',
                     'border-radius':'11px',
+                    'border': '2px solid black',
+                    'margin':'15px',
+                    'background-color':'#637193',
+                    
+                    'box-shadow': '#9b9b9b 2px 2px 2px 1px',
 
-                }).hover(function() {
+                }).addClass('each_record').hover(function() {
                 $(this).css("background-color", "#bad8f2");
                 }, function(){
-                $(this).css("background-color", "white");
+                $(this).css("background-color", "#637193");
                 }).click(((record) => function (e){
 
                     $('.popup_activity_record_title').text(record.title);
@@ -6318,28 +6739,41 @@ $.ajax({
                         src: '/hoodify/img/identity/hooodify_mini.png'
 
                     }).css({
-                        width: "45px",
-                        height: "45px",
+                        width: "50px",
+                        height: "50px",
                         margin: "4.5px",
                         float: "left",
                         "border-radius": "10px",
-                        "border": "2px solid #475169"
+                        "border": "2px solid #3b3b3b",
                     }).appendTo(record_list);
 
                     $('<p>', {
                         text: record.title,
 
                         }).css({
-                            'max-width':'75px',
+                            'width':'65px',
                             "font-family": "TmoneyRoundWindExtraBold",
-                            'font-size':'13px',
-                            "color" : '#47525f',
+                            'font-size':'12px',
+                            "color" : '#313843',
                             "overflow": "hidden",
                             "text-overflow": "ellipsis",
                             "white-space": "nowrap",
+                            'border-radius': '6px',
+                            'background-color': 'white',
+                            'padding-left': '7px',
+                            'padding-right': '7px',
+                            'margin-top': '8px',
+                            'border': '1px solid black',
+                            'line-height': '200%',
                     
                     }).appendTo(record_list);
             }
+
+            $(".each_record:even").css("background-color", "#a7afc2").hover(function() {
+                $(this).css("background-color", "#bad8f2");
+                }, function(){
+                $(this).css("background-color", "#a7afc2");
+                });
 
             // 해당 item의 count 표시하기
             var total_count = $('.mylist_item').children('div').length;
@@ -6655,7 +7089,7 @@ $('.btn_modify_com').click(function(){
                 if(res=="success"){
 
                     $('.popup_activity_record_title').text(record_title);
-                    $('.popup_activity_record_cont').text(record_cont);
+                    $('.popup_activity_record_cont').html(record_cont_line);
 
                     // 수정시 item record 리스트 갱신하기
                     var file = document.getElementById("u_file_t");

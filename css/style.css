@@ -14,10 +14,20 @@
     font-weight: normal;
     font-style: normal;
 }
+
+@font-face {
+    font-family: 'SDMiSaeng';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/SDMiSaeng.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
 html{
     position: fixed;
     height: 100%;
     width: 100%;
+    scroll-behavior: smooth;
+
 }
 
 /* ///////////////////////////////////////////////////////////////////////////////// */
@@ -140,9 +150,10 @@ main{
 
 }
 .no_identity p{
-    font-family: 'TmoneyRoundWindExtraBold';
-     color: #555555; 
-     font-size: 18px;
+    font-family: 'SDMiSaeng';
+    color: #555555;
+    font-size: 38px;
+    font-weight: bold;
 }
 
 
@@ -726,6 +737,7 @@ border: 1px solid #93b0bc;
     padding-inline-start: 10px;
     display: flex;
     flex-wrap: wrap;
+    margin-top:8px;
    
   }
   .bar_menu .menu-body::-webkit-scrollbar {
@@ -733,7 +745,7 @@ border: 1px solid #93b0bc;
   }
   
   .bar_menu .menu-body .mli {
-    min-width: 80px;
+    min-width: 85px;
     height: 20px;
     padding: 10px;
     width: 14%;
@@ -751,6 +763,9 @@ border: 1px solid #93b0bc;
     flex-direction:row; 
     align-items: center; 
     justify-content: center;
+    font-family: 'TmoneyRoundWindExtraBold';
+    color: #1a2339;
+
 
   }
   
@@ -973,8 +988,8 @@ border: 1px solid #93b0bc;
 
 .imgViewArea{
 
-    height:80px; 
-    width:80px;
+    height:60px; 
+    width:60px;
     align-items: center; 
     justify-content: center; 
     background-color:#6371936e;   
@@ -989,8 +1004,8 @@ border: 1px solid #93b0bc;
 
 .find_img_area{
 
-    height:80px; 
-    width:80px; 
+    height:60px; 
+    width:60px; 
     border-radius: 8px;  
     border: 2px solid #586167
 }
@@ -1005,16 +1020,17 @@ border: 1px solid #93b0bc;
     left: 50%;
     width: 500px;
     height: 80%;
-    max-height: 700px;
-    min-height: 580px;
-    z-index: 1002;
-    background-color: #fff;
+    max-height: 575px;
+    min-height: 575px;
+    z-index: 1002;    
+    background-color: #dfdfe2;
     border: 3px solid #3571B5;
     box-shadow: rgba(0, 0, 0, 0.25) 0px 0px 0px 9999px;
     border: 3px solid black;
     border-radius: 12px;
     align-items: center;
     flex-direction: column;
+    
   }
 
 
@@ -1061,12 +1077,14 @@ border: 1px solid #93b0bc;
     display: flex; 
     flex-direction: column; 
     width:100%;
-    height:75%;
+    height:80%;
   }
 
   .record_date_container{
     display: flex; 
     justify-content: flex-end;
+    position: relative;
+    bottom: 10px;
   }
 
   .record_date{
@@ -1082,33 +1100,41 @@ border: 1px solid #93b0bc;
     margin-bottom: 20px; 
     font-size: 18px; 
     border-radius: 8px; 
-    background-color: #313843; 
+    background-color: #484e58; 
     color: white; 
     padding: 5px; 
     padding-left:18px;  
     border: 2px solid black;
+    bottom: 10px;
+    position: relative;
+    font-family: 'TmoneyRoundWindExtraBold';
   }
 
 .activity_post_container6{
     padding: 15px; 
     padding-right:2px;
-    background-color: #E0E6E9;
+    background-color: #ffffff;
     margin:20px; 
     margin-left: 35px; 
     border-Radius: 8px; 
     border: 2px solid black; 
     margin-top: 2px; 
-    height: inherit;
-    max-height: 300px;
+    margin-bottom: 10px;
+    height: -webkit-fill-available;
+    min-height: 200px;
+    max-height: 350px;
+    bottom: 25px;
+    position: relative;
 }
 
 .popup_activity_record_cont{
-    font-family: TmoneyRoundWindExtraBold;
-    color:#4c5b6b; 
+    color:#000000; 
     word-break: break-all; 
     height:100%; 
     padding-right: 5px;
     overflow-y: scroll;
+    font-family: SDMiSaeng;
+    font-size: 23px;
 }
 
 .popup_activity_record_cont::-webkit-scrollbar {
@@ -1119,14 +1145,15 @@ border: 1px solid #93b0bc;
     width: 100%;
     display: flex;
     flex-direction: row-reverse;
-    /* bottom: 60px; */
     height: fit-content;
+    bottom: 26px;
+    position: relative;
 }
 
 .post_img{
     display:flex; 
-    height:80px; 
-    width:80px;  
+    height:60px; 
+    width:60px;  
     margin-right: 30px; 
     padding: 5px; 
     padding-bottom: 15px;  
@@ -1139,8 +1166,8 @@ border: 1px solid #93b0bc;
 
 .post_img_s{
 
-    height:75px; 
-    width:75px; 
+    height:60px; 
+    width:60px; 
     display:flex;
     border: 1px solid black;  
     border-radius: 4px;  
@@ -1244,8 +1271,8 @@ border: 1px solid #93b0bc;
     margin-left: 30px;
     margin-right: 30px;
     margin-top: 10px;
-    background-color: #313843;
-    color:white;
+    background-color: #fbfbfb;
+    color:black;
   }
 
   .record_cont_modify{
@@ -1259,16 +1286,16 @@ border: 1px solid #93b0bc;
     height: 100%;
     min-height: 150px;
     max-height: 300px;
-    margin-left: 45px;
+    margin-left: 40px;
     margin-right: 30px;
-    background-color: #e0e6e9;
+    background-color:#fbfbfb;
   }
 
 
   .modify_img_layout{
     display: flex;  
-    height: 80px;  
-    width: 80px;  
+    height: 60px;  
+    width: 60px;  
     margin-right: 30px; 
     padding: 5px; 
     padding-bottom: 15px;  
@@ -1280,8 +1307,8 @@ border: 1px solid #93b0bc;
   }
 
   .modify_img{
-    height: 75px;
-    width: 75px;
+    height: 60px;  
+    width: 60px;  
     display: flex;
     border: 1px solid black;
     border-radius: 4px;
@@ -1639,10 +1666,10 @@ border: 1px solid #93b0bc;
     left: 50%;
     width: 500px;
     height: 80%;
-    max-height: 700px;
-    min-height: 580px;
+    max-height: 575px;
+    min-height: 575px;
     z-index: 1002;
-    background-color: #fff;
+    background-color: #e3e4e6;
     box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 0px 9999px;
     flex-direction: column;  
     border: 3px solid black; 
@@ -1741,13 +1768,14 @@ border: 1px solid #93b0bc;
     padding: 5px;
     padding-left: 18px; 
     border: 2px solid #091940;
+    font-family: 'TmoneyRoundWindExtraBold';
 }
 
 .public_record_post_container5{
 
     padding: 15px; 
     padding-right: 5px;
-    background-color: #E0E6E9; 
+    background-color:#ffffff;
     margin: 20px; 
     margin-left: 35px; 
     border-Radius: 12px; 
@@ -1755,17 +1783,21 @@ border: 1px solid #93b0bc;
     margin-top: 2px; 
     height: 60%;
     min-height: 90px;
-    max-height: 280px;
+    max-height: 320px;
+    
+    overflow: auto;
 }
 
 
 .public_record_cont{
-    font-family: TmoneyRoundWindExtraBold;
-    color: #4c5b6b; 
+    color: #000000;
     word-break: break-all; 
-    height: 100%; 
+    height: -webkit-fill-available; 
     overflow-y: auto;
     padding-right:10px;
+    
+    font-family: SDMiSaeng;
+    font-size: 23px;
 }
 
 
@@ -1783,8 +1815,8 @@ border: 1px solid #93b0bc;
 
 .post_img_p{
     display:flex; 
-    height:80px; 
-    width:80px;  
+    height:60px; 
+    width:60px;  
     display:flex; 
     margin-left:20px; 
     padding: 5px; 
@@ -1798,8 +1830,8 @@ border: 1px solid #93b0bc;
 }
 
 .post_img_ps{
-    height:75px; 
-    width:75px; 
+    height:60px; 
+    width:60px; 
     display:flex; 
     border: 1px solid #586167;  
     border-radius: 4px;  
@@ -2050,18 +2082,142 @@ border: 1px solid #93b0bc;
              justify-content: center;
  }
 
- .identity_storage{
+
+/* ///////////////////////////////////////////////////////////////////////////////// */
+
+
+
+.candidate{
+    display: flex;
+    border: 2px solid #222222;
+    border-radius: 8px;
+    padding: 15px;
+    width: 140px;
+    height: 55px;
+    margin:20px;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+
+}
+
+.candidate:hover {
+    background-color: #bad8f2;
+}
+
+.candidate img{
+    width:35px; 
+    height: 35px; 
+    margin-right:10px;
+    border-radius: 5px;
+}
+
+
+.candidates_container{
+    margin: 10px;
+    margin-top: 25px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.menu_button3 {
+
+    width: 25px;
+    height: 25px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.candidate_btn_container{
+    display: flex;
+    flex-direction: row-reverse;
+    margin-top: 30px;
+}
+
+
+/* ///////////////////////////////////////////////////////////////////////////////// */
+.friends_layout{
         display: none;
         position: fixed;
         top: 50%;
         left: 50%;
-        width: 40%;
+        width: 760px;
         height: 80%;
         z-index: 1002;
         background-color: white;
         border-radius:10px;
         border: 3px solid black;
         justify-content: center;
+}
+
+
+
+.friends_list_container{
+    width: 100%; 
+    padding:25px;
+}
+
+.friends_container{
+    width: 100%; 
+    height: 70px; 
+    display:flex; 
+    align-items: center;
+    margin-bottom:45px;  
+    border-Bottom: 1px solid black;
+}
+
+.friends_img{
+    cursor:pointer; 
+    width:40px; 
+    height:40px; 
+    margin-left:10px; 
+    border: 2px solid black; 
+    border-radius: 12px;
+}
+
+.to_friends_list{
+    width: fit-content;
+    right: 25px;
+    top: 100px;
+    height: 22px;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    background-color: #495364;
+    cursor: pointer;
+    position: absolute;
+    padding: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 8px;
+    color: white;
+    box-shadow: gray 2px 2px 2px 1px;
+}
+
+
+.to_friends_list:hover {
+    background-color: #313843;
+}
+
+
+
+/* ///////////////////////////////////////////////////////////////////////////////// */
+
+
+
+
+.identity_storage{
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 40%;
+    height: 80%;
+    z-index: 1002;
+    background-color: white;
+    border-radius:10px;
+    border: 3px solid black;
+    justify-content: center;
 }
 
 
@@ -2152,9 +2308,121 @@ border: 1px solid #93b0bc;
 .font2{
     font-family: TmoneyRoundWindExtraBold;
     font-size:20px;
-    margin-bottom: 20px;
-    margin-left:10px;
-    color: #2f3a4ed9;
+    margin-bottom: 15px;
+    color: #475169;
+    padding: 8px;
+    padding-left: 14px;
+    padding-right: 18px;
+    border-radius: 8px;
+    cursor: pointer;
+    width: fit-content;
+}
+
+.font2:hover{
+
+    background-color: #bad8f2;
+
+}
+
+
+.popular_identity_list{
+
+    transition-property: height, top;/* 어떤 css 프로퍼티를 transition할지 지정 */
+    transition-duration: 0.8s, 0.8s; 
+
+}
+
+/* ///////////////////////////////////////////////////////////////////////////////// */
+
+.selection_box{
+    cursor: pointer;
+    display: flex;
+    position: relative;
+    width: 100px;
+    border-radius: 9px;
+    height: 50px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: gray;
+    margin: 10px;
+    margin-right:40px;
+    font-size: 38px;
+    color: #fff;
+    border: 2px solid whitesmoke;
+    font-family: 'SDMiSaeng';
+    letter-spacing: 5px;
+    box-shadow: #000000c4 3px 3px 3px 1px;
+  }
+
+  .selection_box_anm{
+    cursor: pointer;
+    display: flex;
+    position: absolute;
+    border-radius: 5px;
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+    transition: 0.5s ease;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    margin: 10px;
+    font-size: 25px;
+    color: #fff;
+  }
+
+  .selection_box:hover .selection_box_anm{
+
+    opacity: 1;
+   }
+
+
+   .selection_box_start:hover .selection_box_anm{
+
+  opacity: 1;
+  }
+
+
+
+
+/* ///////////////////////////////////////////////////////////////////////////////// */
+
+.pick_layer {
+    display: none;
+    justify-content: center;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width:55%;
+    height:80%;
+    min-width: 880px;
+    min-height: 550px;
+    background-color: #fff;
+    border: 3px solid black;
+    z-index: 1009;
+    border-radius: 12px;
+
+}
+
+
+.pick_layer_container{
+    width:100%; 
+    flex-direction: column; 
+    display: flex; 
+    margin:25px;
+    margin-top:40px;
+}       
+
+.bucket{
+    display: flex;
+    flex-wrap: wrap;
+    margin-top : 20px; 
+    overflow-y: scroll; 
+    float: left; 
+    margin-bottom: 30px;   
+    width: 100%;
 }
 
 /* ///////////////////////////////////////////////////////////////////////////////// */
@@ -2168,14 +2436,16 @@ border: 1px solid #93b0bc;
     left: 50%;
     width:45%;
     height:80%;
-    min-width: 800px;
+    min-width: 825px;
     min-height: 550px;
     background-color: #fff;
     border: 3px solid black;
     z-index: 1009;
     border-radius: 12px;
+    
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 0px 0px 9999px;
 
-           }
+}
 
 
 .search_layer_container{
@@ -2183,12 +2453,20 @@ border: 1px solid #93b0bc;
     flex-direction: column; 
     display: flex; 
     align-items: center; 
-    margin:25px;
+    margin:20px;
+    margin-top:40px;
+    margin-bottom:60px;
+    margin-right: 10px;
+    overflow-y: scroll;
+
 }           
+
+
 
 .search_layer_container2{
     width: 100%; 
     display: flex; 
+    display: none;
     flex-direction: row; 
     align-items: center;
     margin-top: 25px;
@@ -2214,31 +2492,37 @@ border: 1px solid #93b0bc;
 }
 
 .category_container{
-    width: 100%; 
-    display: flex; 
-    flex-wrap: wrap; 
-    margin-top:10px;
+    width: 95%;
+    display: flex;
+    flex-wrap: wrap;
+   /* margin-top: 60px;*/
+    /* margin-bottom: 30px;*/
+    /* margin-left: 40px; */
+    padding-right: 25px;
+    flex-direction: column;
 }
 
 
 .search_result{
+    
     margin-top : 20px; 
-    overflow-y: scroll; 
     float: left; 
     margin-bottom: 30px;   
-    width: 100%;
+    width: -webkit-fill-available;
     padding:20px;
+    margin-right:5px;
     display: none;
+    overflow-y: scroll;
+    flex-wrap: wrap;
 }
 
 .search_result::-webkit-scrollbar {
-    display:none
 }
 
 .show_keywords_container{
+    display: none;
     height:75%; 
     margin-top : 20px; 
-    display:flex; 
     flex-direction: column; 
     margin-bottom: 30px;  
     width: 95%; 
@@ -2267,23 +2551,19 @@ border: 1px solid #93b0bc;
 .hook_identity_space{
     margin-top : 20px; 
     flex-direction: column; 
-    margin-bottom: 30px; 
-    overflow-y: scroll;  
-    width: 100%;
     height: 100%;
-    padding-left: 25px;
+    width: 95%;
     padding-right: 25px;
 }
 
 .popular_identity_space{
 
-    height: 50%;
-    margin-top:15px;
+    margin-top:65px;
+    margin-bottom: 25px;
+    
 }
 
 .mbti_identity_space{
-    height: 65%;
-    margin-top: 50px;
 }
 .mbti_identity_list{
     height: 140px;
@@ -2316,6 +2596,7 @@ border: 1px solid #93b0bc;
 .popular_identity{
     display: flex;
     width: 100px;
+    height: 108px;
     flex-direction: column;
     align-items: center;
     margin-left: 15px;
@@ -2323,18 +2604,32 @@ border: 1px solid #93b0bc;
     padding-bottom: 5px;
     border-radius: 8px;
     cursor: pointer;
+    background-color: #586167;
+    border: 3px solid #313843;
+    box-shadow: rgb(143 143 143) 1px 1px 1px 1px;
 }
 
 .popular_identity p{
-    font-family:TmoneyRoundWindExtraBold; 
-    margin-top: 5px; 
-    color: #495364;
-    font-size: 14px;
+    font-family: TmoneyRoundWindExtraBold;
+    margin-top: 10px;
+    font-size: 15px;
+    background-color: white;
+    color: black;
+    border-radius: 5px;
+    padding-left: 6px;
+    padding-right: 6px;
+    line-height: 200%;
+    width: auto;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    max-width: 95px;
+    border: 2px solid #313843;
 }
 
 .popular_identity img{
-    width: 50px; 
-    border:1px solid #495364;
+    width: 60px; 
+    border: 3px solid #313843;
     border-radius: 8px;
 }
 
@@ -2344,9 +2639,14 @@ border: 1px solid #93b0bc;
 
 }
 
+.pid_2:hover{
+
+    background-color:#bad8f2 !important;
+
+}
+
 
 .search_result_identity{
-    margin-top : 20px; 
     display:none; 
     flex-direction: column; 
     margin-bottom: 30px; 
@@ -2364,7 +2664,7 @@ border: 1px solid #93b0bc;
     display:flex;  
     flex-direction: row; 
     border-Bottom:1px solid black; 
-    padding-bottom:10px; 
+    padding-bottom:15px; 
     padding-top:10px;
 }
 
@@ -2423,7 +2723,7 @@ border: 1px solid #93b0bc;
     width: fit-content;
     position: absolute;
     right: 11px;
-    bottom: 101px;
+    bottom: 108px;
     border: 1px solid white;
     box-shadow: none;
     background-color: #4e68a7;
@@ -2453,25 +2753,27 @@ border: 1px solid #93b0bc;
     border-radius: 4px;
     /* box-shadow: gray 2px 2px 2px 1px; */
     right: 11px;
-    bottom: 103px;
+    bottom: 108px;
+    border: 1px solid;
     font-family: 'TmoneyRoundWindExtraBold';
 
 }
 
 .search_identity_desc{
-    font-size: 14px;
-    font-family: 'TmoneyRoundWindExtraBold';
+    font-size: 22px;
+    font-weight: bold;
     padding: 12px;
     background-color: #eaecef;
     /* border: 2px solid black; */
     /* border-radius: 7px; */
-    color: #3b3b3b;
+    color: #181c23;
     padding-top: 6px;
     overflow: hidden;
+    letter-spacing: 1.5px;
     text-overflow: ellipsis;
     white-space: normal;
-    line-height: 2;
-    height: 5.6em;
+    line-height: 1.4;
+    height: 3.9em;
     /* margin-left: 5px; */
     text-align: left;
     word-wrap: break-word;
@@ -2483,6 +2785,7 @@ border: 1px solid #93b0bc;
     -webkit-box-orient: vertical;
     border-bottom-right-radius: 8px;
     border-bottom-left-radius: 8px;
+    font-family: 'SDMiSaeng';
 }
 
 .search_data_container{
@@ -2534,6 +2837,8 @@ border: 1px solid #93b0bc;
     border-radius: 8px; 
     color:white;
     box-shadow: gray 2px 2px 2px 1px;
+    margin-right: 20px;
+    display: none;
     
 }
 
@@ -2559,7 +2864,6 @@ border: 1px solid #93b0bc;
 }
 
 #others_record::-webkit-scrollbar {
-    display:none
 }
 
 
@@ -2575,7 +2879,6 @@ border: 1px solid #93b0bc;
 
 
 .report_cont_container::-webkit-scrollbar {
-    display:none
 }
 
 .mylistC_common{
@@ -3046,13 +3349,10 @@ table.ui-datepicker-calendar { display:none; }
 }
 
 .login_container img{
-    width:160px; 
     margin-top: 25px; 
-    height:160px; 
-    border-radius:20px; 
+    height:140px; 
     margin-left:15px; 
     margin-right:15px;
-    border: 6px solid #16213b;
 }
 
 .login_btn_container{

@@ -30,17 +30,28 @@ parameter : record_code
 
           
           // parameter 값으로 업데이트
-          $query = "UPDATE user_item SET title = '$record_title', record = '$record_cont', public = $public_state WHERE user_item_code = $record_code AND user_code = $user_code";
+          $query = "UPDATE user_item SET title = :record_title, record = :record_cont, public = :public_state WHERE user_item_code = :record_code AND user_code = :user_code";
           
           $stmt = $conn->prepare($query);
           
-          if($stmt->execute()){
-              echo "success";
+          
+  
+          
+
+          if($stmt->execute(array(
+            ':record_title' => $record_title,
+            ':record_cont' =>  $record_cont,
+            ':public_state' => $public_state,
+            ':record_code' => $record_code,
+            ':user_code' => $user_code
+          ))){
+
+            echo 'success';  
+
           }
           else{
-              echo "fail";
+            echo "fail";
           }
-                
 
 
 
