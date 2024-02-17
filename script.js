@@ -2416,11 +2416,51 @@ $('.load_all_list').click(function(){
 });
 
 ////////////////////////////////////////////////////////////////////////////////////
-// 준비중입니다 
+// 준비중입니다  WIP
 
 $('.on_construction').click(function(){
 
-    layer_popup('.underway');
+
+    var urlParams = new URL(location.href).searchParams;
+    var kakaoCode = urlParams.get('code');
+    console.log(kakaoCode);
+
+    $.ajax({
+        type : "POST"
+        , url : 'https://kauth.kakao.com/oauth/token'
+        , data : {
+            grant_type : 'authorization_code',
+            client_id : '8444a64814544f881a494effad0d2c62',
+            redirect_uri : address_type,
+            code : kakaoCode
+        }
+        , contentType:'application/x-www-form-urlencoded;charset=utf-8'
+        , dataType: null
+        , success : function(response) {
+            Kakao.Auth.setAccessToken(response.access_token);
+            
+            Kakao.API.request({
+                url: '/v1/api/talk/friends',
+              })
+                .then(function(response) {
+                  console.log(response);
+                })
+                .catch(function(error) {
+                  console.log(error);
+                  
+                });
+
+        }
+        ,error : function(jqXHR, error) {
+    
+        }
+    });
+    
+ 
+
+  
+
+   // layer_popup('.underway');
 
 });
 
@@ -4530,13 +4570,29 @@ $('.find_img_profile').on('click', function (){
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-
 /////////////////////////////////////////////////////////////////////////////////////
 // 친구 목록 버튼
 
 $('.friends_btn').click(function(){
 
     get_friends_list();
+
+    
+   
+
+    Kakao.Auth.authorize({
+        redirectUri: address_type,
+        scope: 'friends',
+      });
+
+
+
+
+
+
+
+        
+        
 
 });
 
@@ -4554,7 +4610,7 @@ $('.to_friends_list').click(function(){
 
 function get_friends_list(){
 
-    //$(".friends_list").empty();
+    $(".friends_list").empty();
     $('.friend_message').css({'display':'none'});
 
     $('.to_friends_list').css({'display':'none'});
