@@ -2443,6 +2443,7 @@ $('.on_construction').click(function(){
                 url: '/v1/api/talk/friends',
               })
                 .then(function(response) {
+                console.log("안에 비어있는 값");
                   console.log(response);
                 })
                 .catch(function(error) {
@@ -2455,8 +2456,19 @@ $('.on_construction').click(function(){
     
         }
     });
-    
- 
+
+    Kakao.Picker.selectFriends({
+        title: '친구 선택',
+        maxPickableCount: 10,
+        minPickableCount: 1,
+      })
+        .then(function(response) {
+          console.log(response);
+        })
+        .catch(function(error) {
+          console.log(error);
+        });
+      
 
   
 
@@ -4578,15 +4590,16 @@ $('.friends_btn').click(function(){
     get_friends_list();
 
     
-   
+  //친구 정보에 대한 추가 동의 구하는 기능 
 
+  /*
     Kakao.Auth.authorize({
         redirectUri: address_type,
         scope: 'friends',
       });
 
 
-
+*/
 
 
 
