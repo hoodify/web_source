@@ -28,7 +28,6 @@ Global_Var.userInfo = {
 
 ///////////////////////////////////////////////////////////////////////////////////////
 // 주소 설정. 테스트(로컬) 또는 운영
-
 var address_type = 'http://127.0.0.1/hoodify/main.html';
 //var address_type = 'https://hoodify.cafe24.com/hoodify/main.html';
 
@@ -2420,47 +2419,20 @@ $('.load_all_list').click(function(){
 
 $('.on_construction').click(function(){
 
-
-    var urlParams = new URL(location.href).searchParams;
-    var kakaoCode = urlParams.get('code');
-    console.log(kakaoCode);
-
-    $.ajax({
-        type : "POST"
-        , url : 'https://kauth.kakao.com/oauth/token'
-        , data : {
-            grant_type : 'authorization_code',
-            client_id : '8444a64814544f881a494effad0d2c62',
-            redirect_uri : address_type,
-            code : kakaoCode
-        }
-        , contentType:'application/x-www-form-urlencoded;charset=utf-8'
-        , dataType: null
-        , success : function(response) {
-            Kakao.Auth.setAccessToken(response.access_token);
-            
-            Kakao.API.request({
-                url: '/v1/api/talk/friends',
-              })
-                .then(function(response) {
-                  console.log(response);
-                })
-                .catch(function(error) {
-                  console.log(error);
-                  
-                });
-
-        }
-        ,error : function(jqXHR, error) {
-    
-        }
-    });
     
  
+    Kakao.Auth.authorize({
+        redirectUri: address_type,
+        scope: 'friends',
+      });
+
+
 
   
 
-   // layer_popup('.underway');
+    layer_popup('.underway');
+    //layer_popup('.vote_friend');
+    
 
 });
 
@@ -4577,14 +4549,57 @@ $('.friends_btn').click(function(){
 
     get_friends_list();
 
+
+    
+
+    var urlParams = new URL(location.href).searchParams;
+    var kakaoCode = urlParams.get('code');
+    console.log(kakaoCode);
+
+    $.ajax({
+        type : "POST"
+        , url : 'https://kauth.kakao.com/oauth/token'
+        , data : {
+            grant_type : 'authorization_code',
+            client_id : '8444a64814544f881a494effad0d2c62',
+            redirect_uri : address_type,
+            code : kakaoCode
+        }
+        , contentType:'application/x-www-form-urlencoded;charset=utf-8'
+        , dataType: null
+        , success : function(response) {
+            Kakao.Auth.setAccessToken(response.access_token);
+            
+            Kakao.API.request({
+                url: '/v1/api/talk/friends',
+              })
+                .then(function(response) {
+                  console.log(response);
+                })
+                .catch(function(error) {
+                  console.log(error);
+                  
+                });
+
+        }
+        ,error : function(jqXHR, error) {
+    
+        }
+    });
+    Kakao.API.request({
+        url: '/v1/api/talk/friends',
+      })
+        .then(function(response) {
+          console.log(response);
+        })
+        .catch(function(error) {
+          console.log(error);
+          
+        });
+
+
     
    
-
-    Kakao.Auth.authorize({
-        redirectUri: address_type,
-        scope: 'friends',
-      });
-
 
 
 
@@ -4614,8 +4629,12 @@ function get_friends_list(){
     $('.friend_message').css({'display':'none'});
 
     $('.to_friends_list').css({'display':'none'});
-   // 
-   $('.friends_list').css("display","flex").hide().fadeIn('slow');
+
+
+    $('.friends_list').css({'display':'none'});
+    $('.vote_friend').css("display","flex").hide().fadeIn('slow');
+    
+   //$('.friends_list').css("display","flex").hide().fadeIn('slow');
   
     
     
@@ -5261,7 +5280,7 @@ $('#others_location_container').css({'display':'none'});
                                                                     cursor:"pointer",
                                                                     'font-size': '30px',
                                                                     'margin-left': '10px',
-                                                                    'font-family':'SDMiSaeng',ㄹㅍ
+                                                                    'font-family':'SDMiSaeng',
                                                                    
 
 
