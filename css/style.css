@@ -2123,7 +2123,7 @@ border: 1px solid #93b0bc;
 
 .candidates_container{
     margin: 10px;
-    margin-top: 10px;
+    margin-top: 30px;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;

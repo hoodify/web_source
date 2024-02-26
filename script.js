@@ -28,6 +28,7 @@ Global_Var.userInfo = {
 
 ///////////////////////////////////////////////////////////////////////////////////////
 // 주소 설정. 테스트(로컬) 또는 운영
+
 var address_type = 'http://127.0.0.1/hoodify/main.html';
 //var address_type = 'https://hoodify.cafe24.com/hoodify/main.html';
 
@@ -950,7 +951,7 @@ function kakaoLogin() {
 
         },
         fail: function (error) {
-            console.log(error)
+               console.log(error)
         },
         })
 
@@ -2421,18 +2422,27 @@ $('.on_construction').click(function(){
 
 
 
+    
     Kakao.Auth.authorize({
         redirectUri: address_type,
         scope: 'friends',
       });
 
+    /*
+    Kakao.Picker.selectFriends({
+        title: '친구 선택',
+        maxPickableCount: 10,
+        minPickableCount: 1,
+      })
+        .then(function(response) {
+          console.log(response);
+        })
+        .catch(function(error) {
+          console.log(error);
+        });
+      
 
-
-   
-    
- 
-
-  
+  */
 
    // layer_popup('.underway');
 
@@ -4550,10 +4560,12 @@ $('.find_img_profile').on('click', function (){
 $('.friends_btn').click(function(){
 
 
+
     var urlParams = new URL(location.href).searchParams;
     var kakaoCode = urlParams.get('code');
     console.log(kakaoCode);
 
+    
     $.ajax({
         type : "POST"
         , url : 'https://kauth.kakao.com/oauth/token'
@@ -4568,14 +4580,21 @@ $('.friends_btn').click(function(){
         , success : function(response) {
             Kakao.Auth.setAccessToken(response.access_token);
             
+
+            // 친구 목록을 불러오는 코드
             Kakao.API.request({
                 url: '/v1/api/talk/friends',
               })
                 .then(function(response) {
-                  console.log(response);
+                  console.log(response.elements);
+         
+         
+         
+         
                 })
                 .catch(function(error) {
                   console.log(error);
+                  
                   
                 });
 
@@ -4585,19 +4604,145 @@ $('.friends_btn').click(function(){
         }
     });
 
+
+    $('.candidates_container').empty();
+    
     Kakao.API.request({
-        url: '/v1/api/talk/friends',
+        url: '/v1/api/talk/friends', 
+        data : {
+            friend_order : 'nickname'
+        },
       })
         .then(function(response) {
-          console.log(response);
+
+          console.log(response.elements[0].profile_nickname);
+          console.log(response.elements[0].profile_thumbnail_image);
+
+
+          for (var i = 0; i < response.elements.length; i++) {
+
+            var friend = response.elements[i];
+
+            var list = document.createElement("div");
+            
+            $(list).css({
+
+                height: "60px",
+                'width':'100px',
+
+                padding: "5px",
+                border: "1px solid #D8D8D8",
+                'border-radius':'10px',
+                display: 'flex',
+                paddingBottom: '5px',
+                alignItems: 'center',
+                overflow:'hidden',
+                'justify-content': 'space-evenly',
+                'cursor': 'pointer',
+                'margin-right':'30px',
+                'margin-top':'20px',
+
+                }).hover(function() {
+                        $(this).css("background-color", "#bad8f2");
+                    }, function(){
+                        if($(this).hasClass("itemActive")){
+                        $(this).css("background-color", "#bad8f2");
+                        }
+                        else{
+                        $(this).css("background-color", "white");
+                        }
+                    }).click(((friend) => function (e) {
+                
+                        console.log(friend.profile_nickname); 
+                
+                        // array 체크한 친구의 uid 추가하기
+
+                        // candidate에 동적으로 체크 박스 추가하기 ?? <--- 전반적으로 서비스 재조정하기
+                        
+
+
+                
+                })(friend)).appendTo(".candidates_container");
+
+
+            var VerticalList = $("<div>", { }).css({   });
+
+
+            $('<img>', {
+
+                    src: friend.profile_thumbnail_image,
+
+                }).css({
+                width: "30px",
+                height: "30px",
+                margin: "4.5px",
+                float: "left",
+                margin: "7px",
+                borderRadius: '10px', 
+               
+            }).appendTo(list);
+
+            $('<p>', {
+
+                text: friend.profile_nickname,
+
+                }).css({
+                margin: "4.5px",
+                fontFamily:"TmoneyRoundWindRegular",
+                'font-size':'15px',
+
+
+            }).appendTo(VerticalList);
+
+
+            VerticalList.appendTo(list);
+                
+        }
+
+
+
+
+
+
+        
+        
+        
+        
+        
+        
+        
+        
         })
         .catch(function(error) {
           console.log(error);
-          
         });
 
 
+
+
+
+
+
     get_friends_list();
+
+
+    
+
+
+
+    // ?친구 목록 정보 동의
+    // T => 바로 목록 정보 불러오기
+    // F => 친구 목록 동의 창 팝업
+
+
+
+    
+  //친구 정보에 대한 추가 동의 구하는 기능 
+
+
+
+
+
 
 
 
@@ -4624,12 +4769,7 @@ function get_friends_list(){
     $('.friend_message').css({'display':'none'});
 
     $('.to_friends_list').css({'display':'none'});
-
-
-    $('.friends_list').css({'display':'none'});
-    $('.vote_friend').css("display","flex").hide().fadeIn('slow');
-    
-   //$('.friends_list').css("display","flex").hide().fadeIn('slow');
+   // 
   
     
     
@@ -4642,6 +4782,8 @@ function get_friends_list(){
             console.log(res);
             if(res.length!=0){
 
+                $('.friends_list').css("display","flex").hide().fadeIn('slow');
+  
                 console.log('WIP');
                 for (var i = 0; i < res.length; i++) {
 
