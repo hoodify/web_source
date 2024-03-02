@@ -2131,18 +2131,78 @@ border: 1px solid #93b0bc;
 
 .menu_button3 {
 
-    width: 17px;
-    height: 17px;
+    width: 23px;
+    height: 20px;
     margin-right: 10px;
     cursor: pointer;
 }
 
 .candidate_btn_container{
     display: flex;
+    display: none;
     flex-direction: row-reverse;
     margin-right: 40px;
 }
 
+
+.survey_question{
+    font-family: 'TmoneyRoundWindExtraBold';     
+    letter-spacing: 1.2px; 
+    color: #313843;
+    font-size: 19px; 
+    margin-left: 20px;
+}
+
+.survey_question span{
+    font-family: 'SDMiSaeng';
+    font-size: 32px; font-weight: bold;     
+    letter-spacing: 3px;
+}
+
+
+/* ///////////////////////////////////////////////////////////////////////////////// */
+
+
+.vote_layout{
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 760px;
+    height: 60%;
+    max-height: 580px;
+    z-index: 1002;
+    background-color: white;
+    border-radius:10px;
+    border: 3px solid black;
+    justify-content: center;
+}
+
+.vote_container{
+
+   
+    width: 100%; 
+    display:flex; 
+    align-items: center;
+}
+
+.vote_friend{
+    height: 80%; 
+    width: 100%; 
+    margin:20px;
+    flex-direction: column;
+}
+
+.candidates_container2{
+    
+    margin-top: 20px;
+    height: 85%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    
+    overflow-y: scroll; 
+}
 
 /* ///////////////////////////////////////////////////////////////////////////////// */
 .friends_layout{

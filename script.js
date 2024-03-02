@@ -4559,8 +4559,6 @@ $('.find_img_profile').on('click', function (){
 
 $('.friends_btn').click(function(){
 
-
-
     var urlParams = new URL(location.href).searchParams;
     var kakaoCode = urlParams.get('code');
     console.log(kakaoCode);
@@ -4659,9 +4657,6 @@ $('.friends_btn').click(function(){
 
                         // candidate에 동적으로 체크 박스 추가하기 ?? <--- 전반적으로 서비스 재조정하기
                         
-
-
-                
                 })(friend)).appendTo(".candidates_container");
 
 
@@ -4698,19 +4693,6 @@ $('.friends_btn').click(function(){
             VerticalList.appendTo(list);
                 
         }
-
-
-
-
-
-
-        
-        
-        
-        
-        
-        
-        
         
         })
         .catch(function(error) {
@@ -4718,36 +4700,223 @@ $('.friends_btn').click(function(){
         });
 
 
-
-
-
-
-
     get_friends_list();
 
+});
+
+
+
+/////////////////////////////////////////////////////////////////////////////////////
+// 
+
+$('.vote_btn').click(function(){
+
+    var urlParams = new URL(location.href).searchParams;
+    var kakaoCode = urlParams.get('code');
+    console.log(kakaoCode);
 
     
+    $.ajax({
+        type : "POST"
+        , url : 'https://kauth.kakao.com/oauth/token'
+        , data : {
+            grant_type : 'authorization_code',
+            client_id : '8444a64814544f881a494effad0d2c62',
+            redirect_uri : address_type,
+            code : kakaoCode
+        }
+        , contentType:'application/x-www-form-urlencoded;charset=utf-8'
+        , dataType: null
+        , success : function(response) {
+            Kakao.Auth.setAccessToken(response.access_token);
+            
 
+            // 친구 목록을 불러오는 코드
+            Kakao.API.request({
+                url: '/v1/api/talk/friends',
+              })
+                .then(function(response) {
+                  console.log(response.elements);
+         
+         
+         
+         
+                })
+                .catch(function(error) {
+                  console.log(error);
+                  
+                  
+                });
 
-
-    // ?친구 목록 정보 동의
-    // T => 바로 목록 정보 불러오기
-    // F => 친구 목록 동의 창 팝업
-
-
-
+        }
+        ,error : function(jqXHR, error) {
     
-  //친구 정보에 대한 추가 동의 구하는 기능 
+        }
+    });
 
 
+    //$('.candidates_container2').empty();
+    
+    show_candidates();
+    layer_popup($('.vote_layout'));
+});
 
 
+function show_candidates(){
+    
+    Kakao.API.request({
+        url: '/v1/api/talk/friends', 
+        data : {
+            friend_order : 'nickname'
+        },
+      })
+        .then(function(response) {
+
+          console.log(response.elements[0].profile_nickname);
+          console.log(response.elements[0].profile_thumbnail_image);
 
 
+          for (var i = 0; i < response.elements.length; i++) {
+
+            var friend = response.elements[i];
+
+            var list = document.createElement("div");
+            
+            $(list).css({
+
+                height: "60px",
+                'width':'115px',
+
+                padding: "5px",
+                border: "1px solid #D8D8D8",
+                'border-radius':'10px',
+                display: 'flex',
+                paddingBottom: '5px',
+                alignItems: 'center',
+                overflow:'hidden',
+                'justify-content': 'space-evenly',
+                'cursor': 'pointer',
+                'margin-right':'35px',
+                'margin-top':'20px',
+                'display':'none'
+
+                }).hover(function() {
+                    $(this).css({"background-color": "#bad8f2", 'border':'1px solid #788b9f'});
+                }, function(){
+                    if($(this).hasClass("selected_candidate")){
+                    $(this).css({"background-color": "#bad8f2" , 'border':'1px solid #788b9f'});
+                    }
+                    else{
+                    $(this).css({"background-color": "white", 'border':'1px solid rgb(216, 216, 216)'});
+                    }
+                }).click(((friend) => function (e) {
+                
+                        console.log(friend.id); 
+                        console.log(friend);
+                
+                        if($(this).hasClass('selected_candidate') === true){
+                            $(this).removeClass('selected_candidate');
+                            $(this).css({'background-color':'white', 'border':'1px solid rgb(216, 216, 216)'});
+                        }
+                        else{
+                            $(this).addClass('selected_candidate');
+                            $(this).css({'background-color':'#bad8f2', 'border':'1px solid #788b9f'});
+                        }
+
+                        console.log($(this).attr("class"))
+                        
+                        
+                })(friend)).addClass('candidate_item').attr('id',friend.id).appendTo(".candidates_container2").css({'display':'flex'}).hide().fadeIn('slow');;
 
 
+            var VerticalList = $("<div>", { }).css({   });
+
+
+            $('<img>', {
+
+                    src: friend.profile_thumbnail_image,
+
+                }).css({
+                width: "30px",
+                height: "30px",
+                margin: "4.5px",
+                float: "left",
+                margin: "7px",
+                borderRadius: '10px', 
+               
+            }).appendTo(list);
+
+            $('<p>', {
+
+                text: friend.profile_nickname,
+
+                }).css({
+                margin: "4.5px",
+                fontFamily:"TmoneyRoundWindRegular",
+                'font-size':'15px',
+
+
+            }).appendTo(VerticalList);
+
+            VerticalList.appendTo(list);
+                
+        }
         
+        })
+        .catch(function(error) {
+          console.log(error);
+        });
+}
+
+$('.next_survey ').click(function(){
+
+    var ret = []
+    $('.selected_candidate').each(function(index,item){
+        ret.push($(this).attr('id'));
+    });
+    
+    console.log("db전달 내용");
+    console.log(ret);
+
+    var curr_identity_code_survey = $(".curr_question").attr('id');
+    
+    console.log(curr_identity_code_survey);
+
+    var curr_indx = $(".curr_question").index();
+    console.log(curr_indx);
+    if(curr_indx<3){
         
+    $('.candidates_container2').empty();
+        $('.survey_question').css('display', 'none');
+        $(".survey_question").removeClass('curr_question');
+        $('.question_container').children().eq(curr_indx+1).addClass('curr_question').css({'display':'block'}).hide().fadeIn('slow');
+
+
+        // 투표 보내기
+       
+
+        show_candidates();
+        
+
+    }
+    else if (curr_indx == 3){
+        
+        $('.vote_friend').css('display', 'none');
+
+    }
+    else{
+        console.log('last_question');
+    }
+
+
+
+
+
+
+
+    // 비우기
+
+
 
 });
 
@@ -4770,6 +4939,10 @@ function get_friends_list(){
 
     $('.to_friends_list').css({'display':'none'});
    // 
+   
+   
+   $('.friends_list').css({'display':'none'});
+   $('.vote_friend').css("display","flex").hide().fadeIn('slow');
   
     
     
@@ -4780,6 +4953,7 @@ function get_friends_list(){
         success : function(res){
 
             console.log(res);
+/*
             if(res.length!=0){
 
                 $('.friends_list').css("display","flex").hide().fadeIn('slow');
@@ -4867,11 +5041,13 @@ function get_friends_list(){
                 }
 
             }
+
             else{
                 console.log('WIP2');
                 $('.friends_list').css({'display':'none'});
                 $('.vote_friend').css("display","flex").hide().fadeIn('slow');
             }
+            */
 
         },
         error : function(XMLHttpRequest, textStatus, errorThrown){ // 비동기 통신이 실패할경우 error 콜백으로 들어옵니다.

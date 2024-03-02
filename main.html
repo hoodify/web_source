@@ -69,7 +69,8 @@
 
         <div id='top_menu' style='display:flex;'>
             <p class = 'identity_storage_btn top_menu_btn'>창고 </p>
-            <p class = 'friends_btn top_menu_btn'>친구 </p>
+            <p class = 'friends_btn top_menu_btn' style="display: none;">친구 </p>
+            <p class = 'vote_btn top_menu_btn'>투표 </p>
             <p class = 'open_search_layer top_menu_btn'>찾기 </p>
             <p class = 'logout_btn top_menu_btn'> 로그아웃 </p>
         </div>
@@ -833,42 +834,7 @@
                     </div>
                     <div class = "candidates_container">
 
-                        
-
-<!--
-                        <div class="candidate">
-                            <img src="/hoodify/img/identity/hooodify_mini.png">
-                            <p class="candidate_name"> 친구 이름1 </p>
-                        </div>
-
-                        <div class="candidate">
-                            <img src="/hoodify/img/identity/hooodify_mini.png">
-                            <p class="candidate_name"> 친구 이름2 </p>
-                        </div>
-
-                        <div class="candidate">
-                            <img src="/hoodify/img/identity/hooodify_mini.png">
-                            <p class="candidate_name"> 친구 이름3 </p>
-                        </div>
-
-                        <div class="candidate">
-                            <img src="/hoodify/img/identity/hooodify_mini.png">
-                            <p class="candidate_name"> 친구 이름4 </p>
-                        </div>
-                        
-                        <div class="candidate">
-                            <img src="/hoodify/img/identity/hooodify_mini.png">
-                            <p class="candidate_name"> 친구 이름5 </p>
-                        </div>
-                        
-                        <div class="candidate">
-
-                            <img src="/hoodify/img/identity/hooodify_mini.png">
-                            <p class="candidate_name"> 친구 이름6 </p>
-                        </div>
-
-
-                        -->
+    
                     </div>
 
 
@@ -883,6 +849,57 @@
         </div>
 
     </div>
+
+
+    <div class = "vote_layout common_layer">
+
+        <div class='top_bar'> 
+            <p class = 'top_word'> 친구 목록 </p>
+        </div>
+
+        <div class = "vote_container">
+
+            <div class = "vote_friend"> 
+            
+                <div class = 'question_container'>
+                    <p class="survey_question curr_question"  id='vote_identity_17'>▶ 내 주변에서 '<span style=" color:#4faf82;">작가</span>'와 어울리는 사람은?</p>
+                    <p class="survey_question" id='vote_identity_18' style=" display: none;">▶ 내 주변에서 '<span style="color:#4eb0d7;">여행가</span>'와 어울리는 사람은?</p>
+                    <p class="survey_question"id='vote_identity_19' style=" display: none;">▶ 내 주변에서 '<span style="color:#d74e4e;">아티스트</span>'와 어울리는 사람은?</p>
+                    <p class="survey_question"  id='vote_identity_20' style=" display: none;">▶ 내 주변에서 '<span style="color:#4faf82;">자취인</span>'와 어울리는 사람은?</p>
+                
+                
+                </div>
+
+                
+                
+                <div style="height: 100%;">
+                    
+                    <div class="candidate_btn_container">
+
+                        <img class="show_all_candidates_btn menu_button3" src="/hoodify/img/others_record_icon.png">
+
+                    </div>
+                    <div class = "candidates_container2">
+
+    
+                    </div>
+
+
+                </div>
+            </div>
+
+
+        </div>
+
+        <div class="btn-r">
+            <div class="btn_layerClose generalBtn">닫기</div>
+            <div class="next_survey generalBtn" sequence=1>다음</div>
+        </div>
+
+    </div>
+
+
+
 
 
 
