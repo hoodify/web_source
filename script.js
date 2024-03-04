@@ -962,22 +962,21 @@ function kakaoLogin() {
     })
 }
 ////////////////////////////////////////////////////////////////////////////////////
-/// 카카오로 로그아웃
+/// 카카오 로그아웃
 
     function kakaoLogout() {
         if (Kakao.Auth.getAccessToken()) {
-        Kakao.API.request({
-            // url: '/v1/user/unlink',
-            success: function (response) {
-                console.log(response)
-            },
-            fail: function (error) {
-            console.log(error)
-            },
-        })
-        Kakao.Auth.setAccessToken(undefined)
+            Kakao.Auth.logout()
+            .then(function(response) {
+              console.log(Kakao.Auth.getAccessToken()); // null
+            })
+            .catch(function(error) {
+              console.log('Not logged in.');
+            });
         }
     }
+
+ 
 
 
 ////////////////////////////////////////////////////////////////////////////////////
@@ -4745,6 +4744,7 @@ $('.vote_btn').click(function(){
                 .catch(function(error) {
                   console.log(error);
                   
+            
                   
                 });
 
@@ -4763,6 +4763,7 @@ $('.vote_btn').click(function(){
 
 
 function show_candidates(){
+    $('.candidates_container2').empty();
     
     Kakao.API.request({
         url: '/v1/api/talk/friends', 
@@ -4788,8 +4789,8 @@ function show_candidates(){
                 'width':'115px',
 
                 padding: "5px",
-                border: "1px solid #D8D8D8",
-                'border-radius':'10px',
+                border: "2px solid rgb(216, 216, 216)",
+                'border-radius':'15px',
                 display: 'flex',
                 paddingBottom: '5px',
                 alignItems: 'center',
@@ -4801,13 +4802,13 @@ function show_candidates(){
                 'display':'none'
 
                 }).hover(function() {
-                    $(this).css({"background-color": "#bad8f2", 'border':'1px solid #788b9f'});
+                    $(this).css({"background-color": "#bad8f2", 'border':'2px solid #788b9f'});
                 }, function(){
                     if($(this).hasClass("selected_candidate")){
-                    $(this).css({"background-color": "#bad8f2" , 'border':'1px solid #788b9f'});
+                    $(this).css({"background-color": "#bad8f2" , 'border':'2px solid #6b6b6b'});
                     }
                     else{
-                    $(this).css({"background-color": "white", 'border':'1px solid rgb(216, 216, 216)'});
+                    $(this).css({"background-color": "white", 'border':'2px solid rgb(216, 216, 216)'});
                     }
                 }).click(((friend) => function (e) {
                 
@@ -4816,11 +4817,11 @@ function show_candidates(){
                 
                         if($(this).hasClass('selected_candidate') === true){
                             $(this).removeClass('selected_candidate');
-                            $(this).css({'background-color':'white', 'border':'1px solid rgb(216, 216, 216)'});
+                            $(this).css({'background-color':'white', 'border':'2px solid #6b6b6b'});
                         }
                         else{
                             $(this).addClass('selected_candidate');
-                            $(this).css({'background-color':'#bad8f2', 'border':'1px solid #788b9f'});
+                            $(this).css({'background-color':'#bad8f2', 'border':'2px solid #788b9f'});
                         }
 
                         console.log($(this).attr("class"))
@@ -4865,32 +4866,33 @@ function show_candidates(){
         })
         .catch(function(error) {
           console.log(error);
+          
         });
 }
 
 $('.next_survey ').click(function(){
 
-    var ret = []
-    $('.selected_candidate').each(function(index,item){
-        ret.push($(this).attr('id'));
-    });
-    
-    console.log("db전달 내용");
-    console.log(ret);
 
-    var curr_identity_code_survey = $(".curr_question").attr('id');
-    
-    console.log(curr_identity_code_survey);
 
     var curr_indx = $(".curr_question").index();
     console.log(curr_indx);
-    if(curr_indx<3){
+    if(curr_indx<5){
         
     $('.candidates_container2').empty();
         $('.survey_question').css('display', 'none');
         $(".survey_question").removeClass('curr_question');
         $('.question_container').children().eq(curr_indx+1).addClass('curr_question').css({'display':'block'}).hide().fadeIn('slow');
 
+        var ret = []
+        $('.selected_candidate').each(function(index,item){
+            ret.push($(this).attr('id'));
+        });
+        
+        console.log("db전달 내용");
+        console.log(ret);
+    
+        var curr_identity_code_survey = $(".curr_question").attr('id');
+        console.log(curr_identity_code_survey);
 
         // 투표 보내기
        
@@ -4899,9 +4901,11 @@ $('.next_survey ').click(function(){
         
 
     }
-    else if (curr_indx == 3){
+    else if(curr_indx == 5){
         
-        $('.vote_friend').css('display', 'none');
+        $('.vote_container').css('display', 'none');
+        $('.next_survey ').css('display', 'none');
+        $('.survey_complete').css({'display':'block'}).hide().fadeIn('slow');
 
     }
     else{
