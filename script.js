@@ -923,6 +923,7 @@ $('.login_with_kakao').click(function(){
 ////// 카카오로 로그인하기
 function kakaoLogin() {
     Kakao.Auth.login({
+    scope: 'friends talk_message',
     success: function (response) {
         console.log(response);
 
@@ -2424,7 +2425,7 @@ $('.on_construction').click(function(){
     
     Kakao.Auth.authorize({
         redirectUri: address_type,
-        scope: 'friends',
+        scope: 'friends, talk_message', 
       });
 
     /*
@@ -4652,6 +4653,7 @@ $('.friends_btn').click(function(){
                 
                         console.log(friend.profile_nickname); 
                 
+
                         // array 체크한 친구의 uid 추가하기
 
                         // candidate에 동적으로 체크 박스 추가하기 ?? <--- 전반적으로 서비스 재조정하기
@@ -4812,8 +4814,8 @@ function show_candidates(){
                     }
                 }).click(((friend) => function (e) {
                 
-                        console.log(friend.id); 
-                        console.log(friend);
+                        console.log(friend); 
+                        console.log(friend.uuid);
                 
                         if($(this).hasClass('selected_candidate') === true){
                             $(this).removeClass('selected_candidate');
@@ -4827,7 +4829,7 @@ function show_candidates(){
                         console.log($(this).attr("class"))
                         
                         
-                })(friend)).addClass('candidate_item').attr('id',friend.id).appendTo(".candidates_container2").css({'display':'flex'}).hide().fadeIn('slow');;
+                })(friend)).addClass('candidate_item').attr('id',friend.uuid).appendTo(".candidates_container2").css({'display':'flex'}).hide().fadeIn('slow');;
 
 
             var VerticalList = $("<div>", { }).css({   });
@@ -4878,11 +4880,7 @@ $('.next_survey ').click(function(){
     console.log(curr_indx);
     if(curr_indx<5){
         
-    $('.candidates_container2').empty();
         $('.survey_question').css('display', 'none');
-        $(".survey_question").removeClass('curr_question');
-        $('.question_container').children().eq(curr_indx+1).addClass('curr_question').css({'display':'block'}).hide().fadeIn('slow');
-
         var ret = []
         $('.selected_candidate').each(function(index,item){
             ret.push($(this).attr('id'));
@@ -4894,9 +4892,21 @@ $('.next_survey ').click(function(){
         var curr_identity_code_survey = $(".curr_question").attr('id');
         console.log(curr_identity_code_survey);
 
-        // 투표 보내기
-       
+        
+        var curr_identity_name_survey = $('.curr_question').children('span').text();
+        console.log(curr_identity_name_survey);
 
+ 
+
+
+        
+        $(".survey_question").removeClass('curr_question');
+        $('.question_container').children().eq(curr_indx+1).addClass('curr_question').css({'display':'block'}).hide().fadeIn('slow');
+
+
+        
+        $('.candidates_container2').empty();
+        send_vote_message(ret, curr_identity_name_survey);
         show_candidates();
         
 
@@ -4911,18 +4921,8 @@ $('.next_survey ').click(function(){
     else{
         console.log('last_question');
     }
-
-
-
-
-
-
-
-    // 비우기
-
-
-
 });
+
 
 
 $('.to_friends_list').click(function(){
@@ -4933,6 +4933,69 @@ $('.to_friends_list').click(function(){
     $('.friends_list').css("display","flex").hide().fadeIn('slow');
 
 });
+
+/////////////////////////////////////////////////////////////////////////////////////
+// 키워드 추천 메시지 보내기
+
+function send_vote_message(friend_uuid, vote_identity){
+
+    console.log('get uuid');
+    console.log(friend_uuid);
+
+
+
+
+for (var i = 0; i < friend_uuid.length; i++) {
+
+    Kakao.API.request({
+        url: '/v1/api/talk/friends/message/default/send',
+        data: {
+            receiver_uuids: [friend_uuid[i]],
+            template_object: {
+            object_type: 'feed',
+            content: {
+                title: '당신은 "'+ vote_identity +'"인가요?',
+                description: '친구가 "'+ vote_identity +'"(이)라는 키워드를 추천했어요',
+                image_url:
+                    'https://hoodify.cafe24.com/hoodify/img/identity/hooodify_mini_round.png',
+                link: {
+                    web_url: 'https://hoodify.cafe24.com/hoodify/main.html',
+                    mobile_web_url: 'https://hoodify.cafe24.com/hoodify/main.html',
+                },
+                },
+                buttons: [
+
+                    {
+                        title: '웹으로 보기',
+                        link: {
+                        mobile_web_url: 'https://hoodify.cafe24.com/hoodify/main.html',
+                        web_url: 'https://hoodify.cafe24.com/hoodify/main.html',
+                        },
+                    },
+                  
+                ],
+            },
+            },
+        })
+        .then(function(response) {
+          console.log(response);
+        })
+        .catch(function(error) {
+          console.log(error);
+        });
+
+}
+
+
+
+    
+}
+
+
+
+
+
+
 /////////////////////////////////////////////////////////////////////////////////////
 // 친구 리스트 불러오기
 
