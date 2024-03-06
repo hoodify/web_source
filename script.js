@@ -4864,12 +4864,24 @@ function show_candidates(){
             VerticalList.appendTo(list);
                 
         }
+
+        if($('.candidates_container2').is(':empty')){
+            console.log('토큰 재발급');
+            Kakao.Auth.authorize({
+                redirectUri: address_type,
+                scope: 'friends, talk_message', 
+              });   
+        }
+
         
+       
         })
         .catch(function(error) {
           console.log(error);
           
         });
+
+      
 }
 
 $('.next_survey ').click(function(){
