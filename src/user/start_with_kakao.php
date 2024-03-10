@@ -14,7 +14,7 @@ session_start();
                 
 
                 $user_code = $_POST['user_code'];
-                
+                $kakao_uuid = $_POST['kakao_uuid'];
 
 
 
@@ -48,9 +48,10 @@ session_start();
                     $cookie_array = $_POST['identity_cookie'];
                     $cookie_array2 = explode(',', $cookie_array);
 
-                    $query3 = "INSERT INTO user (user_value) VALUES (:user_code)";
+                    $query3 = "INSERT INTO user (user_value, kakao_uuid) VALUES (:user_code, :kakao_uuid)";
                     $stmt3 = $conn->prepare($query3);
                     $stmt3 -> bindParam(':user_code',$user_code);
+                    $stmt3 -> bindParam(':kakao_uuid',$kakao_uuid);
                     $stmt3->execute();
 
                     $queryt = "SELECT user_code FROM user WHERE user_value = :user_code";
@@ -99,9 +100,10 @@ session_start();
                 else{
                     
 
-                    $query3 = "INSERT INTO user (user_value) VALUES (:user_code)";
+                    $query3 = "INSERT INTO user (user_value, kakao_uuid) VALUES (:user_code, :kakao_uuid)";
                     $stmt3 = $conn->prepare($query3);
                     $stmt3 -> bindParam(':user_code',$user_code);
+                    $stmt3 -> bindParam(':kakao_uuid',$kakao_uuid);
                     $stmt3->execute();
 
                     $queryt = "SELECT user_code FROM user WHERE user_value = :user_code";

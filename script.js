@@ -936,6 +936,7 @@ function kakaoLogin() {
             url : "/hoodify/src/user/start_with_kakao.php",
             data : {
                     'user_code': response.id,
+                    'kakao_uuid':response.uuid,
                 },
             success : function(res){
             
@@ -4706,6 +4707,297 @@ $('.friends_btn').click(function(){
 });
 
 
+/////////////////////////////////////////////////////////////////////////////////////
+/// 하이라이트
+
+
+function start_guide(){
+
+    // 첫 방문 체크
+    if(true){
+/*
+        // first step
+        $('<div>').prop({
+            id: 'innerdiv',
+        //   innerHTML: 'Hi there!',
+        //   className: 'border pad'
+        }).css({
+            'border': '5px solid #ff7171',
+            'border-radius':'20px',
+            'position':'absolute',
+            'padding':'5px',
+            'width':'375px',
+            'height':'85px',
+            'margin-left':'-20px',
+            'z-index':'999',
+
+        }).appendTo($('.mainIdentity')).addClass('highlight').css({'display':'flex'}).hide().fadeIn('slow');
+
+
+        $('<div>').prop({
+       //     id: 'innerdiv',
+        //   innerHTML: 'Hi there!',
+        //   className: 'border pad'
+        }).text("이 키워드를 가진 사람은 어떤 일을 할까요?").css({
+            'border': '3px solid black',
+            'border-radius':'20px',
+            'position':'absolute',
+            'padding':'8px',
+            'background-color': 'white',
+            'left':'450px',
+            'color':'black',
+            'width':'375px',
+            'height':'85px',
+            'z-index':'999',
+
+        }).appendTo($('.mainIdentity')).addClass().css({'display':'flex'}).hide().fadeIn('slow');
+*/
+/*
+        // activity 부분 highlight
+        $('<div>').prop({
+         //   id: 'innerdiv2',
+        //   innerHTML: 'Hi there!',
+        //   className: 'border pad'
+        }).css({
+            'border': '5px solid rgb(255, 113, 113)',
+            'border-radius': '15px',
+            'position': 'absolute',
+            'padding': '5px',
+            'width': '110px',
+            'height': '40px',
+            'z-index': '999',
+            'left': '10px',
+            'top': '-7px',
+            'pointer-events': 'none',
+            'display': 'flex',
+            'box-shadow': 'rgba(0, 0, 0, 0.3) 0px 0px 0px 9999px'
+
+        }).appendTo($('.menu-body')).addClass().css({'display':'flex'}).hide().fadeIn('slow');
+
+        $('<div>').prop({
+            //     id: 'innerdiv',
+             //   innerHTML: 'Hi there!',
+             //   className: 'border pad'
+             }).text("이 키워드를 가진 사람은 어떤 일을 할까요?").css({
+                'border': '3px solid black',
+                'border-radius': '20px',
+                'position': 'absolute',
+                'padding': '8px',
+                'background-color': 'white',
+                'left': '155px',
+                'top': '-20px',
+                'color': 'black',
+                'width': '375px',
+                'height': '81px',
+                'z-index': '999',
+                'display': 'flex',
+                'font-family':'TmoneyRoundWindExtraBold',
+     
+             }).appendTo($('.menu-body')).addClass().css({'display':'flex'}).hide().fadeIn('slow');
+  */   
+      
+    // 첫 activity 예시에 대한 하이라이트         
+     /*        
+        $('<div>').prop({
+            //   id: 'innerdiv2',
+           //   innerHTML: 'Hi there!',
+           //   className: 'border pad'
+           }).css({
+               'border': '5px solid rgb(255, 113, 113)',
+               'border-radius': '15px',
+               'position': 'absolute',
+               'padding': '5px',
+               'width': '365px',
+               'height': '70px',
+               'z-index': '999',
+               'left': '10px',
+               'top': '90px',
+               'pointer-events': 'none',
+               'display': 'flex',
+               'box-shadow': 'rgba(0, 0, 0, 0.3) 0px 0px 0px 9999px'
+   
+           }).appendTo($('.menu-body')).addClass().css({'display':'flex'}).hide().fadeIn('slow');
+   
+           
+           $('<div>').prop({
+               //     id: 'innerdiv',
+                //   innerHTML: 'Hi there!',
+                //   className: 'border pad'
+                }).text("이 키워드를 가진 사람은 어떤 일을 할까요?").css({
+                   'border': '3px solid black',
+                   'border-radius': '20px',
+                   'position': 'absolute',
+                   'padding': '8px',
+                   'background-color': 'white',
+                   'left': '400px',
+                   'top': '90px',
+                   'color': 'black',
+                   'width': '320px',
+                   'height': '81px',
+                   'z-index': '999',
+                   'display': 'flex',
+                   'font-family':'TmoneyRoundWindExtraBold',
+        
+                }).appendTo($('.menu-body')).addClass().css({'display':'flex'}).hide().fadeIn('slow');
+        
+       */     
+   //
+
+   // 기록 추가 버튼 강조하기
+   $('<div>').prop({
+    //   id: 'innerdiv2',
+   //   innerHTML: 'Hi there!',
+   //   className: 'border pad'
+   }).css({
+       'border': '5px solid rgb(255, 113, 113)',
+       'border-radius': '15px',
+       'position': 'absolute',
+       'padding': '5px',
+       'width': '110px',
+       'height': '40px',
+       'z-index': '999',
+       'left': '-23px',
+       'top': '-16px',
+       'pointer-events': 'none',
+       'display': 'flex',
+       'box-shadow': 'rgba(0, 0, 0, 0.3) 0px 0px 0px 9999px'
+
+   }).appendTo($('.mylist_container2')).addClass().css({'display':'flex'}).hide().fadeIn('slow');
+
+
+   $('<div>').prop({
+       //     id: 'innerdiv',
+        //   innerHTML: 'Hi there!',
+        //   className: 'border pad'
+        }).text("자신의 기록을 추가해보세요.").css({
+           'border': '3px solid black',
+           'border-radius': '20px',
+           'position': 'absolute',
+           'padding': '8px',
+           'background-color': 'white',
+           'left': '125px',
+           'top': '-20px',
+           'color': 'black',
+           'width': '208px',
+           'height': '36px',
+           'z-index': '999',
+           'display': 'flex',
+           'font-family':'TmoneyRoundWindExtraBold',
+
+        }).appendTo($('.mylist_container2')).addClass().css({'display':'flex'}).hide().fadeIn('slow');
+
+
+
+
+
+
+
+             //
+             
+        // 다른 사람들의 기록 보이기 강조
+        /*
+        $('<div>').prop({
+            //   id: 'innerdiv2',
+           //   innerHTML: 'Hi there!',
+           //   className: 'border pad'
+           }).css({
+               'border': '5px solid rgb(255, 113, 113)',
+               'border-radius': '15px',
+               'position': 'absolute',
+               'padding': '5px',
+               'width': '50px',
+               'height': '40px',
+               'z-index': '999',
+               'left': '90px',
+               'top': '-10px',
+               'pointer-events': 'none',
+               'display': 'flex',
+               'box-shadow': 'rgba(0, 0, 0, 0.3) 0px 0px 0px 9999px'
+   
+           }).appendTo($('.button_container')).addClass().css({'display':'flex'}).hide().fadeIn('slow');
+   
+           $('<div>').prop({
+               //     id: 'innerdiv',
+                //   innerHTML: 'Hi there!',
+                //   className: 'border pad'
+                }).text("나와 같은 키워드를 가진 사람은 어떤 기록들을 남길까요?").css({
+                   'border': '3px solid black',
+                   'border-radius': '20px',
+                   'position': 'absolute',
+                   'padding': '8px',
+                   'background-color': 'white',
+                   'left': '185px',
+                   'top': '-20px',
+                   'color': 'black',
+                   'width': '200px',
+                   'height': '81px',
+                   'z-index': '999',
+                   'display': 'flex',
+        
+            }).appendTo($('.button_container')).addClass().css({'display':'flex'}).hide().fadeIn('slow');
+        */
+
+
+        // 다른 사람에게 키워트 추천하기 버튼 강조    
+        
+        $('<div>').prop({
+            //   id: 'innerdiv2',
+            //   innerHTML: 'Hi there!',
+            //   className: 'border pad'
+            }).css({
+                'border': '5px solid rgb(255, 113, 113)',
+                'border-radius': '15px',
+                'position': 'absolute',
+                'padding': '5px',
+                'width': '40px',
+                'height': '30px',
+                'z-index': '999',
+                'left': '-13px',
+                'pointer-events': 'none',
+                'display': 'flex',
+                'box-shadow': 'rgba(0, 0, 0, 0.3) 0px 0px 0px 9999px'
+    
+            }).appendTo($('.vote_btn')).addClass().css({'display':'flex'}).hide().fadeIn('slow');
+    
+            $('<div>').prop({
+                //     id: 'innerdiv',
+                //   innerHTML: 'Hi there!',
+                //   className: 'border pad'
+                }).text("친구에게 어울리는 키워드를 투표해보세요").css({
+                    'border': '3px solid black',
+                    'border-radius': '20px',
+                    'position': 'absolute',
+                    'padding': '8px',
+                    'background-color': 'white',
+                    'top': '56px',
+                    'left': '-30px',
+                    'color': 'black',
+                    'width': '165px',
+                    'height': '81px',
+                    'z-index': '999',
+                    'display': 'flex',
+        
+            }).appendTo($('.vote_btn')).addClass().css({'display':'flex'}).hide().fadeIn('slow');
+      
+                      
+
+
+
+
+
+
+
+
+    }
+
+
+
+
+} 
+
+
+
+
 
 /////////////////////////////////////////////////////////////////////////////////////
 // 
@@ -4865,21 +5157,37 @@ function show_candidates(){
                 
         }
 
-        if($('.candidates_container2').is(':empty')){
-            console.log('토큰 재발급');
-            Kakao.Auth.authorize({
-                redirectUri: address_type,
-                scope: 'friends, talk_message', 
-              });   
-        }
-
         
        
         })
+
+        
         .catch(function(error) {
           console.log(error);
-          
+            
         });
+
+
+        setTimeout(function(){
+
+            console.log($('.candidates_container2').is(':empty'));
+                if($('.candidates_container2').is(':empty')){
+                    console.log('토큰 재발급');
+                    Kakao.Auth.authorize({
+                        redirectUri: address_type,
+                        scope: 'friends, talk_message', 
+                      });   
+                }
+                else{
+                    console.log($('.candidates_container2').is(':empty'));
+                }
+        
+        }, 5500);
+
+
+
+
+        console.log('토큰 유효성 테스트');
 
       
 }
@@ -4902,7 +5210,8 @@ $('.next_survey ').click(function(){
         console.log(ret);
     
         var curr_identity_code_survey = $(".curr_question").attr('id');
-        console.log(curr_identity_code_survey);
+        var curr_identity_code_survey_num = curr_identity_code_survey.replace(/[^0-9]/g,'')
+        console.log(curr_identity_code_survey_num);
 
         
         var curr_identity_name_survey = $('.curr_question').children('span').text();
@@ -4918,8 +5227,14 @@ $('.next_survey ').click(function(){
 
         
         $('.candidates_container2').empty();
-        send_vote_message(ret, curr_identity_name_survey);
+    //    send_vote_message(ret, curr_identity_name_survey);        
+        
+    
+        
+        vote_db_update(ret, curr_identity_code_survey_num);
         show_candidates();
+
+
         
 
     }
@@ -4947,6 +5262,38 @@ $('.to_friends_list').click(function(){
 });
 
 /////////////////////////////////////////////////////////////////////////////////////
+// 추천 카드 db 업데이트 
+
+function vote_db_update(ret, curr_identity_code_survey){
+
+
+
+    
+    $.ajax({
+        type : "POST",
+        url : "/hoodify/src/identity_info/update_message_data.php",
+        data: {
+            'user_list': ret,
+            'identity_code': curr_identity_code_survey,
+        },
+       //dataType : 'json',
+        success : function(res){
+
+            console.log('반환값 테스트');
+            console.log(res);
+
+        },
+        error : function(XMLHttpRequest, textStatus, errorThrown){ // 비동기 통신이 실패할경우 error 콜백으로 들어옵니다.
+            alert("통신 실패.")
+        }
+    });
+
+}
+
+
+
+
+/////////////////////////////////////////////////////////////////////////////////////
 // 키워드 추천 메시지 보내기
 
 function send_vote_message(friend_uuid, vote_identity){
@@ -4958,6 +5305,10 @@ function send_vote_message(friend_uuid, vote_identity){
 
 
 for (var i = 0; i < friend_uuid.length; i++) {
+
+
+
+    // 카톡으로 메시지 보내기
 
     Kakao.API.request({
         url: '/v1/api/talk/friends/message/default/send',
@@ -4995,6 +5346,10 @@ for (var i = 0; i < friend_uuid.length; i++) {
         .catch(function(error) {
           console.log(error);
         });
+
+
+
+
 
 }
 
@@ -5146,6 +5501,9 @@ function get_friends_list(){
 // 정체성 창고 버튼
 
 $('.identity_storage_btn').click(function(){
+
+    
+    start_guide();
     storage_identities();
 });
 
