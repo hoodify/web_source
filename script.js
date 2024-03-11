@@ -3922,6 +3922,8 @@ $('#add_identity_checkCom').click(function(){
                     $('.locked').css({ display : 'block',});
                     get_main_list();
 
+                    
+
 
                 }
                 else if(res.match('no_session')){
@@ -4840,10 +4842,11 @@ function start_guide(){
         
                 }).appendTo($('.menu-body')).addClass().css({'display':'flex'}).hide().fadeIn('slow');
         
-       */     
+           
    //
 
    // 기록 추가 버튼 강조하기
+   /*
    $('<div>').prop({
     //   id: 'innerdiv2',
    //   innerHTML: 'Hi there!',
@@ -4886,7 +4889,7 @@ function start_guide(){
 
         }).appendTo($('.mylist_container2')).addClass().css({'display':'flex'}).hide().fadeIn('slow');
 
-
+*/
 
 
 
@@ -4895,51 +4898,10 @@ function start_guide(){
              //
              
         // 다른 사람들의 기록 보이기 강조
-        /*
-        $('<div>').prop({
-            //   id: 'innerdiv2',
-           //   innerHTML: 'Hi there!',
-           //   className: 'border pad'
-           }).css({
-               'border': '5px solid rgb(255, 113, 113)',
-               'border-radius': '15px',
-               'position': 'absolute',
-               'padding': '5px',
-               'width': '50px',
-               'height': '40px',
-               'z-index': '999',
-               'left': '90px',
-               'top': '-10px',
-               'pointer-events': 'none',
-               'display': 'flex',
-               'box-shadow': 'rgba(0, 0, 0, 0.3) 0px 0px 0px 9999px'
-   
-           }).appendTo($('.button_container')).addClass().css({'display':'flex'}).hide().fadeIn('slow');
-   
-           $('<div>').prop({
-               //     id: 'innerdiv',
-                //   innerHTML: 'Hi there!',
-                //   className: 'border pad'
-                }).text("나와 같은 키워드를 가진 사람은 어떤 기록들을 남길까요?").css({
-                   'border': '3px solid black',
-                   'border-radius': '20px',
-                   'position': 'absolute',
-                   'padding': '8px',
-                   'background-color': 'white',
-                   'left': '185px',
-                   'top': '-20px',
-                   'color': 'black',
-                   'width': '200px',
-                   'height': '81px',
-                   'z-index': '999',
-                   'display': 'flex',
+    
         
-            }).appendTo($('.button_container')).addClass().css({'display':'flex'}).hide().fadeIn('slow');
-        */
-
-
         // 다른 사람에게 키워트 추천하기 버튼 강조    
-        
+        /*
         $('<div>').prop({
             //   id: 'innerdiv2',
             //   innerHTML: 'Hi there!',
@@ -4978,7 +4940,7 @@ function start_guide(){
                     'display': 'flex',
         
             }).appendTo($('.vote_btn')).addClass().css({'display':'flex'}).hide().fadeIn('slow');
-      
+      */
                       
 
 
@@ -4995,7 +4957,69 @@ function start_guide(){
 
 } 
 
+function guide_01(){
 
+
+    $('.search_layer ').fadeOut('fast');
+
+    setTimeout(function(){
+
+        $('<div>').prop({
+            //   id: 'innerdiv2',
+           //   innerHTML: 'Hi there!',
+            //  className: 'border'
+           }).css({
+               'border': '5px solid rgb(255, 113, 113)',
+               'border-radius': '15px',
+               'position': 'absolute',
+               'padding': '5px',
+               'width': '50px',
+               'height': '40px',
+               'z-index': '999',
+               'left': '90px',
+               'top': '-10px',
+               'pointer-events': 'none',
+               'display': 'flex',
+               'box-shadow': 'rgba(0, 0, 0, 0.3) 0px 0px 0px 9999px'
+    
+           }).appendTo($('.button_container')).addClass('highlight').css({'display':'flex'}).hide().fadeIn('slow');
+    
+           $('<div>').prop({
+                 //   id: 'innerdiv',
+                //   innerHTML: 'Hi there!',
+                 //  className: 'border'
+                }).text("나와 같은 키워드를 가진 사람은 어떤 기록들을 남길까요?").css({
+                   'border': '3px solid black',
+                   'border-radius': '20px',
+                   'position': 'absolute',
+                   'padding': '8px',
+                   'background-color': 'white',
+                   'left': '185px',
+                   'top': '-20px',
+                   'color': 'black',
+                   'width': '200px',
+                   'height': '81px',
+                   'z-index': '999',
+                   'display': 'flex',
+        
+            }).appendTo($('.button_container')).addClass('highlight').css({'display':'flex'}).hide().fadeIn('slow');
+        
+      
+    
+    }, 1500);
+
+    
+ 
+
+
+
+        $('#others_record_btn').click(function(){
+
+            $('.highlight').fadeOut('fast');
+
+
+        });
+    }
 
 
 
@@ -6747,6 +6771,20 @@ $('#others_location_container').css({'display':'none'});
 
                 //get_daily_list();
                 $('#current_identity').fadeIn('slow');
+
+                console.log('첫 키워드 추가');
+                    console.log($('.main_list').children().length);
+
+                    if($('.main_list').children().length == 1){
+
+                      
+                        guide_01();
+
+
+                    }
+
+
+
             }
 
         },
