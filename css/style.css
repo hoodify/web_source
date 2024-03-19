@@ -2831,24 +2831,17 @@ border: 1px solid #93b0bc;
 
 
 .locked {
-    display: none;
-    height: 25px;
-    position: absolute;
-    padding: 0 14px 0;
-    border: 1px solid gray;
-    background-color: gray;
-    font-size: 13px;
-    color: #fff;
-    line-height: 25px;
-    width: fit-content;
-    text-decoration: none;
-    margin-left: 25px;
-    border-radius: 4px;
-    /* box-shadow: gray 2px 2px 2px 1px; */
-    right: 11px;
-    bottom: 108px;
-    border: 1px solid;
-    font-family: 'TmoneyRoundWindExtraBold';
+background-color: gray;
+  height: 25px;
+  padding: 0 14px 0;
+  border: 1px solid #495364;
+  font-size: 13px;
+  color: #fff;
+  line-height: 25px;
+  margin-left:10px;
+  text-decoration: none;
+  cursor:pointer;
+  box-shadow: gray 2px 2px 2px 1px;
 
 }
 
